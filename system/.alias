@@ -1,0 +1,19 @@
+# this will hold all the alias_that are being used
+
+alias dc='docker-compose' # short the docker-compose commend
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+# --------------------------------------  GIT ALIAS   ---------------------------------------------------------
+#
+alias g='git' # short the git commend
+alias ga='git add'
+alias gb='git branch' 
+alias gc='git commit'
+alias gs='git status'
+alias gp='git push'
+alias gm='git merge'
+alias gr='git remote'
+alias gco='git checkout'
+#
