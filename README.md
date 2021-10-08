@@ -1,12 +1,16 @@
 # dotfiles
 
 # Setup Process
+
+In the `.profile` you should copy the following code
 ```
-if [ -n "$BASH_VERSION" ]; then
-   if [ -f "$HOME/.bashrc" ]; then
-      . "$HOME/.bashrc"
-   fi
-fi
+
+DOTFILES_DIR="$HOME/.dotfiles"
+
+for DOTFILE in "$DOTFILES_DIR"/system/.{alias,};
+do
+        [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
 
 ```
 
