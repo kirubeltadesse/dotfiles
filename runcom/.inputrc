@@ -1,0 +1,12 @@
+<<com
+
+~/.inputrc is the user configuration file of GNU readline, which provides customizable command line
+user interfaces for many important interactive programs, such as Bash and Python interactive shell.
+
+com
+
+
+
+
+# none, visible or audible 
+set bell-style none
