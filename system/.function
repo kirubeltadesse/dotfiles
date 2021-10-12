@@ -1,0 +1,14 @@
+# Create a new directory and enter it
+function mk() {
+    mkdir -p "$@" && cd "$@"
+}
+
+# Open man page as PDF
+
+function manpdf() {
+    man -t "${1}" | open -f -a /Application/Preview.app/
+}
+
+function copy() {
+    cat "${1}" | clip.exe 
+}
