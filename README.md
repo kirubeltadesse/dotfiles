@@ -19,7 +19,7 @@ One for the system level configurations
 
 DOTFILES_DIR="$HOME/.dotfiles"
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env};
+for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
 do
         [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
@@ -31,7 +31,7 @@ done
 ### Configureation to work on 
  - [X] Understand the difference between interactive and non-interactive shell
  - [X] alias for wsl terminal clip 
- - [X] tmux configuration
+ - [X] tmux configuration if copy pasting formate
  - [ ] vim airline plugin 
  - [ ] cd completetion configuration 
  - [ ] gitconfig  
