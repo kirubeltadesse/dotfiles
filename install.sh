@@ -10,16 +10,14 @@
 
 # mv ~/dotfiles ~/.dotfiles 																					# making it a dot folder
 
-
 # creat the symlinks
 # ln -sv "~/.dotfiles/runcom/.bash_profile" ~
 # ln -sv "~/.dotfiles/runcom/.inputrc" ~
 
 
+# ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.vim/.vimrc" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.vim" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.tmux.conf" $HOME/
-
-# ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
 
 

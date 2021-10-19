@@ -11,7 +11,10 @@ execute pathogen#infect()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+"call vundle#begin('~/some/path/here')
 
+" let Vundle manage Vundle, required
+" Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -31,12 +34,13 @@ Plugin 'VundleVim/Vundle.vim'
 
 " All of your Plugins must be added before the following line
 
+" filetype plugin on
+
 call vundle#end()            " required
 
 "filetype plugin indent on    " required
 
 " To ignore plugin indent changes, instead use:
-filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -80,6 +84,7 @@ set shiftwidth=4  	   " this is the level of autoindent, adjust to taste
 set ruler
 set hlsearch 			" used to highlight the searched word 
 set number relativenumber  " better than set rnu or set relativenumber
+set rnu   " set relativenumber
 
 " set number
 set visualbell "turning of the beep sound on the text edit
