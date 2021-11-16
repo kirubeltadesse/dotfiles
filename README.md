@@ -1,7 +1,14 @@
 # dotfiles
 
 # Setup Process
-In the `.bashrc` you should copy the following code. 
+
+first clone the repo and rename the folder
+
+```
+mv dotfiles .dotfiles
+```
+
+Then, In the `.bashrc` you should copy the following code. 
 for the `runcom` script there needs to be a linker
 ```
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -53,4 +60,5 @@ Installed
 
 ## More:
  * Understand how the some software on GitHub have release code ?
- * Understand how issue doc work on GitHub ?
+ * Understand how issue doc work on GitHub ? 
+ 

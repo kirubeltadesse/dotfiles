@@ -53,9 +53,10 @@ filetype plugin indent on
 set tabstop=4
 set expandtab
 set autoindent
-set shiftwidth=4  "this is the level of autoindent, adjust to taste
+set shiftwidth=4  																	"this is the level of autoindent, adjust to taste
 set ruler
-set rnu   " set relativenumber
+set number relativenumber 															" better than set rnu or set relativenumber
+
 " set number
 set visualbell "turning of the beep sound on the text edit
 " set backspace=indent,eol,start

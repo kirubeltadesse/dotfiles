@@ -12,7 +12,7 @@
 # creat the symlinks
 # ln -sv "~/.dotfiles/runcom/.bash_profile" ~
 # ln -sv "~/.dotfiles/runcom/.inputrc" ~
-ln -sv "~/.dotfiles/runcom/.vimrc" $HOME/
+ln -sv "~/.dotfiles/runcom/.vim/.vimrc" $HOME/
 ln -sv "~/.dotfiles/runcom/.vim" $HOME/
 ln -sv "~/.dotfiles/runcom/.tmux.conf" $HOME/
-ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
+# ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
