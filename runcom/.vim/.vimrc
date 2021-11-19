@@ -30,8 +30,8 @@ execute pathogen#infect()
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+"call vundle#end()            " required
+"filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -67,11 +67,13 @@ set visualbell "turning of the beep sound on the text edit
 " set nocompatible
 "
 
+set nofixendofline " save the file without the end of line charactor
+
 set t_Co=256
 set laststatus=2
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 
 " Airline-tmuxline
 let g:airline#extensions#tmuxline#enabled = 1
@@ -143,3 +145,4 @@ set paste "keep the proper formating while pasting on vim"
 
 " remap ctrl +v for windows terminal
 nnoremap v <c-v>
+
