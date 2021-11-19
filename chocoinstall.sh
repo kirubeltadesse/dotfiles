@@ -2,7 +2,10 @@
 
 # install WSL
 
+# install git
+
 # install Vim
+
 
 # install stow used for software organization
 
