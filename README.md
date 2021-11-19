@@ -1,6 +1,5 @@
 # dotfiles
 
-<<<<<<< HEAD
 ## WSL configuration
 
 WSL proper configuration will give you a great overall workflow. Especially, wsl2 having Docker Disktop running natively enhance the overall productivity. There are useful information on how to mount and unmont drivers on WSL
@@ -12,18 +11,6 @@ This is a current setup process for the `dotfiles`. In the future, I plan to use
 
 ```bash
 mv dotfiles .dotfiles
-=======
-# Setup Process
-
-first clone the repo and rename the folder
-
-```
-mv dotfiles .dotfiles
-```
-
-Then, In the `.bashrc` you should copy the following code. 
-for the `runcom` script there needs to be a linker
->>>>>>> 263b4dd (.gitignore fix)
 ```
 
 Then, in the `.bashrc` you should copy the following code. for the `system` script there needs to be a linker
@@ -75,7 +62,7 @@ Installed
 
 - [ ] project to github
 - [ ] git alias backedup
-- [ ] 
+- [ ]
 
 ---
 
@@ -127,6 +114,8 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
+```bash
+
 DOTFILES_DIR="$HOME/.dotfiles"
 
 for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
@@ -136,30 +125,25 @@ done
 
 ```
 
-# using uname with flags to identify the shell evironment
+## Setting up Application
 
-# [https://chocolatey.org/] installing Choco to windows
+Using [chocolatey](https://chocolatey.org/) install softwares to your windows
 
+- Git/GitHub
+- wsl
+- VScode
 
-# Setting up Application 
-Using chocolately install
- - Git/GitHub
- - wsl
- - VScode
+Installed
 
-Installed 
-	- Installed Pathogen from vim-airline  
-	- [https://github.com/vim-airline/vim-airline] vim-airline
-	- Install tmux vim-airline
+- Installed Pathogen from vim-airline
+- [https://github.com/vim-airline/vim-airline] vim-airline
+- Install tmux vim-airline
 
+## Configuration to work on
 
-### Configureation to work on 
- - [X] Understand the difference between interactive and non-interactive shell
- - [X] alias for wsl terminal clip 
- - [X] tmux configuration if copy pasting formate
- - [X] vim airline plugin 
- - [ ] cd completetion configuration 
- - [ ] gitconfig  
+- [x] alias for wsl terminal clip
+- [ ] cd completion configuration
+- [ ] gitconfig
 
 NOTE: copying from wsl to cmd.exe easy works
 
@@ -168,11 +152,3 @@ ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-
 </details>
 
 ## More:
- * Understand how the some software on GitHub have release code ?
-<<<<<<< HEAD
- * Understand how issue doc work on GitHub ?
-
-=======
- * Understand how issue doc work on GitHub ? 
- 
->>>>>>> 263b4dd (.gitignore fix)
