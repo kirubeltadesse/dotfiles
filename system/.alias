@@ -19,6 +19,7 @@ alias gp='git push'
 alias gm='git merge'
 alias gr='git remote'
 alias gco='git checkout'
+alias gcp='git cherry-pick'
 
 # Directory listing/traversal
 
