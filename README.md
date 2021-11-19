@@ -9,6 +9,7 @@ mv dotfiles .dotfiles
 ```
 
 Then, In the `.bashrc` you should copy the following code. 
+
 for the `runcom` script there needs to be a linker
 ```
 DOTFILES_DIR="$HOME/.dotfiles"
