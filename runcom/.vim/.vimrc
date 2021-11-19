@@ -12,9 +12,8 @@ execute pathogen#infect()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 "call vundle#begin('~/some/path/here')
-
 " let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -33,14 +32,13 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
-
 " filetype plugin on
 
 call vundle#end()            " required
 
 "filetype plugin indent on    " required
-
 " To ignore plugin indent changes, instead use:
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
