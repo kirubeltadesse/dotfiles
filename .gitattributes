@@ -2,4 +2,6 @@
 text=auto
 
 # Declare file that will always use lf line endings on checkout.
+text=LF
 text eol=lf
+

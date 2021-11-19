@@ -10,6 +10,7 @@ Linking VScode (locally)[https://stackoverflow.com/questions/57868950/wsl2-termi
 
 
 # Update list of installed plugins
+
 To update the list of installed plugins (the `extenstions` file by running the following script:
 
 ```bash
@@ -53,7 +54,7 @@ By default should have `BUG`, `HACK`, `FIXME`, and `TODO`
 
 Here is my preferred vscode `settings.json` file
 
-```
+```json
 {
 "workbench.colorTheme": "Abyss",
     "workbench.editorAssociations": {
@@ -133,13 +134,6 @@ Here is my preferred vscode `settings.json` file
     "vim.foldfix": true,
     "workbench.editor.untitled.hint": "hidden"
 }
-```
-
-
-
-
-
-
 
 
 
