@@ -30,6 +30,7 @@ execute pathogen#infect()
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
+
 call vundle#end()            " required
 
 "filetype plugin indent on    " required
@@ -74,8 +75,9 @@ set nofixendofline " save the file without the end of line charactor
 set t_Co=256
 set laststatus=2
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+
 
 
 " Airline-tmuxline
