@@ -31,7 +31,8 @@ execute pathogen#infect()
 
 " All of your Plugins must be added before the following line
 
-"call vundle#end()            " required
+call vundle#end()            " required
+
 "filetype plugin indent on    " required
 
 " To ignore plugin indent changes, instead use:
@@ -76,6 +77,7 @@ set laststatus=2
 
 "Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
+
 
 
 " Airline-tmuxline
