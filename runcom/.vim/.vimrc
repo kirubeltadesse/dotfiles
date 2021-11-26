@@ -10,7 +10,7 @@ execute pathogen#infect()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -56,9 +56,9 @@ filetype plugin indent on
 set tabstop=4
 set expandtab
 set autoindent
-set shiftwidth=4  																	"this is the level of autoindent, adjust to taste
+set shiftwidth=4  	   " this is the level of autoindent, adjust to taste
 set ruler
-set number relativenumber 															" better than set rnu or set relativenumber
+set number relativenumber  " better than set rnu or set relativenumber
 
 " set number
 set visualbell "turning of the beep sound on the text edit
@@ -75,9 +75,25 @@ set nofixendofline " save the file without the end of line charactor
 set t_Co=256
 set laststatus=2
 
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
+" how to configure vim color settings
+highlight Comment ctermbg=DarkGray
+highlight Constant ctermbg=Blue
+highlight Normal ctermbg=Black
+highlight NonText ctermbg=Black
+highlight Special ctermbg=DarkMagenta
+highlight Cursor ctermbg=Green
 
+" this next line is needed to enable your custom colors:
+syntax enable
+
+"  vim foreground and background colors
+" highlight Comment ctermbg=Blue ctermfg=White
+
+" vim font attribules
+" highlight Comment cterm=underline ctermbg=Blue ctermfg=White
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 
 " Airline-tmuxline
