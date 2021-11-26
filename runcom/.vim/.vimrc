@@ -72,6 +72,23 @@ set nofixendofline " save the file without the end of line charactor
 set t_Co=256
 set laststatus=2
 
+" how to configure vim color settings
+highlight Comment ctermbg=DarkGray
+highlight Constant ctermbg=Blue
+highlight Normal ctermbg=Black
+highlight NonText ctermbg=Black
+highlight Special ctermbg=DarkMagenta
+highlight Cursor ctermbg=Green
+
+" this next line is needed to enable your custom colors:
+syntax enable
+
+"  vim foreground and background colors
+" highlight Comment ctermbg=Blue ctermfg=White
+
+" vim font attribules
+" highlight Comment cterm=underline ctermbg=Blue ctermfg=White
+
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
