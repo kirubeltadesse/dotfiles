@@ -10,7 +10,7 @@ execute pathogen#infect()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-" Plugin 'VundleVim/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -53,9 +53,9 @@ filetype plugin indent on
 set tabstop=4
 set expandtab
 set autoindent
-set shiftwidth=4  																	"this is the level of autoindent, adjust to taste
+set shiftwidth=4  	   " this is the level of autoindent, adjust to taste
 set ruler
-set number relativenumber 															" better than set rnu or set relativenumber
+set number relativenumber  " better than set rnu or set relativenumber
 
 " set number
 set visualbell "turning of the beep sound on the text edit
