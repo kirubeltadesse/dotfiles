@@ -3,6 +3,9 @@
 alias _='sudo'
 alias v='vim'
 alias rr='rm -rf'
+
+# docker 
+alias d='docker'
 alias dc='docker-compose' # short the docker-compose commend
 
 #alias pbcopy='xclip -selection clipboard'
@@ -25,12 +28,12 @@ alias gcp='git cherry-pick'
 
 alias l='ls -la'    # List in long format, include dotfiles
 alias ld='ls -d */' # List in long format, only directories
+alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../../'
 alias -- -='cd -'               # Go to previous dir with -
 alias cd.='cd $(readlink -f .)' # Go to real dir (i.e. if current dir is linked)
-alias ~='cd ~'
 
 # Recursively remove .DS_Store files
 alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
