@@ -1,30 +1,33 @@
 # dotfiles
 
-# Setup Process
+## WSL configuration
 
-first clone the repo and rename the folder
+WSL proper configuration will give you a great overall workflow. Especially, wsl2 having Docker Disktop running natively enhance the overall productivity. There are useful information on how to mount and unmont drivers on WSL
+[link](https://linuxnightly.com/mount-and-access-hard-drives-in-windows-subsystem-for-linux-wsl/)
 
-```
+## Setup Process
+
+This is a current setup process for the `dotfiles`. In the future, I plan to use a utility tool to handle this process. For now, first clone the repo and rename the folder
+
+```bash
 mv dotfiles .dotfiles
 ```
 
-Then, In the `.bashrc` you should copy the following code. 
+Then, in the `.bashrc` you should copy the following code. for the `system` script there needs to be a linker
+<!--
+One for the `runcom` level configurations
+ ```bash
 
-for the `runcom` script there needs to be a linker
-```
 DOTFILES_DIR="$HOME/.dotfiles"
 
-for DOTFILE in "$DOTFILES_DIR"/runcom/.{,};
+for DOTFILE in "$DOTFILES_DIR"/runcom/.{bash_profile,};
 do
         [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
-```
+``` -->
 
-One for the system level configurations
-
-```
-
+```bash
 DOTFILES_DIR="$HOME/.dotfiles"
 
 for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
@@ -34,32 +37,24 @@ done
 
 ```
 
-# using uname with flags to identify the shell evironment
+## Setting up Application
 
-# [https://chocolatey.org/] installing Choco to windows
+Using [chocolatey](https://chocolatey.org/) install softwares to your windows
 
+- Git/GitHub
+- wsl
+- VScode
 
-# Setting up Application 
-Using chocolately install
- - Git/GitHub
- - wsl
- - VScode
+Installed
 
-Installed 
-	- Installed Pathogen from vim-airline  
-	- [https://github.com/vim-airline/vim-airline] vim-airline
-	- Install tmux vim-airline
+- Installed Pathogen from vim-airline
+- [https://github.com/vim-airline/vim-airline] vim-airline
+- Install tmux vim-airline
 
+## Configuration to work on
 
-### Configureation to work on 
- - [X] Understand the difference between interactive and non-interactive shell
- - [X] alias for wsl terminal clip 
- - [X] tmux configuration if copy pasting formate
- - [X] vim airline plugin 
- - [ ] cd completetion configuration 
- - [ ] gitconfig  
+- [X] alias for wsl terminal clip
+- [ ] cd completion configuration
+- [ ] gitconfig
 
-## More:
- * Understand how the some software on GitHub have release code ?
- * Understand how issue doc work on GitHub ? 
- 
+## More

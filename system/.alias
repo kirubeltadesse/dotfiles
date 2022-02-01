@@ -26,7 +26,10 @@ alias gcp='git cherry-pick'
 
 # Directory listing/traversal
 
-alias l='ls -la'    # List in long format, include dotfiles
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias ld='ls -d */' # List in long format, only directories
 alias ~='cd ~'
 alias ..='cd ..'
@@ -37,4 +40,6 @@ alias cd.='cd $(readlink -f .)' # Go to real dir (i.e. if current dir is linked)
 
 # Recursively remove .DS_Store files
 alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
+
+
 

@@ -9,6 +9,7 @@ function manpdf() {
     man -t "${1}" | open -f -a /Application/Preview.app/
 }
 
+# clip what is on the terminal
 function copy() {
     cat "${1}" | clip.exe 
 }
