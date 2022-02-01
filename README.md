@@ -17,6 +17,7 @@ Then, in the `.bashrc` you should copy the following code. for the `system` scri
 <!--
 One for the `runcom` level configurations
  ```bash
+
 DOTFILES_DIR="$HOME/.dotfiles"
 
 for DOTFILE in "$DOTFILES_DIR"/runcom/.{bash_profile,};
