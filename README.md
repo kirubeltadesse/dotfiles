@@ -7,7 +7,7 @@ WSL proper configuration will give you a great overall workflow. Especially, wsl
 
 ## Setup Process
 
-This is a current setup process for the `dotfiles`. In the future, I plan to use a utility tool to handle this process. For now, first clone the repo and rename the folder
+This is a current setup process for the `dotfiles`. In the future, I plan to use a [utility](https://www.chezmoi.io/user-guide/setup/) tool to handle this process. For now, first clone the repo and rename the folder
 
 ```bash
 mv dotfiles .dotfiles
