@@ -13,3 +13,8 @@ function manpdf() {
 function copy() {
     cat "${1}" | clip.exe 
 }
+
+# change a directory to unix
+function dos2unixd() {
+    find $1 -type f -print0 | xargs -0 dos2unix
+}
