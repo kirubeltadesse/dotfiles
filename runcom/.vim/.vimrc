@@ -58,6 +58,7 @@ set expandtab
 set autoindent
 set shiftwidth=4  	   " this is the level of autoindent, adjust to taste
 set ruler
+set hlsearch 			" used to highlight the searched word 
 set number relativenumber  " better than set rnu or set relativenumber
 
 " set number
