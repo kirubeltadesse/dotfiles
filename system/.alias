@@ -1,10 +1,21 @@
 # this will hold all the alias_that are being used
-# Shortcuts
-alias _='sudo'
-alias v='vim'
-alias rr='rm -rf'
+# Shortcuts Directory listing/traversal 
 
-# docker 
+alias ~='cd ~'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../../'
+alias _='sudo'
+alias -- -='cd -'               # Go to previous dir with -
+alias cd.='cd $(readlink -f .)' # Go to real dir (i.e. if current dir is linked)
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ld='ls -d */' # List in long format, only directories
+alias rr='rm -rf'
+alias v='vim'
+
+# DOCKER 
 alias d='docker'
 alias dc='docker-compose' # short the docker-compose commend
 
@@ -13,28 +24,16 @@ alias g='git' # short the git commend
 alias ga='git add'
 alias gb='git branch' 
 alias gc='git commit'
-alias gs='git status'
-alias gsl='git stash list'
-alias gss='git stash save'
-alias gsp='git stash push'
-alias gp='git push'
-alias gm='git merge'
-alias gr='git remote'
 alias gco='git checkout'
 alias gcp='git cherry-pick'
+alias gm='git merge'
+alias gp='git push'
+alias gr='git remote'
+alias gs='git status'
+alias gsl='git stash list'
+alias gsp='git stash push'
+alias gss='git stash save'
 
-# Directory listing/traversal
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ld='ls -d */' # List in long format, only directories
-alias ~='cd ~'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../../'
-alias -- -='cd -'               # Go to previous dir with -
-alias cd.='cd $(readlink -f .)' # Go to real dir (i.e. if current dir is linked)
 
 # Recursively remove .DS_Store files need for macOS
 #alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
