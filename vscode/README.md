@@ -1,3 +1,10 @@
+
+Linking VScode (locally)[https://stackoverflow.com/questions/57868950/wsl2-terminal-does-not-recognize-visual-studio-code]
+
+ /c/Program\ Files/Microsoft\ VS\ Code/bin/code /home/ktadesse1/.local/bin
+
+
+
 # Update list of installed plugins
 To update the list of installed plugins (the `extenstions` file by running the following script:
 
