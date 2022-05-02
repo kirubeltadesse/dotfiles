@@ -64,12 +64,14 @@ Installed
 
 <summary> FAQ </summary>
 
-### cloning error
+### Ques: Cloning error ?
 
 ```bash
 error: chmod on /c/*/.git/config.lock failed: Operation not permitted
 fatal: could not set 'core.filemode' to 'false'
 ```
+
+ANS:
 
 ```bash
 sudo umount /mnt/c
@@ -77,5 +79,31 @@ sudo mount -t drvfs C: /mnt/c -o metadata
 ```
 
 For more information: [Here](https://askubuntu.com/questions/1115564/wsl-ubuntu-distro-how-to-solve-operation-not-permitted-on-cloning-repository)
+
+### Ques: git status is slow in WSL2 ?
+
+ANS:
+
+The NTFS is fast on windows than wls2 ( linux system). Therefore the solution is to pit to the windows git system in `.profile`
+
+```bash
+# checks to see if we are in a windows or linux dir
+function isWinDir {
+  case `pwd -P`/ in
+    /c/*) return $(true);;
+    *) return $(false);;
+  esac
+}
+# wrap the git command to either run windows git or linux
+function git {
+  if isWinDir
+  then
+    git.exe "$@"
+  else
+    /usr/bin/git "$@"
+  fi
+}
+
+```
 
 </details>
