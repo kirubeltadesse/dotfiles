@@ -58,6 +58,12 @@ Installed
 - [ ] cd completion configuration
 - [ ] gitconfig
 
+## Checklist for backing up
+
+- [ ] project to github
+- [ ] git alias backedup
+- [ ] 
+
 ---
 
 <details>
