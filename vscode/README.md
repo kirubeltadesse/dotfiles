@@ -2,12 +2,9 @@
 
 ## Update list of installed plugins
 
-
 Linking VScode (locally)[https://stackoverflow.com/questions/57868950/wsl2-terminal-does-not-recognize-visual-studio-code]
 
- /c/Program\ Files/Microsoft\ VS\ Code/bin/code /home/ktadesse1/.local/bin
-
-
+/c/Program\ Files/Microsoft\ VS\ Code/bin/code /home/ktadesse1/.local/bin
 
 # Update list of installed plugins
 
@@ -54,7 +51,7 @@ By default should have `BUG`, `HACK`, `FIXME`, and `TODO`
 
 Here is my preferred vscode `settings.json` file
 
-```json
+```
 {
 "workbench.colorTheme": "Abyss",
     "workbench.editorAssociations": {
@@ -134,9 +131,4 @@ Here is my preferred vscode `settings.json` file
     "vim.foldfix": true,
     "workbench.editor.untitled.hint": "hidden"
 }
-
-
-
-
-
-
+```

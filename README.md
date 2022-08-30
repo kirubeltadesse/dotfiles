@@ -114,8 +114,11 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
+<<<<<<< HEAD
 ```bash
 
+=======
+>>>>>>> 50ac09d (tmux vim shortcut (#27))
 DOTFILES_DIR="$HOME/.dotfiles"
 
 for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
@@ -125,6 +128,7 @@ done
 
 ```
 
+<<<<<<< HEAD
 ## Setting up Application
 
 Using [chocolatey](https://chocolatey.org/) install softwares to your windows
@@ -144,6 +148,17 @@ Installed
 - [x] alias for wsl terminal clip
 - [ ] cd completion configuration
 - [ ] gitconfig
+=======
+# using uname with flags to identify the shell evironment
+
+### Configureation to work on 
+ - [X] Understand the difference between interactive and non-interactive shell
+ - [X] alias for wsl terminal clip 
+ - [X] tmux configuration if copy pasting formate
+ - [ ] vim airline plugin 
+ - [ ] cd completetion configuration 
+ - [ ] gitconfig  
+>>>>>>> 50ac09d (tmux vim shortcut (#27))
 
 NOTE: copying from wsl to cmd.exe easy works
 
