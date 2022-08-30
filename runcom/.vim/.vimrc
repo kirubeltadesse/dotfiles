@@ -47,6 +47,26 @@ filetype plugin on
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+call pathogen#infect()
+syntax on
+filetype plugin indent on
+
+"  set inchighlight
+
+" TODO: add a keyboard binding for the vim $(fzf) search  
+
+" enable fzf buffer 
+
+" enable preview for fzf using BAT 
+
+" installing fzf 
+" set rtp+=~/.fzf
+" Plug '~/.fzf'
+" 
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+
+
 syntax on
 " colorscheme morning
 filetype plugin indent on
@@ -75,6 +95,14 @@ set nofixendofline " save the file without the end of line charactor
 
 set t_Co=256
 set laststatus=2
+
+" NERDTree shortcuts
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeFind<CR>
+" nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
+
 
 " how to configure vim color settings
 highlight Comment ctermbg=DarkGray
@@ -160,7 +188,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ctrlp#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
-
+let g:tmuxline_powerline_separators = 0
 
 set paste "keep the proper formating while pasting on vim"
 
