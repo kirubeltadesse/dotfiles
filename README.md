@@ -114,6 +114,25 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
+DOTFILES_DIR="$HOME/.dotfiles"
+
+for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
+do
+        [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
+
+```
+
+# using uname with flags to identify the shell evironment
+
+### Configureation to work on 
+ - [X] Understand the difference between interactive and non-interactive shell
+ - [X] alias for wsl terminal clip 
+ - [X] tmux configuration if copy pasting formate
+ - [ ] vim airline plugin 
+ - [ ] cd completetion configuration 
+ - [ ] gitconfig  
+
 NOTE: copying from wsl to cmd.exe easy works
 
 ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
