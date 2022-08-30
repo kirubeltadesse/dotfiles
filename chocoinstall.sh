@@ -15,4 +15,5 @@
 
 # install VSCode 
 
-
+# install bat 
+choco install bat

@@ -112,4 +112,10 @@ function git {
 
 ```
 
+### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
+
+NOTE: copying from wsl to cmd.exe easy works
+
+ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
+
 </details>
