@@ -57,7 +57,3 @@ clone this [repo](https://github.com/erikw/tmux-powerline) to your HOME director
 `C+A !`: break out a panel
 
 [Here](https://blog.sanctum.geek.nz/vi-mode-in-tmux/#:~:text=Most%20of%20the%20basic%20vi,another%2C%20and%20then%20pressing%20Enter.) good resource on how to set up vi modes for tmux
-<<<<<<< HEAD
-
-=======
->>>>>>> 50ac09d (tmux vim shortcut (#27))
