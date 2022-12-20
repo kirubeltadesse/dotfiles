@@ -13,29 +13,10 @@ This is a current setup process for the `dotfiles`. In the future, I plan to use
 mv dotfiles .dotfiles
 ```
 
-Then, in the `.bashrc` you should copy the following code. for the `system` script there needs to be a linker
-
-<!--
-One for the `runcom` level configurations
- ```bash
-
-DOTFILES_DIR="$HOME/.dotfiles"
-
-for DOTFILE in "$DOTFILES_DIR"/runcom/.{bash_profile,};
-do
-        [ -f "$DOTFILE" ] && . "$DOTFILE"
-done
-
-``` -->
+and run the installer script make sure it is executable. If not, use `chmod +x install.sh` command
 
 ```bash
-DOTFILES_DIR="$HOME/.dotfiles"
-
-for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
-do
-        [ -f "$DOTFILE" ] && . "$DOTFILE"
-done
-
+./install.sh
 ```
 
 ## Setting up Application
