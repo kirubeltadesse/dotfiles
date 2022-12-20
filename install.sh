@@ -1,5 +1,3 @@
-# setup the symlink
-
 # we need to backup the current config files
 
 # not that we need to give absolute path to ln
@@ -13,10 +11,29 @@
 # ln -sv "~/.dotfiles/runcom/.bash_profile" ~
 # ln -sv "~/.dotfiles/runcom/.inputrc" ~
 
+# write to the `.bashrc` file
+filename="$HOME/.bashrc"
+text='
+# added by the dotfile installer
+DOTFILES_DIR="$HOME/.dotfiles"
 
+for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
+do
+        [ -f "$DOTFILE" ] && . "$DOTFILE"
+done
+'
+
+echo "copy runnable to .bashrc file"
+echo "$text" >> "$filename"
+
+# setup the symlink
+
+echo "creating symlink for the vimrc"
 # ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.vim/.vimrc" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.vim" $HOME/
+
+echo "creating symlink for the tmux.conf"
 ln -s "$HOME/.dotfiles/runcom/.tmux.conf" $HOME/
 
 # ln -sv "~/.dotfiles/git/.gitconfig" $HOME/

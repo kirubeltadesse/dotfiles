@@ -6,6 +6,7 @@ user interfaces for many important interactive programs, such as Bash and Python
 com
 
 
+# remap control: `bind -x `bind -x '"\C-": clear'`
 
 
 # none, visible or audible 
