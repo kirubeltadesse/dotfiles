@@ -26,10 +26,13 @@ done
 echo "copy runnable to .bashrc file"
 echo "$text" >> "$filename"
 
+
+echo "running git shortcut scripts"
+/bin/bash gitConfig/gitScript.sh
+
 # setup the symlink
 
 echo "creating symlink for the vimrc"
-# ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.vim/.vimrc" $HOME/
 ln -s "$HOME/.dotfiles/runcom/.vim" $HOME/
 
