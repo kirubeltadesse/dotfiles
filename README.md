@@ -26,12 +26,14 @@ Using [chocolatey](https://chocolatey.org/) install softwares to your windows
 - Git/GitHub
 - wsl
 - VScode
+- vimium extension setting
 
 Installed
 
 - Installed Pathogen from vim-airline
 - [https://github.com/vim-airline/vim-airline] vim-airline
 - Install tmux vim-airline
+- manually load the `vimium-options.json` on the vimium setting
 
 ## Configuration to work on
 
