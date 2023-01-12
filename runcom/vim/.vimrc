@@ -2,15 +2,15 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 
 execute pathogen#infect()
 " alternatively, pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Plugin 'VundleVim/Vundle.vim'
 "call vundle#begin('~/some/path/here')
 " let Vundle manage Vundle, required
 
@@ -34,7 +34,7 @@ Plugin 'VundleVim/Vundle.vim'
 " All of your Plugins must be added before the following line
 " filetype plugin on
 
-call vundle#end()            " required
+" call vundle#end()            " required
 
 "filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -124,8 +124,8 @@ syntax enable
 " vim font attribules
 " highlight Comment cterm=underline ctermbg=Blue ctermfg=White
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 
 " Airline-tmuxline
 let g:airline#extensions#tmuxline#enabled = 1
