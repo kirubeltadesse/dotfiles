@@ -12,6 +12,21 @@ To update the list of installed plugins (the `extensions` file by running the fo
 code --list-extensions >> extensions
 ```
 
+
+# TODO:
+
+write a script to auto update the extenstion
+
+```
+awk 'NR==FNR{a[$0];next}!($0 in a)' file2 file1 > unique_values.txt
+```
+
+OR 
+
+```
+grep -Fxvf newExtenstions extensions > unique_values.txt
+```
+
 NOTE: you need to remove the duplications
 
 [Here](/vscode/settings.json) is my preferred vscode `settings.json` file

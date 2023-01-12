@@ -33,8 +33,13 @@ echo "running git shortcut scripts"
 # setup the symlink
 
 echo "creating symlink for the vimrc"
-ln -s "$HOME/.dotfiles/runcom/.vim/.vimrc" $HOME/
-ln -s "$HOME/.dotfiles/runcom/.vim" $HOME/
+ln -s "$HOME/.dotfiles/runcom/vim/.vimrc" $HOME/
+ln -s "$HOME/.dotfiles/runcom/vim/.ideavimrc" $HOME/
+# ln -F "$HOME/.dotfiles/runcom/vim" $HOME/.vim # make this a hard link
+ln -s "$HOME/.dotfiles/runcom/vim" $HOME/.vim 
+
+# TODO: install vim-airline using Pathogen
+# https://codybonney.com/install-vim-airline-using-pathogen/ 
 
 echo "creating symlink for the tmux.conf"
 ln -s "$HOME/.dotfiles/runcom/.tmux.conf" $HOME/
