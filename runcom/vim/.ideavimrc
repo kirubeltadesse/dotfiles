@@ -5,6 +5,10 @@ source "$HOME"/.vimrc
 """ https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 
 
+""" there are different shortcuts that can used specifically on Intellij
+""" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+
+
 "" -- Suggested options --
 " Show a few lines of context around the cursor. Note that this makes the
 " text scroll if you mouse-click near the start or end of the window.
