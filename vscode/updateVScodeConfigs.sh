@@ -26,10 +26,6 @@ fi
 `rm currentListOfExtensions`
 
 
-
-# DO THE SAME THINK FOR settings.json file
-
-
 # check the Operating system
 
 os=$(uname)
@@ -54,7 +50,6 @@ settings_file="`pwd`/settings.json"
 keybinds_file="`pwd`/keybindings.json"
 
 # copy the settings over to the file
-
 # overriding the setting file
 
 echo "save the current settings"

@@ -108,5 +108,22 @@
     "rapid.cliRoot": "/usr/local/lib/node_modules/rde-cli",
     "[jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+  	"github.copilot.enable": {
+  	  "*": true,
+  	  "yaml": true,
+  	  "plaintext": false,
+  	  "markdown": true
+  	},
+  	"[html]": {
+  	  "editor.defaultFormatter": "vscode.html-language-features"
+  	},
+  	"[python]": {
+  	  "editor.defaultFormatter": "ms-python.python"
+  	},
+  	"grammarly.files.include": [
+  	  "**/*.md",
+  	  "**/*.txt"
+  	]
+
 }
