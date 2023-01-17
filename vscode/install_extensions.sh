@@ -6,10 +6,8 @@ do
     code --install-extension $extension
 done
 
-echo "--Installing Keyboarding.json for VScode"
-# FIXME: automatic get the destination location
 # create a symlick file to get the update in sink instade of copying
-
+os=$(uname)
 
 echo "--copy settings.json and keybindings.json for VScode"
 if [ "$os" == "Darwin" ]; then
