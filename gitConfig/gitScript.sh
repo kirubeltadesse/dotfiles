@@ -8,6 +8,18 @@ git config --global alias.sno 'show --name-only'
 # TODO: add this information
 # git config --global alias.logauth 'log --author= {name}'
 
-# setting vim for git tool
-git config --global diff.tool vimdiff
-git config --global merge.tool vimdiff
+
+# Get the name 
+os=$(uname)
+
+# add this git configuration for MacOs, windows and SunOS
+if [ "$os" == ("Darwin" || "Linux" || "SunOS"  ]; then
+	# setting vim for git tool
+ 	git config --global diff.tool vimdiff
+	git config --global merge.tool vimdiff
+else
+	echo "setting git diff for notebook"
+	git-nbdiffdriver config --enable --global
+	git-nbdifftool config --enable
+fi
+
