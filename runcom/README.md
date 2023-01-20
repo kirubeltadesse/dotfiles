@@ -57,3 +57,15 @@ clone this [repo](https://github.com/erikw/tmux-powerline) to your HOME director
 `C+A !`: break out a panel
 
 [Here](https://blog.sanctum.geek.nz/vi-mode-in-tmux/#:~:text=Most%20of%20the%20basic%20vi,another%2C%20and%20then%20pressing%20Enter.) good resource on how to set up vi modes for tmux
+
+
+## Instruction to make commands
+
+You can find all the bind shourtcut using
+
+`C+a ?`
+`tmux list-keys` or `tmux lsk` in shell inside tmux
+In tmux's command prompt(`C + a :`) list-keys or lsk
+
+[here](https://www.seanh.cc/2020/12/28/binding-keys-in-tmux/)
+
