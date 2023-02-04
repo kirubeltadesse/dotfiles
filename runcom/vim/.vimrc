@@ -5,7 +5,7 @@ filetype off                  " required
 " set rtp+=~/.vim/bundle/Vundle.vim
 " call vundle#begin()
 
-execute pathogen#infect()
+" execute pathogen#infect()
 " alternatively, pass a path where Vundle should install plugins
 " call vundle#begin('~/some/path/here')
 
@@ -38,7 +38,7 @@ execute pathogen#infect()
 
 "filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-filetype plugin on
+" filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins

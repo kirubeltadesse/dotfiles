@@ -7,6 +7,10 @@
 # check if the dot folder exist 
 # mv ~/dotfiles ~/.dotfiles 		# making it a dot folder
 
+
+sudo apt-get update
+sudo apt install dos2unix
+
 # creat the symlinks
 # ln -sv "~/.dotfiles/runcom/.bash_profile" ~
 # ln -sv "~/.dotfiles/runcom/.inputrc" ~
