@@ -28,7 +28,6 @@ To capture more history
 
 ```bash
 tmux capture-pane -pS -1000000
-
 ```
 
 - `Prefix + c`: create new window
