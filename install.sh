@@ -34,8 +34,21 @@ echo "$text" >> "$filename"
 echo "running git shortcut scripts"
 /bin/bash gitConfig/gitScript.sh
 
-# setup the symlink
 
+echo "Downloading vim and tmux package manager..."
+# download vim plug manage
+# Vim (~/.vim/autoload)
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Neovim (~/.local/share/nvim/site/autoload)
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# download TPM - Tmux Plag manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# setup the symlink
 echo "creating symlink for the vimrc"
 ln -s "$HOME/.dotfiles/runcom/vim/.vimrc" $HOME/
 ln -s "$HOME/.dotfiles/runcom/vim/.ideavimrc" $HOME/

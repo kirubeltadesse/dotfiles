@@ -13,7 +13,7 @@ git config --global alias.sno 'show --name-only'
 os=$(uname)
 
 # add this git configuration for MacOs, windows and SunOS
-if [ "$os" == ("Darwin" || "Linux" || "SunOS"  ]; then
+if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
 	# setting vim for git tool
  	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff

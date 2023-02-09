@@ -28,23 +28,8 @@ To capture more history
 
 ```bash
 tmux capture-pane -pS -1000000
+
 ```
-
-## Installation requirements
-
-### statusbar tmux-powerline
-
-use this [link](https://github.com/edkolev/tmuxline.vim#installation) to directly copy the file
-
-clone this [repo](https://github.com/erikw/tmux-powerline) to your HOME directory To have a similar-looking status bar line to the vim status bar we need to have the `tmuxline.vim` in our Pathogen bundle.
-
-### Install fzf
-
-### Install BAT
-
-### Install Nerdtree
-
-## cheat sheet
 
 - `C+A ALT+1`: Even horizontal splits
 - `C+A ALT+2`: Even vertical splits
@@ -59,7 +44,14 @@ clone this [repo](https://github.com/erikw/tmux-powerline) to your HOME director
 [Here](https://blog.sanctum.geek.nz/vi-mode-in-tmux/#:~:text=Most%20of%20the%20basic%20vi,another%2C%20and%20then%20pressing%20Enter.) good resource on how to set up vi modes for tmux
 
 
-## Instruction to make commands
+
+## Installation requirements
+
+### statusbar tmux-powerline
+
+use this [link](https://github.com/edkolev/tmuxline.vim#installation) to directly copy the file
+
+clone this [repo](https://github.com/erikw/tmux-powerline) to your HOME directory To have a similar-looking status bar line to the vim status bar we need to have the `tmuxline.vim` in our Pathogen bundle.
 
 You can find all the bind shourtcut using
 
@@ -68,4 +60,21 @@ You can find all the bind shourtcut using
 In tmux's command prompt(`C + a :`) list-keys or lsk
 
 [here](https://www.seanh.cc/2020/12/28/binding-keys-in-tmux/)
+
+There is also `tpm` [Here](https://github.com/tmux-plugins/tpm) all the installation command are also found in the page.
+
+`prefix + I`
+
+## Vim installation
+
+Your `.vimrc` file already contains the package that needs to be installed. For example, `fzf`, `Nerdtree`
+
+Download plug.vim using 
+
+```bash
+curl ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+then inside the vim file run the command `:PlugInstall`
 

@@ -1,6 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
-      // Tab  to work in vim
+  // Tab  to work in vim
   {
     "key": "tab",
     "command": "tab",
@@ -46,5 +46,10 @@
     "key": "ctrl+t",
     "command": "-editor.action.transposeLetters",
     "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+r",
+    "command": "-workbench.action.tasks.reRunTask",
+    "when": "taskCommandsRegistered && !terminalFocus"
   }
 ]
