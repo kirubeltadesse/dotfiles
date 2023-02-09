@@ -28,14 +28,15 @@ To capture more history
 
 ```bash
 tmux capture-pane -pS -1000000
-
 ```
 
-- `C+A ALT+1`: Even horizontal splits
-- `C+A ALT+2`: Even vertical splits
-- `C+A ALT+3`: Horizontal span for the main pane, vertical splits for lesser panes
-- `C+A ALT+3`: Vertical span for the main pane, horizontal splits for lesser panes
-- `C+A ALT+5`: Tiled layout
+- `Prefix + c`: create new window
+- `Prefix + n/p`: next/previous new window
+- `Prefix ALT+1`: Even horizontal splits
+- `Prefix ALT+2`: Even vertical splits
+- `Prefix ALT+3`: Horizontal span for the main pane, vertical splits for lesser panes
+- `Prefix ALT+3`: Vertical span for the main pane, horizontal splits for lesser panes
+- `Prefix ALT+5`: Tiled layout
 
 ### pane
 
@@ -64,6 +65,9 @@ In tmux's command prompt(`C + a :`) list-keys or lsk
 There is also `tpm` [Here](https://github.com/tmux-plugins/tpm) all the installation command are also found in the page.
 
 `prefix + I`
+
+It will be awesome if the tmux navigation is more like vim 😊 [Here](https://www.bugsnag.com/blog/tmux-and-vim)
+
 
 ## Vim installation
 

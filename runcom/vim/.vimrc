@@ -6,7 +6,6 @@ call plug#begin()
 " You can specify a custom plugin directory by passing it as the argument
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
-
 " Make sure you use single quotes
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
@@ -47,6 +46,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
+
+" commandline inside vim
+Plug 'preservim/vimux'
 
 " Install Dracula for vim
 
@@ -115,11 +117,16 @@ set laststatus=2
 
 " NERDTree shortcuts
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTreeFind<CR>
-" nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
 
+" Enabling custom key bindings
+noremap <silent> {Left-Mapping} :<C-U>TmuxNavigateLeft<cr>
+noremap <silent> {Down-Mapping} :<C-U>TmuxNavigateDown<cr>
+noremap <silent> {Up-Mapping} :<C-U>TmuxNavigateUp<cr>
+noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<cr>
+noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 
 " how to configure vim color settings
 " highlight Comment ctermbg=DarkGray
@@ -208,6 +215,14 @@ let g:airline#extensions#tabline#formatter = 'default'
 
 
 set paste "keep the proper formating while pasting on vim"
+
+" NOTE: Leader here is to mean \
+
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
 
 " remap ctrl +v for windows terminal
 nnoremap v <c-v>

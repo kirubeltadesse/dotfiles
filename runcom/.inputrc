@@ -3,11 +3,11 @@
 ~/.inputrc is the user configuration file of GNU readline, which provides customizable command line
 user interfaces for many important interactive programs, such as Bash and Python interactive shell.
 
+MacOS it is located in `/etc/inputrc`
 com
 
 
 # remap control: `bind -x `
-
 bind -x '"\C-l": clear'
 
 
