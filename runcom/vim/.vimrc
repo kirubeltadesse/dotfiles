@@ -115,6 +115,14 @@ set nofixendofline " save the file without the end of line charactor
 set t_Co=256
 set laststatus=2
 
+" Tabs use nerdtree gt and gp command
+" nnoremap <C-l>h :tabr<cr>
+" nnoremap <C-l>l :tabl<cr>
+" nnoremap <C-l>j :tabp<cr>
+" nnoremap <C-n> :tabn<cr>
+" nnoremap <C-t> :tabnew<cr>
+" nnoremap <C-c> :tabc<cr>
+
 " NERDTree shortcuts
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
