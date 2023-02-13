@@ -134,6 +134,14 @@ let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
 
 
+" Tabs use nerdtree gt and gp command
+" nnoremap <C-l>h :tabr<cr>
+" nnoremap <C-l>l :tabl<cr>
+" nnoremap <C-l>j :tabp<cr>
+" nnoremap <C-n> :tabn<cr>
+" nnoremap <C-t> :tabnew<cr>
+" nnoremap <C-c> :tabc<cr>
+
 " NERDTree shortcuts
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
