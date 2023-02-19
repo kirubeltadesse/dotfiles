@@ -60,15 +60,19 @@ print "warning" "Downloading vim and tmux package manager..."
 
 # download vim plug manage
 # Vim (~/.vim/autoload)
-#curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#
-## Neovim (~/.local/share/nvim/site/autoload)
-#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#
-## download TPM - Tmux Plag manager
-#git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Neovim (~/.local/share/nvim/site/autoload)
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+#curl -fLo ~/.vim/autoload/install.sh \
+#	 https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
+#	 /bin/bash ~/.vim/autoload/install.sh 
+
+# download TPM - Tmux Plag manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Create symlinks for .vimrc and .ideavimrc
 create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
