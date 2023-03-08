@@ -9,13 +9,11 @@ git config --global alias.sno 'show --name-only'
 # git config --global alias.logauth 'log --author= {name}'
 
 
-echo "check the os"
-
 # Get the name 
 os=$(uname)
 
-# FIXME: add windows os 
-if[ "$os" == "Darwin" ]; then
+# add this git configuration for MacOs, windows and SunOS
+if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
 	# setting vim for git tool
  	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff
