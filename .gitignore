@@ -5,6 +5,10 @@
 *.swp
 **/.netrwhist
 **/doc/tags
+runcom/vim/autoload/*
+runcom/vim/bundle/*
+runcom/vim/plugged/*
+
 
 #---------------------------------VScode--------------------------#
 .vscode/ 

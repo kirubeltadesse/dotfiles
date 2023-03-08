@@ -53,6 +53,12 @@ Installed
 
 <summary> FAQ </summary>
 
+### iTem2 
+
+preferences->profiles->Command (Custom Shell) -> add `/bin/bash`
+
+you can also set that as a default [shell](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
+
 ### Ques: Cloning error ?
 
 ```bash

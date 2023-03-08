@@ -2,7 +2,7 @@ echo "Installing Visual Studo Code extenstions"
 
 for extension in $(cat extensions)
 do 
-    echo "Installing: ${extension}"
+    echo "Installing or update : ${extension}"
     code --install-extension $extension
 done
 
@@ -17,7 +17,7 @@ if [ "$os" == "Darwin" ]; then
 elif [ "$os" == "Linux" ]; then
 	echo -e "setting loc for $os: "
 	cp -f keybindings.json /mnt/c/Users/kiyam/AppData/Roaming/Code/User/keybindings.json
-	cp -f keybindings.json /mnt/c/Users/kiyam/AppData/Roaming/Code/User/keybindings.json
+	cp -f settings.json /mnt/c/Users/kiyam/AppData/Roaming/Code/User/settings.json
 else 
 	echo "system not indentified"
 fi
