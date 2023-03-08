@@ -10,6 +10,5 @@ com
 # remap control: `bind -x `
 bind -x '"\C-l": clear'
 
-
 # none, visible or audible 
 set bell-style none

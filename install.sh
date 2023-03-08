@@ -1,3 +1,6 @@
+# we need to backup the current config files
+
+
 # not that we need to give absolute path to ln
 
 # TODO: simple if/else block
@@ -91,7 +94,6 @@ echo -e "$text" >> "$filename"
 
 echo "running git shortcut scripts"
 /bin/bash gitConfig/gitScript.sh
-
 
 echo "Downloading vim and tmux package manager..."
 # download vim plug manage
