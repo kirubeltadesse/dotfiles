@@ -92,7 +92,6 @@ echo -e "$text" >> "$filename"
 echo "running git shortcut scripts"
 /bin/bash gitConfig/gitScript.sh
 
-
 echo "Downloading vim and tmux package manager..."
 # download vim plug manage
 # Vim (~/.vim/autoload)

@@ -88,7 +88,6 @@ filetype plugin indent on
 " enable fzf buffer 
 
 " enable preview for fzf using BAT 
-
 " "Information on the following setting can be found with
 " ":help set
 set tabstop=4
@@ -152,7 +151,6 @@ syntax enable
 
 " vim font attribules
 " highlight Comment cterm=underline ctermbg=Blue ctermfg=White
-
 " enable global LanguageTool command
 let g:grammarous#languagetool_cmd = 'languagetool'
 
@@ -192,6 +190,7 @@ let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " powerline symbols
+
 "let g:airline_left_sep = ''
 "let g:airline_left_alt_sep =  ''
 "let g:airline_right_sep = ''
@@ -203,6 +202,7 @@ let g:airline_symbols.whitespace = 'Ξ'
 "let g:airline_symbols.maxlinenr = '☰ '
 "let g:airline_symbols.dirty='⚡'
 "
+
 " old vim-powerline symbols
 let g:airline_left_sep = '⮀'
 let g:airline_left_alt_sep = '⮁'
@@ -220,7 +220,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#ctrlp#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
-
 
 set paste "keep the proper formating while pasting on vim"
 
