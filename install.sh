@@ -1,6 +1,3 @@
-# we need to backup the current config files
-
-
 # not that we need to give absolute path to ln
 
 # TODO: simple if/else block

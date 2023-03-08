@@ -69,7 +69,6 @@ There is also `tpm` [Here](https://github.com/tmux-plugins/tpm) all the installa
 It will be awesome if the tmux navigation is more like vim 😊 [Here](https://www.bugsnag.com/blog/tmux-and-vim)
 
 
-
 ## Vim installation
 
 Your `.vimrc` file already contains the package that needs to be installed. For example, `fzf`, `Nerdtree`
