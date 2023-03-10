@@ -14,6 +14,9 @@ os=$(uname)
 if [ "$os" == "Linux" ]; then
 	echo "environment is $os wls"
 	sudo apt-get update
+	sudo apt xclip
+	# enable +clipboard and +xterm_clipboard for vim
+	sudo apt install vim-gtk
 	sudo apt install dos2unix fd-find bat 
 	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
 elif [ "$os" == "Darwin" ]; then
