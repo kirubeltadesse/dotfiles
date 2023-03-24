@@ -82,4 +82,5 @@ curl ~/.vim/autoload/plug.vim --create-dirs \
 
 then inside the vim file run the command `:PlugInstall`
 
+[checksheets](https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/)
 

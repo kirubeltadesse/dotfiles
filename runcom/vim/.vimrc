@@ -14,6 +14,9 @@ Plug 'junegunn/vim-easy-align'
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
+" enable multiple cursors on vim https://github.com/terryma/vim-multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
+
 " Install vim-grammarous getting error 122
 " Plug 'rhysd/vim-grammarous'
 " Plug 'https://github.com/rhysd/vim-grammarous/'
@@ -51,10 +54,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/vimux'
 
 " Install Dracula for vim
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'dracula/vim',{'name':'dracula'}
 
 " Initialize plugin system
@@ -122,10 +123,25 @@ set laststatus=2
 " nnoremap <C-t> :tabnew<cr>
 " nnoremap <C-c> :tabc<cr>
 
+" TODO: shortcut conflict between NERDTree and multiplecursor
+" let g:multi_cursor_use_default_mapping=0
+
+" Note: this command below has already been set 
+" Default mapping 
+" let g:multi_cursor_start_word_key      = '<C-n>'
+" let g:multi_cursor_select_all_word_key = '<A-n>'
+" let g:multi_cursor_start_key           = 'g<C-n>'
+" let g:multi_cursor_select_all_key      = 'g<A-n>'
+" let g:multi_cursor_next_key            = '<C-n>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
+
+
 " NERDTree shortcuts
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <C-n> :NERDTree<CR>
+" conflict nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 " Enabling custom key bindings

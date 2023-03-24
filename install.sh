@@ -25,6 +25,7 @@ elif [ "$os" == "Darwin" ]; then
 	brew install dos2unix 
 	brew install fd 
 #	brew install fig 
+#	brew install git bash-completion
 	brew install bat 
 	echo "source ~/.bashrc" >> ~/.zshrc
 else
@@ -84,6 +85,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 export FZF_DEFAULT_OPTS='--preview \"bat --style=numbers --color=always --line-range :500 {}\"'
 export FZF_DEFAULT_OPS=\"--extended\"
 export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
+# add clear screen command
+bind -x '\"\C-g\": \"clear\"'
 "
 
 echo "copy runnable to .bashrc file"
