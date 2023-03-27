@@ -18,8 +18,10 @@ if [ "$os" == ("Darwin" || "Linux" || "SunOS"  ]; then
  	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff
 else
-	echo "setting git diff for notebook"
+	local env=$1
+	echo "setting git diff for $1"
+	git config --global core.editor vi
 	git-nbdiffdriver config --enable --global
-	git-nbdifftool config --enable
+	git-nbdifftool config --enable --global
 fi
 
