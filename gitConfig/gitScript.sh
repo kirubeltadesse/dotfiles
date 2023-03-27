@@ -13,13 +13,16 @@ git config --global alias.sno 'show --name-only'
 os=$(uname)
 
 # add this git configuration for MacOs, windows and SunOS
-if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
+# if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
+if [ $# -eq 0]; then
 	# setting vim for git tool
  	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff
 else
-	echo "setting git diff for notebook"
+	local env=$1
+	echo "setting git diff for $1"
+	git config --global core.editor vi
 	git-nbdiffdriver config --enable --global
-	git-nbdifftool config --enable
+	git-nbdifftool config --enable --global
 fi
 
