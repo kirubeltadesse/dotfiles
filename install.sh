@@ -75,7 +75,7 @@ text="
 # added by the dotfile installer
 DOTFILES_DIR=\"$HOME/.dotfiles\"
 
-for DOTFILE in \"\$DOTFILES_DIR\"/system/.{alias,env,function};
+for DOTFILE in \"\$DOTFILES_DIR\"/system/.{prompt,alias,env,function};
 do
         [ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
 done

@@ -48,4 +48,7 @@ ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
 VisualStudioExptTeam.intellicode-api-usage-examples
 znck.grammarly
-
+dbizzy.dbizzy
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit
+ms-vscode.remote-explorer

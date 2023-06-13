@@ -1,6 +1,6 @@
 // Place your key bindings in this file to override the defaults
 [
-      // Tab  to work in vim
+  // Tab  to work in vim
   {
     "key": "tab",
     "command": "tab",
@@ -51,5 +51,111 @@
     "key": "ctrl+r",
     "command": "-workbench.action.tasks.reRunTask",
     "when": "taskCommandsRegistered && !terminalFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-list.focusPageDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-workbench.action.debug.run",
+    "when": "debuggersAvailable && !inDebugMode && !terminalFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "-deleteRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "cmd+-",
+    "command": "workbench.action.zoomOut"
+  },
+  {
+    "key": "cmd+numpad_subtract",
+    "command": "-workbench.action.zoomOut"
+  },
+  {
+    "key": "cmd+=",
+    "command": "workbench.action.zoomIn"
+  },
+  {
+    "key": "cmd+numpad_add",
+    "command": "-workbench.action.zoomIn"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "cmd+9",
+    "command": "-workbench.action.toggleSidebarVisibility",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "ctrl+cmd+]",
+    "command": "workbench.action.toggleSidebarPosition"
+  },
+  {
+    "key": "ctrl+shift+3",
+    "command": "workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "cmd+n",
+    "command": "-workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "ctrl+shift+1",
+    "command": "workbench.explorer.fileView.toggleVisibility"
+  },
+  {
+    "key": "ctrl+shift+2",
+    "command": "workbench.explorer.openEditorsView.toggleVisibility"
+  },
+  {
+    "key": "cmd+numpad1",
+    "command": "-workbench.action.toggleSidebarVisibility",
+    "when": "!editorFocus"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "workbench.view.explorer",
+    "when": "editorFocus && viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "cmd+numpad1",
+    "command": "-workbench.view.explorer",
+    "when": "editorFocus && viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "key": "ctrl+shift+4",
+    "command": "cursorLineEndSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-cursorLineEndSelect",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "workbench.action.toggleFullScreen",
+    "when": "!isIOS"
+  },
+  {
+    "key": "ctrl+cmd+f",
+    "command": "-workbench.action.toggleFullScreen",
+    "when": "!isIOS"
   }
 ]

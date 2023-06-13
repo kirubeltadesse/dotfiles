@@ -44,8 +44,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug '~/.fzf'
 " 
 
-"Autocomplete plugin. similar to VSCode
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Autocomplete plugin. similar to VSCode 
+" Conflicting with Multiple curse
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
@@ -65,55 +66,29 @@ call plug#end()
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
 
+" let b:thisdir=expand("%:p:h")
+" let b:vim=b:thisdir."/.vimrc"
+execute "source $HOME/.dotfiles/runcom/.vimrc"
+" execute "source .vimrc"
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PlugInstall    - installs plugins; append `!` to update or just :PlugUpdate
 "
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 syntax on
 colorscheme dracula
-filetype plugin indent on
 
-"  set inchighlight
-
+" set inchighlight
 " TODO: add a keyboard binding for the vim $(fzf) search  
 
 " enable fzf buffer 
-
 " enable preview for fzf using BAT 
 " "Information on the following setting can be found with
 " ":help set
-set tabstop=4
-set expandtab
-set autoindent
-set shiftwidth=4  	   " this is the level of autoindent, adjust to taste
-set ruler
-set hlsearch 			" used to highlight the searched word 
-set number relativenumber  " better than set rnu or set relativenumber
-set rnu   " set relativenumber
-
-" set number
-set visualbell "turning of the beep sound on the text edit
 " set backspace=indent,eol,start
-" " Uncomment below to make screen not flash on error
-" set vb t_vb=""
-" "
-" " From training
-" set nocompatible
-"
-
-set nofixendofline " save the file without the end of line charactor
-
-set t_Co=256
-set laststatus=2
 
 " Tabs use nerdtree gt and gp command
 " nnoremap <C-l>h :tabr<cr>
@@ -124,18 +99,18 @@ set laststatus=2
 " nnoremap <C-c> :tabc<cr>
 
 " TODO: shortcut conflict between NERDTree and multiplecursor
-" let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping=0
 
 " Note: this command below has already been set 
 " Default mapping 
-" let g:multi_cursor_start_word_key      = '<C-n>'
-" let g:multi_cursor_select_all_word_key = '<A-n>'
-" let g:multi_cursor_start_key           = 'g<C-n>'
-" let g:multi_cursor_select_all_key      = 'g<A-n>'
-" let g:multi_cursor_next_key            = '<C-n>'
-" let g:multi_cursor_prev_key            = '<C-p>'
-" let g:multi_cursor_skip_key            = '<C-x>'
-" let g:multi_cursor_quit_key            = '<Esc>'
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
 
 " NERDTree shortcuts
@@ -250,3 +225,16 @@ map <Leader>vi :VimuxInspectRunner<CR>
 " remap ctrl +v for windows terminal
 nnoremap v <c-v>
 
+
+" add for multiple_cursors to prevent conflict with Neocomplete
+function! Multiple_cursors_before()
+      if exists(':NeoCompleteLock')==2
+              exe 'NeoCompleteLock'
+                endif
+endfunction
+
+function! Multiple_cursors_after()
+      if exists(':NeoCompleteUnlock')==2
+              exe 'NeoCompleteUnlock'
+                endif
+endfunction

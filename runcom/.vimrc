@@ -1,4 +1,5 @@
 syntax on
+" set inchighlight
 " colorscheme morning
 filetype plugin indent on
 "
@@ -9,14 +10,17 @@ set expandtab
 set autoindent
 set shiftwidth=4  "this is the level of autoindent, adjust to taste
 set ruler
-set number norelativenumber
+set hlsearch 			" used to highlight the searched word 
+" set number norelativenumber
+set rnu   " set relativenumber
+
 " set number
 set visualbell "turning of the beep sound on the text edit
 " set backspace=indent,eol,start
 set number
 " " Uncomment below to make screen not flash on error
 " set vb t_vb=""
-" "
+set nofixendofline " save the file without the end of line charactor
 " " From training
 set nocompatible
 "

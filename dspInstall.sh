@@ -15,6 +15,7 @@ do
 done
 
 alias v=vi
+alias aws='aws --endpoint-url https://s3.dev.bcs.bloomberg.com'
 "
 
 echo "copy runnable to .bashrc file"
