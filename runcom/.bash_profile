@@ -48,4 +48,6 @@ function kill_socat() {
     done
 }
 
+## FIXME: this might break fzf tab complitions
+## [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
