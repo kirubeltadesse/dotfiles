@@ -8,7 +8,7 @@
 runcom/vim/autoload/*
 runcom/vim/bundle/*
 runcom/vim/plugged/*
-runcom/vim/vimm
+runcom/vim/vim
 
 
 #---------------------------------VScode--------------------------#

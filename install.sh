@@ -6,32 +6,7 @@
 # mv ~/dotfiles ~/.dotfiles 		# making it a dot folder
 
 # run this in any of the machine
-
-
-# Get the name 
-os=$(uname)
-# add this git configuration for MacOs, windows and SunOS
-if [ "$os" == "Linux" ]; then
-	echo "environment is $os wls"
-	sudo apt-get update
-	sudo apt xclip
-	# enable +clipboard and +xterm_clipboard for vim
-	sudo apt install vim-gtk
-	sudo apt install dos2unix fd-find bat 
-	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
-elif [ "$os" == "Darwin" ]; then
-	echo "environment is $os mac"
-	brew update 
-	brew install dos2unix 
-	brew install fd 
-#	brew install fig 
-#	brew install git bash-completion
-	brew install bat 
-	echo "source ~/.bashrc" >> ~/.zshrc
-else
-	echo "environment is not known: $os"
-fi
-
+# append_line $update_config "$filename" "$text" 
 append_line() {
 	set -e
 	local update line file pat lno
@@ -93,10 +68,34 @@ echo "copy runnable to .bashrc file"
 echo -e "$text" >> "$filename"
 
 
-# append_line $update_config "$filename" "$text" 
-
 echo "running git shortcut scripts"
 /bin/bash gitConfig/gitScript.sh
+
+# Get the name 
+os=$(uname)
+# add this git configuration for MacOs, windows and SunOS
+if [ "$os" == "Linux" ]; then
+	echo "environment is $os wls"
+	sudo apt-get update
+	sudo apt xclip
+	# enable +clipboard and +xterm_clipboard for vim
+	sudo apt install vim-gtk
+	sudo apt install dos2unix fd-find bat 
+	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
+elif [ "$os" == "Darwin" ]; then
+	echo "environment is $os mac"
+	brew update 
+	brew install dos2unix 
+	brew install fd 
+#	brew install fig 
+#	brew install git bash-completion
+	brew install bat 
+	echo "source ~/.bashrc" >> ~/.zshrc
+else
+	echo "environment is not known: $os"
+	ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
+	exit 0 # returning before running to commands below on dev machines
+fi
 
 echo "Downloading vim and tmux package manager..."
 # download vim plug manage
@@ -127,6 +126,5 @@ ln -s "$HOME/.dotfiles/runcom/vim" $HOME/.vim
 
 echo "creating symlink for the tmux.conf"
 ln -s "$HOME/.dotfiles/runcom/.tmux.conf" $HOME/
-
 # ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
 
