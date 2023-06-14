@@ -50,7 +50,7 @@ text="
 # added by the dotfile installer
 DOTFILES_DIR=\"$HOME/.dotfiles\"
 
-for DOTFILE in \"\$DOTFILES_DIR\"/system/.{prompt,alias,env,function};
+for DOTFILE in \"\$DOTFILES_DIR\"/system/.{env,prompt,alias,function};
 do
         [ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
 done
