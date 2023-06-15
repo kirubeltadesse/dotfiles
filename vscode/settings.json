@@ -19,11 +19,6 @@
     "editor.tabSize": 2,
     "extensions.autoUpdate": false,
     "html.format.templating": true,
-    "liveshare.allowedDomains": [
-        "bloomberg.com",
-    ],
-    "liveshare.anonymousGuestApproval": "reject",
-    "liveshare.connectionMode": "relay",
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left",

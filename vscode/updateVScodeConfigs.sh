@@ -25,7 +25,7 @@ fi
 # remove the newExtenstions file
 `rm currentListOfExtensions`
 
-
+# TODO: filter bloomberg settings
 # check the Operating system
 
 os=$(uname)
