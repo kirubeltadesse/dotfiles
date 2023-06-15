@@ -1,5 +1,4 @@
 # creating alias for git 
-
 echo "setup up git shortcuts"
 
 # this is more formal way to create the git alias
@@ -45,4 +44,6 @@ else
 	git-nbdiffdriver config --enable --global
 	git-nbdifftool config --enable --global
 fi
+
+# Additional Git config settings here
 
