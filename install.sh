@@ -60,8 +60,17 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 export FZF_DEFAULT_OPTS='--preview \"bat --style=numbers --color=always --line-range :500 {}\"'
 export FZF_DEFAULT_OPS=\"--extended\"
 export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
+
 # add clear screen command
 bind -x '\"\C-g\": \"clear\"'
+
+source $HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
+export PATH=$PATH:~/.nb/
+
+export NB_PREVIEW_COMMAND=\"bat\"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 "
 
 echo "copy runnable to .bashrc file"
