@@ -21,7 +21,7 @@ function parse_git_branch {
     # Parse the current git branch name and print it
     which git &>/dev/null || return
     local branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-    [[ -n $branch ]] && echo "${branch}"
+    [[ -n $branch ]] && echo " ⎇ ${branch}"
 }
 
 function set_PS1 {

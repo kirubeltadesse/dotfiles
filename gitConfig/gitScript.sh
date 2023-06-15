@@ -18,6 +18,8 @@ git config --global alias.m merge
 git config --global alias.ps push 
 git config --global alias.pl pull 
 git config --global alias.r remote 
+git config --global alias.rb rebase
+git config --global alias.rs restore
 git config --global alias.sa 'stash apply' 
 git config --global alias.sc 'stash clear' 
 git config --global alias.sd 'stash drop' 
