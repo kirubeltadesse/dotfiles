@@ -51,6 +51,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
+
 " commandline inside vim
 Plug 'preservim/vimux'
 
@@ -180,23 +181,9 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" powerline symbols
-
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep =  ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch =''
-"let g:airline_symbols.colnr = ':'
-"let g:airline_symbols.readonly =''
-"let g:airline_symbols.linenr = ' :'
-"let g:airline_symbols.maxlinenr = '☰ '
-"let g:airline_symbols.dirty='⚡'
-"
-
-" old vim-powerline symbols
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
+" powerline symbols manuel definition
+let g:airline_symbols.maxlinenr = '☰ '
+let g:airline_symbols.dirty='⚡'
 let g:airline_right_sep = '⮂'
 let g:airline_right_alt_sep = '⮃'
 let g:airline_symbols.branch = '⭠'

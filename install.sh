@@ -64,12 +64,12 @@ export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
 # add clear screen command
 bind -x '\"\C-g\": \"clear\"'
 
-source $HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
+# source $HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
 export PATH=$PATH:~/.nb/
 
 export NB_PREVIEW_COMMAND=\"bat\"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 "
 
@@ -88,17 +88,14 @@ if [ "$os" == "Linux" ]; then
 	sudo apt-get update
 	sudo apt xclip
 	# enable +clipboard and +xterm_clipboard for vim
-	sudo apt install vim-gtk
-	sudo apt install dos2unix fd-find bat 
+	sudo apt install vim-gtk dos2unix fd-find bat 
 	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
 elif [ "$os" == "Darwin" ]; then
 	echo "environment is $os mac"
 	brew update 
-	brew install dos2unix 
-	brew install fd 
+	brew install dos2unix fd bat 
 #	brew install fig 
 #	brew install git bash-completion
-	brew install bat 
 	echo "source ~/.bashrc" >> ~/.zshrc
 else
 	echo "environment is not known: $os"
@@ -115,10 +112,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # Neovim (~/.local/share/nvim/site/autoload)
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-#curl -fLo ~/.vim/autoload/install.sh \
-#	 https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
-#	 /bin/bash ~/.vim/autoload/install.sh 
 
 # download TPM - Tmux Plag manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
