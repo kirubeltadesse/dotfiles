@@ -1,14 +1,19 @@
-# not that we need to give absolute path to ln
+#!/bin/bash
 
-# TODO: simple if/else block
-# check if the folder is exist
-# check if the dot folder exist 
-# mv ~/dotfiles ~/.dotfiles 		# making it a dot folder
+# Check if the dot directory exist
+folder="$HOME/.dotfiles"
 
-# run this in any of the machine
-# append_line $update_config "$filename" "$text" 
+if [ -d "$folder" ]; then
+	echo "Folder exists"
+else
+	echo "Rename folder to .dotfiles"
+	mv ~/dotfiles ~/.dotfiles
+fi
+
+# Append a line to a file
+# Usage: append_line update filname line [pattern]
 append_line() {
-	set -e
+	# set -e
 	local update line file pat lno
 	update="$1"
 	line= "$2"
@@ -29,29 +34,24 @@ append_line() {
 		echo " - Already exists: line #$lno"
 	else
 		if [ $update -eq 1 ]; then
-			[-f "$file" ] && echo >> "$file"
+			[ -f "$file" ] && echo >> "$file"
 			echo "$line" >> "$file"
 			echo "   + Added"
 		else
 			echo " 	 ~ Skipped"
 		fi
 	fi
-	echo 
-	set +e
+	#set +e
 }
-
-# creat the symlinks
-# ln -sv "~/.dotfiles/runcom/.bash_profile" ~
-# ln -sv "~/.dotfiles/runcom/.inputrc" ~
 
 # write to the `.bashrc` file
 filename="$HOME/.bashrc"
 text="
 # added by the dotfile installer
-DOTFILES_DIR=\"$HOME/.dotfiles\"
+DOTFILES_DIR=\"\$HOME/.dotfiles\"
 
 for DOTFILE in \"\$DOTFILES_DIR\"/system/.{env,prompt,alias,function};
-do
+do 
         [ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
 done
 
@@ -64,18 +64,28 @@ export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
 # add clear screen command
 bind -x '\"\C-g\": \"clear\"'
 
-# source $HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
-export PATH=$PATH:~/.nb/
+# source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
+export PATH=\$PATH:~/.nb/
 
 export NB_PREVIEW_COMMAND=\"bat\"
 
-# [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 "
+# append_line 1 "$text" "$filename"
 
-echo "copy runnable to .bashrc file"
-echo -e "$text" >> "$filename"
-
+# Check if each line in `text` exists in ~/.bashrc
+while IFS= read -r line; do
+    if grep -qF "$line" ~/.bashrc; then
+        echo "Updating line in ~/.bashrc:"
+        echo "$line"
+        sed -i "s|.*$line.*|$line|" ~/.bashrc
+    else
+        echo "Appending line to ~/.bashrc:"
+        echo "$line"
+        echo "$line" >> ~/.bashrc
+    fi
+done <<< "$text"
 
 echo "running git shortcut scripts"
 /bin/bash gitConfig/gitScript.sh
@@ -84,14 +94,13 @@ echo "running git shortcut scripts"
 os=$(uname)
 # add this git configuration for MacOs, windows and SunOS
 if [ "$os" == "Linux" ]; then
-	echo "environment is $os wls"
+	echo "Environment is $os (WLS)"
 	sudo apt-get update
-	sudo apt xclip
-	# enable +clipboard and +xterm_clipboard for vim
-	sudo apt install vim-gtk dos2unix fd-find bat 
+	sudo apt-get install -y xclip vim-gtk dos2unix fd-find bat 
 	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
+	# enable +clipboard and +xterm_clipboard for vim
 elif [ "$os" == "Darwin" ]; then
-	echo "environment is $os mac"
+	echo "Environment is $os (macOS)"
 	brew update 
 	brew install dos2unix fd bat 
 #	brew install fig 
@@ -116,17 +125,28 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # download TPM - Tmux Plag manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# setup the symlink
-echo "creating symlink for the vimrc"
-ln -s "$HOME/.dotfiles/runcom/vim/.vimrc" $HOME/
-ln -s "$HOME/.dotfiles/runcom/vim/.ideavimrc" $HOME/
-# ln -F "$HOME/.dotfiles/runcom/vim" $HOME/.vim # make this a hard link
-ln -s "$HOME/.dotfiles/runcom/vim" $HOME/.vim 
+# Function to create symbolic links
+create_symlink() {
+	local source_file="$1"
+	local target_file="$2"
+	
+	if [ ! e "$target_file" ]; then
+		ln -s "$source_file" "$target_file"
+		echo "Created symlink: $target_file -> $source_file"
+	else
+		echo "Skipped: $target_file already exists"
+	fi
+}
+
+
+# Create symlinks for .vimrc and .ideavimrc
+create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
+create_symlink "$HOME/.dotfiles/runcom/vim/.ideavimrc" "$HOME/.ideavimrc"
+create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim" 
 
 # TODO: install vim-airline using Pathogen
 # https://codybonney.com/install-vim-airline-using-pathogen/ 
 
-echo "creating symlink for the tmux.conf"
-ln -s "$HOME/.dotfiles/runcom/.tmux.conf" $HOME/
-# ln -sv "~/.dotfiles/git/.gitconfig" $HOME/
+# Creating symlink for .tmux.conf"
+create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 
