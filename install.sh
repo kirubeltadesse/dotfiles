@@ -28,6 +28,7 @@ export NB_PREVIEW_COMMAND=\"bat\"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 "
+# append_line 1 "$text" "$filename"
 
 # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
 # export set_PS1=\"hist; \$set_PS1\"
