@@ -74,6 +74,7 @@ export NB_PREVIEW_COMMAND=\"bat\"
 "
 # append_line 1 "$text" "$filename"
 
+# FIXME: this is not working on dev machines
 # Check if each line in `text` exists in ~/.bashrc
 while IFS= read -r line; do
     if grep -qF "$line" ~/.bashrc; then
