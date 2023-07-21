@@ -52,3 +52,6 @@ dbizzy.dbizzy
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
 ms-vscode.remote-explorer
+ms-python.pylint
+redhat.vscode-yaml
+shardulm94.trailing-spaces
