@@ -13,21 +13,26 @@ git config --global alias.d diff
 git config --global alias.last 'log -1 HEAD'
 git config --global alias.logauth 'log --author'
 git config --global alias.logdog 'log --decorate --oneline --graph'
+git config --global alias.logs 'log --stat'
 git config --global alias.m merge 
 git config --global alias.ps push 
 git config --global alias.pl pull 
 git config --global alias.r remote 
 git config --global alias.rb rebase
 git config --global alias.rs restore
+git config --global alias.rss 'restore --staged'
+git config --global alias.s 'show'
+git config --global alias.sno 'show --name-only'
 git config --global alias.sa 'stash apply' 
 git config --global alias.sc 'stash clear' 
 git config --global alias.sd 'stash drop' 
 git config --global alias.sl 'stash list'
 git config --global alias.sp 'stash pop' 
+git config --global alias.sps 'stash push' 
 git config --global alias.ss 'stash save' 
 git config --global alias.st status 
 git config --global alias.sw 'stash show' 
-git config --global alias.sno 'show --name-only'
+git config --global alias.swp 'stash show -p'
 
 # Get the name 
 os=$(uname)
