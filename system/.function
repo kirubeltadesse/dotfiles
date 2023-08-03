@@ -5,15 +5,33 @@ function mk() {
 
 # Open man page as PDF
 function manpdf() {
-    man -t "${1}" | open -f -a /Application/Preview.app/
+man -t "${1}" | open -f -a /Application/Preview.app/
 }
 
 # clip what is on the terminal
 function copy() {
-    cat "${1}" | clip.exe 
+    cat "${1}" | clip.exe
 }
 
 # change a directory to unix
 function dos2unixd() {
     find $1 -type f -print0 | xargs -0 dos2unix
+}
+
+# handle the history differently
+# http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
+function hist() {
+    touch ~/.bash_history_aux;
+    history -a ~/.bash_history_aux;
+    history -c;
+    newCommands=`cat ~/.bash_history_aux`;
+    if ["$newCommands" != ""]; then
+        grep -vwE "$newCommands"~/.bash_history > ~/.bash_history_aux;
+        cp ~/.bash_history_aux ~/.bash_history;
+        echo "$newCommands" >> ~/.bash_history;
+    fi
+    history -r
+    history -a;
+    # remove the history file
+    rr ~/.bash_history_aux;
 }
