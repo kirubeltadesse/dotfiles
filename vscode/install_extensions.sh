@@ -1,9 +1,9 @@
 echo "Installing Visual Studo Code extenstions"
 
 for extension in $(cat extensions)
-do 
-    echo "Installing or update : ${extension}"
-    code --install-extension $extension
+do
+	echo "Installing or update : ${extension}"
+	code --install-extension $extension
 done
 
 # create a symlick file to get the update in sink instade of copying
@@ -18,7 +18,7 @@ elif [ "$os" == "Linux" ]; then
 	echo -e "setting loc for $os: "
 	cp -f keybindings.json /mnt/c/Users/kiyam/AppData/Roaming/Code/User/keybindings.json
 	cp -f settings.json /mnt/c/Users/kiyam/AppData/Roaming/Code/User/settings.json
-else 
+else
 	echo "system not indentified"
 fi
 

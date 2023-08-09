@@ -1,5 +1,5 @@
 # this will hold all the alias_that are being used
-# Shortcuts Directory listing/traversal 
+# Shortcuts Directory listing/traversal
 # Directory listing/traversal
 
 # some more ls aliases
@@ -18,7 +18,7 @@ alias rr='rm -rf'
 
 alias v='vim'
 
-# DOCKER 
+# DOCKER
 alias d='docker'
 alias dc='docker-compose' # short the docker-compose commend
 
