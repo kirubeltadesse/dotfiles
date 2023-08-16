@@ -33,8 +33,6 @@ git config --global alias.ss 'stash save'
 git config --global alias.st status
 git config --global alias.sw 'stash show'
 git config --global alias.swp 'stash show -p'
-git config --global alias.sno 'show --name-only'
-
 # Get the name
 os=$(uname)
 
@@ -43,6 +41,7 @@ if [ "$os" == ("Darwin" || "Linux" || "SunOS"  ]; then
 	# setting vim for git tool
  	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff
+	git config --global core.excludesFile '$HOME/.dotfiles/dotfiles/gitConfig/gitignore'
 else
 	local env=$1
 	echo "setting git diff for $1"
