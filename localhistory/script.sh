@@ -1,6 +1,6 @@
 folder="$HOME/.dotfiles"
 
-source $folder/utlility/utilities.sh
+source $folder/utility/utilities.sh
 
 # handle the history differently
 # http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
@@ -26,7 +26,7 @@ function lh() {
 
     if [[ ! -f "$history_path" ]]; then
         touch $history_path
-        print 'success' "Create a local history $HISTFILE";
+        print 'success' "Create a local history $history_path";
     else
         print 'warning' "Reading from $history_path";
     fi
