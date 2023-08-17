@@ -41,7 +41,7 @@ if [ "$os" == ("Darwin" || "Linux" || "SunOS"  ]; then
 	# setting vim for git tool
  	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff
-	git config --global core.excludesFile '$HOME/.dotfiles/dotfiles/gitConfig/gitignore'
+	git config --global core.excludesFile "${HOME}/.dotfiles/gitConfig/gitignore"
 else
 	local env=$1
 	echo "setting git diff for $1"
