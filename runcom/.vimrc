@@ -27,3 +27,5 @@ set nocompatible
 set t_Co=256
 set laststatus=2
 set paste                                   "keep the proper formating while pasting on vim"
+set backspace=indent,eol,start				"fix the backspace issues
+
