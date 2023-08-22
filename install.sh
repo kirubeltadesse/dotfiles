@@ -3,46 +3,14 @@
 # Check if the dot directory exist
 folder="$HOME/.dotfiles"
 
+source $folder/utility/utilities.sh
+
 if [ -d "$folder" ]; then
 	echo "Folder exists"
 else
 	echo "Rename folder to .dotfiles"
 	mv ~/dotfiles ~/.dotfiles
 fi
-
-# Append a line to a file
-# Usage: append_line update filname line [pattern]
-append_line() {
-	# set -e
-	local update line file pat lno
-	update="$1"
-	line= "$2"
-	file="$3"
-	pat="${4:-}"
-	lno=""
-
-	echo "Update $file:"
-	echo " - $line"
-	if [ -f "$file" ]; then
-		if [ $# -lt 4 ]; then
-			lno=$(\grep -nF "$line" "$file" | sed 's/:.*//' | tr '\n' ' ')
-		else
-			lno=$(\grep -nF "$pat" "$file" | sed 's/:.*//' | tr '\n' ' ')
-		fi
-	fi
-	if [ -n "$lno" ]; then
-		echo " - Already exists: line #$lno"
-	else
-		if [ $update -eq 1 ]; then
-			[ -f "$file" ] && echo >> "$file"
-			echo "$line" >> "$file"
-			echo "   + Added"
-		else
-			echo " 	 ~ Skipped"
-		fi
-	fi
-	#set +e
-}
 
 # write to the `.bashrc` file
 filename="$HOME/.bashrc"
@@ -73,20 +41,9 @@ export NB_PREVIEW_COMMAND=\"bat\"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 "
-# append_line 1 "$text" "$filename"
 
-# FIXME: this is not working on dev machines
-# Check if each line in `text` exists in ~/.bashrc
 while IFS= read -r line; do
-    if grep -qF "$line" ~/.bashrc; then
-        echo "Updating line in ~/.bashrc:"
-        echo "$line"
-        sed -i "s|.*$line.*|$line|" ~/.bashrc
-    else
-        echo "Appending line to ~/.bashrc:"
-        echo "$line"
-        echo "$line" >> ~/.bashrc
-    fi
+	append_line 1 "${line}" "${filename}"
 done <<< "$text"
 
 echo "running git shortcut scripts"
@@ -96,25 +53,25 @@ echo "running git shortcut scripts"
 os=$(uname)
 # add this git configuration for MacOs, windows and SunOS
 if [ "$os" == "Linux" ]; then
-	echo "Environment is $os (WLS)"
+	print warning "Environment is $os (WLS)"
 	sudo apt-get update
 	sudo apt-get install -y xclip vim-gtk dos2unix fd-find bat
 	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
 	# enable +clipboard and +xterm_clipboard for vim
 elif [ "$os" == "Darwin" ]; then
-	echo "Environment is $os (macOS)"
+	print warning "Environment is $os (macOS)"
 	brew update
 	brew install dos2unix fd bat
 #	brew install fig
 #	brew install git bash-completion
 	echo "source ~/.bashrc" >> ~/.zshrc
 else
-	echo "environment is not known: $os"
+	print error "environment is not known: $os"
 	ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
 	exit 0 # returning before running to commands below on dev machines
 fi
 
-echo "Downloading vim and tmux package manager..."
+print warning "Downloading vim and tmux package manager..."
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -126,20 +83,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 # download TPM - Tmux Plag manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Function to create symbolic links
-create_symlink() {
-	local source_file="$1"
-	local target_file="$2"
-
-	if [ ! e "$target_file" ]; then
-		ln -s "$source_file" "$target_file"
-		echo "Created symlink: $target_file -> $source_file"
-	else
-		echo "Skipped: $target_file already exists"
-	fi
-}
-
 
 # Create symlinks for .vimrc and .ideavimrc
 create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"

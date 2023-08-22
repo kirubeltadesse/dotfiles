@@ -37,7 +37,7 @@ append_line() {
 	# set -e
 	local update line file pat lno
 	update="$1"										# Whether to update (append) the line (1) or not (0)
-	line= "$2"										# The line of text to be appended
+	line="$2"										# The line of text to be appended
 	file="$3"											# The filename of the target file
 	pat="${4:-}"									# Optional pattern to serach for in the file
 	lno=""
@@ -49,9 +49,9 @@ append_line() {
 	if [ -f "$file" ]; then
 		# Search for the line or pattern in the file and get line numbers
 		if [ $# -lt 4 ]; then
-			lno=$(\grep -nF "$line" "$file" | sed 's/:.*//' | tr '\n' ' ')
+			lno=$(grep -nF "$line" "$file" | sed 's/:.*//' | tr '\n' ' ')
 		else
-			lno=$(\grep -nF "$pat" "$file" | sed 's/:.*//' | tr '\n' ' ')
+			lno=$(grep -nF "$pat" "$file" | sed 's/:.*//' | tr '\n' ' ')
 		fi
 	fi
 
@@ -61,7 +61,7 @@ append_line() {
 	else
 		# If update flag is set, append the line to the file
 		if [ $update -eq 1 ]; then
-			[ -f "$file" ] && echo >> "$file"			# Add a newline if file exists
+			# [ -f "$file" ] && echo >> "$file"			# Add a newline if file exists
 			echo "$line" >> "$file"								# Append the line to the file
 			print 'success' "   + Added"
 		else
