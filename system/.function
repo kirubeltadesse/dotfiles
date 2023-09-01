@@ -18,3 +18,9 @@ function dos2unixd() {
     find $1 -type f -print0 | xargs -0 dos2unix
 }
 
+# copy date
+function dt() {
+    local FORMATE=`date +"%A %b(%m) %d %Y %l:%M%p"`
+    echo "## ${FORMATE}"
+}
+

@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+echo "here"
+# declare -a COMMANDS=(foo bar blah)
+# complete -F kirubel kirubel
+if [[ -n $COMP_LINE ]]; then
+	printf "foo\nbar\nblah"
+	echo "test"
+	#for cmd in ${COMMANDS[@]}; do
+	#done
+	exit
+fi
+
