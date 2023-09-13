@@ -63,6 +63,7 @@ elif [ "$os" == "Darwin" ]; then
 	brew update
 	brew install dos2unix fd bat
 #	brew install fig
+# brew install lynx # FIXME: install only on personal laptop
 #	brew install git bash-completion
 	echo "source ~/.bashrc" >> ~/.zshrc
 else

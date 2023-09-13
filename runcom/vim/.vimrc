@@ -51,6 +51,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
+" pandoc on readme file inside vim
+Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " commandline inside vim
 Plug 'preservim/vimux'
@@ -58,7 +61,7 @@ Plug 'preservim/vimux'
 " Install Dracula for vim
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim',{'name':'dracula'}
+Plug 'dracula/vim',{'as':'dracula'}
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -80,8 +83,11 @@ filetype off                  " required
 "
 
 syntax on
-colorscheme dracula
 
+let g:color_name = 'dracula'
+colorscheme dracula
+autocmd BufEnter * :highlight Normal ctermbg=NONE ctermfg=NONE
+highlight NonText guifg=#666666
 " set inchighlight
 " TODO: add a keyboard binding for the vim $(fzf) search  
 
@@ -225,3 +231,4 @@ function! Multiple_cursors_after()
               exe 'NeoCompleteUnlock'
                 endif
 endfunction
+ 
