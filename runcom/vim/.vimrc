@@ -52,6 +52,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
+" pandoc on readme file inside vim
+Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " commandline inside vim
 Plug 'preservim/vimux'
