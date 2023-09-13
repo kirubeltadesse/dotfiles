@@ -20,7 +20,7 @@ function dos2unixd() {
 
 # copy date
 function dt() {
-    local FORMATE=`date +"%A %b(%m) %d %Y %l:%M%p"`
+    local FORMATE=`date +"%a %b(%m) %d %Y %l:%M%p %Z"`
     echo "## ${FORMATE}"
-}
+}&& export -f dt
 
