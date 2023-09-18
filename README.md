@@ -53,7 +53,7 @@ Installed
 
 <summary> FAQ </summary>
 
-### iTem2 
+### iTem2
 
 preferences->profiles->Command (Custom Shell) -> add `/bin/bash`
 
@@ -103,16 +103,6 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
-```bash
-
-DOTFILES_DIR="$HOME/.dotfiles"
-
-for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
-do
-        [ -f "$DOTFILE" ] && . "$DOTFILE"
-done
-
-```
 
 ## Setting up Application
 
@@ -142,7 +132,7 @@ Installed
 - [x] alias for wsl terminal clip
 - [x] tmux configuration if copy pasting formate
 - [ ] vim airline plugin
-- [ ] cd completetion configuration
+- [ ] cd completion configuration
 - [ ] gitconfig
 
 NOTE: copying from wsl to cmd.exe easy works
