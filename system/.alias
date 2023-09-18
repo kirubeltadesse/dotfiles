@@ -15,6 +15,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ld='ls -d */' # List in long format, only directories
 alias rr='rm -rf'
+alias ls='ls --color=auto' # this enables coloring
 
 alias v='vim'
 
@@ -27,4 +28,3 @@ alias g='git' # short the git commend
 
 # Recursively remove .DS_Store files need for macOS
 alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
-

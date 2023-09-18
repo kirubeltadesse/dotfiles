@@ -86,8 +86,6 @@ syntax on
 
 let g:color_name = 'dracula'
 colorscheme dracula
-autocmd BufEnter * :highlight Normal ctermbg=NONE ctermfg=NONE
-highlight NonText guifg=#666666
 " set inchighlight
 " TODO: add a keyboard binding for the vim $(fzf) search  
 

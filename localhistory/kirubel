@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-echo "here"
+[[ -z $SNPPETS ]] && echo "SNIPPETS	 directory undefined" && exit 1
+
+echo "$SNIPPETS"
 # declare -a COMMANDS=(foo bar blah)
 # complete -F kirubel kirubel
 if [[ -n $COMP_LINE ]]; then

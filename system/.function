@@ -1,26 +1,51 @@
 # Create a new directory and enter it
 function mk() {
-    mkdir -p "$@" && cd "$@"
+	mkdir -p "$@" && cd "$@"
 }
 
 # Open man page as PDF
 function manpdf() {
-man -t "${1}" | open -f -a /Application/Preview.app/
+	man -t "${1}" | open -f -a /Application/Preview.app/
 }
 
 # clip what is on the terminal
 function copy() {
-    cat "${1}" | clip.exe
+	cat "${1}" | clip.exe
 }
 
 # change a directory to unix
 function dos2unixd() {
-    find $1 -type f -print0 | xargs -0 dos2unix
+	find $1 -type f -print0 | xargs -0 dos2unix
 }
 
 # copy date
 function dt() {
-    local FORMATE=`date +"%a %b(%m) %d %Y %l:%M%p %Z"`
-    echo "## ${FORMATE}"
-}&& export -f dt
+	operation="${1}"
+	value="${2}"
 
+	local FORMATE=$(date +"%a %b(%m) %d %Y %l:%M%p %Z")
+
+	# Check if no arguments are provided
+	if [ $# -eq 0 ]; then
+		echo "## ${FORMATE}"
+		return
+	fi
+
+	# check if the days argument is provided and is valid number
+	if [[ -z "$value" || ! "$operation$value" =~ ^[+-]?[0-9]+$ ]]; then
+		echo "Usage: dt [<operation>] [<days>]"
+		return 1
+	fi
+
+	local FORMATE=$(date "-v${operation}${value}d" +"%a %b(%m) %d %Y %l:%M%p %Z")
+	echo "## ${FORMATE}"
+
+} && export -f dt
+
+function temp() {
+	echo "## $(date +"%a %b(%m) %d %Y %l:%M%p %Z")
+	### done
+	### hampering
+	### proposed solution"
+
+} && export -f temp
