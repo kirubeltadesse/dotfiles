@@ -73,7 +73,6 @@ call plug#end()
 " let b:thisdir=expand("%:p:h")
 " let b:vim=b:thisdir."/.vimrc"
 execute "source $HOME/.dotfiles/runcom/.vimrc"
-" execute "source .vimrc"
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -94,6 +93,11 @@ colorscheme dracula
 " "Information on the following setting can be found with
 " ":help set
 " set backspace=indent,eol,start
+
+let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_folding = 'custom'
+let g:pandoc#folding#mode = 'stacked'
+let g:pandoc#modules#enabled = ['folding', 'command']
 
 " Tabs use nerdtree gt and gp command
 " nnoremap <C-l>h :tabr<cr>
