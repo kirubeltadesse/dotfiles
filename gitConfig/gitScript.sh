@@ -1,5 +1,54 @@
+folder="$HOME/.dotfiles"
+source $folder/utility/utilities.sh
+
+print warning "Installing git completion"
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+
+# Check if the download was successful
+if [ $? -eq 0 ]; then
+	print warning "Downlaod successful."
+
+	# Make the downloaded file executable
+	print warning "Making it executable"
+	chmod +x ~/.git-completion.bash
+	if [ $? -eq 0 ]; then
+		print "warning" "File is now executable."
+	else
+		print "error" "Error: Failed to make the file executable."
+	fi
+else
+	print "error" "Error: Download failed."
+fi
+
+print warning "Adding referance line to .bash_profile"
+# Adding the referace to the bash completion to the .bash_profile
+filebashprofile="$HOME/.bash_profile"
+text="
+if [ -f ~/.git-completion.bash ]; then
+	. ~/.git-completion.bash
+fi
+
+"
+
+while IFS= read -r line; do
+	append_line 1 "${line}" "${filebashprofile}"
+done <<< "$text"
+
+filebashrc="$HOME/.bashrc"
+text="
+complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/null \
+	|| complete -o default -o nospace -F __git_wrap__git_main g
+"
+
+print warning "Adding bash complete for git alias line to .bashrc"
+while IFS= read -r line; do
+	append_line 1 "${line}" "${filebashrc}"
+done <<< "$text"
+
+
+
 # creating alias for git
-echo "setup up git shortcuts"
+print warning "setup up git shortcuts"
 
 # this is more formal way to create the git alias
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
