@@ -44,8 +44,6 @@ tmux capture-pane -pS -1000000
 
 [Here](https://blog.sanctum.geek.nz/vi-mode-in-tmux/#:~:text=Most%20of%20the%20basic%20vi,another%2C%20and%20then%20pressing%20Enter.) good resource on how to set up vi modes for tmux
 
-
-
 ## Installation requirements
 
 ### statusbar tmux-powerline
@@ -68,12 +66,11 @@ There is also `tpm` [Here](https://github.com/tmux-plugins/tpm) all the installa
 
 It will be awesome if the tmux navigation is more like vim 😊 [Here](https://www.bugsnag.com/blog/tmux-and-vim)
 
-
 ## Vim installation
 
 Your `.vimrc` file already contains the package that needs to be installed. For example, `fzf`, `Nerdtree`
 
-Download plug.vim using 
+Download plug.vim using
 
 ```bash
 curl ~/.vim/autoload/plug.vim --create-dirs \
@@ -84,3 +81,10 @@ then inside the vim file run the command `:PlugInstall`
 
 [checksheets](https://www.maketecheasier.com/cheatsheet/vim-keyboard-shortcuts/)
 
+Debugging tips:
+
+Start by viewing the key code your terminal is sending to vim:
+
+`$ sed -n l`
+
+Then you can use the notation in your command

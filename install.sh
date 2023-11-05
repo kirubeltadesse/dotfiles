@@ -45,7 +45,7 @@ while IFS= read -r line; do
 	append_line 1 "${line}" "${filename}"
 done <<< "$text"
 
-echo "running git shortcut scripts"
+print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/gitScript.sh
 
 # Get the name
@@ -63,7 +63,6 @@ elif [ "$os" == "Darwin" ]; then
 	brew install dos2unix fd bat
 #	brew install fig
 # brew install lynx # FIXME: install only on personal laptop
-#	brew install git bash-completion
 	echo "source ~/.bashrc" >> ~/.zshrc
 else
 	print error "environment is not known: $os"

@@ -101,6 +101,15 @@ let g:vimwiki_folding = 'custom'
 let g:pandoc#folding#mode = 'stacked'
 let g:pandoc#modules#enabled = ['folding', 'command']
 
+" TODO: fix this command to work mapping for moving the current line up or down
+nnoremap <^[j> :m .+1<CR>==
+nnoremap ^[k :m .-2<CR>==
+" inoremap ^[j <Esc>:m .+1<CR>==gi
+" inoremap ^[k <Esc>:m .-2<CR>==gi
+" vnoremap ^[j :m '>+1<CR>gv=gv
+" vnoremap ^[k :m '<-2<CR>gv=gv
+
+
 " Tabs use nerdtree gt and gp command
 " nnoremap <C-l>h :tabr<cr>
 " nnoremap <C-l>l :tabl<cr>
