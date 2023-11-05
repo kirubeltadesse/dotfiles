@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Check if the dot directory exist
 folder="$HOME/.dotfiles"
 
@@ -25,7 +24,7 @@ done
 
 # enable bat for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS='--preview \"bat --style=numbers --color=always --line-range :500 {}\"'
+export FZF_DEFAULT_OPTS='--preview=\"bat --style=numbers --color=always --line-range :500 {}\" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
 export FZF_DEFAULT_OPS=\"--extended\"
 export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
 
@@ -89,9 +88,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
 create_symlink "$HOME/.dotfiles/runcom/vim/.ideavimrc" "$HOME/.ideavimrc"
 create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
-
-# TODO: install vim-airline using Pathogen
-# https://codybonney.com/install-vim-airline-using-pathogen/
 
 # Creating symlink for .tmux.conf"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"

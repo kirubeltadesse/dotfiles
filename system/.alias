@@ -7,6 +7,8 @@ alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
 alias _='sudo'
 alias -- -='cd -'               # Go to previous dir with -
 alias cd.='cd $(readlink -f .)' # Go to real dir (i.e. if current dir is linked)
@@ -25,6 +27,6 @@ alias dc='docker-compose' # short the docker-compose commend
 
 # GIT
 alias g='git' # short the git commend
-
+alias tasks='git grep -EI "BUG|TODO|FIXME|FIXIT|HACK"'
 # Recursively remove .DS_Store files need for macOS
 alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"

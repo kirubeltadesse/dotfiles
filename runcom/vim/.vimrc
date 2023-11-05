@@ -51,9 +51,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
-" pandoc on readme file inside vim
-Plug 'vim-pandoc/vim-pandoc'
-" Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " commandline inside vim
 Plug 'preservim/vimux'
@@ -62,6 +59,11 @@ Plug 'preservim/vimux'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim',{'as':'dracula'}
+
+
+" pandoc on readme file inside vim
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.

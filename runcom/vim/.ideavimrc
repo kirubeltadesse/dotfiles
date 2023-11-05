@@ -1,5 +1,5 @@
 "" Source your .vimrc
-source ~/.vimrc
+source ~/.dotfiles/runcom/.vimrc
 
 """ there are different shortcuts that can used specifically on Intellij
 """ https://github.com/JetBrains/ideavim/wiki/NERDTree-support

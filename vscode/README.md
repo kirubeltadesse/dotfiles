@@ -5,23 +5,17 @@
 Linking VScode [locally](https://stackoverflow.com/questions/57868950/wsl2-terminal-does-not-recognize-visual-studio-code)
 `/c/Program\ Files/Microsoft\ VS\ Code/bin/code /home/ktadesse1/.local/bin`
 
-
 To update the list of installed plugins (the `extensions` file by running the following script:
 
 ```bash
 code --list-extensions >> extensions
 ```
 
-
-# TODO:
-
-write a script to auto update the extenstion
-
 ```
 awk 'NR==FNR{a[$0];next}!($0 in a)' file2 file1 > unique_values.txt
 ```
 
-OR 
+OR
 
 ```
 grep -Fxvf newExtenstions extensions > unique_values.txt
@@ -63,7 +57,6 @@ This is really helpful to have some similar functionality across VScode and Inte
 - Choose _Import Intellij Keybindings (XML)_
 - Copy & Paste it into `keybindings.json`
 
-
 ---
 
 <details>
@@ -77,5 +70,3 @@ This is really helpful to have some similar functionality across VScode and Inte
 </details>
 
 Here is my preferred vscode `settings.json` file
-
-
