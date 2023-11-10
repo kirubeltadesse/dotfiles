@@ -1,0 +1,23 @@
+#!/bin/bash
+#exec w3m "duckduckgo.com/lite?kd=-1&kp=-1&q=$*"
+
+useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.79 Safari/537.1 Lynx"
+
+function dock() {
+	url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")" # 🦆
+	#chat "🦆 searching: $* $url"
+	$(which lynx) "--useragent=$useragent" "${url}"
+	#exec w3m "$url"
+} && export -f dock
+
+function google() {
+	url="https://google.com/search?q=$(urlencode "$*")"
+	#chat "$url"
+	# exec lynx "https://google.com/search?q=$url"
+	#useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.79 Safari/537.1"
+	$(which lynx) "--useragent=$useragent" "${url}"
+} && export -f google
+
+
+
+
