@@ -1,7 +1,7 @@
 call plug#begin()
 " The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
+"   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
 " You can specify a custom plugin directory by passing it as the argument
 "   - e.g. `call plug#begin('~/.vim/plugged')`
@@ -39,12 +39,13 @@ Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 
-" installing fzf 
+" installing fzf
 " set rtp+=~/.fzf
 " Plug '~/.fzf'
-" 
+"
 
-"Autocomplete plugin. similar to VSCode 
+
+"Autocomplete plugin. similar to VSCoded
 " Conflicting with Multiple curse
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -101,13 +102,13 @@ let g:vimwiki_folding = 'custom'
 let g:pandoc#folding#mode = 'stacked'
 let g:pandoc#modules#enabled = ['folding', 'command']
 
-" TODO: fix this command to work mapping for moving the current line up or down
-nnoremap <^[j> :m .+1<CR>==
-nnoremap ^[k :m .-2<CR>==
-" inoremap ^[j <Esc>:m .+1<CR>==gi
-" inoremap ^[k <Esc>:m .-2<CR>==gi
-" vnoremap ^[j :m '>+1<CR>gv=gv
-" vnoremap ^[k :m '<-2<CR>gv=gv
+" For moving lines (^] is a special character; use <M-k> and <M-j> if it works)
+nnoremap <Esc>j :m .+1<CR>==
+nnoremap <Esc>k :m .-2<CR>==
+inoremap <Esc>j <Esc>:m .+1<CR>==gi
+inoremap <Esc>k <Esc>:m .-2<CR>==gi
+vnoremap <Esc>j :m '>+1<CR>gv=gv
+vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 
 " Tabs use nerdtree gt and gp command
@@ -126,7 +127,7 @@ let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_start_word_key      = '<C-n>'
 let g:multi_cursor_select_all_word_key = '<A-n>'
 let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>' " TODO: need to fix alt key
 let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
