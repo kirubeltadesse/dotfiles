@@ -11,27 +11,13 @@ folder="$HOME/.dotfiles"
 source "$folder/utility/utilities.sh"
 
 
-# Specify the directory to add to the PATH
-lynxpath="$(which lynx)"
-
-# Check if the directory is not already in the PATH
-if [[ ":$PATH:" != *":lynxpath:"* ]]; then
-    # Append the directory to the PATH and update the shell configuration file
-    echo "export PATH=\$PATH:$lynxpath" >> ~/.bashrc
-    # Source the updated configuration file to apply changes in the current session
-    source ~/.bashrc
-    echo "Directory added to PATH: $lynxpath"
-else
-    echo "Directory is already in PATH: $lynxpath"
-fi
-
 
 
 filebashrc="$HOME/.bashrc"
 text="
 
 ############ from lynx setupe ################
-lynxpath=$(which lynx)
+lynxpath=\$(which lynx)
 
 if [ -e \"\$HOME/.config/lynx/lynx.cfg\" ];then
   export LYNX_CFG=\"\$HOME/.config/lynx/lynx.cfg\"
@@ -51,6 +37,21 @@ source \"\$HOME/.dotfiles/lynx/searchEngine\"
 "
 echo "$text" >> "$filebashrc"
 
+# Specify the directory to add to the PATH
+lynxpath="$(which lynx)"
+
+# Check if the directory is not already in the PATH
+if [[ ":$PATH:" != *":lynxpath:"* ]]; then
+    # Append the directory to the PATH and update the shell configuration file
+    echo "export PATH=\$PATH:$lynxpath" >> ~/.bashrc
+    # Source the updated configuration file to apply changes in the current session
+    source ~/.bashrc
+    echo "Directory added to PATH: $lynxpath"
+else
+    echo "Directory is already in PATH: $lynxpath"
+fi
+
+mk "$HOME/.config/lynx"
 
 create_symlink "$folder/lynx/lynx.cfg" "$HOME/.config/lynx/lynx.cfg"
 create_symlink "$folder/lynx/lynx.lss" "$HOME/.config/lynx/lynx.lss"

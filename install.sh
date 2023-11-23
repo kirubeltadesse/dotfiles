@@ -33,13 +33,14 @@ bind -x '\"\C-g\": \"clear\"'
 
 # source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
 export PATH=\$PATH:~/.nb/
-# export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
-export set_PS1=\"hist; \$set_PS1\"
+export set_PS1
 export NB_PREVIEW_COMMAND=\"bat\"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 "
+
+# export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
+# export set_PS1=\"hist; \$set_PS1\"
 
 while IFS= read -r line; do
 	append_line 1 "${line}" "${filename}"
@@ -54,22 +55,24 @@ os=$(uname)
 if [ "$os" == "Linux" ]; then
 	print warning "Environment is $os (WLS)"
 	sudo apt-get update
-	sudo apt-get install -y xclip vim-gtk dos2unix fd-find bat
+	sudo apt-get install -y xclip vim-gtk dos2unix tmux nb fd-find bat
 	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
 	# enable +clipboard and +xterm_clipboard for vim
 elif [ "$os" == "Darwin" ]; then
 	print warning "Environment is $os (macOS)"
 	brew update
-	brew install dos2unix fd bat
-#	brew install fig
-# brew install lynx # FIXME: install only on personal laptop
+	brew install dos2unix tmux fd fzf bat nb
+	brew install --cask rectangle
+	brew install lynx
+	# finish up fzf configuration
+	$(brew --prefix)/opt/fzf/install
 	echo "source ~/.bashrc" >> ~/.zshrc
 else
 	print error "environment is not known: $os"
 	ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
 	exit 0 # returning before running to commands below on dev machines
-fi
 
+fi
 print warning "Downloading vim and tmux package manager..."
 # download vim plug manage
 # Vim (~/.vim/autoload)
@@ -90,4 +93,7 @@ create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 
 # Creating symlink for .tmux.conf"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
+
+# copy pomodoro script
+create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
 
