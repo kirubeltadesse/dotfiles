@@ -65,6 +65,12 @@ If there is mistake and you want to reverse the change
 git apply changes.patch --reverse
 ```
 
+If you are getting an error out that says
+
+> can't find file to patch
+
+Navigate to the git root directory and run the command
+
 ---
 
 <details>

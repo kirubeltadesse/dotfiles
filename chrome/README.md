@@ -3,6 +3,7 @@
 [Here](https://crxextractor.com/) is the link to create `.crx` file fore any extension you want.
 
 
+
 ## Exporting Bookmarks
 
 Next, mouse over "Bookmarks" and select "Bookmark Manager."
@@ -21,5 +22,12 @@ Take good care of your precious bookmarks!
 Related: How to Create, View, and Edit Bookmarks in Google Chrome
 
 
+
+## Vimium
+
+
+### select and search on vimium
+
+- https://superuser.com/questions/1236864/how-to-use-vimium-to-select-text-from-a-page
 
 

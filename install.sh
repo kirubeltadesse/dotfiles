@@ -47,7 +47,7 @@ while IFS= read -r line; do
 done <<< "$text"
 
 print warning "Running Git shortcut scripts"
-/bin/bash gitConfig/gitScript.sh
+/bin/bash gitConfig/setup.sh
 
 # Get the name
 os=$(uname)
