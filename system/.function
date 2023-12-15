@@ -22,6 +22,7 @@ function dos2unixd() {
 function dt() {
 	operation="${1}"
 	value="${2}"
+	add_word="${@:3}"
 
 	local FORMATE=$(date +"%a %b(%m) %d %Y %l:%M%p %Z")
 
@@ -38,7 +39,7 @@ function dt() {
 	fi
 
 	local FORMATE=$(date "-v${operation}${value}d" +"%a %b(%m) %d %Y %l:%M%p %Z")
-	echo "## ${FORMATE}"
+	echo "## ${FORMATE} ${add_word}"
 
 } && export -f dt
 

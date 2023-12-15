@@ -43,9 +43,27 @@ Installed
 
 ## Checklist for backing up
 
-- [ ] project to github
-- [ ] git alias backedup
-- [ ]
+### Local stashed changes
+
+1. Creating the stash as a patch
+
+```
+git stash show "stash@{0}" -p -u > changes.patch 
+```
+
+2. Create a branch and push the patch file
+3. Pull the branch on the new computer
+4. and apply the patch file
+
+```
+git apply changes.patch
+```
+
+If there is mistake and you want to reverse the change
+
+```
+git apply changes.patch --reverse
+```
 
 ---
 
@@ -103,7 +121,6 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
-
 ## Setting up Application
 
 Using [chocolatey](https://chocolatey.org/) install softwares to your windows
@@ -141,4 +158,4 @@ ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-
 
 </details>
 
-## More:
+## More
