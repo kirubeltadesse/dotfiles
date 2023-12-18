@@ -17,7 +17,7 @@ filebashrc="$HOME/.bashrc"
 text="
 
 ############ from lynx setupe ################
-lynxpath=\$(which lynx)
+lynxpath=$(which lynx)
 
 
 if [ -e \"\$HOME/.config/lynx/lynx.cfg\" ];then
