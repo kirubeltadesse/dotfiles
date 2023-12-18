@@ -1,19 +1,14 @@
 # this will hold all the alias_that are being used
-# Shortcuts Directory listing/traversal 
-
-
-#alias pbcopy='xclip -selection clipboard'
-#alias pbpaste='xclip -selection clipboard -o'
-
-
+# Shortcuts Directory listing/traversal
 # Directory listing/traversal
 
 # some more ls aliases
-
 alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
 alias _='sudo'
 alias -- -='cd -'               # Go to previous dir with -
 alias cd.='cd $(readlink -f .)' # Go to real dir (i.e. if current dir is linked)
@@ -22,35 +17,22 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ld='ls -d */' # List in long format, only directories
 alias rr='rm -rf'
+alias ls='ls --color=auto' # this enables coloring
 
 alias v='vim'
 
-# DOCKER 
-
+# DOCKER
 alias d='docker'
-alias dc='docker-compose' # short the docker-compose commend
+alias dc='docker compose' # short the docker compose commend
 
 # GIT
 alias g='git' # short the git commend
-alias ga='git add'
-alias gb='git branch' 
-alias gc='git commit'
-alias gco='git checkout'
-alias gcp='git cherry-pick'
-alias gm='git merge'
-alias gp='git push'
-alias gr='git remote'
-alias gs='git status'
-alias gsl='git stash list'
-alias gsp='git stash push'
-alias gss='git stash save'
-
-
+alias tasks='git grep -EI "BUG|TODO|FIXME|FIXIT|HACK"'
 # Recursively remove .DS_Store files need for macOS
-#alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
-#alias pbcopy='xclip -selection clipboard'
-#alias pbpaste='xclip -selection clipboard -o'
+alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
 
-
-
+# WEB SEARCH
+alias '?'=dock
+alias '??'=google
+alias '???'=gpt
 

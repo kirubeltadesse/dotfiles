@@ -1,17 +1,13 @@
-# you can use <uname> with flags to identify the shell evironment
-# and also you can use whoami
-
-
-# Get the name 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 source ~/.bashrc
+
 function rt {
 	# check if an argument has been passed
 	if [ $# -eq 0 ]; then
-		echo "using the default (sundev9)"
-  		socat tcp-listen:28663,forever,reuseaddr,keepalive,fork tcp:10.122.102.209:28663 &
-		socat tcp-listen:28588,forever,reuseaddr,keepalive,fork tcp:10.122.102.209:28588 &
-		socat tcp-listen:10799,forever,reuseaddr,keepalive,fork tcp:10.122.102.209:10799 &
+		echo "using the default (BAPGND-PW-536)"
+        socat tcp-listen:28663,forever,reuseaddr,keepalive,fork tcp:10.34.14.30:28663 &
+		socat tcp-listen:28588,forever,reuseaddr,keepalive,fork tcp:10.34.14.30:28588 &
+        socat tcp-listen:10799,forever,reuseaddr,keepalive,fork tcp:10.34.14.30:10799 &
 	else
 		devMachine=$1
 		echo "using the $devMachine ip `host $devMachine | rev | cut -d ' ' -f1 | rev`"
@@ -48,4 +44,20 @@ function kill_socat() {
     done
 }
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openjdk/include"
+
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+  . /usr/local/etc/bash_completion.d/git-completion.bash
+fi
+
+if [ -f /usr/local/etc/bash_completion.d/nb ]; then
+  . /usr/local/etc/bash_completion.d/nb
+fi
 

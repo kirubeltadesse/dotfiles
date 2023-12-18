@@ -1,6 +1,6 @@
 #------------------------------TMUX log------------------------#
 **.log
-
+.DS_Store
 #---------------------------------vim--------------------------#
 *.swp
 **/.netrwhist
@@ -8,8 +8,9 @@
 runcom/vim/autoload/*
 runcom/vim/bundle/*
 runcom/vim/plugged/*
+runcom/vim/vim
 
 
 #---------------------------------VScode--------------------------#
-.vscode/ 
-
+.vscode/
+.lhistory
