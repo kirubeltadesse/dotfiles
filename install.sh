@@ -6,6 +6,34 @@ source $folder/utility/utilities.sh
 
 if [ -d "$folder" ]; then
 	echo "Folder exists"
+
+# not that we need to give absolute path to ln
+
+# TODO: simple if/else block
+# check if the folder is exist
+# check if the dot folder exist 
+# mv ~/dotfiles ~/.dotfiles 		# making it a dot folder
+
+# run this in any of the machine
+
+
+# Get the name 
+os=$(uname)
+# add this git configuration for MacOs, windows and SunOS
+if [ "$os" == "Linux" ]; then
+	echo "environment is $os wls"
+	sudo apt-get update
+	sudo apt install dos2unix fd-find bat 
+	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
+elif [ "$os" == "Darwin" ]; then
+	echo "environment is $os mac"
+	brew update 
+	brew install dos2unix 
+	brew install fd 
+#	brew install fig 
+	brew install bat 
+	echo "source ~/.bashrc" >> ~/.zshrc
+
 else
 	echo "Rename folder to .dotfiles"
 	mv ~/dotfiles ~/.dotfiles
