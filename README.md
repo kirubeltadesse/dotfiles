@@ -43,9 +43,33 @@ Installed
 
 ## Checklist for backing up
 
-- [ ] project to github
-- [ ] git alias backedup
-- [ ]
+### Local stashed changes
+
+1. Creating the stash as a patch
+
+```
+git stash show "stash@{0}" -p -u > changes.patch 
+```
+
+2. Create a branch and push the patch file
+3. Pull the branch on the new computer
+4. and apply the patch file
+
+```
+git apply changes.patch
+```
+
+If there is mistake and you want to reverse the change
+
+```
+git apply changes.patch --reverse
+```
+
+If you are getting an error out that says
+
+> can't find file to patch
+
+Navigate to the git root directory and run the command
 
 ---
 
@@ -53,7 +77,7 @@ Installed
 
 <summary> FAQ </summary>
 
-### iTem2 
+### iTem2
 
 preferences->profiles->Command (Custom Shell) -> add `/bin/bash`
 
@@ -103,17 +127,6 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
-```bash
-
-DOTFILES_DIR="$HOME/.dotfiles"
-
-for DOTFILE in "$DOTFILES_DIR"/system/.{alias,env,function};
-do
-        [ -f "$DOTFILE" ] && . "$DOTFILE"
-done
-
-```
-
 ## Setting up Application
 
 Using [chocolatey](https://chocolatey.org/) install softwares to your windows
@@ -142,7 +155,7 @@ Installed
 - [x] alias for wsl terminal clip
 - [x] tmux configuration if copy pasting formate
 - [ ] vim airline plugin
-- [ ] cd completetion configuration
+- [ ] cd completion configuration
 - [ ] gitconfig
 
 NOTE: copying from wsl to cmd.exe easy works
@@ -151,4 +164,4 @@ ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-
 
 </details>
 
-## More:
+## More

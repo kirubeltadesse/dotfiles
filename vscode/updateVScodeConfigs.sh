@@ -1,4 +1,4 @@
-# get the list of all the extenstion installed
+source "../utility/utilities.sh"
 
 IFS=$'\n'
 
@@ -16,16 +16,16 @@ addExtensions=$(grep -Fxvf extensions currentListOfExtensions | grep -v -i -e 'b
 echo "$addExtensions" >> "$extension"
 
 if [ -z "$addExtensions" ]; then
-	echo "No extenstion to update"
+	print "No extenstion to update"
 else 
-	echo -e "This extenstion has been updated\n$addExtensions" # note -e option is used to enable 
+	print warning "This extenstion has been updated\n${addExtensions}" # note -e option is used to enable 
 	# interpretation of backslash
 fi
 
 # remove the newExtenstions file
 `rm currentListOfExtensions`
 
-
+# TODO: filter bloomberg settings
 # check the Operating system
 
 os=$(uname)
@@ -36,13 +36,13 @@ keybindings=""
 if [ "$os" == "Darwin" ]; then
 	settings="$HOME/Library/Application Support/Code/User/settings.json"
 	keybindings="$HOME/Library/Application Support/Code/User/keybindings.json"
-	echo -e "setting loc for $os:\ $settings"
+	print warning "setting loc for ${os}:\n ${settings}"
 elif [ "$os" == "Linux" ]; then
 	settings="/mnt/c/Users/kiyam/AppData/Roaming/Code/User/settings.json"
 	keybindings="/mnt/c/Users/kiyam/AppData/Roaming/Code/User/keybindings.json"
-	echo -e "setting loc for $os: \n$settings"
+	print warning "setting loc for $os: \n ${settings}"
 else 
-	echo "system not indentified"
+	print error "system not indentified"
 fi
 
 settings_file="`pwd`/settings.json"
@@ -52,11 +52,11 @@ keybinds_file="`pwd`/keybindings.json"
 # copy the settings over to the file
 # overriding the setting file
 
-echo "save the current settings"
+print success "save the current settings"
 echo "$(cat $settings)" > "$settings_file"
 
 # echo "$settings"
 # echo "$(cat $settings)"
 
-echo "save the current keybinds"
+print success "save the current keybinds"
 echo "$(cat $keybindings)" > "$keybinds_file"

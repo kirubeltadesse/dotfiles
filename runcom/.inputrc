@@ -6,6 +6,13 @@ user interfaces for many important interactive programs, such as Bash and Python
 MacOS it is located in `/etc/inputrc`
 com
 
+# PrettyFi
+set colored-stats On
+set colored-completion-prefix On
+
+# Completion settigns
+set show-all-if-ambiguous on
+set completion-ignore-case on
 
 # remap control: `bind -x `
 bind -x '"\C-l": clear'

@@ -1,7 +1,7 @@
 call plug#begin()
 " The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
+"   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
 " You can specify a custom plugin directory by passing it as the argument
 "   - e.g. `call plug#begin('~/.vim/plugged')`
@@ -13,6 +13,9 @@ Plug 'junegunn/vim-easy-align'
 
 " Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" enable multiple cursors on vim https://github.com/terryma/vim-multiple-cursors
+Plug 'terryma/vim-multiple-cursors'
 
 " Install vim-grammarous getting error 122
 " Plug 'rhysd/vim-grammarous'
@@ -36,26 +39,32 @@ Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 
-" installing fzf 
+" installing fzf
 " set rtp+=~/.fzf
 " Plug '~/.fzf'
-" 
+"
 
-"Autocomplete plugin. similar to VSCode
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"Autocomplete plugin. similar to VSCoded
+" Conflicting with Multiple curse
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
+
 
 " commandline inside vim
 Plug 'preservim/vimux'
 
 " Install Dracula for vim
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'dracula/vim',{'as':'dracula'}
 
-Plug 'dracula/vim',{'name':'dracula'}
+
+" pandoc on readme file inside vim
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -64,55 +73,43 @@ call plug#end()
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
 
+" let b:thisdir=expand("%:p:h")
+" let b:vim=b:thisdir."/.vimrc"
+execute "source $HOME/.dotfiles/runcom/.vimrc"
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PlugInstall    - installs plugins; append `!` to update or just :PlugUpdate
 "
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 syntax on
+
+let g:color_name = 'dracula'
 colorscheme dracula
-filetype plugin indent on
-
-"  set inchighlight
-
+" set inchighlight
 " TODO: add a keyboard binding for the vim $(fzf) search  
 
 " enable fzf buffer 
-
 " enable preview for fzf using BAT 
 " "Information on the following setting can be found with
 " ":help set
-set tabstop=4
-set expandtab
-set autoindent
-set shiftwidth=4  	   " this is the level of autoindent, adjust to taste
-set ruler
-set hlsearch 			" used to highlight the searched word 
-set number relativenumber  " better than set rnu or set relativenumber
-set rnu   " set relativenumber
-
-" set number
-set visualbell "turning of the beep sound on the text edit
 " set backspace=indent,eol,start
-" " Uncomment below to make screen not flash on error
-" set vb t_vb=""
-" "
-" " From training
-" set nocompatible
-"
 
-set nofixendofline " save the file without the end of line charactor
+let g:vimwiki_filetypes = ['markdown']
+let g:vimwiki_folding = 'custom'
+let g:pandoc#folding#mode = 'stacked'
+let g:pandoc#modules#enabled = ['folding', 'command']
 
-set t_Co=256
-set laststatus=2
+" For moving lines (^] is a special character; use <M-k> and <M-j> if it works)
+nnoremap <Esc>j :m .+1<CR>==
+nnoremap <Esc>k :m .-2<CR>==
+inoremap <Esc>j <Esc>:m .+1<CR>==gi
+inoremap <Esc>k <Esc>:m .-2<CR>==gi
+vnoremap <Esc>j :m '>+1<CR>gv=gv
+vnoremap <Esc>k :m '<-2<CR>gv=gv
+
 
 " Tabs use nerdtree gt and gp command
 " nnoremap <C-l>h :tabr<cr>
@@ -122,10 +119,25 @@ set laststatus=2
 " nnoremap <C-t> :tabnew<cr>
 " nnoremap <C-c> :tabc<cr>
 
+" TODO: shortcut conflict between NERDTree and multiplecursor
+let g:multi_cursor_use_default_mapping=0
+
+" Note: this command below has already been set 
+" Default mapping 
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>' " TODO: need to fix alt key
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
 " NERDTree shortcuts
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-nnoremap <C-n> :NERDTree<CR>
+" conflict nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 " Enabling custom key bindings
@@ -189,23 +201,9 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = 'Ɇ'
 let g:airline_symbols.whitespace = 'Ξ'
 
-" powerline symbols
-
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep =  ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch =''
-"let g:airline_symbols.colnr = ':'
-"let g:airline_symbols.readonly =''
-"let g:airline_symbols.linenr = ' :'
-"let g:airline_symbols.maxlinenr = '☰ '
-"let g:airline_symbols.dirty='⚡'
-"
-
-" old vim-powerline symbols
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
+" powerline symbols manuel definition
+let g:airline_symbols.maxlinenr = '☰ '
+let g:airline_symbols.dirty='⚡'
 let g:airline_right_sep = '⮂'
 let g:airline_right_alt_sep = '⮃'
 let g:airline_symbols.branch = '⭠'
@@ -234,3 +232,17 @@ map <Leader>vi :VimuxInspectRunner<CR>
 " remap ctrl +v for windows terminal
 nnoremap v <c-v>
 
+
+" add for multiple_cursors to prevent conflict with Neocomplete
+function! Multiple_cursors_before()
+      if exists(':NeoCompleteLock')==2
+              exe 'NeoCompleteLock'
+                endif
+endfunction
+
+function! Multiple_cursors_after()
+      if exists(':NeoCompleteUnlock')==2
+              exe 'NeoCompleteUnlock'
+                endif
+endfunction
+ 
