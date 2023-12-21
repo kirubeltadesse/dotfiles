@@ -10,9 +10,6 @@
 folder="$HOME/.dotfiles/browser/lynx"
 source "$HOME/.dotfiles/utility/utilities.sh"
 
-
-
-
 filebashrc="$HOME/.bashrc"
 text="
 
