@@ -49,31 +49,10 @@ done <<< "$text"
 print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh
 
-# Get the name
-os=$(uname)
-# add this git configuration for MacOs, windows and SunOS
-if [ "$os" == "Linux" ]; then
-	print warning "Environment is $os (WLS)"
-	sudo apt-get update
-	sudo apt-get install -y xclip vim-gtk dos2unix tmux nb fd-find bat
-	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
-	# enable +clipboard and +xterm_clipboard for vim
-elif [ "$os" == "Darwin" ]; then
-	print warning "Environment is $os (macOS)"
-	brew update
-	brew install dos2unix tmux fd fzf bat nb
-	brew install --cask rectangle
-	brew install lynx
-	# finish up fzf configuration
-	$(brew --prefix)/opt/fzf/install
-	echo "source ~/.bashrc" >> ~/.zshrc
-else
-	print error "environment is not known: $os"
-	ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
-	exit 0 # returning before running to commands below on dev machines
+# Install all the packages
+CustomeInstaller
 
-fi
-print warning "Downloading vim and tmux package manager..."
+print "warning" "Downloading vim and tmux package manager..."
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

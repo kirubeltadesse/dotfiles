@@ -21,6 +21,9 @@ print() {
       warning)
         color=$YELLOW
         ;;
+      progress)
+        color=$BLUE
+        ;;
       success)
         color=$GREEN
         ;;
@@ -28,7 +31,7 @@ print() {
         color=$NC
         ;;
     esac
-    echo -e "${color}${text}${NC}"
+    echo -e "${color}${text}${NC}" >&2
 }
 
 # Append a line to a file
@@ -60,7 +63,7 @@ append_line() {
 		echo " - Already exists: line #$lno"
 	else
 		# If update flag is set, append the line to the file
-		if [ $update -eq 1 ]; then
+		if [ "$update" -eq 1 ]; then
 			# [ -f "$file" ] && echo >> "$file"			# Add a newline if file exists
 			echo "$line" >> "$file"								# Append the line to the file
 			print 'success' "   + Added"
@@ -69,6 +72,58 @@ append_line() {
 		fi
 	fi
 	#set +e
+}
+
+get_user_command() {
+	local use_command;
+	os=$(uname)
+
+	if [ "$os" == "Linux" ]; then
+		print 'success' "Environment is $os (WLS)"
+		use_command="sudo apt-get install -y"
+		sudo apt-get update
+		$use_command xclip fd-find
+		# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
+		# enable +clipboard and +xterm_clipboard for vim
+	elif [ "$os" == "Darwin" ]; then
+		print 'success' "Environment is $os (macOS)"
+		use_command="brew install"
+		$use_command update
+		$use_command fd
+		$use_command --cask rectangle
+		# finish up fzf configuration
+		"$(brew --prefix)"/opt/fzf/install
+		echo "source ~/.bashrc" >> ~/.zshrc
+	else
+		print error "environment is not known: $os"
+		ln -s "$HOME/.dotfiles/runcom/.vimrc" "$HOME/"
+		exit 1  #returning before running to commands below on dev machines
+	fi
+
+	echo "$use_command"
+}
+
+package_installed() {
+	package="$1"
+	command -v "$package" >/dev/null 2>&1
+}
+
+# installer function
+CustomeInstaller() {
+
+	# FIXME: not getting the right value here
+	local use_command
+	use_command=$(get_user_command)
+	packages=("dos2unix" "tmux" "nb" "fzf" "bat") # "vim-gtk" "lynx")
+
+	for package in "${packages[@]}"; do
+		if ! package_installed "$package" ; then
+			print 'progress' "Installling $package ..."
+			"$use_command" "$package"
+		else
+			print 'warning' "$package is already installed."
+		fi
+	done
 }
 
 # Function to create symbolic links
