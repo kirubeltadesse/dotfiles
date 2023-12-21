@@ -111,7 +111,6 @@ package_installed() {
 # installer function
 CustomeInstaller() {
 
-	# FIXME: not getting the right value here
 	local use_command
 	use_command=$(get_user_command)
 	packages=("dos2unix" "tmux" "nb" "fzf" "bat") # "vim-gtk" "lynx")
@@ -138,4 +137,20 @@ create_symlink() {
 		echo "Skipped: $target_file already exists"
 	fi
 }
+
+copy_text_2_bashrc() {
+	local text="$1"
+	local file_path="$HOME/.bashrc"
+
+	while IFS= read -r line; do
+		append_line 1 "${line}" "${file_path}"
+	done <<< "$text"
+}
+
+
+	
+
+
+
+
 

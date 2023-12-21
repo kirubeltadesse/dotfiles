@@ -10,9 +10,6 @@
 folder="$HOME/.dotfiles"
 source "$folder/utility/utilities.sh"
 
-
-
-
 filebashrc="$HOME/.bashrc"
 text="
 

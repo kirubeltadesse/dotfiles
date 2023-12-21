@@ -11,8 +11,6 @@ else
 	mv ~/dotfiles ~/.dotfiles
 fi
 
-# write to the `.bashrc` file
-filename="$HOME/.bashrc"
 text="
 # added by the dotfile installer
 DOTFILES_DIR=\"\$HOME/.dotfiles\"
@@ -42,9 +40,8 @@ export NB_PREVIEW_COMMAND=\"bat\"
 # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
 # export set_PS1=\"hist; \$set_PS1\"
 
-while IFS= read -r line; do
-	append_line 1 "${line}" "${filename}"
-done <<< "$text"
+# write to the `.bashrc` file
+copy_text_2_bashrc "$text"
 
 print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh
@@ -72,7 +69,7 @@ create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 
 # Creating symlink for .tmux.conf"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
-
 # copy pomodoro script
+
 create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
 
