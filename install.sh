@@ -6,41 +6,11 @@ source $folder/utility/utilities.sh
 
 if [ -d "$folder" ]; then
 	echo "Folder exists"
-
-# not that we need to give absolute path to ln
-
-# TODO: simple if/else block
-# check if the folder is exist
-# check if the dot folder exist 
-# mv ~/dotfiles ~/.dotfiles 		# making it a dot folder
-
-# run this in any of the machine
-
-
-# Get the name 
-os=$(uname)
-# add this git configuration for MacOs, windows and SunOS
-if [ "$os" == "Linux" ]; then
-	echo "environment is $os wls"
-	sudo apt-get update
-	sudo apt install dos2unix fd-find bat 
-	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
-elif [ "$os" == "Darwin" ]; then
-	echo "environment is $os mac"
-	brew update 
-	brew install dos2unix 
-	brew install fd 
-#	brew install fig 
-	brew install bat 
-	echo "source ~/.bashrc" >> ~/.zshrc
-
 else
 	echo "Rename folder to .dotfiles"
 	mv ~/dotfiles ~/.dotfiles
 fi
 
-# write to the `.bashrc` file
-filename="$HOME/.bashrc"
 text="
 # added by the dotfile installer
 DOTFILES_DIR=\"\$HOME/.dotfiles\"
@@ -70,38 +40,19 @@ export NB_PREVIEW_COMMAND=\"bat\"
 # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
 # export set_PS1=\"hist; \$set_PS1\"
 
-while IFS= read -r line; do
-	append_line 1 "${line}" "${filename}"
-done <<< "$text"
+# write to the `.bashrc` file
+copy_text_2_bashrc "$text"
+
 
 print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh
 
-# Get the name
-os=$(uname)
-# add this git configuration for MacOs, windows and SunOS
-if [ "$os" == "Linux" ]; then
-	print warning "Environment is $os (WLS)"
-	sudo apt-get update
-	sudo apt-get install -y xclip vim-gtk dos2unix tmux nb fd-find bat
-	# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
-	# enable +clipboard and +xterm_clipboard for vim
-elif [ "$os" == "Darwin" ]; then
-	print warning "Environment is $os (macOS)"
-	brew update
-	brew install dos2unix tmux fd fzf bat nb
-	brew install --cask rectangle
-	brew install lynx
-	# finish up fzf configuration
-	$(brew --prefix)/opt/fzf/install
-	echo "source ~/.bashrc" >> ~/.zshrc
-else
-	print error "environment is not known: $os"
-	ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
-	exit 0 # returning before running to commands below on dev machines
+# Install all the packages
+CustomeInstaller
 
-fi
-print warning "Downloading vim and tmux package manager..."
+print "warning" "Downloading vim and tmux package manager..."
+
+
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -123,5 +74,6 @@ create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 
 # copy pomodoro script
+
 create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
 
