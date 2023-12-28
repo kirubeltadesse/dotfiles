@@ -64,6 +64,7 @@ append_line() {
 	else
 		# If update flag is set, append the line to the file
 		if [ "$update" -eq 1 ]; then
+
 			# [ -f "$file" ] && echo >> "$file"			# Add a newline if file exists
 			echo "$line" >> "$file"								# Append the line to the file
 			print 'success' "   + Added"
@@ -125,6 +126,7 @@ CustomeInstaller() {
 	done
 }
 
+
 # Function to create symbolic links
 create_symlink() {
 	local source_file="$1"
@@ -146,11 +148,4 @@ copy_text_2_bashrc() {
 		append_line 1 "${line}" "${file_path}"
 	done <<< "$text"
 }
-
-
-	
-
-
-
-
 

@@ -43,6 +43,7 @@ export NB_PREVIEW_COMMAND=\"bat\"
 # write to the `.bashrc` file
 copy_text_2_bashrc "$text"
 
+
 print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh
 
@@ -50,6 +51,8 @@ print warning "Running Git shortcut scripts"
 CustomeInstaller
 
 print "warning" "Downloading vim and tmux package manager..."
+
+
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -69,6 +72,7 @@ create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 
 # Creating symlink for .tmux.conf"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
+
 # copy pomodoro script
 
 create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
