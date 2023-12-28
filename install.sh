@@ -28,25 +28,26 @@ export NB_PREVIEW_COMMAND=\"bat\"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 "
+
 # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
 # export set_PS1=\"hist; \$set_PS1\"
 
 read -p "Is this every first setup? (Y/n):" ans
 
 if [ $ans == 'Y' ]; then
-	if [ -d "$folder" ]; then
-		print warning "Folder exists"
-	else
-		echo "Rename folder to .dotfiles"
-		mv ~/dotfiles ~/.dotfiles
-	fi
-	print success "setting up Keybase"
-	configure_keybase
+    if [ -d "$folder" ]; then
+        print warning "Folder exists"
+    else
+        echo "Rename folder to .dotfiles"
+        mv ~/dotfiles ~/.dotfiles
+    fi
+    print success "setting up Keybase"
+    configure_keybase
 
-	# write to the `.bashrc` file
-	copy_text_2_bashrc "$text"
+    # write to the `.bashrc` file
+    copy_text_2_bashrc "$text"
 else
-	print warning "Keybase is setup"
+    print warning "Keybase is setup"
 fi
 
 print warning "Running Git shortcut scripts"
@@ -60,11 +61,11 @@ print "warning" "Downloading vim and tmux package manager..."
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Neovim (~/.local/share/nvim/site/autoload)
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # download TPM - Tmux Plag manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
