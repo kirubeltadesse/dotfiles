@@ -1,10 +1,12 @@
 GREEN="32"
 RED="31"
 YELLOW="33"
-LCYAN="36"
+BLUE="34"
 LPURPLE="35"
+LCYAN="36"
 
-ITALICRED="\e[3;${RED}m\]"
+BOLDRED="\e[1;${RED}m\]"
+BOLDBLUE="\e[1;${BLUE}m\]"
 BOLDGREEN="\e[1;${GREEN}m\]"
 BOLDYELLOW="\e[1;${YELLOW}m\]"
 BOLDLCYAN="\e[1;${LCYAN}m\]"
@@ -29,7 +31,7 @@ function set_PS1 {
     #   - host machine (\h)
     # See also: `man bash`
     PS1=''"${BOLDYELLOW}\D{%b-%d %H:%M:%S}${NC}${BOLDLPURPLE}\w${NC}${BOLDGREEN}"'$(parse_git_branch)'"${NC}
-  ${BOLDLCYAN}[\u.\h]${NC}$Ps1Tail>"''
+  ${BOLDLCYAN}\u.\h${NC}$Ps1Tail ${BOLDBLUE}\$${NC}"' '
 }
 
 set_PS1 # Call the set_PS1 function
