@@ -7,8 +7,8 @@
 # files move for any reason. (They are symlinks in this config.) The best 
 # way to get around this configuration issue and still allow lynx to be 
 # called from other programs is to encapsulate it with a function.
-folder="$HOME/.dotfiles"
-source "$folder/utility/utilities.sh"
+folder="$HOME/.dotfiles/browser/lynx"
+source "$HOME/.dotfiles/utility/utilities.sh"
 
 filebashrc="$HOME/.bashrc"
 text="
@@ -30,8 +30,8 @@ if [ ! -x \"\$lynxpath\" ]; then
   exit 1
 fi
 
-source \"\$HOME/.dotfiles/lynx/urlencode\"
-source \"\$HOME/.dotfiles/lynx/searchEngine\"
+source \"$folder/urlencode\"
+source \"$folder/searchEngine\"
 "
 echo "$text" >> "$filebashrc"
 
@@ -51,6 +51,6 @@ fi
 
 mk "$HOME/.config/lynx"
 
-create_symlink "$folder/lynx/lynx.cfg" "$HOME/.config/lynx/lynx.cfg"
-create_symlink "$folder/lynx/lynx.lss" "$HOME/.config/lynx/lynx.lss"
+create_symlink "$folder/lynx.cfg" "$HOME/.config/lynx/lynx.cfg"
+create_symlink "$folder/lynx.lss" "$HOME/.config/lynx/lynx.lss"
 

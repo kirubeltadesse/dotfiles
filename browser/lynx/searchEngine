@@ -5,14 +5,14 @@
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/601.1.15 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Lynx"
 
 
-function dock() {
+function dock {
 	url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")" # 🦆
 	#chat "🦆 searching: $* $url"
 	lynx "--useragent=$useragent" "${url}"
 	#exec w3m "$url"
 } && export -f dock
 
-function google() {
+function google {
 	url="https://google.com/search?q=$(urlencode "$*")"
 	#chat "$url"
 	# exec lynx "https://google.com/search?q=$url"
@@ -21,12 +21,12 @@ function google() {
 } && export -f google
 
 
-function wiki () {
+function wiki {
   url="https://en.wikipedia.org/wiki/Special:Search/$(urlencode "$*")"
   lynx "${url}"
 } && export -f wiki
 
-function ml () {
+function ml {
   url="https://machinelearningmastery.com/?s=$(urlencode "$*")&post_type=post&submit=Search"
   lynx "${url}"
 } && export -f ml

@@ -136,6 +136,7 @@ create_symlink() {
 		ln -s "$source_file" "$target_file"
 		echo "Created symlink: $target_file -> $source_file"
 	else
+		# TODO: ask if the user want to remove the old link	
 		echo "Skipped: $target_file already exists"
 	fi
 }
