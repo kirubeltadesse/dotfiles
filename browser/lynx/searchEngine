@@ -20,7 +20,6 @@ function google {
 	lynx "--useragent=$useragent" "${url}"
 } && export -f google
 
-
 function wiki {
   url="https://en.wikipedia.org/wiki/Special:Search/$(urlencode "$*")"
   lynx "${url}"
@@ -31,6 +30,9 @@ function ml {
   lynx "${url}"
 } && export -f ml
 
-
+function meaning {
+  url="https://www.merriam-webster.com/dictionary/$(urlencode "$*")"
+  lynx "${url}"
+} && export -f meaning
 
 

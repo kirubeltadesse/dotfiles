@@ -1,7 +1,7 @@
-syntax on
+syntax enable 
 " set inchighlight
 " colorscheme morning
-filetype plugin indent on
+filetype plugin on
 "
 " "Information on the following setting can be found with
 " ":help set
@@ -18,9 +18,10 @@ set visualbell 		                              				" turning of the beep sound o
 " " Uncomment below to make screen not flash on error
 " set vb t_vb=""
 set nofixendofline                          	    			" save the file without the end of line charactor
-" " From training
+
+" enter the current millinium
 set nocompatible
-"
+
 set t_Co=256
 set termguicolors
 
@@ -34,3 +35,20 @@ hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 highlight CursorLine guibg=#303000 ctermbg=234
+
+" FINDING FILES:
+
+" Search down into subfolders
+" Provideds tab-completion for all file-related tasks
+set path+=**
+
+" Display all matching files when we tab complete
+set wildmenu
+
+" NOW WE CAN:
+" - Hit tab to :find by partial match
+" - Use * to make it fuzzy
+
+" THINGS TO CONSIDERS:
+" - :b lets you autocomplet any open buffer
+
