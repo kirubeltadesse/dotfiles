@@ -5,12 +5,12 @@ BLUE="34"
 LPURPLE="35"
 LCYAN="36"
 
-BOLDRED="\e[1;${RED}m\]"
-BOLDBLUE="\e[1;${BLUE}m\]"
-BOLDGREEN="\e[1;${GREEN}m\]"
-BOLDYELLOW="\e[1;${YELLOW}m\]"
-BOLDLCYAN="\e[1;${LCYAN}m\]"
-BOLDLPURPLE="\e[1;${LPURPLE}m\]"
+BOLDRED="\[\e[1;${RED}m\]"
+BOLDBLUE="\[\e[1;${BLUE}m\]"
+BOLDGREEN="\[\e[1;${GREEN}m\]"
+BOLDYELLOW="\[\e[1;${YELLOW}m\]"
+BOLDLCYAN="\[\e[1;${LCYAN}m\]"
+BOLDLPURPLE="\[\e[1;${LPURPLE}m\]"
 NC="\[\e[0m\]"
 
 ## Prompt
@@ -30,8 +30,8 @@ function set_PS1 {
     #   - user name (\u)
     #   - host machine (\h)
     # See also: `man bash`
-    PS1=''"${BOLDYELLOW}\D{%b-%d %H:%M:%S}${NC}${BOLDLPURPLE}\w${NC}${BOLDGREEN}"'$(parse_git_branch)'"${NC}
-  ${BOLDLCYAN}\u.\h${NC}$Ps1Tail ${BOLDBLUE}\$${NC}"' '
+    PS1="${BOLDYELLOW}\D{%b-%d %H:%M:%S}${NC}${BOLDLPURPLE}\w${NC}${BOLDGREEN}\$(parse_git_branch)${NC}
+  ${BOLDLCYAN}\u.\h${NC}$Ps1Tail ${BOLDBLUE}\$${NC} "  
 }
 
 set_PS1 # Call the set_PS1 function
