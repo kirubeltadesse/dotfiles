@@ -73,7 +73,7 @@ git config --global alias.rba 'rebase --abort'
 git config --global alias.rbc 'rebase --continue'
 git config --global alias.rs restore
 git config --global alias.rss 'restore --staged'
-git config --global alias.s 'show'
+git config --global alias.w 'show'
 git config --global alias.sno 'show --name-only'
 git config --global alias.sa 'stash apply'
 git config --global alias.sc 'stash clear'

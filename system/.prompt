@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# declaring colors
 GREEN="32"
 RED="31"
 YELLOW="33"
@@ -13,8 +16,8 @@ BOLDLCYAN="\[\e[1;${LCYAN}m\]"
 BOLDLPURPLE="\[\e[1;${LPURPLE}m\]"
 NC="\[\e[0m\]"
 
-## Prompt
-function parse_git_branch() {
+# Prompt
+function parse_git_branch {
     # Parse the current git branch name and print it
     which git &>/dev/null || return
     local branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')

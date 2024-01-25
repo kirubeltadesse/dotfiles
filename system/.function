@@ -44,10 +44,10 @@ function dt() {
 } && export -f dt
 
 function temp() {
-	echo "## $(date +"%a %b(%m) %d %Y %l:%M%p %Z")
-	### done
-	### hampering
-	### proposed solution"
+echo "
+### done
+### hampering
+### proposed solution"
 
 } && export -f temp
 
