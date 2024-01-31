@@ -17,3 +17,4 @@ export NB_DEFAULT_EXTENSION="${NB_DEFAULT_EXTENSION:-md}" # Set by `nb` • Thu 
 
 export NB_COLOR_PRIMARY="${NB_COLOR_PRIMARY:-85}" # Set by `nb` • Thu 14 Dec 2023 18:41:14 GMT
 
+export NB_SYNTAX_THEME="${NB_SYNTAX_THEME:-Dracula}" # Set by `nb` • Tue 30 Jan 2024 12:55:50 GMT

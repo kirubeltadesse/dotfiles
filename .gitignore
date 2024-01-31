@@ -10,6 +10,7 @@ runcom/vim/bundle/*
 runcom/vim/plugged/*
 runcom/vim/vim
 
+**/spell/**
 
 #---------------------------------VScode--------------------------#
 .vscode/
