@@ -61,7 +61,10 @@ git config --global alias.cp cherry-pick
 git config --global alias.d diff
 git config --global alias.f fetch 
 git config --global alias.last 'log -1 HEAD'
-git config --global alias.logauth 'log --author'
+git config --global alias.loga 'log --author'
+git config --global alias.logba 'log --branches --author'
+git config --global alias.logbna 'log --branches --no-walk --author'
+git config --global alias.logboa 'log --branches --oneline --author'
 git config --global alias.logdog 'log --decorate --oneline --graph'
 git config --global alias.logs 'log --stat'
 git config --global alias.m merge

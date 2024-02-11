@@ -33,7 +33,7 @@ function set_PS1 {
     #   - user name (\u)
     #   - host machine (\h)
     # See also: `man bash`
-    PS1="${BOLDYELLOW}\D{%b-%d %H:%M:%S}${NC}${BOLDLPURPLE}\w${NC}${BOLDGREEN}\$(parse_git_branch)${NC}
+    PS1="${BOLDYELLOW}\D{%b-%d %H:%M:%S}${NC} ${BOLDLPURPLE}\w${NC}${BOLDGREEN}\$(parse_git_branch)${NC}
   ${BOLDLCYAN}\u.\h${NC}$Ps1Tail ${BOLDBLUE}\$${NC} "  
 }
 

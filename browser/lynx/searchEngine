@@ -4,7 +4,6 @@
 
 useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/601.1.15 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Lynx"
 
-
 function dock {
 	url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")" # 🦆
 	#chat "🦆 searching: $* $url"
@@ -34,5 +33,17 @@ function meaning {
   url="https://www.merriam-webster.com/dictionary/$(urlencode "$*")"
   lynx "${url}"
 } && export -f meaning
+
+function gtr {
+  sl='auto'
+  tl=$1
+  shift
+  base_url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q="
+  ua='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/109.0'
+  qry=$( echo $@ | sed -e "s/\ /+/g" )
+  full_url=${base_url}${qry}
+  response=$(curl -sA "${ua}" "${full_url}")
+  echo ${response}  | sed 's/","/\n/g' | sed -E 's/\[|\]|"//g' | head -1
+}
 
 
