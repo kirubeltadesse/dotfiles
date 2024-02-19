@@ -52,6 +52,7 @@ print warning "setup up git shortcuts"
 
 # this is more formal way to create the git alias
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+git config --global init.defaultBranch main
 git config --global branch.autosetuprebase always
 git config --global alias.a add
 git config --global alias.co checkout

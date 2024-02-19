@@ -1,8 +1,19 @@
 #!/bin/bash
 # Check if the dot directory exist
 folder="$HOME/.dotfiles"
-
 source $folder/utility/utilities.sh
+
+
+read -p "Is this every first setup? (Y/n):" ans
+
+
+if [ $ans == 'Y' ]; then
+	print success "setting up Keybase"
+	configure_keybase
+else 
+	print warning "Keybase is setup"
+fi
+
 
 if [ -d "$folder" ]; then
 	echo "Folder exists"
@@ -48,7 +59,7 @@ print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh
 
 # Install all the packages
-CustomeInstaller
+custome_installer
 
 print "warning" "Downloading vim and tmux package manager..."
 

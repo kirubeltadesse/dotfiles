@@ -110,11 +110,11 @@ package_installed() {
 }
 
 # installer function
-CustomeInstaller() {
+custome_installer() {
 
 	local use_command
 	use_command=$(get_user_command)
-	packages=("dos2unix" "tmux" "nb" "fzf" "bat") # "vim-gtk" "lynx")
+	packages=("dos2unix" "tmux" "nb" "fzf" "bat" "pass" "keybase" "gpg") #  "vim-gtk" "lynx"
 
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package" ; then
@@ -149,4 +149,11 @@ copy_text_2_bashrc() {
 		append_line 1 "${line}" "${file_path}"
 	done <<< "$text"
 }
+
+configure_keybase() {
+# TODO: import keys from keybase
+ 	keybase pgp export | gpg --import # importing public key
+	keybase pgp export --secret | gpg --import --allow-secret-key-import # importing private key 
+}
+
 
