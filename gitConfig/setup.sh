@@ -10,7 +10,8 @@ if ! curl https://raw.githubusercontent.com/git/git/master/contrib/completion/gi
 
 	# Make the downloaded file executable
 	print warning "Making it executable"
-	if ! chmod +x ~/.git-completion.bash; then
+	chmod +x ~/.git-completion.bash
+	if [ $? -eq 0 ]; then
 		print "warning" "File is now executable."
 	else
 		print "error" "Error: Failed to make the file executable."
@@ -40,7 +41,9 @@ complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/n
 "
 
 print warning "Adding bash complete for git alias line to .bashrc"
-copy_text_2_bashrc "$text"
+while IFS= read -r line; do
+	append_line 1 "${line}" "${filebashrc}"
+done <<<"$text"
 
 # creating alias for git
 print warning "setup up git shortcuts"
@@ -120,8 +123,8 @@ git config --global alias.swp 'stash show -p'
 os=$(uname)
 
 # add this git configuration for MacOs, windows and SunOS
-if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
-	# if [ $# -eq 0 ]; then
+# if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
+if [ $# -eq 0 ]; then
 	# setting vim for git tool
 	git config --global diff.tool vimdiff
 	git config --global merge.tool vimdiff
