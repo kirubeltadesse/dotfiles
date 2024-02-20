@@ -3,32 +3,13 @@
 folder="$HOME/.dotfiles"
 source $folder/utility/utilities.sh
 
-
-read -p "Is this every first setup? (Y/n):" ans
-
-
-if [ $ans == 'Y' ]; then
-	print success "setting up Keybase"
-	configure_keybase
-else 
-	print warning "Keybase is setup"
-fi
-
-
-if [ -d "$folder" ]; then
-	echo "Folder exists"
-else
-	echo "Rename folder to .dotfiles"
-	mv ~/dotfiles ~/.dotfiles
-fi
-
 text="
 # added by the dotfile installer
 DOTFILES_DIR=\"\$HOME/.dotfiles\"
 
 for DOTFILE in \"\$DOTFILES_DIR\"/system/.{env,prompt,alias,function};
 do
-        [ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
+	[ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
 done
 
 # enable bat for fzf
@@ -48,13 +29,29 @@ export NB_PREVIEW_COMMAND=\"bat\"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 "
 
+read -p "Is this every first setup? (Y/n):" ans
+
+
+if [ $ans == 'Y' ]; then
+	print success "setting up Keybase"
+	configure_keybase
+
+	# write to the `.bashrc` file
+	copy_text_2_bashrc "$text"
+else 
+	print warning "Keybase is setup"
+fi
+
+
+if [ -d "$folder" ]; then
+	echo "Folder exists"
+else
+	echo "Rename folder to .dotfiles"
+	mv ~/dotfiles ~/.dotfiles
+fi
+
 # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
 # export set_PS1=\"hist; \$set_PS1\"
-
-# write to the `.bashrc` file
-copy_text_2_bashrc "$text"
-
-
 print warning "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh
 
