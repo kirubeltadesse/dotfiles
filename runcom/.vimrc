@@ -34,7 +34,7 @@ set cursorline 									                " this code is to high light the current
 hi cursorline cterm=none term=none
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
-highlight CursorLine guibg=#303000 ctermbg=234
+" highlight CursorLine guibg=#303000 ctermbg=234
 
 " FINDING FILES:
 

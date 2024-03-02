@@ -11,7 +11,7 @@
 # Header styles based on size
 h1:            bold:             white:            blue
 h2:            bold:             white:            brightcyan
-h3:            bold:             yellow:           black
+h3:            bold:             whilte:           lightgray
 h4:            bold:             white:            brightyellow
 h5:            bold:             white:            brightmagenta
 h6:            bold:             white:            brightred

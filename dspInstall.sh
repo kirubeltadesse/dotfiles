@@ -16,10 +16,13 @@ done
 
 alias v=vi
 alias aws='aws --endpoint-url https://s3.dev.bcs.bloomberg.com'
+set -o vi
 "
 
 echo "copy runnable to .bashrc file"
 echo -e "$text" >> "$filename"
+
+echo "source ~/.bashrc" >> ~/.bash_profile
 
 # append_line $update_config "$filename" "$text" 
 echo "running git shortcut scripts"

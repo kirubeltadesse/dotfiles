@@ -21,10 +21,11 @@ else
 	print "error" "Error: Download failed."
 fi
 
+
 print warning "Adding referance line to .bash_profile"
 # Adding the referace to the bash completion to the .bash_profile
 filebashprofile="$HOME/.bash_profile"
-text="
+text_forprofile="
 if [ -f ~/.git-completion.bash ]; then
 	. ~/.git-completion.bash
 fi
@@ -33,7 +34,7 @@ fi
 
 while IFS= read -r line; do
 	append_line 1 "${line}" "${filebashprofile}"
-done <<< "$text"
+done <<< "$text_forprofile"
 
 filebashrc="$HOME/.bashrc"
 text="
@@ -42,10 +43,7 @@ complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/n
 "
 
 print warning "Adding bash complete for git alias line to .bashrc"
-
-while IFS= read -r line; do
-	append_line 1 "${line}" "${filebashrc}"
-done <<< "$text"
+copy_text_2_bashrc "$text"
 
 # creating alias for git
 print warning "setup up git shortcuts"
