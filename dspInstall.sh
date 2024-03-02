@@ -23,7 +23,7 @@ echo -e "$text" >> "$filename"
 
 # append_line $update_config "$filename" "$text" 
 echo "running git shortcut scripts"
-/bin/bash gitConfig/gitScript.sh "dspEvironment" 
+/bin/bash gitConfig/setup.sh "dspEvironment" 
 
 # setup the symlink
 echo "creating symlink for the vimrc"
