@@ -7,7 +7,7 @@ useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/601.1.15 
 function dock {
 	url="https://lite.duckduckgo.com/lite?kd=-1&kp=-1&q=$(urlencode "$*")" # 🦆
 	#chat "🦆 searching: $* $url"
-	lynx "--useragent=$useragent" "${url}"
+	lynx "-prettysrc=glow --useragent=$useragent" "${url}"
 	#exec w3m "$url"
 } && export -f dock
 
