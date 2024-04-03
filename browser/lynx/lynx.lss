@@ -20,35 +20,35 @@ h6:            bold:             white:            brightred
 #
 # The next line (beginning with "em") means:  use bold if mono, otherwise
 # brightblue on <defaultbackground>
-em:			bold:			brightblue
+em: 	bold:			brightblue
 strong:		bold:			brightred
-b:			bold:			red
-i:			bold:			brightblue
-a:			bold:			green
+b: 	bold:			red
+i:	bold:			brightblue
+a:  bold:			green
 img:		dim:			brown
 fig:		normal:			gray
 caption:	reverse:		brown
-hr:			normal:			yellow
+hr: 	normal:			yellow
 blockquote:	normal:			brightblue
-ul:			normal:			brown
+ul: 	normal:			brown
 address:	normal:			magenta
 title:		normal:			magenta
-tt:			dim:			brightmagenta:	black
-h1:			bold:			white:		blue
-label:		normal:			magenta
-q:			normal:			yellow:		magenta
+tt: 	dim:			brightmagenta:	black
+h1:		bold:			white:		blue
+label:	normal:			magenta
+q: 	normal:			yellow:		magenta
 small:		dim:			default
 big:		bold:			yellow
 sup:		bold:			yellow
 sub:		dim:			gray
-li:			normal:			magenta
+li:		normal:			magenta
 code:		normal:			cyan
 cite:		normal:			cyan
 
 table:		normal:			brightcyan
-tr:			bold:			brown
-td:			normal:			default
-br:			normal:			default
+tr:		bold:			brown
+td:		normal:			default
+br:		normal:			default
 
 # Special styles - not corresponding directly to HTML tags
 #	alert	- status bar, when message begins "Alert".

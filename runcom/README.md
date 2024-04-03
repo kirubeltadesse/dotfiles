@@ -35,9 +35,10 @@ tmux capture-pane -pS -1000000
 - `Prefix ALT+1`: Even horizontal splits
 - `Prefix ALT+2`: Even vertical splits
 - `Prefix ALT+3`: Horizontal span for the main pane, vertical splits for lesser panes
-- `Prefix ALT+3`: Vertical span for the main pane, horizontal splits for lesser panes
+- `Prefix ALT+4`: Vertical span for the main pane, horizontal splits for lesser panes
 - `Prefix ALT+5`: Tiled layout
 - `Prefix + L`: last session
+
 
 
 ### pane

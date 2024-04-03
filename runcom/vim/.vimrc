@@ -112,12 +112,12 @@ vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 
 " Tabs use nerdtree gt and gp command
-" nnoremap <C-l>h :tabr<cr>
-" nnoremap <C-l>l :tabl<cr>
-" nnoremap <C-l>j :tabp<cr>
-" nnoremap <C-n> :tabn<cr>
+nnoremap <C-l>h :tabr<cr>
+nnoremap <C-l>j :tabp<cr>
+nnoremap <C-l>l :tabl<cr>
+nnoremap <C-Tab> :tabn<cr>
+nnoremap <C-x> :tabc<cr>
 " nnoremap <C-t> :tabnew<cr>
-" nnoremap <C-c> :tabc<cr>
 
 " TODO: shortcut conflict between NERDTree and multiplecursor
 let g:multi_cursor_use_default_mapping=0
@@ -245,4 +245,6 @@ function! Multiple_cursors_after()
               exe 'NeoCompleteUnlock'
                 endif
 endfunction
- 
+
+" setting this for htitle() function
+let g:HRULEWIDTH = 80
