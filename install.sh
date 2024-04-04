@@ -49,7 +49,6 @@ else
 	print warning "Keybase is setup"
 fi
 
-
 if [ -d "$folder" ]; then
 	echo "Folder exists"
 else
@@ -63,19 +62,19 @@ fi
 read -p "Is this every first setup? (Y/n):" ans
 
 if [ $ans == 'Y' ]; then
-    if [ -d "$folder" ]; then
-        print warning "Folder exists"
-    else
-        echo "Rename folder to .dotfiles"
-        mv ~/dotfiles ~/.dotfiles
-    fi
-    print success "setting up Keybase"
-    configure_keybase
+	if [ -d "$folder" ]; then
+		print warning "Folder exists"
+	else
+		echo "Rename folder to .dotfiles"
+		mv ~/dotfiles ~/.dotfiles
+	fi
+	print success "setting up Keybase"
+	configure_keybase
 
-    # write to the `.bashrc` file
-    copy_text_2_bashrc "$text"
+	# write to the `.bashrc` file
+	copy_text_2_bashrc "$text"
 else
-    print warning "Keybase is setup"
+	print warning "Keybase is setup"
 fi
 
 print warning "Running Git shortcut scripts"

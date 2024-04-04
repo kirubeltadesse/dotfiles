@@ -114,7 +114,7 @@ CustomeInstaller() {
 
 	local use_command
 	use_command=$(get_user_command)
-	packages=("dos2unix" "tmux" "glow" "nb" "fzf" "bat" "pass" "keybase" "gpg") #  "vim-gtk" "lynx" "tree"
+	packages=("dos2unix" "tmux" "nb" "fzf" "bat") # "vim-gtk" "lynx")
 
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
@@ -138,6 +138,15 @@ create_symlink() {
 		# TODO: ask if the user want to remove the old link
 		echo "Skipped: $target_file already exists"
 	fi
+}
+
+copy_text_2_bashrc() {
+	local text="$1"
+	local file_path="$HOME/.bashrc"
+
+	while IFS= read -r line; do
+		append_line 1 "${line}" "${file_path}"
+	done <<<"$text"
 }
 
 copy_text_2_bashrc() {
