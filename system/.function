@@ -44,11 +44,36 @@ function dt() {
 } && export -f dt
 
 function temp() {
-	echo "## $(date +"%a %b(%m) %d %Y %l:%M%p %Z")
-	### done
-	### hampering
-	### proposed solution"
+	echo "
+### done
+### hampering
+### proposed solution"
 
 } && export -f temp
 
+# Default prefix character
+pre="#"
 
+# Function to filter input arguments
+function _filter() {
+	[[ -n "$1" ]] && return 1
+	while IFS= read -ra args; do
+		"${FUNCNAME[1]}" "${args[@]}"
+	done
+} && export -f _filter
+
+# Function to print a string with a horizontal rule around it
+htitle() {
+	# Apply filter if provided
+	_filter "$@" && return $?
+
+	local str="${1:-}"                                                     # String to be centered
+	local char="${2:----------------------------------------------------}" # Character for horizontal rule
+	local HRULEWIDTH=50                                                    # Width of horizontal rule
+
+	local len=${#str}                      # Length of the string
+	local side=$(((HRULEWIDTH - len) / 2)) # Length of each side of the rule
+
+	# Print the title with the horizontal rule
+	printf "#%s %s %s %s\n" "$pre" "$(printf "%-${side}s" "$char")" "$str" "$(printf "%-${side}s" "$char" "$pre")"
+} && export -f htitle

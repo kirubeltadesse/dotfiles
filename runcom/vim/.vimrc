@@ -112,6 +112,29 @@ vnoremap <Esc>k :m '<-2<CR>gv=gv
 
 
 " Tabs use nerdtree gt and gp command
+nnoremap <C-l>h :tabr<cr>
+nnoremap <C-l>j :tabp<cr>
+nnoremap <C-l>l :tabl<cr>
+nnoremap <C-Tab> :tabn<cr>
+nnoremap <C-x> :tabc<cr>
+" nnoremap <C-t> :tabnew<cr>
+
+" TODO: shortcut conflict between NERDTree and multiplecursor
+let g:multi_cursor_use_default_mapping=0
+
+" Note: this command below has already been set 
+" Default mapping 
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>' " TODO: need to fix alt key
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+
+
+" Tabs use nerdtree gt and gp command
 " nnoremap <C-l>h :tabr<cr>
 " nnoremap <C-l>l :tabl<cr>
 " nnoremap <C-l>j :tabp<cr>
@@ -245,4 +268,6 @@ function! Multiple_cursors_after()
               exe 'NeoCompleteUnlock'
                 endif
 endfunction
- 
+
+" setting this for htitle() function
+let g:HRULEWIDTH = 80

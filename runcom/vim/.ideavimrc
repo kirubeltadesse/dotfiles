@@ -1,5 +1,9 @@
 "" Source your .vimrc
-source ~/.dotfiles/runcom/.vimrc
+source "$HOME"/.vimrc
+
+""" there are different shortcuts that can used specifically on Intellij
+""" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+
 
 """ there are different shortcuts that can used specifically on Intellij
 """ https://github.com/JetBrains/ideavim/wiki/NERDTree-support
@@ -17,6 +21,9 @@ set incsearch
 map Q gq
 
 set NERDTree
+
+set rnu
+set number
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action

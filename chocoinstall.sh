@@ -6,14 +6,13 @@
 
 # install Vim
 
-
 # install stow used for software organization
 
 # install window terminal
 
-# install iota bible app 
+# install iota bible app
 
-# install VSCode 
+# install VSCode
 
-# install bat 
+# install bat
 choco install bat
