@@ -8,27 +8,35 @@
 #normal:		normal:			lightgray:black
 #default:	normal:			white:black
 
+# Header styles based on size
+h1:            bold:             white:            blue
+h2:            bold:             white:            brightcyan
+h3:            bold:             whilte:           lightgray
+h4:            bold:             white:            brightyellow
+h5:            bold:             white:            brightmagenta
+h6:            bold:             white:            brightred
+
 # Normal type styles correspond to HTML tags.
 #
 # The next line (beginning with "em") means:  use bold if mono, otherwise
 # brightblue on <defaultbackground>
-em:		bold:			brightblue
+em: 	bold:			brightblue
 strong:		bold:			brightred
-b:		bold:			red
-i:		bold:			brightblue
-a:		bold:			green
+b: 	bold:			red
+i:	bold:			brightblue
+a:  bold:			green
 img:		dim:			brown
 fig:		normal:			gray
 caption:	reverse:		brown
-hr:		normal:			yellow
+hr: 	normal:			yellow
 blockquote:	normal:			brightblue
-ul:		normal:			brown
+ul: 	normal:			brown
 address:	normal:			magenta
 title:		normal:			magenta
-tt:		dim:			brightmagenta:	black
+tt: 	dim:			brightmagenta:	black
 h1:		bold:			white:		blue
-label:		normal:			magenta
-q:		normal:			yellow:		magenta
+label:	normal:			magenta
+q: 	normal:			yellow:		magenta
 small:		dim:			default
 big:		bold:			yellow
 sup:		bold:			yellow
@@ -99,11 +107,11 @@ link.blue.next:	bold:			blue
 link.green.toc:	bold:			white:		green
 #
 # Define styles that will be used when syntax highlighting is requested
-# (commandline option -prettysrc). 
+# (commandline option -prettysrc).
 span.htmlsrc_comment:normal:		white
 span.htmlsrc_tag:normal:		white
-#If you don't like that the tag name and attribute name are displayed 
-#in different colors, comment the following line. 
+#If you don't like that the tag name and attribute name are displayed
+#in different colors, comment the following line.
 span.htmlsrc_attrib:normal:		cyan
 span.htmlsrc_attrval:normal:		magenta
 span.htmlsrc_abracket:normal:		white

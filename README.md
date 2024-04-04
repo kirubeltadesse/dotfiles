@@ -35,12 +35,6 @@ Installed
 - Install tmux vim-airline
 - manually load the `vimium-options.json` on the vimium setting
 
-## Configuration to work on
-
-- [x] alias for wsl terminal clip
-- [ ] cd completion configuration
-- [ ] gitconfig
-
 ## Checklist for backing up
 
 ### Local stashed changes
@@ -48,7 +42,7 @@ Installed
 1. Creating the stash as a patch
 
 ```
-git stash show "stash@{0}" -p -u > changes.patch 
+git stash show "stash@{0}" -p -u > changes.patch
 ```
 
 2. Create a branch and push the patch file
@@ -127,6 +121,8 @@ function git {
 
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
+</details>
+
 ## Setting up Application
 
 Using [chocolatey](https://chocolatey.org/) install softwares to your windows
@@ -161,7 +157,5 @@ Installed
 NOTE: copying from wsl to cmd.exe easy works
 
 ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
-
-</details>
 
 ## More

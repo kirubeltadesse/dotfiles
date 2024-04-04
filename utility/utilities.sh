@@ -2,36 +2,36 @@
 
 # Define the function to echo colored text
 print() {
-    local type="$1"
-    local text="$2"
+	local type="$1"
+	local text="$2"
 
-    # Text color codes
-    local RED='\033[0;31m'
-    local GREEN='\033[0;32m'
-    local YELLOW='\033[0;33m'
-    local BLUE='\033[0;34m'
-    local NC='\033[0m'  # No color
+	# Text color codes
+	local RED='\033[0;31m'
+	local GREEN='\033[0;32m'
+	local YELLOW='\033[0;33m'
+	local BLUE='\033[0;34m'
+	local NC='\033[0m' # No color
 
-    local color=$NC
+	local color=$NC
 
-    case "$type" in
-      error)
-        color=$RED
-        ;;
-      warning)
-        color=$YELLOW
-        ;;
-      progress)
-        color=$BLUE
-        ;;
-      success)
-        color=$GREEN
-        ;;
-      *)
-        color=$NC
-        ;;
-    esac
-    echo -e "${color}${text}${NC}" >&2
+	case "$type" in
+	error)
+		color=$RED
+		;;
+	warning)
+		color=$YELLOW
+		;;
+	progress)
+		color=$BLUE
+		;;
+	success)
+		color=$GREEN
+		;;
+	*)
+		color=$NC
+		;;
+	esac
+	echo -e "${color}${text}${NC}" >&2
 }
 
 # Append a line to a file
@@ -39,10 +39,10 @@ print() {
 append_line() {
 	# set -e
 	local update line file pat lno
-	update="$1"										# Whether to update (append) the line (1) or not (0)
-	line="$2"										# The line of text to be appended
-	file="$3"											# The filename of the target file
-	pat="${4:-}"									# Optional pattern to serach for in the file
+	update="$1"  # Whether to update (append) the line (1) or not (0)
+	line="$2"    # The line of text to be appended
+	file="$3"    # The filename of the target file
+	pat="${4:-}" # Optional pattern to serach for in the file
 	lno=""
 
 	print 'success' "Update $file:"
@@ -66,7 +66,7 @@ append_line() {
 		if [ "$update" -eq 1 ]; then
 
 			# [ -f "$file" ] && echo >> "$file"			# Add a newline if file exists
-			echo "$line" >> "$file"								# Append the line to the file
+			echo "$line" >>"$file" # Append the line to the file
 			print 'success' "   + Added"
 		else
 			print 'warning' " 	 ~ Skipped"
@@ -76,7 +76,7 @@ append_line() {
 }
 
 get_user_command() {
-	local use_command;
+	local use_command
 	os=$(uname)
 
 	if [ "$os" == "Linux" ]; then
@@ -94,11 +94,11 @@ get_user_command() {
 		$use_command --cask rectangle
 		# finish up fzf configuration
 		"$(brew --prefix)"/opt/fzf/install
-		echo "source ~/.bashrc" >> ~/.zshrc
+		echo "source ~/.bashrc" >>~/.zshrc
 	else
 		print error "environment is not known: $os"
 		ln -s "$HOME/.dotfiles/runcom/.vimrc" "$HOME/"
-		exit 1  #returning before running to commands below on dev machines
+		exit 1 #returning before running to commands below on dev machines
 	fi
 
 	echo "$use_command"
@@ -117,7 +117,7 @@ CustomeInstaller() {
 	packages=("dos2unix" "tmux" "nb" "fzf" "bat") # "vim-gtk" "lynx")
 
 	for package in "${packages[@]}"; do
-		if ! package_installed "$package" ; then
+		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
 			"$use_command" "$package"
 		else
@@ -125,7 +125,6 @@ CustomeInstaller() {
 		fi
 	done
 }
-
 
 # Function to create symbolic links
 create_symlink() {
@@ -136,6 +135,7 @@ create_symlink() {
 		ln -s "$source_file" "$target_file"
 		echo "Created symlink: $target_file -> $source_file"
 	else
+		# TODO: ask if the user want to remove the old link
 		echo "Skipped: $target_file already exists"
 	fi
 }
@@ -146,6 +146,20 @@ copy_text_2_bashrc() {
 
 	while IFS= read -r line; do
 		append_line 1 "${line}" "${file_path}"
-	done <<< "$text"
+	done <<<"$text"
 }
 
+copy_text_2_bashrc() {
+	local text="$1"
+	local file_path="$HOME/.bashrc"
+
+	while IFS= read -r line; do
+		append_line 1 "${line}" "${file_path}"
+	done <<<"$text"
+}
+
+configure_keybase() {
+	# TODO: import keys from keybase
+	keybase pgp export | gpg --import                                            # importing public key
+	keybase pgp export --secret | gpg --batch --import --allow-secret-key-import # importing private key
+}

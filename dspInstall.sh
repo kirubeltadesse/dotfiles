@@ -1,6 +1,6 @@
 # This is the install file for the Data Science Platform specifically
 
-# Get the name 
+# Get the name
 os=$(uname)
 
 # write to the `.bashrc` file
@@ -16,17 +16,18 @@ done
 
 alias v=vi
 alias aws='aws --endpoint-url https://s3.dev.bcs.bloomberg.com'
+set -o vi
 "
 
 echo "copy runnable to .bashrc file"
-echo -e "$text" >> "$filename"
+echo -e "$text" >>"$filename"
 
-# append_line $update_config "$filename" "$text" 
+echo "source ~/.bashrc" >>~/.bash_profile
+
+# append_line $update_config "$filename" "$text"
 echo "running git shortcut scripts"
-/bin/bash gitConfig/gitScript.sh "dspEvironment" 
+/bin/bash gitConfig/setup.sh "dspEvironment"
 
 # setup the symlink
 echo "creating symlink for the vimrc"
 ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
-
-
