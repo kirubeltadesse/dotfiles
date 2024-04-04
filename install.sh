@@ -82,7 +82,6 @@ print warning "Running Git shortcut scripts"
 
 # Install all the packages
 custome_installer
-
 print "warning" "Downloading vim and tmux package manager..."
 
 # download vim plug manage
@@ -105,5 +104,4 @@ create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 # Creating symlink for .tmux.conf"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 # copy pomodoro script
-
 create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"

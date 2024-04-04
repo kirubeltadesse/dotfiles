@@ -1,4 +1,4 @@
-# dotfiles
+# Dotfiles
 
 ## WSL configuration
 
@@ -21,19 +21,19 @@ and run the installer script make sure it is executable. If not, use `chmod +x i
 
 ## Setting up Application
 
-Using [chocolatey](https://chocolatey.org/) install softwares to your windows
+Using [chocolatey](https://chocolatey.org/) install software to your windows
 
 - Git/GitHub
-- wsl
+- WSL
 - VScode
-- vimium extension setting
+- Vimium extension setting
 
 Installed
 
 - Installed Pathogen from vim-airline
 - [https://github.com/vim-airline/vim-airline] vim-airline
-- Install tmux vim-airline
-- manually load the `vimium-options.json` on the vimium setting
+- Install TMUX vim-airline
+- manually load the `vimium-options.json` on the Vimium setting
 
 ## Checklist for backing up
 
@@ -93,11 +93,11 @@ sudo mount -t drvfs C: /mnt/c -o metadata
 
 For more information: [Here](https://askubuntu.com/questions/1115564/wsl-ubuntu-distro-how-to-solve-operation-not-permitted-on-cloning-repository)
 
-### Ques: git status is slow in WSL2 ?
+### Ques: Is git status slow in WSL2?
 
 ANS:
 
-The NTFS is fast on windows than wls2 ( linux system). Therefore the solution is to pit to the windows git system in `.profile`
+The NTFS is fast on Windows than WLS2 (Linux system). Therefore, the solution is to put to the Windows git system in `.profile`
 
 ```bash
 # checks to see if we are in a windows or linux dir
@@ -128,33 +128,27 @@ function git {
 Using [chocolatey](https://chocolatey.org/) install softwares to your windows
 
 - Git/GitHub
-- wsl
+- WSL
 - VScode
 
 Installed
 
 - Installed Pathogen from vim-airline
 - [https://github.com/vim-airline/vim-airline] vim-airline
-- Install tmux vim-airline
+- Install TMUX vim-airline
 
-## Configuration to work on
+### Using UNAME with flags to identify the shell environment
 
-- [x] alias for wsl terminal clip
-- [ ] cd completion configuration
-- [ ] # gitconfig
-
-# using uname with flags to identify the shell evironment
-
-### Configureation to work on
+Configuration to work on
 
 - [x] Understand the difference between interactive and non-interactive shell
-- [x] alias for wsl terminal clip
-- [x] tmux configuration if copy pasting formate
-- [ ] vim airline plugin
+- [x] alias for WSL terminal clip
+- [x] TMUX configuration if copy-pasting format
+- [X] vim airline plugin
+- [X] git config
 - [ ] cd completion configuration
-- [ ] gitconfig
 
-NOTE: copying from wsl to cmd.exe easy works
+NOTE: copying from WSL to cmd.exe easy works
 
 ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 
