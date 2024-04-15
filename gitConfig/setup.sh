@@ -121,6 +121,10 @@ git config --global alias.swp 'stash show -p'
 # Get the name
 os=$(uname)
 
+# TODO: install brew install git-delta
+# https://dandavison.github.io/delta/configuration.html
+# add the delta configuration to the script 
+
 # add this git configuration for MacOs, windows and SunOS
 if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
 	# if [ $# -eq 0 ]; then
