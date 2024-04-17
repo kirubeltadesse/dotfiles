@@ -50,6 +50,10 @@ print warning "setup up git shortcuts"
 # this is more formal way to create the git alias
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 git config --global init.defaultBranch main
+# get credential
+git config --global credential.helper cache
+git config --global credential.https://github.com.email "kirubel.m.tadesse@gmail.com"
+git config --global credential.https://github.com.user kirubeltadesse
 git config --global branch.autosetuprebase always
 git config --global alias.a add
 git config --global alias.co checkout
@@ -118,38 +122,38 @@ git config --global alias.st status
 git config --global alias.sw 'stash show'
 git config --global alias.swp 'stash show -p'
 
-# Get the name
-os=$(uname)
-
 # TODO: install brew install git-delta
 # https://dandavison.github.io/delta/configuration.html
 # add the delta configuration to the script 
 
 # add this git configuration for MacOs, windows and SunOS
-if [[ "$os" == "Darwin" || "$os" == "Linux" || "$os" == "SunOS" ]]; then
-	# if [ $# -eq 0 ]; then
-	# setting vim for git tool
-	git config --global diff.tool vimdiff
-	git config --global merge.tool vimdiff
-	git config --global merge.conflictstyle diff3
-	git config --global mergetool.prompt false
-	git config --global core.excludesFile "${HOME}/.dotfiles/gitConfig/gitignore"
-	# add delta configuration
-	git config --global core.pager delta 
-	git config --global interactive.diffFilter "delta --color-only --features=interactive"
-	git config --global delta.features decorations 
-	git config --global delta.interactive.keep-plus-minus-markers false
-	git config --global delta.decorations.commit-decoration-style "blue ol"
-	git config --global delta.decorations.hunk-header-decoration-style "blue box"
-	git config --global delta.decorations.hunk-header-file-style red
-	git config --global delta.decorations.hunk-header-style "file line-number syntax"
-	git config --global delta.decorations.hunk-header-line-number-style "#067a00"
-	
-else
-	echo "setting git diff for $1"
-	git config --global core.editor vi
-	git-nbdiffdriver config --enable --global
-	git-nbdifftool config --enable --global
-fi
+case "$(uname)" in
+	Darwin|Linux|SunOS)
+		# if [ $# -eq 0 ]; then
+		# setting vim for git tool
+		git config --global diff.tool vimdiff
+		git config --global merge.tool vimdiff
+		git config --global merge.conflictstyle diff3
+		git config --global mergetool.prompt false
+		git config --global core.excludesFile "${HOME}/.dotfiles/gitConfig/gitignore"
+		# add delta configuration
+		git config --global core.pager delta
+		git config --global interactive.diffFilter "delta --color-only --features=interactive"
+		git config --global delta.features decorations
+		git config --global delta.line-numbers true
+		git config --global delta.interactive.keep-plus-minus-markers false
+		git config --global delta.decorations.commit-decoration-style "blue ol"
+		git config --global delta.decorations.hunk-header-decoration-style "blue box"
+		git config --global delta.decorations.hunk-header-file-style red
+		git config --global delta.decorations.hunk-header-style "file line-number syntax"
+		git config --global delta.decorations.hunk-header-line-number-style "#067a00"
+		;;
+	*)
+		echo "setting git diff for $1"
+		git config --global core.editor vi
+		git-nbdiffdriver config --enable --global
+		git-nbdifftool config --enable --global
+		;;
+esac
 
 # Additional Git config settings here
