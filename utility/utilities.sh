@@ -74,33 +74,35 @@ append_line() {
 	fi
 	#set +e
 }
-
 get_user_command() {
 	local use_command
-	os=$(uname)
 
-	if [ "$os" == "Linux" ]; then
-		print 'success' "Environment is $os (WLS)"
+	case "$(uname)" in
+	Linux)
 		use_command="sudo apt-get install -y"
+		print 'success' "Environment is (WLS)"
 		sudo apt-get update
 		$use_command xclip fd-find
 		# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
 		# enable +clipboard and +xterm_clipboard for vim
-	elif [ "$os" == "Darwin" ]; then
-		print 'success' "Environment is $os (macOS)"
+		;;
+	Darwin)
+		print 'success' "Environment is (macOS)"
 		use_command="brew install"
 		$use_command update
 		$use_command fd
 		$use_command --cask rectangle
 		# finish up fzf configuration
 		"$(brew --prefix)"/opt/fzf/install
+
 		echo "source ~/.bashrc" >>~/.zshrc
-	else
-		print error "environment is not known: $os"
+		;;
+	*)
+		print error "environment is not known: $uname"
 		ln -s "$HOME/.dotfiles/runcom/.vimrc" "$HOME/"
 		exit 1 #returning before running to commands below on dev machines
-	fi
-
+		;;
+	esac
 	echo "$use_command"
 }
 
@@ -110,12 +112,10 @@ package_installed() {
 }
 
 # installer function
-CustomeInstaller() {
-
+custome_installer() {
 	local use_command
 	use_command=$(get_user_command)
-	packages=("dos2unix" "tmux" "nb" "fzf" "bat") # "vim-gtk" "lynx")
-
+	packages=("dos2unix" "tmux" "nb" "fzf" "bat" "git-delta") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
