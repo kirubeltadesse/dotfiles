@@ -32,3 +32,24 @@ Related: How to Create, View, and Edit Bookmarks in Google Chrome
 ## Browser pass plugin
 
 - needs gpgtools.org and download and install
+
+### Key trusting issues solution
+
+```bash
+gpg --edit-key <KEY_ID>
+gpg> trust
+```
+
+Since the key is created my me. I will select 5
+
+```bash
+Your decision? 5
+Do you really want to set this key to ultimate trust? (y/N) y
+```
+
+After confirming, quit with:
+
+```bash
+gpg> quit
+```
+
