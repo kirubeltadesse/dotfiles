@@ -50,7 +50,6 @@ print warning "setup up git shortcuts"
 # this is more formal way to create the git alias
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 git config --global init.defaultBranch main
-# FIXME: get credential take from a local .env file
 git config --global credential.helper cache
 git config --global credential.https://github.com.email "$(read_file "$USERNAME_FILE")"
 git config --global credential.https://github.com.user "$(read_file "$EMAIL_FILE")" 
