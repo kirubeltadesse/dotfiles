@@ -134,8 +134,8 @@ install_apps() {
 
 # Function to create symbolic links
 create_symlink() {
-	local source_file=$1
-	local target_file=$2
+	local source_file="$1"
+	local target_file="$2"
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
@@ -147,7 +147,7 @@ create_symlink() {
 }
 
 copy_text_2_bashrc() {
-	local text=$1
+	local text="$1"
 	local file_path="$HOME/.bashrc"
 
 	while IFS= read -r line; do
@@ -161,7 +161,8 @@ configure_keybase() {
 }
 
 create_env_file() {
-	# TODO ask the use for the git-username
+	mkdir -p $DOTFILE_DIR
+
 	read -p "Enter git-username: " username
 	read -p "Enter git-eamil: " email
 	write_to_file "$username" "$USERNAME_FILE"
