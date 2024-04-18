@@ -87,7 +87,7 @@ custome_installer() {
 
 	case "$(uname)" in
 	Linux)
-		use_command="apt-get install -y"
+		use_command="sudo apt-get install -y"
 		print 'success' "Environment is (WLS)"
 		sudo apt-get update
 		$use_command xclip fd-find
@@ -134,8 +134,8 @@ install_apps() {
 
 # Function to create symbolic links
 create_symlink() {
-	local source_file="$1"
-	local target_file="$2"
+	local source_file=$1
+	local target_file=$2
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
@@ -147,7 +147,7 @@ create_symlink() {
 }
 
 copy_text_2_bashrc() {
-	local text="$1"
+	local text=$1
 	local file_path="$HOME/.bashrc"
 
 	while IFS= read -r line; do
@@ -161,8 +161,7 @@ configure_keybase() {
 }
 
 create_env_file() {
-	mkdir -p $DOTFILE_DIR
-
+	# TODO ask the use for the git-username
 	read -p "Enter git-username: " username
 	read -p "Enter git-eamil: " email
 	write_to_file "$username" "$USERNAME_FILE"
