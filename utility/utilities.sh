@@ -74,7 +74,8 @@ append_line() {
 	fi
 	#set +e
 }
-get_user_command() {
+
+custome_installer() {
 	local use_command
 
 	case "$(uname)" in
@@ -89,7 +90,6 @@ get_user_command() {
 	Darwin)
 		print 'success' "Environment is (macOS)"
 		use_command="brew install"
-		$use_command update
 		$use_command fd
 		$use_command --cask rectangle
 		# finish up fzf configuration
@@ -98,12 +98,12 @@ get_user_command() {
 		echo "source ~/.bashrc" >>~/.zshrc
 		;;
 	*)
-		print error "environment is not known: $uname"
+		print error "environment is not known: $(uname)"
 		ln -s "$HOME/.dotfiles/runcom/.vimrc" "$HOME/"
 		exit 1 #returning before running to commands below on dev machines
 		;;
 	esac
-	echo "$use_command"
+	install_apps "$use_command"
 }
 
 package_installed() {
@@ -112,14 +112,13 @@ package_installed() {
 }
 
 # installer function
-custome_installer() {
-	local use_command
-	use_command=$(get_user_command)
-	packages=("dos2unix" "tmux" "nb" "fzf" "bat" "git-delta") # "vim-gtk" "lynx")
+install_apps() {
+	local use_command="$1"
+	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "git-delta") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
-			"$use_command" "$package"
+			$use_command "$package"
 		else
 			print 'warning' "$package is already installed."
 		fi
@@ -128,8 +127,8 @@ custome_installer() {
 
 # Function to create symbolic links
 create_symlink() {
-	local source_file="$1"
-	local target_file="$2"
+	local source_file=$1
+	local target_file=$2
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
@@ -141,7 +140,7 @@ create_symlink() {
 }
 
 copy_text_2_bashrc() {
-	local text="$1"
+	local text=$1
 	local file_path="$HOME/.bashrc"
 
 	while IFS= read -r line; do
@@ -150,7 +149,7 @@ copy_text_2_bashrc() {
 }
 
 copy_text_2_bashrc() {
-	local text="$1"
+	local text=$1
 	local file_path="$HOME/.bashrc"
 
 	while IFS= read -r line; do
@@ -162,4 +161,19 @@ configure_keybase() {
 	# TODO: import keys from keybase
 	keybase pgp export | gpg --import                                            # importing public key
 	keybase pgp export --secret | gpg --batch --import --allow-secret-key-import # importing private key
+}
+
+create_env_file() {
+	# TODO ask the use for the git-username
+	read -p "Enter git-username: " username
+	read -p "Enter git-eamil: " email
+	# TODO ask the use for the git-email
+	# create a file and write to the file
+	true
+}
+
+delete_env_file() {
+	# this function will be called to delte the env_file 
+	# after installation is complete
+	true
 }
