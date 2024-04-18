@@ -134,8 +134,8 @@ install_apps() {
 
 # Function to create symbolic links
 create_symlink() {
-	local source_file="$1"
-	local target_file="$2"
+	local source_file=$1
+	local target_file=$2
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
@@ -147,7 +147,7 @@ create_symlink() {
 }
 
 copy_text_2_bashrc() {
-	local text="$1"
+	local text=$1
 	local file_path="$HOME/.bashrc"
 
 	while IFS= read -r line; do
@@ -161,50 +161,16 @@ configure_keybase() {
 }
 
 create_env_file() {
-	mkdir -p $DOTFILE_DIR
-
+	# TODO ask the use for the git-username
 	read -p "Enter git-username: " username
 	read -p "Enter git-eamil: " email
-	write_to_file "$username" "$USERNAME_FILE"
-	write_to_file "$email" "$EMAIL_FILE"
-	return
-}
-
-write_to_file() {
-	local data="$1"
-	local file="$2"
-	echo "$data" > "$file"
-}
-
-read_file() {
-	local file="$1"
-	local lines=()
-	if [ -f "$file" ]; then
-		while IFS= read -r line; do
-			lines+=("$line") # Store each line in an array
-		done < "$file"
-		echo "${lines[@]}" # Output the array content
-	else
-		echo 1
-	fi
-}
-
-clean_env() {
-	# TODO: not begin called anywhere at this point
-	remove_file "$USERNAME_FILE"
-	remove_file "$EMAIL_FILE"
-	rm -f $DOTFILE_DIR
-}
-
-remove_file() {
-	local file="$1"
-	if [ -f "$file" ]; then
-		rm "$file"
-	fi
+	# TODO ask the use for the git-email
+	# create a file and write to the file
+	true
 }
 
 delete_env_file() {
-	# this function will be called to delte the env_file 
+	# this function will be called to delte the env_file
 	# after installation is complete
 	true
 }
