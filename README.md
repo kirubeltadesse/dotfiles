@@ -2,18 +2,12 @@
 
 ## WSL configuration
 
-WSL proper configuration will give you a great overall workflow. Especially, wsl2 having Docker Disktop running natively enhance the overall productivity. There are useful information on how to mount and unmont drivers on WSL
+WSL's proper configuration will give you a great overall workflow. Significantly, wsl2 having Docker Desktop running natively enhances the overall productivity. There is valuable information on how to mount and `unmont` drivers on WSL
 [link](https://linuxnightly.com/mount-and-access-hard-drives-in-windows-subsystem-for-linux-wsl/)
 
 ## Setup Process
 
-This is a current setup process for the `dotfiles`. In the future, I plan to use a [utility](https://www.chezmoi.io/user-guide/setup/) tool to handle this process. For now, first clone the repo and rename the folder
-
-```bash
-mv dotfiles .dotfiles
-```
-
-and run the installer script make sure it is executable. If not, use `chmod +x install.sh` command
+This is a current setup process for the `dotfiles`. In the future, I plan to use a [utility](https://www.chezmoi.io/user-guide/setup/) tool to handle this process. First, clone the repo, rename the folder, and run the installer script to ensure it is executable. If not, use `chmod +x install.sh` command
 
 ```bash
 ./install.sh
@@ -28,12 +22,12 @@ Using [chocolatey](https://chocolatey.org/) install software to your windows
 - VScode
 - Vimium extension setting
 
-Installed
+## TMUX and Vim
+[Here](/runcom/README.md) are detailed instructions on how to set up Tmux and Vim.
 
-- Installed Pathogen from vim-airline
-- [https://github.com/vim-airline/vim-airline] vim-airline
-- Install TMUX vim-airline
-- manually load the `vimium-options.json` on the Vimium setting
+## Browser
+
+[Here](/browser/chrome/README.md) is a detail information about to add plugins to your browser.
 
 ## Checklist for backing up
 
@@ -41,7 +35,7 @@ Installed
 
 1. Creating the stash as a patch
 
-```
+```bash
 git stash show "stash@{0}" -p -u > changes.patch
 ```
 
@@ -49,17 +43,17 @@ git stash show "stash@{0}" -p -u > changes.patch
 3. Pull the branch on the new computer
 4. and apply the patch file
 
-```
+```bash
 git apply changes.patch
 ```
 
-If there is mistake and you want to reverse the change
+If there is a mistake and you want to reverse the change
 
-```
+```bash
 git apply changes.patch --reverse
 ```
 
-If you are getting an error out that says
+If you are getting an error that says
 
 > can't find file to patch
 
@@ -122,33 +116,6 @@ function git {
 ### Sharing `.ssh` between `wsl2` and windows `cmd.exe`
 
 </details>
-
-## Setting up Application
-
-Using [chocolatey](https://chocolatey.org/) install softwares to your windows
-
-- Git/GitHub
-- WSL
-- VScode
-
-Installed
-
-- Installed Pathogen from vim-airline
-- [https://github.com/vim-airline/vim-airline] vim-airline
-- Install TMUX vim-airline
-
-### Using UNAME with flags to identify the shell environment
-
-Configuration to work on
-
-- [x] Understand the difference between interactive and non-interactive shell
-- [x] alias for WSL terminal clip
-- [x] TMUX configuration if copy-pasting format
-- [X] vim airline plugin
-- [X] git config
-- [ ] cd completion configuration
-
-NOTE: copying from WSL to cmd.exe easy works
 
 ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
 

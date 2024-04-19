@@ -82,5 +82,6 @@ create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 
 # Creating symlink for .tmux.conf"
 create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
+
 # copy pomodoro script
 create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"

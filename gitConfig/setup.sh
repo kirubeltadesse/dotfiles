@@ -51,8 +51,8 @@ print warning "setup up git shortcuts"
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 git config --global init.defaultBranch main
 git config --global credential.helper cache
-git config --global credential.https://github.com.email "$(read_file "$USERNAME_FILE")"
-git config --global credential.https://github.com.user "$(read_file "$EMAIL_FILE")" 
+git config --global credential.https://github.com.name "$(read_file "$USERNAME_FILE")"
+git config --global credential.https://github.com.email "$(read_file "$EMAIL_FILE")"
 git config --global branch.autosetuprebase always
 git config --global alias.a add
 git config --global alias.co checkout
