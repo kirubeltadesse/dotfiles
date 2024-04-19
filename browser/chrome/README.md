@@ -25,13 +25,17 @@ Related: How to Create, View, and Edit Bookmarks in Google Chrome
 
 ## Vimium
 
+In this directory, you will find the `.crx` file for Vimium, and you can directly add it to your Chrome browser.
+
+After adding Vimium, you can click on options, and at the bottom of the page, you will see `Backup and Restore`. You can upload a `.json` file using previous shortcuts. You will find a `vimium-options.json` to get the shortcuts I use.
+
 ### Select and search on Vimium
 
 - https://superuser.com/questions/1236864/how-to-use-vimium-to-select-text-from-a-page
 
 ## Browser pass plugin
 
-- needs gpgtools.org and download and install
+Needs gpgtools.org and download and install
 
 ### Key trusting issues solution
 
