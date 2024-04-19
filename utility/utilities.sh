@@ -1,5 +1,12 @@
 #!/bin/bash
 
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILE_DIR="/tmp/dotfiles"
+
+# Store the user's custom info
+EMAIL_FILE="$DOTFILE_DIR/email.txt"
+USERNAME_FILE="$DOTFILE_DIR/username.txt"
+
 # Define the function to echo colored text
 print() {
 	local type="$1"
@@ -74,7 +81,8 @@ append_line() {
 	fi
 	#set +e
 }
-get_user_command() {
+
+custome_installer() {
 	local use_command
 
 	case "$(uname)" in
@@ -89,7 +97,6 @@ get_user_command() {
 	Darwin)
 		print 'success' "Environment is (macOS)"
 		use_command="brew install"
-		$use_command update
 		$use_command fd
 		$use_command --cask rectangle
 		# finish up fzf configuration
@@ -98,12 +105,12 @@ get_user_command() {
 		echo "source ~/.bashrc" >>~/.zshrc
 		;;
 	*)
-		print error "environment is not known: $uname"
+		print error "environment is not known: $(uname)"
 		ln -s "$HOME/.dotfiles/runcom/.vimrc" "$HOME/"
 		exit 1 #returning before running to commands below on dev machines
 		;;
 	esac
-	echo "$use_command"
+	install_apps "$use_command"
 }
 
 package_installed() {
@@ -112,14 +119,13 @@ package_installed() {
 }
 
 # installer function
-custome_installer() {
-	local use_command
-	use_command=$(get_user_command)
-	packages=("dos2unix" "tmux" "nb" "fzf" "bat" "git-delta") # "vim-gtk" "lynx")
+install_apps() {
+	local use_command="$1"
+	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "git-delta") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
-			"$use_command" "$package"
+			$use_command "$package"
 		else
 			print 'warning' "$package is already installed."
 		fi
@@ -159,7 +165,55 @@ copy_text_2_bashrc() {
 }
 
 configure_keybase() {
-	# TODO: import keys from keybase
 	keybase pgp export | gpg --import                                            # importing public key
 	keybase pgp export --secret | gpg --batch --import --allow-secret-key-import # importing private key
+}
+
+create_env_file() {
+	mkdir -p $DOTFILE_DIR
+
+	read -p "Enter git-username: " username
+	read -p "Enter git-eamil: " email
+	write_to_file "$username" "$USERNAME_FILE"
+	write_to_file "$email" "$EMAIL_FILE"
+	return
+}
+
+write_to_file() {
+	local data="$1"
+	local file="$2"
+	echo "$data" > "$file"
+}
+
+read_file() {
+	local file="$1"
+	local lines=()
+	if [ -f "$file" ]; then
+		while IFS= read -r line; do
+			lines+=("$line") # Store each line in an array
+		done < "$file"
+		echo "${lines[@]}" # Output the array content
+	else
+		echo 1
+	fi
+}
+
+clean_env() {
+	# TODO: not begin called anywhere at this point
+	remove_file "$USERNAME_FILE"
+	remove_file "$EMAIL_FILE"
+	rm -f $DOTFILE_DIR
+}
+
+remove_file() {
+	local file="$1"
+	if [ -f "$file" ]; then
+		rm "$file"
+	fi
+}
+
+delete_env_file() {
+	# this function will be called to delte the env_file 
+	# after installation is complete
+	true
 }

@@ -1,7 +1,11 @@
 #!/bin/bash
 # Check if the dot directory exist
+
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+
 folder="$HOME/.dotfiles"
-source $folder/utility/utilities.sh
+source "$CURRENT_DIR/utility/utilities.sh"
 
 text="
 # added by the dotfile installer
@@ -42,6 +46,9 @@ if [ $ans == 'Y' ]; then
 	fi
 	print success "setting up Keybase"
 	configure_keybase
+
+	print "warning" "asking for user information"
+	create_env_file
 
 	# write to the `.bashrc` file
 	copy_text_2_bashrc "$text"
