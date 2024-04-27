@@ -155,15 +155,6 @@ copy_text_2_bashrc() {
 	done <<<"$text"
 }
 
-copy_text_2_bashrc() {
-	local text="$1"
-	local file_path="$HOME/.bashrc"
-
-	while IFS= read -r line; do
-		append_line 1 "${line}" "${file_path}"
-	done <<<"$text"
-}
-
 configure_keybase() {
 	keybase pgp export | gpg --import                                            # importing public key
 	keybase pgp export --secret | gpg --batch --import --allow-secret-key-import # importing private key
