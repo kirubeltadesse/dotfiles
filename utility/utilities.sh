@@ -87,7 +87,7 @@ custome_installer() {
 
 	case "$(uname)" in
 	Linux)
-		use_command="sudo apt-get install -y"
+		use_command="apt-get install -y"
 		print 'success' "Environment is (WLS)"
 		sudo apt-get update
 		$use_command xclip fd-find

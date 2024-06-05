@@ -1,5 +1,5 @@
-call plug#begin()
 " The default plugin directory will be as follows:
+call plug#begin()
 "   - Vim (Windows): '~/vimfiles/plugged'
 "   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
@@ -24,8 +24,8 @@ Plug 'terryma/vim-multiple-cursors'
 " Multiple Plug commands can be written in a single line using | separators
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" On-demand loading
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+" On-demand loading
 " Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-default branch
@@ -35,14 +35,11 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 
-" installing fzf
-" set rtp+=~/.fzf
-" Plug '~/.fzf'
-"
+" this appends a directory tothe current runtime path 
+set rtp+=~/.fzf
 
 
 "Autocomplete plugin. similar to VSCoded
@@ -51,7 +48,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
-
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 " commandline inside vim
 Plug 'preservim/vimux'
@@ -103,44 +100,46 @@ let g:pandoc#folding#mode = 'stacked'
 let g:pandoc#modules#enabled = ['folding', 'command']
 
 " For moving lines (^] is a special character; use <M-k> and <M-j> if it works)
-nnoremap <Esc>j :m .+1<CR>==
 nnoremap <Esc>k :m .-2<CR>==
+nnoremap <Esc>j :m .+1<CR>==
 inoremap <Esc>j <Esc>:m .+1<CR>==gi
 inoremap <Esc>k <Esc>:m .-2<CR>==gi
 vnoremap <Esc>j :m '>+1<CR>gv=gv
 vnoremap <Esc>k :m '<-2<CR>gv=gv
+
+" Open Vim in a new tab always
+" autocmd VimEnter * if !argc() | tabnew | endif
+
+" Optional: Open files in new tabs if they are passed as arguments
+" autocmd VimEnter * if argc() > 1 | tab all | endif
 
 
 " Tabs use nerdtree gt and gp command
 nnoremap <C-l>h :tabr<cr>
 nnoremap <C-l>j :tabp<cr>
 nnoremap <C-l>l :tabl<cr>
-nnoremap <C-Tab> :tabn<cr>
+" nnoremap <C-tab> :tabn<cr>
 nnoremap <C-x> :tabc<cr>
-" nnoremap <C-t> :tabnew<cr>
-
-" TODO: shortcut conflict between NERDTree and multiplecursor
-let g:multi_cursor_use_default_mapping=0
-
-" Note: this command below has already been set 
-" Default mapping 
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>' " TODO: need to fix alt key
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-
-
-" Tabs use nerdtree gt and gp command
-" nnoremap <C-l>h :tabr<cr>
-" nnoremap <C-l>l :tabl<cr>
-" nnoremap <C-l>j :tabp<cr>
-" nnoremap <C-n> :tabn<cr>
-" nnoremap <C-t> :tabnew<cr>
+" nnoremap <C-t> :tabnew<cr> "FIXME: this is begin used for nertree
 " nnoremap <C-c> :tabc<cr>
+nnoremap <C-c> :tabnew<cr>
+
+
+
+" Map Fzf file finder 
+
+nnoremap <Leader>f :Files<CR> 
+" search git files
+nnoremap <C-p> :GFiles<Cr> 
+
+" search open buffers
+nnoremap <silent><leader>l :Buffers<CR>
+
+" Ensure environment variables are set in Vim
+let $FZF_DEFAULT_COMMAND = 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+let $FZF_DEFAULT_OPTS = '--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
+let $FZF_DEFAULT_OPS = '--extended'
+let $FZF_CTRL_T_COMMAND = $FZF_DEFAULT_COMMAND
 
 " TODO: shortcut conflict between NERDTree and multiplecursor
 let g:multi_cursor_use_default_mapping=0
@@ -170,14 +169,6 @@ noremap <silent> {Up-Mapping} :<C-U>TmuxNavigateUp<cr>
 noremap <silent> {Right-Mapping} :<C-U>TmuxNavigateRight<cr>
 noremap <silent> {Previous-Mapping} :<C-U>TmuxNavigatePrevious<cr>
 
-" how to configure vim color settings
-" highlight Comment ctermbg=DarkGray
-" highlight Constant ctermbg=Blue
-" highlight Normal ctermbg=Black
-" highlight NonText ctermbg=Black
-" highlight Special ctermbg=DarkMagenta
-" highlight Cursor ctermbg=Green
-
 " this next line is needed to enable your custom colors:
 syntax enable
 
@@ -188,13 +179,6 @@ syntax enable
 " highlight Comment cterm=underline ctermbg=Blue ctermfg=White
 " enable global LanguageTool command
 let g:grammarous#languagetool_cmd = 'languagetool'
-
-" Airline-tmuxline
-"let g:airline#extensions#tmuxline#enabled = 1
-"let g:tmuxline_powerline_separators = 0
-"let g:airline_powerline_fonts = 1
-"let g:airline_detect_paste=1
-"let g:airline_detect_spell=1
 
 " unicode symbols
 
@@ -271,3 +255,4 @@ endfunction
 
 " setting this for htitle() function
 let g:HRULEWIDTH = 80
+
