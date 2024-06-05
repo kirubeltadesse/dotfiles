@@ -255,3 +255,4 @@ endfunction
 " setting this for htitle() function
 let g:HRULEWIDTH = 80
 
+

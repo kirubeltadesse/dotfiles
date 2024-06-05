@@ -19,13 +19,11 @@ export NB_COLOR_PRIMARY="${NB_COLOR_PRIMARY:-85}" # Set by `nb` • Thu 14 Dec 2
 
 export NB_SYNTAX_THEME="${NB_SYNTAX_THEME:-Dracula}" # Set by `nb` • Tue 30 Jan 2024 12:55:50 GMT
 
-export BROWSER="lynx" # set lynx to be a defualt browser for nb
+export NB_BROWSER="lynx" # set lynx to be a defualt browser for nb
 
 export EDITOR="nvim" # set nvim as a default editor
 
 NB_MARKDOWN_TOOL=glow
-
-NB_BROWSER="lynx" # set lynx to be a defualt browser for nb
 
 # NB_SERVER_HOST=8080 # set lynx to be a defualt browser for nb
 
