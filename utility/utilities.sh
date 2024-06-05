@@ -87,7 +87,7 @@ custome_installer() {
 
 	case "$(uname)" in
 	Linux)
-		use_command="sudo apt-get install -y"
+		use_command="apt-get install -y"
 		print 'success' "Environment is (WLS)"
 		sudo apt-get update
 		$use_command xclip fd-find
@@ -173,7 +173,7 @@ create_env_file() {
 write_to_file() {
 	local data="$1"
 	local file="$2"
-	echo "$data" > "$file"
+	echo "$data" >"$file"
 }
 
 read_file() {
@@ -182,7 +182,7 @@ read_file() {
 	if [ -f "$file" ]; then
 		while IFS= read -r line; do
 			lines+=("$line") # Store each line in an array
-		done < "$file"
+		done <"$file"
 		echo "${lines[@]}" # Output the array content
 	else
 		echo 1
@@ -204,7 +204,7 @@ remove_file() {
 }
 
 delete_env_file() {
-	# this function will be called to delte the env_file 
+	# this function will be called to delte the env_file
 	# after installation is complete
 	true
 }

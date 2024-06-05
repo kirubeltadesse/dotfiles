@@ -1,0 +1,9 @@
+socrates.tabshifter
+com.jetbrains.edu
+com.vermouthx.idea
+IdeaVIM
+Key Promoter X
+com.intellij.plugins.vscodekeymap
+palantir-java-format
+org.jetbrains.kotlin
+org.sonarlint.idea
