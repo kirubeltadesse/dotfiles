@@ -59,6 +59,8 @@ git config --global alias.co checkout
 git config --global alias.b branch
 git config --global alias.c commit
 git config --global alias.cp cherry-pick
+git config --global alias.cpa 'cherry-pick --abort'
+git config --global alias.cpc 'cherry-pick --continue'
 git config --global alias.d diff
 git config --global alias.f fetch
 git config --global alias.last 'log -1 HEAD'
