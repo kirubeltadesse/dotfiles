@@ -68,6 +68,10 @@ print "warning" "Downloading vim and tmux package manager..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# Installing nvim
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 # Neovim (~/.local/share/nvim/site/autoload)
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -75,8 +79,10 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # download TPM - Tmux Plag manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+
 # Create symlinks for .vimrc and .ideavimrc
 create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
+create_symlink "$HOME/.dotfiles/runcom/config/nvim" "$HOME/.config/nvim"
 create_symlink "$HOME/.dotfiles/runcom/vim/.ideavimrc" "$HOME/.ideavimrc"
 create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 
