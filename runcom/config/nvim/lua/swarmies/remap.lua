@@ -80,8 +80,15 @@ function OpenAllFoldsPreserveCursor()
     vim.fn.setpos('.', save_cursor)
 end
 
+-- Function to close all folds and preserve cursor position
+function CloseAllFoldsPreserveCursor()
+    local save_cursor = vim.fn.getpos(".")
+    vim.cmd('normal! zM')
+    vim.fn.setpos('.', save_cursor)
+end
+
+
 -- Keybindings for folding
--- FIXME: this line need to be fix
--- vim.api.nvim_set_keymap('n', 'zR', ':lua OpenAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true }) -- Open all folds
-vim.api.nvim_set_keymap('n', 'zM', ':setlocal foldlevel=0<CR>', { noremap = true, silent = true })  -- Close all folds
+vim.api.nvim_set_keymap('n', 'zR', ':lua OpenAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true }) -- Open all folds
+vim.api.nvim_set_keymap('n', 'zM', ':lua CloseAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true })  -- Close all folds
 

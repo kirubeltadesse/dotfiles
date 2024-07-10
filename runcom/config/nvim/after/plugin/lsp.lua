@@ -56,7 +56,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   -- Replace the language servers listed here
   -- with the ones you want to instal,l
-  -- FIXME:need to add this a lints 'cmake-language-server','cmakelint','cpplint','cpptools', 
+  -- FIXME:need to add this a lints 'cmake-language-server','cmakelint','cpplint','cpptools', 'java' 
   ensure_installed = {'tsserver','pylsp', 'pyright','html','rust_analyzer'},
   handlers = {
     function(server_name)

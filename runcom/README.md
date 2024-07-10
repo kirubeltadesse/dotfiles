@@ -77,6 +77,9 @@ Your `.vimrc` file already contains the package that needs to be installed. For 
 
 Download plug.vim using
 
+<!--
+TODO: DEPRACTE the plug in manager
+-->
 ```bash
 curl ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -94,15 +97,21 @@ Start by viewing the key code your terminal is sending to vim:
 
 Then you can use the notation in your command
 
+
 ## NeoVim Installation
+
+<!--
+TODO: update with Lazy instruction
+-->
 
 Getting Packer
 
 ```
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
 Make sure to install all the package using `:PackerSync` inside the the `~/.config/nvim/directory` 
+
 
 

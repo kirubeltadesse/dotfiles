@@ -63,6 +63,8 @@ print "warning" "Running Git shortcut scripts"
 custome_installer
 print "warning" "Downloading vim and tmux package manager..."
 
+
+# TODO: Depricate this plugin manager
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
