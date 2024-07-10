@@ -53,4 +53,9 @@ return require('packer').startup(function(use)
 	  }
   }
 
+    -- Pandoc and Markdown plugins
+    use 'vim-pandoc/vim-pandoc'
+    use 'vim-pandoc/vim-pandoc-syntax'
+    use 'plasticboy/vim-markdown'
+
 end)
