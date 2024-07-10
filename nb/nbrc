@@ -21,6 +21,8 @@ export NB_SYNTAX_THEME="${NB_SYNTAX_THEME:-Dracula}" # Set by `nb` • Tue 30 Ja
 
 export BROWSER="lynx" # set lynx to be a defualt browser for nb
 
+export EDITOR="nvim" # set nvim as a default editor
+
 NB_MARKDOWN_TOOL=glow
 
 NB_BROWSER="lynx" # set lynx to be a defualt browser for nb
