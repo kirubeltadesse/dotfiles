@@ -100,18 +100,5 @@ Then you can use the notation in your command
 
 ## NeoVim Installation
 
-<!--
-TODO: update with Lazy instruction
--->
-
-Getting Packer
-
-```
-git clone --depth 1 https://github.com/wbthomason/packer.nvim \
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
-Make sure to install all the package using `:PackerSync` inside the the `~/.config/nvim/directory` 
-
-
+- Using Lazy to install plugins to NeoVim.
 

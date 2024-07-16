@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -48,47 +47,4 @@ vim.keymap.set("n", "<leader>d", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>")
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- pandoc
--- Enable folding for markdown and pandoc files
-vim.g.vimwiki_filetypes = {'markdown'}
-vim.g.vimwiki_folding = 'custom'
-vim.g['pandoc#folding#mode'] = 'stacked'
-vim.g['pandoc#modules#enabled'] = {'folding', 'command'}
-
-vim.g.pandoc_folding = 1
--- vim.g.vim_markdown_folding_disabled = 1  -- Disable vim-markdown folding as it conflicts with pandoc folding
-
--- Set up custom folding for markdown
-vim.cmd [[
-  autocmd FileType markdown setlocal foldmethod=expr
-  autocmd FileType markdown setlocal foldexpr=pandoc#fold#level(v:lnum)
-  autocmd FileType markdown setlocal foldtext=MyFoldText()
-]]
-
--- Custom fold text function
-function MyFoldText()
-    local line = vim.fn.getline(vim.v.foldstart)
-    local fold_size = vim.v.foldend - vim.v.foldstart + 1
-    return line .. ' ... ' .. fold_size .. ' lines'
-end
-
--- Function to open all folds and preserve cursor position
-function OpenAllFoldsPreserveCursor()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd('normal! zR')
-    vim.fn.setpos('.', save_cursor)
-end
-
--- Function to close all folds and preserve cursor position
-function CloseAllFoldsPreserveCursor()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd('normal! zM')
-    vim.fn.setpos('.', save_cursor)
-end
-
-
--- Keybindings for folding
-vim.api.nvim_set_keymap('n', 'zR', ':lua OpenAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true }) -- Open all folds
-vim.api.nvim_set_keymap('n', 'zM', ':lua CloseAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true })  -- Close all folds
 

@@ -1,6 +1,4 @@
 "" Source your .vimrc
-" source "$HOME"/.vimrc
-" Source the init.lua configuration file if it exists
 if filereadable(expand("~/.config/nvim/init.lua"))
     execute 'luafile ~/.config/nvim/init.lua'
 endif
