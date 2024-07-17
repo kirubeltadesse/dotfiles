@@ -1,5 +1,6 @@
 # Dotfiles
 
+
 ## WSL configuration
 
 WSL's proper configuration will give you a great overall workflow. Significantly, wsl2 having Docker Desktop running natively enhances the overall productivity. There is valuable information on how to mount and `unmont` drivers on WSL
@@ -59,11 +60,22 @@ If you are getting an error that says
 
 Navigate to the git root directory and run the command
 
+If error with white spaces run one of this options:
+
+1. `git apply --reject --whitespace=fix my-patch.patch` - partly works
+but creates rej hunks
+1. `git apply --reject --ignore-whitespace --whitespace=fix my-patch.patch` - same as above
+1. `git am -3 --ignore-whitespace` - patch format detection failed
+1. `git apply -3 --ignore-whitespace1` - fails with trailing whitespace
+and new blank line at EOF.
+
+
 ---
 
 <details>
 
 <summary> FAQ </summary>
+
 
 ### iTem2
 

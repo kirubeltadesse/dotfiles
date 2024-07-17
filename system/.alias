@@ -19,7 +19,7 @@ alias ld='ls -d */' # List in long format, only directories
 alias rr='rm -rf'
 alias ls='ls --color=auto' # this enables coloring
 
-alias v='vim -p'
+alias v='nvim'
 
 # DOCKER
 alias d='docker'

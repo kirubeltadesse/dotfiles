@@ -39,13 +39,16 @@ tmux capture-pane -pS -1000000
 - `Prefix ALT+5`: Tiled layout
 - `Prefix + L`: last session
 
+
 ### pane
 
 `C+A !`: break out a panel
 
 [Here](https://blog.sanctum.geek.nz/vi-mode-in-tmux/#:~:text=Most%20of%20the%20basic%20vi,another%2C%20and%20then%20pressing%20Enter.) good resource on how to set up vi modes for tmux
 
+
 ## Installation requirements
+
 
 ### statusbar tmux-powerline
 
@@ -67,12 +70,16 @@ There is also `tpm` [Here](https://github.com/tmux-plugins/tpm) all the installa
 
 It will be awesome if the tmux navigation is more like vim 😊 [Here](https://www.bugsnag.com/blog/tmux-and-vim)
 
+
 ## Vim installation
 
 Your `.vimrc` file already contains the package that needs to be installed. For example, `fzf`, `Nerdtree`
 
 Download plug.vim using
 
+<!--
+TODO: DEPRACTE the plug in manager
+-->
 ```bash
 curl ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -89,3 +96,9 @@ Start by viewing the key code your terminal is sending to vim:
 `$ sed -n l`
 
 Then you can use the notation in your command
+
+
+## NeoVim Installation
+
+- Using Lazy to install plugins to NeoVim.
+
