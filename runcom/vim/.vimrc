@@ -73,7 +73,6 @@ call plug#end()
 " let b:thisdir=expand("%:p:h")
 " let b:vim=b:thisdir."/.vimrc"
 execute "source $HOME/.dotfiles/runcom/.vimrc"
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -124,14 +123,14 @@ nnoremap <C-x> :tabc<cr>
 " nnoremap <C-c> :tabc<cr>
 nnoremap <C-c> :tabnew<cr>
 
+" remap from ThePrimeagon
+xnoremap <Leader>p, _dP
 
 
 " Map Fzf file finder 
-
 nnoremap <Leader>f :Files<CR> 
 " search git files
 nnoremap <C-p> :GFiles<Cr> 
-
 " search open buffers
 nnoremap <silent><leader>l :Buffers<CR>
 
@@ -255,4 +254,5 @@ endfunction
 
 " setting this for htitle() function
 let g:HRULEWIDTH = 80
+
 

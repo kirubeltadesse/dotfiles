@@ -63,6 +63,8 @@ print "warning" "Running Git shortcut scripts"
 custome_installer
 print "warning" "Downloading vim and tmux package manager..."
 
+
+# TODO: Depricate this plugin manager
 # download vim plug manage
 # Vim (~/.vim/autoload)
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -75,8 +77,10 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # download TPM - Tmux Plag manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+
 # Create symlinks for .vimrc and .ideavimrc
 create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
+create_symlink "$HOME/.dotfiles/runcom/config/nvim" "$HOME/.config/nvim"
 create_symlink "$HOME/.dotfiles/runcom/vim/.ideavimrc" "$HOME/.ideavimrc"
 create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 

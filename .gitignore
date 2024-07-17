@@ -5,14 +5,19 @@
 *.swp
 **/.netrwhist
 **/doc/tags
+runcom/config/nvim/plugin/*
 runcom/vim/autoload/*
 runcom/vim/bundle/*
 runcom/vim/plugged/*
 runcom/vim/vim
 runcom/vim/spell/*
+runcom/vim/undodir/*
 
 **/spell/**
 
 #---------------------------------VScode--------------------------#
 .vscode/
 .lhistory
+
+#---------------------------------NeoVim--------------------------#
+runcom/config/nvim/lazy-lock.json
