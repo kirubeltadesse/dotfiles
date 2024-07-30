@@ -51,6 +51,14 @@ vim.opt.laststatus = 2
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
+vim.opt.listchars = {                                                   -- see hidden chars and their
+    tab = "| ",
+    eol = '𝆨',
+    trail = '.'
+}
+vim.o.list = true
+vim.o.updatetime = 100
+
 vim.opt.cursorline = true 								-- this code is to high light the current line on vim
 -- highlight CursorLine guibg=#303000 ctermbg=234
 
