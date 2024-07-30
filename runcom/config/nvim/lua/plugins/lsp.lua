@@ -3,11 +3,51 @@ return {
     branch = 'v3.x',
     dependencies = {
         --- Uncomment the two plugins below if you want to manage the language servers from neovim
-        {'williamboman/mason.nvim'},
-        {'williamboman/mason-lspconfig.nvim'},
+        {
+            'williamboman/mason.nvim',
+            config = function()
+                -- require("mason").setup()
+                require('mason').setup({})
+            end
+        },
+        {
+            'williamboman/mason-lspconfig.nvim',
+            config = function()
+                require('mason-lspconfig').setup({
+                    -- Replace the language servers listed here
+                    -- with the ones you want to instal,l
+                    -- FIXME:need to add this a lints 'cmake-language-server','cmakelint','cpplint','cpptools', 'java' 
+                    ensure_installed = {'lua_ls', 'tsserver', 'pylsp', 'html', 'rust_analyzer'},
+                    handlers = {
+                        function(server_name)
+                            require('lspconfig')[server_name].setup({})
+                        end,
+                    }
+                })
+
+            end
+        },
 
         -- Autocompletion
-        {'neovim/nvim-lspconfig'},
+        {
+            'neovim/nvim-lspconfig',
+            config = function()
+                local lspconfig = require("lspconfig")
+                lspconfig.lua_ls.setup({})
+                lspconfig.tsserver.setup({})
+
+                vim.keymap.set("n", "gd",  function() vim.lsp.buf.definition() end, {})
+                vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, {})
+                -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+                -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+                -- vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+                -- vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+                vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, {})
+                -- vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+                -- vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+                -- vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+            end
+        },
         {'hrsh7th/nvim-cmp'},
         {'hrsh7th/cmp-buffer'},
         {'hrsh7th/cmp-path'},
@@ -48,46 +88,23 @@ return {
         })
 
 
-        -- lsp_zero.set_prefrences({
-            -- 	sign_icons = { }
-            -- })
-
-            -- Setup the custom mappings
-            -- lsp_zero.setup_nvim_cmp({
-                -- 	mapping = cmp_mappings
-                -- })
-
-                lsp_zero.on_attach(function(client, bufnr)
-                    lsp_zero.default_keymaps({buffer = bufnr})
-                    local opts = {buffer = buffnr, remap = false}
-
-                    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-                    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-                    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-                    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-                    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-                    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-                    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-                    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-                    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-                    vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+        lsp_zero.on_attach(function(client, bufnr)
+            lsp_zero.default_keymaps({buffer = bufnr})
+            local opts = {buffer = bufnr, remap = false}
 
 
-                end)
 
-                require('mason').setup({})
-                require('mason-lspconfig').setup({
-                    -- Replace the language servers listed here
-                    -- with the ones you want to instal,l
-                    -- FIXME:need to add this a lints 'cmake-language-server','cmakelint','cpplint','cpptools', 'java' 
-                    ensure_installed = {'tsserver','pylsp', 'pyright','html','rust_analyzer'},
-                    handlers = {
-                        function(server_name)
-                            require('lspconfig')[server_name].setup({})
-                        end,
-                    }
-                })
+        end)
 
-            end
-        }
 
+    end
+}
+
+-- lsp_zero.set_prefrences({
+    -- sign_icons = { }
+    -- })
+
+    -- Setup the custom mappings
+    -- lsp_zero.setup_nvim_cmp({
+        -- 	mapping = cmp_mappings
+        -- })
