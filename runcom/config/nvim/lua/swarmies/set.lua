@@ -1,4 +1,4 @@
--- syntax enable
+---syntax enable
 -- vim.opt.inchighlight
 -- colorscheme morning
 -- filetype plugin on

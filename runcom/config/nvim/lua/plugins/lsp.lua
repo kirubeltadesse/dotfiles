@@ -1,98 +1,43 @@
 return {
-    {
+    "neovim/nvim-lspconfig",
+    dependencies = {
         "williamboman/mason.nvim",
-        config = function()
-            -- require("mason").setup()
-            require("mason").setup({})
-        end,
-    },
-    {
         "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                -- Replace the language servers listed here
-                -- with the ones you want to instal,l
-                -- FIXME:need to add this a lints 'cmake-language-server','cmakelint','cpplint','cpptools', 'java'
-                ensure_installed = { "tsserver", "lua_ls", "pylsp", "html", "rust_analyzer" },
-                auto_install = true,
-                -- handlers = {
-                --     function(server_name)
-                --         require("lspconfig")[server_name].setup({})
-                --     end,
-                -- },
-            })
-        end,
     },
 
-    -- Autocompletion
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        config = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    config = function()
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+            -- Replace the language servers listed here
+            -- with the ones you want to install
+            ensure_installed = {"pylsp", "html", "tsserver", "lua_ls", "rust_analyzer"},
+            -- auto_install = true,
+        })
 
-            local lspconfig = require("lspconfig")
+        -- Set up LSP with nvim-cmp capabilities
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local lspconfig = require("lspconfig")
+        local on_attach = function(_, bufnr)
+            local opts = { buffer = bufnr }
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+            vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+            vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+            vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+            vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+            vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, opts)
+        end
 
-            lspconfig.tsserver.setup({
-                capabilities = capabilities,
-            })
-
-            lspconfig.html.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-            })
-            vim.keymap.set("n", "gd", function()
-                vim.lsp.buf.definition()
-            end, {})
-            vim.keymap.set("n", "K", function()
-                vim.lsp.buf.hover()
-            end, {})
-            -- vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-            -- vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-            vim.keymap.set("n", "[d", function()
-                vim.diagnostic.goto_next()
-            end, {})
-            vim.keymap.set("n", "]d", function()
-                vim.diagnostic.goto_prev()
-            end, {})
-            vim.keymap.set("n", "<leader>ca", function()
-                vim.lsp.buf.code_action()
-            end, {})
-            -- vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-            -- vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-            -- vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        end,
-    },
-    { "hrsh7th/cmp-buffer" },
-    { "hrsh7th/cmp-path" },
-    { "hrsh7th/cmp-nvim-lua" },
+        -- Setup handlers for each language server
+        require("mason-lspconfig").setup_handlers {
+            function(server_name)
+                lspconfig[server_name].setup {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                }
+            end,
+        }
+    end,
 }
--- {
---    "VonHeikemen/lsp-zero.nvim",
---    branch = "v3.x",
---    dependencies = {
---- Uncomment the two plugins below if you want to manage the language servers from neovim
 
--- lsp_zero.set_prefrences({
--- sign_icons = { }
--- })
-
--- Setup the custom mappings
--- lsp_zero.setup_nvim_cmp({
--- 	mapping = cmp_mappings
--- })
--- },
---config = function() -- This is the function that  runs, AFTER loading
---    local lsp_zero = require("lsp-zero")
-
---    lsp_zero.preset("recommended")
---    local cmp_action = require("lsp-zero").cmp_action()
---    -- local cmp_select = {behavior = cmp.SelectBehavior.Select}
-
---    lsp_zero.on_attach(function(client, bufnr)
---        lsp_zero.default_keymaps({ buffer = bufnr })
---        local opts = { buffer = bufnr, remap = false }
---    end)
---end,
