@@ -29,6 +29,11 @@ In this directory, you will find the `.crx` file for Vimium, and you can directl
 
 After adding Vimium, you can click on options, and at the bottom of the page, you will see `Backup and Restore`. You can upload a `.json` file using previous shortcuts. You will find a `vimium-options.json` to get the shortcuts I use.
 
+`ctrl + space` keyboards  will disable and enable `vomnibar`.
+
+Note: disabling will help you use the normal keyboard shortcut for `Youtube` like speeding up (.) and down (,) muting video (m) , caption (c), increasing (up arrow) and decreasing volume (down arrow).
+
+
 ### Select and search on Vimium
 
 - https://superuser.com/questions/1236864/how-to-use-vimium-to-select-text-from-a-page
