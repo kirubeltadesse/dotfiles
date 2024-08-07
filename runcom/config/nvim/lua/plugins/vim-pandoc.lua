@@ -62,7 +62,6 @@ return {
     },
     {
         'plasticboy/vim-markdown',
-        event = "VeryLazy"
     },
     {
         'folke/zen-mode.nvim',
