@@ -13,7 +13,6 @@ return {
                 "black",
                 "pyright",
                 "mypy",
-                --"debugpy",
                 "ruff",
                 "tsserver",
                 "lua_ls",
@@ -22,6 +21,13 @@ return {
             },
             auto_install = true,
         })
+
+        local mr = require("mason-registry")
+
+        -- Specify the version of debugpy
+        if not mr.is_installed("debugpy") then
+            mr.get_package("debugpy"):install({ version = "v1.8.0" }) -- Replace with the desired version
+        end
 
         -- Set up LSP with nvim-cmp capabilities
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
