@@ -78,3 +78,5 @@ vim.opt.wildmenu = true
 
 -- THINGS TO CONSIDERS:
 -- - :b lets you auto complete any open buffer
+--
+vim.g.netrw_keepdir = 0
