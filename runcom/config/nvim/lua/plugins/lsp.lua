@@ -12,7 +12,6 @@ return {
             ensure_installed = {
                 "black",
                 "pyright",
-                "mypy",
                 "ruff",
                 "tsserver",
                 "lua_ls",
