@@ -1,22 +1,25 @@
 return {
     "folke/trouble.nvim",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+        "folke/todo-comments.nvim"
+    },
     config = function()
-        require("trouble").setup{
-            icons = false,
+        require("trouble").setup {
             use_lsp_diagnostic_signs = true,
-            auto_preview = false,
+            --auto_preview = false,
             auto_fold = true,
             use_telescope = true,
             action_keys = {
                 close = "q",
                 cancel = "<esc>",
                 refresh = "r",
-                jump = {"<cr>", "<tab>"},
+                jump = { "<cr>", "<tab>" },
                 toggle_mode = "m",
                 toggle_preview = "<leader>pv",
                 preview = "p",
-                close_folds = {"zM", "zm"},
-                open_folds = {"zR", "zr"},
+                close_folds = { "zM", "zm" },
+                open_folds = { "zR", "zr" },
                 toggle_fold = "zA",
                 previous = "k",
                 next = "j",
@@ -39,16 +42,16 @@ return {
             },
         }
         vim.keymap.set("n", "<leader>tt", function()
-            require("trouble").toggle()
+            -- BUG: fix the trouble toggle by providing opts 
+            require("trouble").toggle_preview({})
         end)
 
         vim.keymap.set("n", "[d", function()
-            require("trouble").next({skip_groups = true, jump = true});
+            require("trouble").next({ skip_groups = true, jump = true });
         end)
 
         vim.keymap.set("n", "]d", function()
-            require("trouble").previous({skip_groups = true, jump = true});
+            require("trouble").previous({ skip_groups = true, jump = true });
         end)
-
     end
 }
