@@ -1,6 +1,6 @@
 return {
     "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
     opts = {
         -- TODO: make it work with trouble
         -- your configuration comes here

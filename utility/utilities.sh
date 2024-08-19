@@ -99,6 +99,7 @@ custome_installer() {
 		use_command="brew install"
 		$use_command fd
 		$use_command --cask rectangle
+		$use_command --cask font-jetbrains-mono-nerd-font
 		# finish up fzf configuration
 		"$(brew --prefix)"/opt/fzf/install
 
@@ -121,7 +122,7 @@ package_installed() {
 # installer function
 install_apps() {
 	local use_command="$1"
-	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "font-fira-code-nerd-font") # "vim-gtk" "lynx")
+	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
