@@ -17,6 +17,7 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "bashls",
+                "debugpy",
             },
             auto_install = true,
         })

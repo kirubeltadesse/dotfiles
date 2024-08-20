@@ -1,11 +1,11 @@
 #!/bin/bash
 
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILE_DIR="/tmp/dotfiles"
+DOTFILE_TEMP_DIR="/tmp/dotfiles"
 
 # Store the user's custom info
-EMAIL_FILE="$DOTFILE_DIR/email.txt"
-USERNAME_FILE="$DOTFILE_DIR/username.txt"
+EMAIL_FILE="$DOTFILE_TEMP_DIR/email.txt"
+USERNAME_FILE="$DOTFILE_TEMP_DIR/username.txt"
 
 # Define the function to echo colored text
 print() {
@@ -162,10 +162,10 @@ configure_keybase() {
 }
 
 create_env_file() {
-	mkdir -p $DOTFILE_DIR
+	mkdir -p $DOTFILE_TEMP_DIR
 
-	read -p "Enter git-username: " username
-	read -p "Enter git-eamil: " email
+	read -r -p "Enter git-username: " username
+	read -r -p "Enter git-eamil: " email
 	write_to_file "$username" "$USERNAME_FILE"
 	write_to_file "$email" "$EMAIL_FILE"
 	return
@@ -194,7 +194,7 @@ clean_env() {
 	# TODO: not begin called anywhere at this point
 	remove_file "$USERNAME_FILE"
 	remove_file "$EMAIL_FILE"
-	rm -f $DOTFILE_DIR
+	rm -f $DOTFILE_TEMP_DIR
 }
 
 remove_file() {
