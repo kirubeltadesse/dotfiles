@@ -28,6 +28,9 @@ return {
                     end
                 end)
 
+                -- TODO: might be good idea to have whick-key
+                -- might be also replace the h to g key reconciling the g with 
+                -- format and fugitive
                 -- Actions
                 map('n', '<leader>hs', gitsigns.stage_hunk)
                 map('n', '<leader>hr', gitsigns.reset_hunk)

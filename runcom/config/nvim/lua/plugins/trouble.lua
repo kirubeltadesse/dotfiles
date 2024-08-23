@@ -1,13 +1,14 @@
 return {
     "folke/trouble.nvim",
+    cmd = "Trouble",
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         "folke/todo-comments.nvim"
     },
     config = function()
         require("trouble").setup {
-            use_lsp_diagnostic_signs = true,
-            --auto_preview = false,
+            --use_lsp_diagnostic_signs = true,
+            auto_preview = false,
             auto_fold = true,
             use_telescope = true,
             action_keys = {
@@ -16,7 +17,7 @@ return {
                 refresh = "r",
                 jump = { "<cr>", "<tab>" },
                 toggle_mode = "m",
-                toggle_preview = "<leader>pv",
+                toggle_preview = "<leader>tt",
                 preview = "p",
                 close_folds = { "zM", "zm" },
                 open_folds = { "zR", "zr" },
@@ -31,7 +32,18 @@ return {
                 hint = "",
                 information = "",
             },
-            mode = "lsp_document_diagnostics",
+            --         mode = "lsp_document_diagnostics",
+            modes = {
+                test = {
+                    mode = "diagnostics",
+                    preview = {
+                        type = "split",
+                        relative = "win",
+                        position = "right",
+                        size = 0.3,
+                    },
+                },
+            },
             fold_open = "",
             fold_closed = "",
             lsp_colors = {
@@ -41,17 +53,11 @@ return {
                 hint = "#10B981",
             },
         }
-        vim.keymap.set("n", "<leader>tt", function()
-            -- BUG: fix the trouble toggle by providing opts 
-            require("trouble").toggle_preview({})
-        end)
 
-        vim.keymap.set("n", "[d", function()
-            require("trouble").next({ skip_groups = true, jump = true });
-        end)
-
-        vim.keymap.set("n", "]d", function()
-            require("trouble").previous({ skip_groups = true, jump = true });
-        end)
+        vim.keymap.set("n", "<leader>tt", "<cmd>Trouble diagnostics toggle<cr>");
+        vim.keymap.set("n", "<leader>tT", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>");
+        vim.keymap.set("n", "<leader>[d", "<cmd>Trouble diagnostics next<cr>");
+        vim.keymap.set("n", "<leader>]d", "<cmd>Trouble diagnostics prev<cr>");
+        vim.keymap.set("n", "<leader>tl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>");
     end
 }

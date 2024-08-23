@@ -158,3 +158,5 @@ case "$(uname)" in
 esac
 
 # Additional Git config settings here
+# TODO: specific setup for git proxy: https://tutti.prod.bloomberg.com/bbgithub/fragments/corp-macos-git#basics-repository-operations
+#
