@@ -2,9 +2,10 @@ return {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     config = function()
-        local home = vim.fn.expand("$HOME")
+        local home = vim.fn.expand("HOME")
+        local passPhrase = os.getenv("GPG_PASSPHRASE") or ""
         local defaults = {
-            api_key_cmd = "gpg --batch --passphrase 'Kirubel7' --decrypt " .. home .. "/.config/nvim/chat_gpt_secret.txt.gpg",
+            api_key_cmd = "gpg --batch --passphrase " .. passPhrase .. " --decrypt " .. home .. "/.config/nvim/chat_gpt_secret.txt.gpg",
             edit_with_instructions = {
                 diff = false,
                 keymaps = {
@@ -18,7 +19,7 @@ return {
                 },
             },
             chat = {
-                welcome_message = WELCOME_MESSAGE,
+                welcome_message = "WELCOME_MESSAGE",
                 loading_text = "Loading, please wait ...",
                 question_sign = "", -- 🙂
                 answer_sign = "ﮧ", -- 🤖

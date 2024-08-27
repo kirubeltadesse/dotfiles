@@ -22,13 +22,6 @@ return {
             auto_install = true,
         })
 
-        local mr = require("mason-registry")
-
-        -- Specify the version of debugpy
-        if not mr.is_installed("debugpy") then
-            mr.get_package("debugpy"):install({ version = "v1.8.0" }) -- Replace with the desired version
-        end
-
         -- Set up LSP with nvim-cmp capabilities
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
@@ -37,7 +30,6 @@ return {
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 lspconfig[server_name].setup({
-          --          on_attach = on_attach,
                     capabilities = capabilities,
                 })
             end,
@@ -45,15 +37,20 @@ return {
             -- Example of custom handlers
             ["pyright"] = function()
                 lspconfig.pyright.setup({
-           --         on_attach = on_attach,
                     capabilities = capabilities,
                     settings = { python = { analysis = { typeCheckingMode = "basic" } } },
                 })
             end,
 
+            ["ruff"] = function()
+                lspconfig.black.setup({
+                    capabilities = capabilities,
+                })
+            end,
+
+
             ["lua_ls"] = function()
                 lspconfig.lua_ls.setup({
-            --        on_attach = on_attach,
                     capabilities = capabilities,
                     settings = {
                         Lua = {
@@ -77,22 +74,18 @@ return {
 
             ["rust_analyzer"] = function()
                 lspconfig.rust_analyzer.setup({
---                    on_attach = on_attach,
                     capabilities = capabilities,
                 })
             end,
 
             ["tsserver"] = function()
                 lspconfig.tsserver.setup({
---                   on_attach = on_attach,
                     capabilities = capabilities,
                 })
             end,
 
-            -- getting unknown lspconfig service name: bash-language-server error can you fix that
             ["bashls"] = function()
                 lspconfig.bashls.setup({
---                  on_attach = on_attach,
                     capabilities = capabilities,
                 })
             end,

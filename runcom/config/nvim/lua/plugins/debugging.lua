@@ -26,14 +26,18 @@ return {
             dapui.setup()
             require("dap-go").setup()
             -- dap_python.setup()
-            --dap_python.setup({
+            -- dap_python.setup({
             --    pythonPath = function()
             --        -- get the python from the venv
             --        return vim.fn.exepath("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3")
             --    end,
-            --})
+            -- })
             -- dap_python.setup("~/.virtualenvs/debugpy/bin/python3")
-            dap_python.setup("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3.9")
+            local debugpyPythonPath = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python3"
+            -- dap_python.setup "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+            -- dap_python.setup(debugpyPythonPath, {})
+            dap_python.setup(debugpyPythonPath)
+            dap_python.test_runner = "pytest"
 
             dap.listeners.after.event_initialized["dapui_config"] = function()
                 dapui.open()
@@ -46,12 +50,13 @@ return {
             end
 
             dap.set_log_level("TRACE")
-            dap.adapters.python = {
-                type = "executable",
-                command = "python",
-                args = { "-m", "debugpy.adapter" },
-            }
-            dap.configurations.python = {
+            --dap.adapters.python = {
+            --    type = "executable",
+            --    command = "python",
+            --    args = { "-m", "debugpy.adapter" },
+            --}
+
+            table.insert(dap.configurations.python, {
                 {
                     type = "python",
                     request = "launch",
@@ -79,14 +84,31 @@ return {
                 },
                 {
                     type = "python",
+                    request = "attach",
+                    name = "Attach app",
+                    connect = {
+                        host = "localhost",
+                        port = 9977,
+                    },
+                    pathMappings = {
+                        {
+                            localRoot = "${workspaceFolder}",
+                            -- localRoot = vim.fn.getcwd(),
+                            remoteRoot = ".",
+                        },
+                    },
+                    justMyCode = true,
+                },
+                {
+                    type = "python",
                     request = "launch",
                     name = "Launch current file with pytest",
                     module = "pytest",
                     args = { "-s", "${file}" },
                     console = "integratedTerminal",
                     justMyCode = false,
-                }
-            }
+                },
+            })
             -- add mappings for debugging
             -- FIXME: vim.keymap.set('n', "<F5>", vim.cmd.Ex require('dap').continue()<CR> )
             vim.keymap.set('n', "<F10>", dap.step_over, {})

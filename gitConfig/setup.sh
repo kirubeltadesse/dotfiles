@@ -51,8 +51,12 @@ print warning "setup up git shortcuts"
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 git config --global init.defaultBranch main
 git config --global credential.helper cache
-git config --global credential.https://github.com.name "$(read_file "$USERNAME_FILE")"
-git config --global credential.https://github.com.email "$(read_file "$EMAIL_FILE")"
+if [ "$USER" != "kirubeltadesse" ]; then
+    git config --global http.https://github.com.proxy http://proxy.bloomberg.com:81
+    git config --global http.https://github.com.sslCAinfo ~/bb-cert/bloomberg-root-ca.crt
+    git config --global credential.https://github.com.name "$(read_file "$USERNAME_FILE")"
+    git config --global credential.https://github.com.email "$(read_file "$EMAIL_FILE")"
+fi
 git config --global branch.autosetuprebase always
 git config --global alias.a add
 git config --global alias.co checkout
@@ -123,9 +127,6 @@ git config --global alias.st status
 git config --global alias.sw 'stash show'
 git config --global alias.swp 'stash show -p'
 
-# TODO: install brew install git-delta
-# https://dandavison.github.io/delta/configuration.html
-# add the delta configuration to the script 
 
 # add this git configuration for MacOs, windows and SunOS
 case "$(uname)" in
@@ -151,12 +152,9 @@ case "$(uname)" in
 		;;
 	*)
 		echo "setting git diff for $1"
-		git config --global core.editor vi
+		git config --global core.editor nvim
 		git-nbdiffdriver config --enable --global
 		git-nbdifftool config --enable --global
 		;;
 esac
 
-# Additional Git config settings here
-# TODO: specific setup for git proxy: https://tutti.prod.bloomberg.com/bbgithub/fragments/corp-macos-git#basics-repository-operations
-#
