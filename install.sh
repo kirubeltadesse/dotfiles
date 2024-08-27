@@ -47,14 +47,14 @@ if [ "$ans" == 'Y' ]; then
 	print success "setting up Keybase"
 	configure_keybase
 
-	print "warning" "asking for user information"
-	create_env_file
-
 	# write to the `.bashrc` file
 	copy_text_2_bashrc "$text"
 else
 	print warning "Keybase is setup"
 fi
+
+print "warning" "asking for user information"
+create_env_file
 
 print "warning" "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh

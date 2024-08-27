@@ -51,7 +51,9 @@ print warning "setup up git shortcuts"
 # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 git config --global init.defaultBranch main
 git config --global credential.helper cache
-if [ "$USER" != "kirubeltadesse" ]; then
+git config --global core.editor nvim
+
+if [[ "$USER" != "kirubeltadesse" ]]; then
     git config --global http.https://github.com.proxy http://proxy.bloomberg.com:81
     git config --global http.https://github.com.sslCAinfo ~/bb-cert/bloomberg-root-ca.crt
     git config --global credential.https://github.com.name "$(read_file "$USERNAME_FILE")"
@@ -152,7 +154,6 @@ case "$(uname)" in
 		;;
 	*)
 		echo "setting git diff for $1"
-		git config --global core.editor nvim
 		git-nbdiffdriver config --enable --global
 		git-nbdifftool config --enable --global
 		;;
