@@ -2,7 +2,7 @@ return {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     config = function()
-        local home = vim.fn.expand("HOME")
+        local home = vim.fn.expand("$HOME")
         local passPhrase = os.getenv("GPG_PASSPHRASE") or ""
         local defaults = {
             api_key_cmd = "gpg --batch --passphrase " .. passPhrase .. " --decrypt " .. home .. "/.config/nvim/chat_gpt_secret.txt.gpg",

@@ -15,7 +15,6 @@ return {
             local dap_virtual_text = require("nvim-dap-virtual-text")
             local dap_python = require("dap-python")
 
-
             dap_virtual_text.setup({
                 virtual_text = true,
                 underline = true,
@@ -25,18 +24,7 @@ return {
 
             dapui.setup()
             require("dap-go").setup()
-            -- dap_python.setup()
-            -- dap_python.setup({
-            --    pythonPath = function()
-            --        -- get the python from the venv
-            --        return vim.fn.exepath("~/.local/share/nvim/mason/packages/debugpy/venv/bin/python3")
-            --    end,
-            -- })
-            -- dap_python.setup("~/.virtualenvs/debugpy/bin/python3")
-            local debugpyPythonPath = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python3"
-            -- dap_python.setup "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
-            -- dap_python.setup(debugpyPythonPath, {})
-            dap_python.setup(debugpyPythonPath)
+            dap_python.setup "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
             dap_python.test_runner = "pytest"
 
             dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -50,12 +38,7 @@ return {
             end
 
             dap.set_log_level("TRACE")
-            --dap.adapters.python = {
-            --    type = "executable",
-            --    command = "python",
-            --    args = { "-m", "debugpy.adapter" },
-            --}
-
+            dap.defaults.timeout = 3000  -- 3 seconds
             table.insert(dap.configurations.python, {
                 {
                     type = "python",
@@ -69,13 +52,12 @@ return {
                         -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
                         local cwd = vim.fn.getcwd()
                         print("command work directory: ", cwd)
-                        -- BUG: not getting the correct environment path
-                        if vim.fn.executable(cwd .. '../venv/bin/python') == 1 then
+                        if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
                             print("found venv")
-                            return cwd .. '/venv/bin/python'
-                        elseif vim.fn.executable(cwd .. '../.venv/bin/python') == 1 then
+                            return cwd .. '/venv/bin/python3.12'
+                        elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
                             print("found .venv")
-                            return cwd .. '/.venv/bin/python'
+                            return cwd .. '/.venv/bin/python3.12'
                         else
                             print("using system python")
                             return '/usr/bin/python3'
