@@ -25,7 +25,6 @@ return {
         -- Set up LSP with nvim-cmp capabilities
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
-        -- local on_attach = function(_, bufnr)
         -- Setup handlers for each language server
         require("mason-lspconfig").setup_handlers({
             function(server_name)
