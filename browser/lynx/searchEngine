@@ -34,12 +34,12 @@ function meaning {
 } && export -f meaning
 
 function gtr {
-  sl='auto'
-  tl=$1
+  sourceLanguage='auto'
+  targetLanguage=$1
   shift
-  base_url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q="
-  qry=$(echo $@ | sed -e "s/\ /+/g")
-  full_url=${base_url}${qry}
-  response=$(curl -sA "${useragent}" "${full_url}")
-  echo ${response} | sed 's/","/\n/g' | sed -E 's/\[|\]|"//g' | head -1
+  translationApiUrl="https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLanguage}&tl=${targetLanguage}&dt=t&q="
+  formattedQuery=("${@// /+}")
+  completeUrl=${translationApiUrl}${formattedQuery[*]}
+  response=$(lynx -source "--useragent=${useragent}" "${completeUrl}")
+  echo "${response}" | sed 's/","/\n/g' | sed -E 's/\[|\]|"//g' | head -1
 }

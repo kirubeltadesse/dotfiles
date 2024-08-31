@@ -10,7 +10,9 @@ return {
             sources = {
                 require("none-ls.diagnostics.cpplint"),
                 require("none-ls.diagnostics.eslint_d"),
+                require("none-ls.diagnostics.ruff"),
                 require("none-ls.code_actions.eslint"),
+                null_ls.builtins.formatting.black,
                 null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.prettier,
                 null_ls.builtins.formatting.black,

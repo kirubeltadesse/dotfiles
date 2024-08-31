@@ -4,40 +4,90 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
-
     config = function()
         require("mason").setup()
         require("mason-lspconfig").setup({
             -- Replace the language servers listed here
             -- with the ones you want to install
-            ensure_installed = {"pylsp", "html", "tsserver", "lua_ls", "rust_analyzer"},
-            -- auto_install = true,
+            ensure_installed = {
+                "black",
+                "pyright",
+                "ruff",
+                "tsserver",
+                "lua_ls",
+                "rust_analyzer",
+                "bashls",
+                "debugpy",
+            },
+            auto_install = true,
         })
 
         -- Set up LSP with nvim-cmp capabilities
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
-        local on_attach = function(_, bufnr)
-            local opts = { buffer = bufnr }
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-            vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-            vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-            vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-            vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-            vim.keymap.set("n", "<C-h>", vim.lsp.buf.signature_help, opts)
-        end
-
         -- Setup handlers for each language server
-        require("mason-lspconfig").setup_handlers {
+        require("mason-lspconfig").setup_handlers({
             function(server_name)
-                lspconfig[server_name].setup {
-                    on_attach = on_attach,
+                lspconfig[server_name].setup({
                     capabilities = capabilities,
-                }
+                })
             end,
-        }
+
+            -- Example of custom handlers
+            ["pyright"] = function()
+                lspconfig.pyright.setup({
+                    capabilities = capabilities,
+                    settings = { python = { analysis = { typeCheckingMode = "basic" } } },
+                })
+            end,
+
+            ["ruff"] = function()
+                lspconfig.black.setup({
+                    capabilities = capabilities,
+                })
+            end,
+
+
+            ["lua_ls"] = function()
+                lspconfig.lua_ls.setup({
+                    capabilities = capabilities,
+                    settings = {
+                        Lua = {
+                            runtime = {
+                                version = "LuaJIT",
+                                path = vim.split(package.path, ";"),
+                            },
+                            diagnostics = {
+                                globals = { "vim" },
+                            },
+                            workspace = {
+                                library = {
+                                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                                },
+                            },
+                        },
+                    },
+                })
+            end,
+
+            ["rust_analyzer"] = function()
+                lspconfig.rust_analyzer.setup({
+                    capabilities = capabilities,
+                })
+            end,
+
+            ["tsserver"] = function()
+                lspconfig.tsserver.setup({
+                    capabilities = capabilities,
+                })
+            end,
+
+            ["bashls"] = function()
+                lspconfig.bashls.setup({
+                    capabilities = capabilities,
+                })
+            end,
+        })
     end,
 }
-
