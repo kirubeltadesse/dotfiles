@@ -35,9 +35,9 @@ export NB_PREVIEW_COMMAND=\"bat\"
 # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
 # export set_PS1=\"hist; \$set_PS1\"
 
-read -p "Is this every first setup? (Y/n):" ans
+read -r -p "Is this every first setup? (Y/n):" ans
 
-if [ $ans == 'Y' ]; then
+if [ "$ans" == 'Y' ]; then
 	if [ -d "$folder" ]; then
 		print warning "Folder exists"
 	else
@@ -47,14 +47,14 @@ if [ $ans == 'Y' ]; then
 	print success "setting up Keybase"
 	configure_keybase
 
-	print "warning" "asking for user information"
-	create_env_file
-
 	# write to the `.bashrc` file
 	copy_text_2_bashrc "$text"
 else
 	print warning "Keybase is setup"
 fi
+
+print "warning" "asking for user information"
+create_env_file
 
 print "warning" "Running Git shortcut scripts"
 /bin/bash gitConfig/setup.sh

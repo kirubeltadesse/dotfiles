@@ -30,4 +30,19 @@ echo "running git shortcut scripts"
 
 # setup the symlink
 echo "creating symlink for the vimrc"
-ln -s "$HOME/.dotfiles/runcom/.vimrc" $HOME/
+ln -s "$HOME/.dotfiles/runcom/.vimrc" "$HOME/.vimrc"
+
+
+# TODO: add the symlink for the  jupyter notebook keybindings
+#
+# ln -s "$HOME/.dotfiles/runcom/.jupyter/nbconfig/notebook.json" $HOME/.jupyter/nbconfig/notebook.json
+#
+# TODO:  add the symlink for the jupyter notebook custom.json
+#
+# ln -s "$HOME/.dotfiles/runcom/.jupyter/nbconfig/notebook.json" $HOME/.jupyter/nbconfig/notebook.json
+#
+# TODO: add the symlink for the kaggle config filename
+# NOTE: the kaggle.json file is already in the downloads folder
+# ln -s "$HOME/.dotfiles/runcom/.kaggle/kaggle.json" $HOME/.config/kaggle/kaggle.json
+#
+#

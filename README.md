@@ -3,7 +3,7 @@
 
 ## WSL configuration
 
-WSL's proper configuration will give you a great overall workflow. Significantly, wsl2 having Docker Desktop running natively enhances the overall productivity. There is valuable information on how to mount and `unmont` drivers on WSL
+WSL's proper configuration will give you a great overall workflow. Significantly, wsl2 having Docker Desktop running naively enhances the overall productivity. There is valuable information on how to mount and `unmont` drivers on WSL
 [link](https://linuxnightly.com/mount-and-access-hard-drives-in-windows-subsystem-for-linux-wsl/)
 
 ## Setup Process
@@ -66,7 +66,7 @@ If error with white spaces run one of this options:
 but creates rej hunks
 1. `git apply --reject --ignore-whitespace --whitespace=fix my-patch.patch` - same as above
 1. `git am -3 --ignore-whitespace` - patch format detection failed
-1. `git apply -3 --ignore-whitespace1` - fails with trailing whitespace
+1. `git apply -3 --ignore-whitespace1` - fails with trailing white space
 and new blank line at EOF.
 
 
