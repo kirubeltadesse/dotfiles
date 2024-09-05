@@ -219,7 +219,6 @@ read_file() {
 }
 
 clean_env() {
-	# TODO: not begin called anywhere at this point
 	remove_file "$USERNAME_FILE"
 	remove_file "$EMAIL_FILE"
 	rm -f $DOTFILE_TEMP_DIR
@@ -230,11 +229,5 @@ remove_file() {
 	if [ -f "$file" ]; then
 		rm "$file"
 	fi
-}
-
-delete_env_file() {
-	# this function will be called to delte the env_file
-	# after installation is complete
-	true
 }
 
