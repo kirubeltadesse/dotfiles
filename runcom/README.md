@@ -102,9 +102,3 @@ Then you can use the notation in your command
 
 - Using Lazy to install plugins to NeoVim.
 
-Formating xml
-
-```bash
-:'<,'>!xmllint --format -
-```
-
