@@ -41,6 +41,9 @@ end)
 -- formatting XML file
 vim.keymap.set("v", "<leader>fx", "!xmllint --format -")
 
+-- formatting JSON file
+vim.keymap.set("v", "<leader>fj", "!jq .")
+
 -- quick fix navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
