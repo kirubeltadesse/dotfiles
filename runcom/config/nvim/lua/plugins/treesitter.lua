@@ -19,7 +19,14 @@ return {
                 "typescript",
             },
             auto_install = true,
-            highlight = { enable = true },
+            highlight = {
+                enable = true,
+                disable = function(lang, buf)
+                    if lang == 'markdown' then
+                        return true
+                    end
+                end
+            },
             indent = { enable = true },
         })
     end,
