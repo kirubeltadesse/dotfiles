@@ -13,11 +13,11 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- vim.keymap.set("n", "<leader>vwm", function()
 --     require("vim-with-me").StartVimWithMe()
 -- end)
--- 
+--
 -- vim.keymap.set("n", "<leader>svwm", function()
 --     require("vim-with-me").StopVimWithMe()
 -- end)
--- 
+--
 --
 
 -- will not loss the past
@@ -38,6 +38,12 @@ vim.keymap.set("v", "<leader>d", function()
     vim.lsp.buf.format()
 end)
 
+-- formatting XML file
+vim.keymap.set("v", "<leader>fx", "!xmllint --format -")
+
+-- formatting JSON file
+vim.keymap.set("v", "<leader>fj", "!jq .")
+
 -- quick fix navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -47,4 +53,3 @@ vim.keymap.set("n", "<leader>d", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>")
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
