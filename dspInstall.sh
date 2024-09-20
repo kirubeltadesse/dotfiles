@@ -1,8 +1,5 @@
 # This is the install file for the Data Science Platform specifically
 
-# Get the name
-os=$(uname)
-
 # write to the `.bashrc` file
 filename="$HOME/.bashrc"
 text="
@@ -14,8 +11,10 @@ do
         [ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
 done
 
-alias v=vi
+alias v=vim
 alias aws='aws --endpoint-url https://s3.dev.bcs.bloomberg.com'
+# add clear screen command
+bind -x '\"\C-g\": \"clear\"'
 set -o vi
 "
 
