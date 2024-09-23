@@ -69,11 +69,11 @@ htitle() {
 
 	local str="${1:-}"                                                     # String to be centered
 	local char="${2:----------------------------------------------------}" # Character for horizontal rule
-	local HRULEWIDTH=50                                                    # Width of horizontal rule
+	local HRULEWIDTH=4                                                    # Width of horizontal rule
 
 	local len=${#str}                      # Length of the string
 	local side=$(((HRULEWIDTH - len) / 2)) # Length of each side of the rule
 
 	# Print the title with the horizontal rule
-	printf "#%s %s %s %s\n" "$pre" "$(printf "%-${side}s" "$char")" "$str" "$(printf "%-${side}s" "$char" "$pre")"
+	printf "#%s %s %s %s" "$pre" "$(printf "%-${side}s" "$char")" "$str" "$(printf "%-${side}s" "$char" "$pre")"
 } && export -f htitle

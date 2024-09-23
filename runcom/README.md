@@ -77,9 +77,6 @@ Your `.vimrc` file already contains the package that needs to be installed. For 
 
 Download plug.vim using
 
-<!--
-TODO: DEPRACTE the plug in manager
--->
 ```bash
 curl ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
