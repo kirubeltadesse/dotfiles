@@ -22,7 +22,7 @@ function hist() {
 }
 
 function lh() {
-  local history_path
+  local history_path; 
   history_path="$(pwd)/.lhistory"
 
   if [[ ! -f "$history_path" ]]; then
@@ -32,8 +32,7 @@ function lh() {
     print 'warning' "Reading from $history_path"
   fi
   history -a "$history_path"
-  export HISTFILE
-  HISTFILE="$(pwd)/.lhistory"
+  # export HISTFILE="$(pwd)/.lhistory"
   print 'warning' "History file set to $HISTFILE"
 
   # Append the command to the local history file
