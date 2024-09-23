@@ -50,7 +50,7 @@ EOF
             copy_text_2_bashrc "$text"
             ;;
         n|N )
-            print warning "Keybase is setup"
+            print warning "Skipping Keybase setup"
             ;;
         * )
             print error "Command not recongized"
@@ -72,15 +72,9 @@ function setup_os_applications() {
 
 function setup_editor_plugins() {
     print "warning" "Downloading vim and tmux package manager..."
-
-    # TODO: Depricate this plugin manager
     # download vim plug manage
     # Vim (~/.vim/autoload)
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    # Neovim (~/.local/share/nvim/site/autoload)
-    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # download TPM - Tmux Plag manager

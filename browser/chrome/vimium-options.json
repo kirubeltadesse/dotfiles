@@ -46,10 +46,6 @@
     },
     {
       "passKeys": "",
-      "pattern": "https?://kirubeltadesse.github.io/presentation/*"
-    },
-    {
-      "passKeys": "",
       "pattern": "https?://www.kaggle.com/code/kirubelmel/*"
     },
     {
@@ -59,6 +55,18 @@
     {
       "passKeys": "jklh<>",
       "pattern": "https?://www.youtube.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://kirubeltadesse.github.io/presentation/?/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "about:blank*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://docs.google.com/*"
     }
   ]
 }
