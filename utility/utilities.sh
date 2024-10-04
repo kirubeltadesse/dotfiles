@@ -142,12 +142,14 @@ create_symlink() {
 		ln -s "$source_file" "$target_file"
 		echo "Created symlink: $target_file -> $source_file"
 	else
+		# BUG: it might also come here if the folder structure doesn't exist
 		# TODO: ask if the user want to remove the old link
 		echo "Skipped: $target_file already exists"
 	fi
 }
 
 copy_text_2_bashrc() {
+    # TODO: Not sure if I need this anymore
 	local text="$1"
 	local file_path="$HOME/.bashrc"
 
