@@ -129,6 +129,7 @@ for arg in "$@"; do
             setup_git
             setup_os_applications
             setup_editor_plugins
+            setup_lh
             setup_nb
             setup_symlinks
             setup_lynx

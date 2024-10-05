@@ -140,9 +140,11 @@ create_symlink() {
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
+        # BUG: the links from install.sh is being broken because  source dir
+        # structure might not exist error 
+        # we need to check for that and make create the structure 
 		echo "Created symlink: $target_file -> $source_file"
 	else
-		# BUG: it might also come here if the folder structure doesn't exist
 		# TODO: ask if the user want to remove the old link
 		echo "Skipped: $target_file already exists"
 	fi
