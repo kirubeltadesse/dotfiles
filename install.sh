@@ -91,6 +91,10 @@ function setup_symlinks() {
     create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
 }
 
+function setup_lh() {
+    bash localhistory/setup.sh
+}
+
 function setup_nb() {
     bash  nb/setup.sh
 }
@@ -100,11 +104,12 @@ function setup_lynx() {
 }
 
 function show_help() {
-    echo "Usage: setup.sh [all|git|localhistory|nb|utilities]"
+    echo "Usage: setup.sh [all|init|git|lh|nb|os-apps|plugins|link|lynx]"
     echo "Run setup for different parts of your dotfiles."
     echo "all         - Run all setups"
     echo "init        - Run initial setup for bashrc"
     echo "git         - Setup Git configuration"
+    echo "lh          - Setup localhistory"
     echo "nb          - Setup nb"
     echo "os-apps     - Setup Operating system applications"
     echo "plugins     - Setup plugins for vim editor"
@@ -139,6 +144,9 @@ for arg in "$@"; do
             ;;
         plugins)
             setup_editor_plugins
+            ;;
+        lh)
+            setup_lh
             ;;
         nb)
             setup_nb
