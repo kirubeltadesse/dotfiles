@@ -137,12 +137,19 @@ install_apps() {
 create_symlink() {
 	local source_file="$1"
 	local target_file="$2"
+    local target_dir
+
+    # Get the directory of the target file
+    target_dir=$(dirname "$target_file")
+
+    # Check if the target directory exists, if not create it
+    if [ ! -d "$target_dir" ]; then
+        print error "Directory $target_dir does not exist. Createing it ..."
+        mkdir -p "$target_dir"
+    fi
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
-        # BUG: the links from install.sh is being broken because  source dir
-        # structure might not exist error 
-        # we need to check for that and make create the structure 
 		echo "Created symlink: $target_file -> $source_file"
 	else
 		# TODO: ask if the user want to remove the old link
