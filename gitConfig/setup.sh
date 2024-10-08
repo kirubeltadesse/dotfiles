@@ -62,15 +62,25 @@ function add_git_aliases() {
         git config --global credential.https://github.com.email "$(read_file "$EMAIL_FILE")"
     fi
     git config --global branch.autosetuprebase always
+
+    append_line 1 "#----------------------------------- general -----------------------------------" ~/.gitconfig
+
     git config --global alias.a add
     git config --global alias.co checkout
     git config --global alias.b branch
+    git config --global alias.bdone "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    git config --global alias.bclean "!git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+
     git config --global alias.c commit
     git config --global alias.cp cherry-pick
     git config --global alias.cpa 'cherry-pick --abort'
     git config --global alias.cpc 'cherry-pick --continue'
     git config --global alias.d diff
     git config --global alias.f fetch
+
+    append_line 1 "#----------------------------------- log -----------------------------------" ~/.gitconfig
+
     git config --global alias.last 'log -1 HEAD'
     git config --global alias.loga 'log --author'
     git config --global alias.logba 'log --branches --author'
@@ -82,7 +92,7 @@ function add_git_aliases() {
     git config --global alias.ps push
     git config --global alias.pl pull
 
-    echo "----------------------------------- remote -----------------------------------"
+    append_line 1 "#----------------------------------- remote -----------------------------------" ~/.gitconfig
 
     git config --global alias.r remote
     git config --global alias.ra 'remote add'
@@ -91,7 +101,7 @@ function add_git_aliases() {
     git config --global alias.rn 'remote rename'
     git config --global alias.rs 'remote show'
 
-    echo "----------------------------------- rebase -----------------------------------"
+    append_line 1 "#----------------------------------- rebase -----------------------------------" ~/.gitconfig
 
     git config --global alias.rb rebase
     git config --global alias.rba 'rebase --abort'
@@ -99,7 +109,7 @@ function add_git_aliases() {
     git config --global alias.rbi 'rebase --interactive'
     git config --global alias.rbs 'rebase --skip'
 
-    echo "----------------------------------- reset -----------------------------------"
+    append_line 1 "#----------------------------------- reset -----------------------------------" ~/.gitconfig
 
     git config --global alias.re 'reset'
     git config --global alias.rh 'reset HEAD'
@@ -111,14 +121,17 @@ function add_git_aliases() {
     git config --global alias.resh 'reset --soft HEAD'
     git config --global alias.rehom 'reset --hard origin/master'
 
-    echo "----------------------------------- restore -----------------------------------"
+    append_line 1 "#----------------------------------- restore -----------------------------------" ~/.gitconfig
 
     git config --global alias.rs restore
     git config --global alias.rss 'restore --staged'
+
+    append_line 1 "#----------------------------------- show -----------------------------------" ~/.gitconfig   
+
     git config --global alias.w 'show'
     git config --global alias.wno 'show --name-only'
 
-    echo "----------------------------------- stash -----------------------------------"
+    append_line 1 "#----------------------------------- stash -----------------------------------" ~/.gitconfig
 
     git config --global alias.sa 'stash apply'
     git config --global alias.sc 'stash clear'

@@ -57,7 +57,7 @@
       "pattern": "https?://www.youtube.com/*"
     },
     {
-      "passKeys": "",
+      "passKeys": "nphlkjbfs /`1234567890",
       "pattern": "https?://kirubeltadesse.github.io/presentation/?/*"
     },
     {
@@ -67,6 +67,14 @@
     {
       "passKeys": "",
       "pattern": "https?://docs.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://*-s-bql-dsp.notebook-dev-01-ob.dsp.dev.bloomberg.com/*"
+    },
+    {
+      "passKeys": "nphlkjbfs /",
+      "pattern": "https?://bbgithub.dev.bloomberg.com/pages/ktadesse1/slides/*"
     }
   ]
 }
