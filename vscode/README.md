@@ -21,8 +21,6 @@ OR
 grep -Fxvf newExtenstions extensions > unique_values.txt
 ```
 
-NOTE: you need to remove the duplications
-
 [Here](/vscode/settings.json) is my preferred vscode `settings.json` file
 
 ### Keybindings and settings

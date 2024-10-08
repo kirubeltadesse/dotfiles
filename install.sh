@@ -7,35 +7,33 @@ folder="$HOME/.dotfiles"
 
 function initial_setup() {
 
-    text <<- EOF
+    cat <<-EOF >> ~/.bashrc
     # added by the dotfile installer
-    DOTFILES_DIR=\"\$HOME/.dotfiles\"
+    DOTFILES_DIR="\$HOME/.dotfiles"
 
-    for DOTFILE in \"\$DOTFILES_DIR\"/system/.{env,prompt,alias,function};
+    for DOTFILE in "\$DOTFILES_DIR"/system/.{env,prompt,alias,function};
     do
-        [ -f \"\$DOTFILE\" ] && . \"\$DOTFILE\"
+        [ -f "\$DOTFILE" ] && . "\$DOTFILE"
     done
 
     # enable bat for fzf
     export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-    export FZF_DEFAULT_OPTS='--preview=\"bat --style=numbers --color=always --line-range :500 {}\" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
-    export FZF_DEFAULT_OPS=\"--extended\"
-    export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
+    export FZF_DEFAULT_OPTS='--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
+    export FZF_DEFAULT_OPS="--extended"
+    export FZF_CTRL_T_COMMAND="\$FZF_DEFAULT_COMMAND"
 
     # add clear screen command
-    bind -x '\"\C-g\": \"clear\"'
+    bind -x '"\C-g": "clear"'
 
     # source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
     export PATH=\$PATH:~/.nb/
     export set_PS1
-    export NB_PREVIEW_COMMAND=\"bat\"
+    export NB_PREVIEW_COMMAND="bat"
 
     [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 EOF
-    # export PROMPT_COMMAND=\"hist; \$PROMPT_COMMAND\"
-    # export set_PS1=\"hist; \$set_PS1\"
 
-    read -r -p "Is this every first setup? (Y/n):" ans
+    read -r -p "Is this the first setup? (Y/n):" ans
     case "$ans" in
         y|Y )
             if [ -d "$folder" ]; then
@@ -46,8 +44,6 @@ EOF
             fi
             print success "setting up Keybase"
             configure_keybase
-            # write to the `.bashrc` file
-            copy_text_2_bashrc "$text"
             ;;
         n|N )
             print warning "Skipping Keybase setup"
@@ -68,6 +64,7 @@ function setup_git() {
 function setup_os_applications() {
     # Install all the packages
     custome_installer
+    install_apps
 }
 
 function setup_editor_plugins() {
@@ -90,9 +87,10 @@ function setup_symlinks() {
 
     # Creating symlink for .tmux.conf"
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
+}
 
-    # copy pomodoro script
-    create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
+function setup_lh() {
+    bash localhistory/setup.sh
 }
 
 function setup_nb() {
@@ -104,11 +102,12 @@ function setup_lynx() {
 }
 
 function show_help() {
-    echo "Usage: setup.sh [all|git|localhistory|nb|utilities]"
+    echo "Usage: setup.sh [all|init|git|lh|nb|os-apps|plugins|link|lynx]"
     echo "Run setup for different parts of your dotfiles."
     echo "all         - Run all setups"
     echo "init        - Run initial setup for bashrc"
     echo "git         - Setup Git configuration"
+    echo "lh          - Setup localhistory"
     echo "nb          - Setup nb"
     echo "os-apps     - Setup Operating system applications"
     echo "plugins     - Setup plugins for vim editor"
@@ -128,6 +127,7 @@ for arg in "$@"; do
             setup_git
             setup_os_applications
             setup_editor_plugins
+            setup_lh
             setup_nb
             setup_symlinks
             setup_lynx
@@ -143,6 +143,9 @@ for arg in "$@"; do
             ;;
         plugins)
             setup_editor_plugins
+            ;;
+        lh)
+            setup_lh
             ;;
         nb)
             setup_nb

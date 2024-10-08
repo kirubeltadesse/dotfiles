@@ -4,6 +4,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILE_TEMP_DIR="/tmp/dotfiles"
 
 # Store the user's custom info
+INSTALLER_COMMAND="$DOTFILE_TEMP_DIR/command.txt"
 EMAIL_FILE="$DOTFILE_TEMP_DIR/email.txt"
 USERNAME_FILE="$DOTFILE_TEMP_DIR/username.txt"
 
@@ -49,7 +50,7 @@ append_line() {
 	update="$1"  # Whether to update (append) the line (1) or not (0)
 	line="$2"    # The line of text to be appended
 	file="$3"    # The filename of the target file
-	pat="${4:-}" # Optional pattern to serach for in the file
+	pat="${4:-}" # Optional pattern to search for in the file
 	lno=""
 
 	print 'success' "Update $file:"
@@ -65,7 +66,7 @@ append_line() {
 		fi
 	fi
 
-	# If line numbers were found, the line or pattern already esists in the file
+	# If line numbers were found, the line or pattern already exists in the file
 	if [ -n "$lno" ]; then
 		echo " - Already exists: line #$lno"
 	else
@@ -111,7 +112,7 @@ custome_installer() {
 		exit 1 #returning before running to commands below on dev machines
 		;;
 	esac
-	install_apps "$use_command"
+    write_to_file "$use_command" "$INSTALLER_COMMAND"
 }
 
 package_installed() {
@@ -121,8 +122,9 @@ package_installed() {
 
 # installer function
 install_apps() {
-	local use_command="$1"
-	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq") # "vim-gtk" "lynx")
+    local use_command
+    use_command="$(read_file "$INSTALLER_COMMAND")"
+	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq" "shunit2") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
@@ -137,6 +139,16 @@ install_apps() {
 create_symlink() {
 	local source_file="$1"
 	local target_file="$2"
+    local target_dir
+
+    # Get the directory of the target file
+    target_dir=$(dirname "$target_file")
+
+    # Check if the target directory exists, if not create it
+    if [ ! -d "$target_dir" ]; then
+        print error "Directory $target_dir does not exist. Createing it ..."
+        mkdir -p "$target_dir"
+    fi
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
@@ -148,6 +160,7 @@ create_symlink() {
 }
 
 copy_text_2_bashrc() {
+    # TODO: Not sure if I need this anymore
 	local text="$1"
 	local file_path="$HOME/.bashrc"
 
@@ -221,6 +234,7 @@ read_file() {
 clean_env() {
 	remove_file "$USERNAME_FILE"
 	remove_file "$EMAIL_FILE"
+	remove_file "$INSTALLER_COMMAND"
 	rm -f $DOTFILE_TEMP_DIR
 }
 
