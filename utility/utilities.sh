@@ -49,7 +49,7 @@ append_line() {
 	update="$1"  # Whether to update (append) the line (1) or not (0)
 	line="$2"    # The line of text to be appended
 	file="$3"    # The filename of the target file
-	pat="${4:-}" # Optional pattern to serach for in the file
+	pat="${4:-}" # Optional pattern to search for in the file
 	lno=""
 
 	print 'success' "Update $file:"
@@ -65,7 +65,7 @@ append_line() {
 		fi
 	fi
 
-	# If line numbers were found, the line or pattern already esists in the file
+	# If line numbers were found, the line or pattern already exists in the file
 	if [ -n "$lno" ]; then
 		echo " - Already exists: line #$lno"
 	else
