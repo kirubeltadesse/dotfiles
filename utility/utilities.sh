@@ -4,6 +4,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILE_TEMP_DIR="/tmp/dotfiles"
 
 # Store the user's custom info
+INSTALLER_COMMAND="$DOTFILE_TEMP_DIR/command.txt"
 EMAIL_FILE="$DOTFILE_TEMP_DIR/email.txt"
 USERNAME_FILE="$DOTFILE_TEMP_DIR/username.txt"
 
@@ -111,7 +112,7 @@ custome_installer() {
 		exit 1 #returning before running to commands below on dev machines
 		;;
 	esac
-	install_apps "$use_command"
+    write_to_file "$use_command" "$INSTALLER_COMMAND"
 }
 
 package_installed() {
@@ -121,7 +122,8 @@ package_installed() {
 
 # installer function
 install_apps() {
-	local use_command="$1"
+    local use_command
+    use_command="$(read_file "$INSTALLER_COMMAND")"
 	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq" "shunit2") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
@@ -232,6 +234,7 @@ read_file() {
 clean_env() {
 	remove_file "$USERNAME_FILE"
 	remove_file "$EMAIL_FILE"
+	remove_file "$INSTALLER_COMMAND"
 	rm -f $DOTFILE_TEMP_DIR
 }
 

@@ -64,6 +64,7 @@ function setup_git() {
 function setup_os_applications() {
     # Install all the packages
     custome_installer
+    install_apps
 }
 
 function setup_editor_plugins() {
@@ -86,9 +87,6 @@ function setup_symlinks() {
 
     # Creating symlink for .tmux.conf"
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
-
-    # copy pomodoro script
-    create_symlink "$HOME/.tmux/plugins/tmux-pomodoro-plus/scripts/pomodoro.sh" "$HOME/.tmux/plugins/tmux/scripts/pomodoro.sh"
 }
 
 function setup_lh() {
