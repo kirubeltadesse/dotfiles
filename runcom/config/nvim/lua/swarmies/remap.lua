@@ -44,12 +44,16 @@ vim.keymap.set("v", "<leader>fx", "!xmllint --format -")
 -- formatting JSON file
 vim.keymap.set("v", "<leader>fj", "!jq .")
 
--- quick fix navigation
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- Disable vim-tmux-navigation mapping in Neovim if inside a quickfix list
+vim.api.nvim_create_autocmd({"FileType"}, {
+    pattern = "qf", -- Quick buffer type
+    callback = function()
+        vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+        vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+    end,
+})
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>d", "<cmd>lprev<CR>zz")
-
 
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>")
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
