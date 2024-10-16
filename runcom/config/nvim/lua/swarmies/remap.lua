@@ -57,3 +57,18 @@ vim.keymap.set("n", "<leader>d", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>")
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- Split windows
+vim.keymap.set("n", "ss", ":vsplit<Return>", { noremap = true, silent=true})
+vim.keymap.set("n", "sv", ":split<Return>", { noremap = true, silent=true})
+
+-- Tabs
+vim.keymap.set("n", "te", ":tabedit", { noremap = true, silent=true})
+vim.keymap.set("n", "<tab>", ":tabnext<Return>", { noremap = true, silent=true})
+vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent=true})
+
+-- Re-size Panes
+vim.keymap.set("n", "<M-h>", '<Cmd>lua require("tmux").resize_left()<CR>', { silent = true })
+vim.keymap.set("n", "<M-j>", '<Cmd>lua require("tmux").resize_bottom()<CR>', { silent = true })
+vim.keymap.set("n", "<M-k>", '<Cmd>lua require("tmux").resize_top()<CR>', { silent = true })
+vim.keymap.set("n", "<M-l>", '<Cmd>lua require("tmux").resize_right()<CR>', { silent = true })
