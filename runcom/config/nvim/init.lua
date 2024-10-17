@@ -15,18 +15,17 @@ vim.g.mapleader = ' '
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('KirubelLspConfig', {}),
     callback = function(ev)
-        --local on_attach = function(_, bufnr)
-        --FIXME: might need to make function call 
+        --FIXME: might need to make function call
         --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        local opts = { buffer = ev.buf }
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-        vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-        vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition", buffer = ev.buf })
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Go method definition", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol,
+            { desc = "Search Symobls Matching", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, { desc = "Diagnostic open float", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, { desc = "Go to references", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { desc = "Buffer rename", buffer = ev.buf })
+        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Help signature", buffer = ev.buf })
     end
 })
 
