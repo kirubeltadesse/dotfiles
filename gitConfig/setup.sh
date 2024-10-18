@@ -90,7 +90,15 @@ function add_git_aliases() {
     git config --global alias.logs 'log --stat'
     git config --global alias.m merge
     git config --global alias.ps push
+
+    append_line 1 "#----------------------------------- pull -----------------------------------" ~/.gitconfig
+
     git config --global alias.pl pull
+    git config --global alias.pr '!f() { git fetch upstream pull/$1/head:$2; }; f'
+    # git pr 1234 my-branch - usage of the above alias
+    git config --global alias.prco '!f() { git fetch upstream pull/$1/head:$2 && git checkout $2; }; f'
+    # git prco 1234 my-branch - usage of the above alias
+
 
     append_line 1 "#----------------------------------- remote -----------------------------------" ~/.gitconfig
 
