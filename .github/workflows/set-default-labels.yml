@@ -3,7 +3,7 @@ on: [workflow_dispatch]
 
 jobs:
   set-default-labels:
-    uses: mdn/workflows/.github/workflows/set-default-labels.yml@master
+    uses: dotfiles/workflows/.github/workflows/set-default-labels.yml@master
     with:
       target-repo: "kirubeltadesse/dotfiles"
       should-delete-labels: true
