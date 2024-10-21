@@ -1,10 +1,15 @@
 # Dotfiles
 
+## Windows
 
-## WSL configuration
+### WSL configuration
 
 WSL's proper configuration will give you a great overall workflow. Significantly, wsl2 having Docker Desktop running naively enhances the overall productivity. There is valuable information on how to mount and `unmont` drivers on WSL
 [link](https://linuxnightly.com/mount-and-access-hard-drives-in-windows-subsystem-for-linux-wsl/)
+
+## MacOS
+
+Check the [keyboard shortcut](https://support.apple.com/en-gb/guide/mac-help/mchlp2864/mac) to `Ctrl+shift+space` to avoid conflict with vim lsp
 
 ## Setup Process
 
