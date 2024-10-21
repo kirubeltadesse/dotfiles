@@ -18,6 +18,7 @@ return {
                 "rust_analyzer",
                 "bashls",
                 "debugpy",
+                "isort"
             },
             auto_install = true,
         })
