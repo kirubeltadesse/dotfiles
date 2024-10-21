@@ -75,6 +75,10 @@
     {
       "passKeys": "nphlkjbfs /",
       "pattern": "https?://bbgithub.dev.bloomberg.com/pages/ktadesse1/slides/*"
+    },
+    {
+      "passKeys": "nphlkjbfs /",
+      "pattern": "http://localhost:7890/?/*"
     }
   ]
 }

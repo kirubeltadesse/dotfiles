@@ -81,7 +81,6 @@ function add_git_aliases() {
 
     append_line 1 "#----------------------------------- log -----------------------------------" ~/.gitconfig
 
-    git config --global alias.last 'log -1 HEAD'
     git config --global alias.loga 'log --author'
     git config --global alias.logba 'log --branches --author'
     git config --global alias.logbna 'log --branches --no-walk --author'
