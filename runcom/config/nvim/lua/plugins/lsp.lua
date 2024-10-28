@@ -43,7 +43,7 @@ return {
             end,
 
             ["ruff"] = function()
-                lspconfig.black.setup({
+                lspconfig.ruff_lsp.setup({
                     capabilities = capabilities,
                 })
             end,
