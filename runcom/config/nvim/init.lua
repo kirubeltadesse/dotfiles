@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
         --FIXME: might need to make function call
         --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration", buffer = ev.buf })
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition", buffer = ev.buf })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Go method definition", buffer = ev.buf })
         vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol,
