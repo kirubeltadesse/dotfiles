@@ -17,6 +17,7 @@ return {
                 "lua",
                 "javascript",
                 "typescript",
+                "java",
             },
             auto_install = true,
             highlight = {
