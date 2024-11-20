@@ -9,9 +9,9 @@ function link_pass {
     "
 
     print warning "Adding bash complete for pass to .bashrc"
-    while IFS= read -r line; do
-        append_line 1 "${line}" "${filebashrc}"
-    done <<<"$text"
+while IFS= read -r line; do
+append_line 1 "${line}" "${filebashrc}"
+done <<<"$text"
 }
 
 function link_lh {
@@ -21,8 +21,8 @@ function link_lh {
     "
 
     print warning "Adding bash complete for lh to .bashrc"
-    while IFS= read -r line; do
-        append_line 1 "${line}" "${filebashrc}"
-    done <<<"$text"
+while IFS= read -r line; do
+append_line 1 "${line}" "${filebashrc}"
+done <<<"$text"
 }
 
