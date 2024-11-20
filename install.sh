@@ -89,8 +89,12 @@ function setup_symlinks() {
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 }
 
+function setup_pass() {
+    . localhistory/setup.sh; link_pass
+}
+
 function setup_lh() {
-    bash localhistory/setup.sh
+    . localhistory/setup.sh; link_lh
 }
 
 function setup_nb() {
@@ -108,6 +112,7 @@ function show_help() {
     echo "init        - Run initial setup for bashrc"
     echo "git         - Setup Git configuration"
     echo "lh          - Setup localhistory"
+    echo "pass        - Setup pass completion"
     echo "nb          - Setup nb"
     echo "os-apps     - Setup Operating system applications"
     echo "plugins     - Setup plugins for vim editor"
@@ -143,6 +148,9 @@ for arg in "$@"; do
             ;;
         plugins)
             setup_editor_plugins
+            ;;
+        pass)
+            setup_pass
             ;;
         lh)
             setup_lh
