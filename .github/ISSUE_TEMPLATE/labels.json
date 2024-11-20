@@ -1,0 +1,99 @@
+[
+  {
+    "name": "🚦 status: awaiting triage",
+    "color": "333333",
+    "description": "Has not been triaged & therefore, not ready for work"
+  },
+  {
+    "name": "🚧 status: blocked",
+    "color": "999999",
+    "description": "Blocked & therefore, not ready for work"
+  },
+  {
+    "name": "⛔️ status: discarded",
+    "color": "eeeeee",
+    "description": "Will not be worked on"
+  },
+  {
+    "name": "🏷 status: label work required",
+    "color": "#bfefbf",
+    "description": "Needs proper labelling before it can be worked on"
+  },
+  {
+    "name": "🧹 status: In Progress",
+    "color": "666666",
+    "description": "Needs more details before it can be worked on"
+  },
+  {
+    "name": "🏁 status: ready for dev",
+    "color": "cccccc",
+    "description": "Ready for work"
+  },
+  {
+    "name": "Status: Review Needed",
+    "color": "#fbca04"
+  },
+  {
+    "name": "✨ goal: improvement",
+    "color": "ffffff",
+    "description": "Improvement to an existing feature"
+  },
+  {
+    "name": "❓ talk: question",
+    "color": "f9bbe5"
+  },
+  {
+    "name": "⭐ goal: addition",
+    "color": "ffffff",
+    "description": "Addition of new feature"
+  },
+  {
+    "name": "💬 talk: discussion",
+    "color": "f9bbe5"
+  },
+  {
+    "name": "💻 aspect: code",
+    "color": "04338c"
+  },
+  {
+    "name": "📄 aspect: text",
+    "color": "04338c"
+  },
+  {
+    "name": "🔒 staff only",
+    "color": "7f0799"
+  },
+  {
+    "name": "🕹 aspect: interface",
+    "color": "04338c"
+  },
+  {
+    "name": "🛠 goal: fix",
+    "color": "ffffff",
+    "description": "Bug fix"
+  },
+  {
+    "name": "🟥 priority: critical",
+    "color": "b60205",
+    "description": "Must be fixed ASAP"
+  },
+  {
+    "name": "🟧 priority: high",
+    "color": "ff9f1c",
+    "description": "Stalls work on the project or its dependents"
+  },
+  {
+    "name": "🟨 priority: medium",
+    "color": "ffcc00",
+    "description": "Not blocking but should be fixed soon"
+  },
+  {
+    "name": "🟩 priority: low",
+    "color": "cfda2c",
+    "description": "Low priority and doesn't need to be rushed"
+  },
+  {
+    "name": "🤖 aspect: dx",
+    "color": "04338c"
+  }
+]

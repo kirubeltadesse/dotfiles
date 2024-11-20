@@ -19,7 +19,6 @@ return {
                 null_ls.builtins.formatting.isort, -- TODO: format and linter for cpp file
             },
         })
-
-        vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+        vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "LSP Format Buffer" })
     end,
 }

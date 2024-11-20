@@ -1,26 +1,28 @@
 return {
     {
-        'nvim-telescope/telescope.nvim', version= '0.1.6',
+        'nvim-telescope/telescope.nvim',
+        version = '0.1.6',
         -- or                            , branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             local builtin = require('telescope.builtin')
-            vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
-            vim.keymap.set('n', '<C-p>', builtin.git_files, {})
-            vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+            vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = " Find Files" })
+            vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Git Files Search" })
+            vim.keymap.set('n', '<leader>lg', builtin.live_grep, { desc = "Live Grep" })
             vim.keymap.set('n', '<leader>pws', function()
                 local word = vim.fn.expand("<cword>")
                 builtin.grep_string({ search = word });
-            end)
+            end, { desc = "Grep Current Word" })
             vim.keymap.set('n', '<leader>pWs', function()
                 local word = vim.fn.expand("<cWORD>")
                 builtin.grep_string({ search = word });
-            end)
+            end, { desc = "Grep Current WORD" })
             vim.keymap.set('n', '<leader>ps', function()
                 builtin.grep_string({ search = vim.fn.input("Grap > ") });
-            end)
-            vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
+            end, { desc = "Grep Input" })
+            vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = "Vim Help Tags" })
         end
+
     },
     {
         'nvim-telescope/telescope-ui-select.nvim',

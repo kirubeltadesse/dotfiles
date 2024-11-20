@@ -18,6 +18,7 @@ return {
                 "rust_analyzer",
                 "bashls",
                 "debugpy",
+                "isort",
             },
             auto_install = true,
         })
@@ -42,7 +43,7 @@ return {
             end,
 
             ["ruff"] = function()
-                lspconfig.black.setup({
+                lspconfig.ruff.setup({
                     capabilities = capabilities,
                 })
             end,
