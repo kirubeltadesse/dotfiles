@@ -9,12 +9,16 @@
 declare -a COMMANDS=(foo bar blah)
 
 if [[ -n $COMP_LINE ]]; then
-	for c in ${COMMANDS[@]}; do
+	for c in "${COMMANDS[@]}"; do
 		[[ ${c:0:${#2}} == ${2,,} ]] && echo "$c" 	
 	done
 	exit
 fi
 
+_lh() {
+# This is the entry point
+echo "test"
+}
 
 
 _foo() {
@@ -26,13 +30,13 @@ _bar() {
 }
 
 _blah() {
-	echo would blah with $1 
+	echo would blah with "$1" 
 }
 
 declare cmd="$1"; shift
 
-for c in  ${COMMANDS[@]}; do 
-	[[ $c == $cmd ]] &&  "_$cmd" "$@" && exit $?
+for c in  "${COMMANDS[@]}"; do 
+	[[ "$c" == $cmd ]] &&  "_$cmd" "$@" && exit $?
 
 done
 

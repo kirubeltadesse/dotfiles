@@ -116,6 +116,7 @@ show_help() {
     echo "init        - Run initial setup for bashrc"
     echo "git         - Setup Git configuration"
     echo "lh          - Setup localhistory"
+    echo "pass        - Setup pass completion"
     echo "nb          - Setup nb"
     echo "os-apps     - Setup Operating system applications"
     echo "plugins     - Setup plugins for vim editor"
@@ -151,6 +152,9 @@ for arg in "$@"; do
             ;;
         plugins)
             setup_editor_plugins
+            ;;
+        pass)
+            setup_pass
             ;;
         lh)
             setup_lh
