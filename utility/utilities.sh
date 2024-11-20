@@ -85,6 +85,7 @@ append_line() {
 
 custome_installer() {
 	local use_command
+    create_env_file
 
 	case "$(uname)" in
 	Linux)

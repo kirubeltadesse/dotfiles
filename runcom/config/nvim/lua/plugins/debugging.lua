@@ -1,4 +1,10 @@
 return {
+
+    {
+        "mfussenegger/nvim-jdtls",
+        ft = { "java" },
+    },
+
     {
         "mfussenegger/nvim-dap",
         dependencies = {
@@ -10,8 +16,9 @@ return {
             "mfussenegger/nvim-dap-python",
         },
         config = function()
-            local dap = require("dap")
-            local dapui = require("dapui")
+            local dap, dapui = require("dap"), require("dapui")
+
+            dapui.setup()
             local dap_virtual_text = require("nvim-dap-virtual-text")
             local dap_python = require("dap-python")
 
@@ -38,7 +45,7 @@ return {
             end
 
             dap.set_log_level("TRACE")
-            dap.defaults.timeout = 3000  -- 3 seconds
+            dap.defaults.timeout = 3000 -- 3 seconds
             table.insert(dap.configurations.python, {
                 {
                     type = "python",
@@ -58,6 +65,9 @@ return {
                         elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
                             print("found .venv")
                             return cwd .. '/.venv/bin/python3.12'
+                        elseif vim.fn.executable(cwd .. '/.env/bin/python') == 1 then
+                            print("found .env")
+                            return cwd .. '/.env/bin/python3.12'
                         else
                             print("using system python")
                             return '/usr/bin/python3'
@@ -92,18 +102,29 @@ return {
                 },
             })
             -- add mappings for debugging
-            -- FIXME: vim.keymap.set('n', "<F5>", vim.cmd.Ex require('dap').continue()<CR> )
-            vim.keymap.set('n', "<F10>", dap.step_over, {})
-            vim.keymap.set('n', "<F11>", dap.step_into, {})
-            vim.keymap.set('n', "<F12>", dap.step_out, {})
-            vim.keymap.set('n', "<leader>dt", dap.toggle_breakpoint, {})
-            vim.keymap.set('n', "<leader>dc", dap.continue, {})
-            -- vim.keymap.set('n', "<leader>B",
-            --   dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')), {})
-            -- vim.keymap.set('n', "<leader>lp", dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')), {})
-            vim.keymap.set('n', "<leader>dr", dap.repl.open, {})
-            vim.keymap.set('n', "<leader>dl", dap.run_last, {})
-            -- vim.keymap.set('n', "<leader>di", dap.ui.variables.hover, {})
+            vim.keymap.set('n', "<leader>do", dap.step_over, { desc = "Step over" })
+            vim.keymap.set('n', "<leader>di", dap.step_into, { desc = "Step into" })
+            vim.keymap.set('n', "<leader>dO", dap.step_out, { desc = "Step out" })
+            vim.keymap.set('n', "<leader>dt", dap.toggle_breakpoint, { desc = "toggle breakpoint" })
+            vim.keymap.set('n', "<leader>dc", dap.continue, { desc = "continue debugging" })
+            -- Conditional Breakpoint
+            vim.keymap.set('n', '<leader>db', function()
+                dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+            end, { desc = 'Set conditional breakpoint' })
+
+            -- Log Point Breakpoint
+            vim.keymap.set('n', '<leader>dl', function()
+                dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+            end, { desc = 'Set log point' })
+
+            -- Clear all breakpoints
+            vim.keymap.set('n', '<leader>dC', dap.clear_breakpoints, { desc = 'Clear all breakpoints' })
+            vim.keymap.set('n', "<leader>dr", dap.repl.open, { desc = "open repl" })
+            vim.keymap.set('n', "<leader>dl", dap.run_last, { desc = "run last" })
+            vim.keymap.set('n', "<leader>dv", function()
+                local widgets = require('dap.ui.widgets')
+                widgets.hover()
+            end, { desc = "Debug Ui Varaibles" })
         end,
     },
 }
