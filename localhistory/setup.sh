@@ -16,6 +16,7 @@ done <<<"$text"
 
 function link_lh {
     text="
+    source $HOME/.dotfiles/localhistory/lh.sh
     source $HOME/.dotfiles/localhistory/lh_completion.sh
     complete -o filenames -F _lh lh
     "
