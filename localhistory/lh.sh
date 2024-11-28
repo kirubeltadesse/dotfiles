@@ -21,7 +21,54 @@ function hist() {
   # rr ~/.bash_history_aux;
 }
 
+
+function show_help() {
+    echo "Usage: lh.sh [init|add|remove]"
+    echo "Run setup for different local history."
+    echo "help        - display help manuel"
+    echo "init        - create local history file"
+    echo "lh          - Setup localhistory"
+    echo "add         - add command to lhistory"
+    echo "remove      - remove command to lhistory"
+}
+
+
 function lh() {
+    for arg in "$@"; do
+        case $arg in
+            help)
+                show_help
+                ;;
+            init)
+                create "$@"
+                ;;
+            add)
+                add
+                ;;
+            remove)
+                remove
+                ;;
+            info)
+                notify
+                ;;
+            *)
+                show_help
+                # exit 1
+                ;;
+        esac
+    done
+}
+
+function notify()
+{
+     if [ $# -eq 0 ]; then
+        print "warning" "read current directory .lhistory"
+        return
+     fi
+    print "warning" "read .lhistory from $1"
+}
+
+function create() {
   local history_path
   history_path="$(pwd)/.lhistory"
 
@@ -43,7 +90,7 @@ function lh() {
 function cd() {
   builtin cd "$@" || exit
   if [[ -f "$(pwd)/.lhistory" ]]; then
-    lh "$@"
+    notify "$@"
     # hist "$(pwd)/.lhistory"
   else
     export HISTFILE="$HOME/.bash_history"
