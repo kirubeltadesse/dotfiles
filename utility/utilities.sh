@@ -246,3 +246,18 @@ remove_file() {
 	fi
 }
 
+set_proxy ()
+{
+    export http_proxy=http://proxy.bloomberg.com:81
+    export https_proxy=http://proxy.bloomberg.com:81
+    print "success" "proxy set successfully"
+}
+
+unset_proxy ()
+{
+    unset http_proxy
+    unset https_proxy
+    print "error" "proxy unset successfully"
+}
+
+
