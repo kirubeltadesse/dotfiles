@@ -16,7 +16,7 @@ if [[ -n $COMP_LINE ]]; then
 fi
 
 _lh() {
-    COMPREPLY=($(compgen -W "init add remove info" "${COMP_WORDS[1]}"))
+    COMPREPLY=($(compgen -W "init add remove info set unset" "${COMP_WORDS[1]}"))
 }
 
 

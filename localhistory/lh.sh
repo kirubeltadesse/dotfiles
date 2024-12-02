@@ -1,6 +1,7 @@
-folder="$HOME/.dotfiles"
+FOLDER="$HOME/.dotfiles"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "$folder"/utility/utilities.sh
+source "$FOLDER/utility/utilities.sh"
 
 # handle the history differently
 # http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
@@ -30,6 +31,8 @@ function show_help() {
     echo "lh          - Setup localhistory"
     echo "add         - add command to lhistory"
     echo "remove      - remove command to lhistory"
+    echo "set         - set http and https proxy"
+    echo "unset       - unset http and https proxy"
 }
 
 
@@ -50,6 +53,12 @@ function lh() {
                 ;;
             info)
                 notify
+                ;;
+            set)
+                set_proxy
+                ;;
+            unset)
+                unset_proxy
                 ;;
             *)
                 show_help
@@ -87,6 +96,7 @@ function create() {
   echo "$PWD $*" >>"$history_path"
 }
 
+# TODO: user should be able to pick the history that they want to read
 function cd() {
   builtin cd "$@" || exit
   if [[ -f "$(pwd)/.lhistory" ]]; then
