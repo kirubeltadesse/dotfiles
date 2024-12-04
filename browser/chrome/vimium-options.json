@@ -70,7 +70,7 @@
     },
     {
       "passKeys": "",
-      "pattern": "https?://*-s-bql-dsp.notebook-dev-01-ob.dsp.dev.bloomberg.com/*"
+      "pattern": "https?://*dsp.dev.bloomberg.com/*"
     },
     {
       "passKeys": "nphlkjbfs /",
@@ -79,6 +79,10 @@
     {
       "passKeys": "nphlkjbfs /",
       "pattern": "http://localhost:7890/?/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://*dsp.prod.bloomberg.com/*"
     }
   ]
 }

@@ -1,9 +1,7 @@
 #!/bin/bash
 # Check if the dot directory exist
-
-CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$CURRENT_DIR/utility/utilities.sh"
-folder="$HOME/.dotfiles"
+FOLDER="$HOME/.dotfiles"
+source "$FOLDER/utility/utilities.sh"
 
 function initial_setup() {
 
@@ -36,7 +34,7 @@ EOF
     read -r -p "Is this the first setup? (Y/n):" ans
     case "$ans" in
         y|Y )
-            if [ -d "$folder" ]; then
+            if [ -d "$FOLDER" ]; then
                 print warning "Folder exists"
             else
                 echo "Rename folder to .dotfiles"
