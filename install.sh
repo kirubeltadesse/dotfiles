@@ -7,30 +7,30 @@ folder="$HOME/.dotfiles"
 
 function initial_setup() {
 
-    cat <<-EOF >> ~/.bashrc
-    # added by the dotfile installer
-    DOTFILES_DIR="\$HOME/.dotfiles"
+cat <<-EOF >> ~/.bashrc
+# added by the dotfile installer
+DOTFILES_DIR="\$HOME/.dotfiles"
 
-    for DOTFILE in "\$DOTFILES_DIR"/system/.{env,prompt,alias,function};
-    do
-        [ -f "\$DOTFILE" ] && . "\$DOTFILE"
-    done
+for DOTFILE in "\$DOTFILES_DIR"/system/.{env,prompt,alias,function};
+do
+    [ -f "\$DOTFILE" ] && . "\$DOTFILE"
+done
 
-    # enable bat for fzf
-    export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-    export FZF_DEFAULT_OPTS='--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
-    export FZF_DEFAULT_OPS="--extended"
-    export FZF_CTRL_T_COMMAND="\$FZF_DEFAULT_COMMAND"
+# enable bat for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
+export FZF_DEFAULT_OPS="--extended"
+export FZF_CTRL_T_COMMAND="\$FZF_DEFAULT_COMMAND"
 
-    # add clear screen command
-    bind -x '"\C-g": "clear"'
+# add clear screen command
+bind -x '"\C-g": "clear"'
 
-    # source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
-    export PATH=\$PATH:~/.nb/
-    export set_PS1
-    export NB_PREVIEW_COMMAND="bat"
+# source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
+export PATH=\$PATH:~/.nb/
+export set_PS1
+export NB_PREVIEW_COMMAND="bat"
 
-    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 EOF
 
     read -r -p "Is this the first setup? (Y/n):" ans
@@ -89,8 +89,12 @@ function setup_symlinks() {
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 }
 
+function setup_pass() {
+    . localhistory/setup.sh; link_pass
+}
+
 function setup_lh() {
-    bash localhistory/setup.sh
+    . localhistory/setup.sh; link_lh
 }
 
 function setup_nb() {
@@ -108,6 +112,7 @@ function show_help() {
     echo "init        - Run initial setup for bashrc"
     echo "git         - Setup Git configuration"
     echo "lh          - Setup localhistory"
+    echo "pass        - Setup pass completion"
     echo "nb          - Setup nb"
     echo "os-apps     - Setup Operating system applications"
     echo "plugins     - Setup plugins for vim editor"
@@ -143,6 +148,9 @@ for arg in "$@"; do
             ;;
         plugins)
             setup_editor_plugins
+            ;;
+        pass)
+            setup_pass
             ;;
         lh)
             setup_lh

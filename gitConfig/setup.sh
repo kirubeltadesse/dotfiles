@@ -124,7 +124,7 @@ function add_git_aliases() {
     git config --global alias.rehh 'reset --hard HEAD'
     git config --global alias.remh 'reset --mixed HEAD'
     git config --global alias.resh 'reset --soft HEAD'
-    git config --global alias.rehom 'reset --hard origin/master'
+    git config --global alias.rehom 'reset --hard origin/main'
 
     append_line 1 "#----------------------------------- restore -----------------------------------" ~/.gitconfig
 
