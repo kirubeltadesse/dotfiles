@@ -3,23 +3,27 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 source "$FOLDER/utility/utilities.sh"
 
+CURRENT_LOADED_HISTORY_PATH="$HOME/.bash_history"
+LOCAL_HISTOR=""
+
 # handle the history differently
 # http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
 # TODO: filter the command in `.lhistory` to include unique history
 function hist() {
-  local lhistory="$1"
-  history -a "$lhistory" # update the current session history
-  history -c           # clears the current in-memory command
-  newCommands=$(cat "$lhistory")
-  if [ "$newCommands" != "" ]; then
-    grep -vwE "$newCommands"~/.bash_history >"$lhistory"
-    cp "$lhistory" ~/.bash_history
-    echo "$newCommands" >>~/.bash_history
-  fi
-  history -r # read the modified file into memory
-  history -a # appends the in momory history
-  # remove the history file
-  # rr ~/.bash_history_aux;
+    local lhistory="$1"
+    history -a "$1"
+    CURRENT_LOADED_HISTORY_PATH="$1"
+    history -c             # clears the current in-memory command
+    newCommands=$(cat "$lhistory")
+    if [ "$newCommands" != "" ]; then
+        grep -vwE "$newCommands"~/.bash_history >"$lhistory"
+        cp "$lhistory" ~/.bash_history
+        echo "$newCommands" >>~/.bash_history
+    fi
+    history -r "$lhistory" # read the modified file into memory
+    history -a "$lhistory" # appends the in memory history
+    # remove the history file
+    # rr ~/.bash_history_aux;
 }
 
 
@@ -33,6 +37,7 @@ function show_help() {
     echo "remove      - remove command to lhistory"
     echo "set         - set http and https proxy"
     echo "unset       - unset http and https proxy"
+    echo "swap        - swap loaded history"
 }
 
 
@@ -60,6 +65,9 @@ function lh() {
             unset)
                 unset_proxy
                 ;;
+            swap)
+                swap
+                ;;
             *)
                 show_help
                 # exit 1
@@ -70,41 +78,56 @@ function lh() {
 
 function notify()
 {
-     if [ $# -eq 0 ]; then
-        print "warning" "read current directory .lhistory"
-        return
-     fi
-    print "warning" "read .lhistory from $1"
+    print "warning" "read .lhistory from $CURRENT_LOADED_HISTORY_PATH"
+    return
 }
 
 function create() {
-  local history_path
-  history_path="$(pwd)/.lhistory"
+  LOCAL_HISTOR="$(pwd)/.lhistory"
 
-  if [[ ! -f "$history_path" ]]; then
-    touch "$history_path"
-    print 'success' "Create a local history $history_path"
+  if [[ ! -f "$LOCAL_HISTOR" ]]; then
+    touch "$LOCAL_HISTOR"
+    CURRENT_LOADED_HISTORY_PATH="$LOCAL_HISTOR"
+    print 'success' "Create a local history $LOCAL_HISTOR"
   else
-    print 'warning' "Reading from $history_path"
+    print 'warning' "Reading from $LOCAL_HISTOR"
   fi
-  history -a "$history_path"
+  history -a "$LOCAL_HISTOR"
   export HISTFILE
-  HISTFILE="$(pwd)/.lhistory"
+  HISTFILE="$LOCAL_HISTOR"
   print 'warning' "History file set to $HISTFILE"
 
   # Append the command to the local history file
-  echo "$PWD $*" >>"$history_path"
+  echo "$PWD $*" >>"$LOCAL_HISTOR"
 }
 
-# TODO: user should be able to pick the history that they want to read
+function swap() {
+    if [ "$CURRENT_LOADED_HISTORY_PATH" != "$LOCAL_HISTOR" ]; then
+        set_history "$LOCAL_HISTOR"
+    else
+        set_history "$HOME/.bash_history" 
+    fi
+    return;
+}
+
+function set_history() {
+    # update the current session history
+    history -a "$1"
+    CURRENT_LOADED_HISTORY_PATH="$1"
+    history -r "$1"
+    return;
+}
+
 function cd() {
-  builtin cd "$@" || exit
-  if [[ -f "$(pwd)/.lhistory" ]]; then
-    notify "$@"
-    # hist "$(pwd)/.lhistory"
-  else
-    export HISTFILE="$HOME/.bash_history"
-  fi
+    builtin cd "$@" || exit
+    if [[ -f "$(pwd)/.lhistory" ]]; then
+        # load the local history
+        LOCAL_HISTOR="$(pwd)/.lhistory"
+        # hist "$(pwd)/.lhistory"
+        notify "$@"
+    else
+        export HISTFILE="$HOME/.bash_history"
+    fi
 }
 
 # TODO: create a function to read the .lhistory
