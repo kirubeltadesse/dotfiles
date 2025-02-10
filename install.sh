@@ -1,9 +1,15 @@
 #!/bin/bash
 # Check if the dot directory exist
 FOLDER="$HOME/.dotfiles"
+
+if [[ ! -d "$FOLDER" ]]; then
+    echo "direcotry does not exist: $FOLDER"
+    exit 1
+fi
+
 source "$FOLDER/utility/utilities.sh"
 
-function initial_setup() {
+initial_setup() {
 
     cat <<-EOF >> ~/.bashrc
     # added by the dotfile installer
@@ -32,7 +38,7 @@ function initial_setup() {
 EOF
 
     read -r -p "Is this the first setup? (Y/n):" ans
-    case "$ans" in
+    case "${ans:-Y}" in
         y|Y )
             if [ -d "$FOLDER" ]; then
                 print warning "Folder exists"
@@ -52,20 +58,20 @@ EOF
     esac
 }
 
-function setup_git() {
+setup_git() {
     print "warning" "asking for user information"
     create_env_file
     print "warning" "Running Git shortcut scripts"
     /bin/bash gitConfig/setup.sh
 }
 
-function setup_os_applications() {
+setup_os_applications() {
     # Install all the packages
     custome_installer
     install_apps
 }
 
-function setup_editor_plugins() {
+setup_editor_plugins() {
     print "warning" "Downloading vim and tmux package manager..."
     # download vim plug manage
     # Vim (~/.vim/autoload)
@@ -76,7 +82,7 @@ function setup_editor_plugins() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-function setup_symlinks() {
+setup_symlinks() {
     # Create symlinks for .vimrc and .ideavimrc
     create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
     create_symlink "$HOME/.dotfiles/runcom/config/nvim" "$HOME/.config/nvim"
@@ -87,19 +93,35 @@ function setup_symlinks() {
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 }
 
+<<<<<<< Updated upstream
 function setup_lh() {
     bash localhistory/setup.sh
+||||||| Stash base
+function setup_pass() {
+    . localhistory/setup.sh; link_pass
 }
 
-function setup_nb() {
+function setup_lh() {
+    . localhistory/setup.sh; link_lh
+=======
+setup_pass() {
+    . localhistory/setup.sh; link_pass
+}
+
+setup_lh() {
+    . localhistory/setup.sh; link_lh
+>>>>>>> Stashed changes
+}
+
+setup_nb() {
     bash  nb/setup.sh
 }
 
-function setup_lynx() {
+setup_lynx() {
     bash browser/lynx/setup.sh
 }
 
-function show_help() {
+show_help() {
     echo "Usage: setup.sh [all|init|git|lh|nb|os-apps|plugins|link|lynx]"
     echo "Run setup for different parts of your dotfiles."
     echo "all         - Run all setups"
