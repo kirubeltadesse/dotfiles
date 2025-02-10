@@ -93,24 +93,12 @@ setup_symlinks() {
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
 }
 
-<<<<<<< Updated upstream
-function setup_lh() {
-    bash localhistory/setup.sh
-||||||| Stash base
-function setup_pass() {
-    . localhistory/setup.sh; link_pass
-}
-
-function setup_lh() {
-    . localhistory/setup.sh; link_lh
-=======
 setup_pass() {
     . localhistory/setup.sh; link_pass
 }
 
 setup_lh() {
     . localhistory/setup.sh; link_lh
->>>>>>> Stashed changes
 }
 
 setup_nb() {
