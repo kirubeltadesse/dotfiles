@@ -180,7 +180,7 @@ create_env_file() {
         clean_env
     	mkdir -p $DOTFILE_TEMP_DIR
     	read -r -p "Enter git-username: " username
-    	read -r -p "Enter git-eamil: " email
+    	read -r -p "Enter git-email: " email
     	write_to_file "$username" "$USERNAME_FILE"
     	write_to_file "$email" "$EMAIL_FILE"
     else
