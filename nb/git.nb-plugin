@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+###############################################################################
+# nb g - Git Alias for nb
+#
+# Adds a custom subcommand 'g' to perform git commands in the notebook directory.
+###############################################################################
+
+# Add the new subcommand name with `_subcommands add <name>`.
+_subcommands add "g"
+
+# Define help and usage text with `_subcommands describe <subcommand> <usage>`.
+_subcommands describe "g" <<HEREDOC
+Usage:
+  nb g <git-command>
+  Description:
+    Perform git operations in the notebook directory.
+HEREDOC
+
+# The function to execute the git command within the notebook directory.
+_g() {
+    # Ensure we are in the notebook directory
+    local current_dir="$(<"${HOME}"/.nb/.current)"
+    local notebook_dir="${HOME}/.nb/${current_dir}"  # Adjust as per your notebook location
+    if [ ! -d "$notebook_dir" ]; then
+        echo "Notebook directory not found at $notebook_dir"
+        return 1
+    fi
+
+    # Run the git command in the notebook directory
+    git -C "$notebook_dir" "$@"
+}
+
+# Add the function for the 'g' subcommand to be executed
+_subcommands run "g" _g
