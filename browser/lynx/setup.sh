@@ -13,7 +13,7 @@ source "$HOME/.dotfiles/utility/utilities.sh"
 filebashrc="$HOME/.bashrc"
 text="
 
-############ from lynx setupe ################
+############ from lynx setup ################
 lynxpath=$(which lynx)
 
 

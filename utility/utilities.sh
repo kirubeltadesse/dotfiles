@@ -103,6 +103,8 @@ custome_installer() {
 		$use_command --cask rectangle
 		$use_command --cask font-jetbrains-mono-nerd-font
 		# finish up fzf configuration
+        # TODO: Default settings
+        # defaults write com.apple.screencapture type png
 		"$(brew --prefix)"/opt/fzf/install
 
 		echo "source ~/.bashrc" >>~/.zshrc
@@ -245,4 +247,19 @@ remove_file() {
 		rm "$file"
 	fi
 }
+
+set_proxy ()
+{
+    export http_proxy=http://proxy.bloomberg.com:81
+    export https_proxy=http://proxy.bloomberg.com:81
+    print "success" "proxy set successfully"
+}
+
+unset_proxy ()
+{
+    unset http_proxy
+    unset https_proxy
+    print "error" "proxy unset successfully"
+}
+
 
