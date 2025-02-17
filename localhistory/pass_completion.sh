@@ -84,7 +84,7 @@ _pass_complete_keys() {
 _pass() {
   COMPREPLY=()
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  local commands="init ls find grep show insert generate edit rm mv cp git otp help version ${PASSWORD_STORE_EXTENSION_COMMANDS[*]}"
+  local commands="init ls find grep show insert generate edit rm mv cp git g otp help version ${PASSWORD_STORE_EXTENSION_COMMANDS[*]}"
   if [[ $COMP_CWORD -gt 1 ]]; then
     local lastarg="${COMP_WORDS[$COMP_CWORD - 1]}"
     case "${COMP_WORDS[1]}" in
@@ -120,7 +120,7 @@ _pass() {
       COMPREPLY+=($(compgen -W "-r --recursive -f --force" -- "${cur}"))
       _pass_complete_entries
       ;;
-    git)
+    g | git)
       COMPREPLY+=($(compgen -W "init push pull config log reflog rebase" -- "${cur}"))
       ;;
     otp)
