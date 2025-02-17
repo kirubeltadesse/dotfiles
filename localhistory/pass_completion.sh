@@ -10,7 +10,7 @@ _pass_complete_entries() {
   local autoexpand=${1:-0}
 
   local IFS=$'\n'
-  local items=($(compgen -f $prefix$cur))
+  local items=($(compgen -f "$prefix""$cur"))
 
   # Remember the value of the first item, to see if it is a directory. If
   # it is a directory, then don't add a space to the completion
@@ -18,7 +18,7 @@ _pass_complete_entries() {
   # Use counter, can't use ${#items[@]} as we skip hidden directories
   local i=0 item
 
-  for item in ${items[@]}; do
+  for item in "${items[@]}"; do
     [[ $item =~ /\.[^/]*$ ]] && continue
 
     # if there is a unique match, and it is a directory with one entry
@@ -42,8 +42,8 @@ _pass_complete_entries() {
     # append / to directories
     [[ -d $item ]] && item="$item/"
 
-    item="${item%$suffix}"
-    COMPREPLY+=("${item#$prefix}")
+    item="${item%"$suffix"}"
+    COMPREPLY+=("${item#"$prefix"}")
     if [[ $i -eq 0 ]]; then
       firstitem=$item
     fi
@@ -64,10 +64,10 @@ _pass_complete_folders() {
   prefix="${prefix%/}/"
 
   local IFS=$'\n'
-  local items=($(compgen -d $prefix$cur))
-  for item in ${items[@]}; do
+  local items=($(compgen -d "$prefix""$cur"))
+  for item in "${items[@]}"; do
     [[ $item == $prefix.* ]] && continue
-    COMPREPLY+=("${item#$prefix}/")
+    COMPREPLY+=("${item#"$prefix"}/")
   done
 }
 
@@ -78,13 +78,13 @@ _pass_complete_keys() {
   local IFS=$'\n'
   # Extract names and email addresses from gpg --list-keys
   local keys="$($GPG --list-secret-keys --with-colons | cut -d : -f 10 | sort -u | sed '/^$/d')"
-  COMPREPLY+=($(compgen -W "${keys}" -- ${cur}))
+  COMPREPLY+=($(compgen -W "${keys}" -- "${cur}"))
 }
 
 _pass() {
   COMPREPLY=()
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  local commands="init ls find grep show insert generate edit rm mv cp git help version ${PASSWORD_STORE_EXTENSION_COMMANDS[*]}"
+  local commands="init ls find grep show insert generate edit rm mv cp git otp help version ${PASSWORD_STORE_EXTENSION_COMMANDS[*]}"
   if [[ $COMP_CWORD -gt 1 ]]; then
     local lastarg="${COMP_WORDS[$COMP_CWORD - 1]}"
     case "${COMP_WORDS[1]}" in
@@ -93,7 +93,7 @@ _pass() {
         _pass_complete_folders
         compopt -o nospace
       else
-        COMPREPLY+=($(compgen -W "-p --path" -- ${cur}))
+        COMPREPLY+=($(compgen -W "-p --path" -- "${cur}"))
         _pass_complete_keys
       fi
       ;;
@@ -101,28 +101,33 @@ _pass() {
       _pass_complete_entries
       ;;
     show | -*)
-      COMPREPLY+=($(compgen -W "-c --clip" -- ${cur}))
+      COMPREPLY+=($(compgen -W "-c --clip" -- "${cur}"))
       _pass_complete_entries 1
       ;;
     insert)
-      COMPREPLY+=($(compgen -W "-e --echo -m --multiline -f --force" -- ${cur}))
+      COMPREPLY+=($(compgen -W "-e --echo -m --multiline -f --force" -- "${cur}"))
       _pass_complete_entries
       ;;
     generate)
-      COMPREPLY+=($(compgen -W "-n --no-symbols -c --clip -f --force -i --in-place" -- ${cur}))
+      COMPREPLY+=($(compgen -W "-n --no-symbols -c --clip -f --force -i --in-place" -- "${cur}"))
       _pass_complete_entries
       ;;
     cp | copy | mv | rename)
-      COMPREPLY+=($(compgen -W "-f --force" -- ${cur}))
+      COMPREPLY+=($(compgen -W "-f --force" -- "${cur}"))
       _pass_complete_entries
       ;;
     rm | remove | delete)
-      COMPREPLY+=($(compgen -W "-r --recursive -f --force" -- ${cur}))
+      COMPREPLY+=($(compgen -W "-r --recursive -f --force" -- "${cur}"))
       _pass_complete_entries
       ;;
     git)
-      COMPREPLY+=($(compgen -W "init push pull config log reflog rebase" -- ${cur}))
+      COMPREPLY+=($(compgen -W "init push pull config log reflog rebase" -- "${cur}"))
       ;;
+    otp)
+      COMPREPLY+=($(compgen -W "code append insert generate" -- "${cur}"))
+      _pass_complete_entries
+      ;;
+
     esac
 
     # To add completion for an extension command define a function like this:
@@ -136,7 +141,7 @@ _pass() {
       "__password_store_extension_complete_${COMP_WORDS[1]}"
     fi
   else
-    COMPREPLY+=($(compgen -W "${commands}" -- ${cur}))
+    COMPREPLY+=($(compgen -W "${commands}" -- "${cur}"))
     _pass_complete_entries 1
   fi
 }
