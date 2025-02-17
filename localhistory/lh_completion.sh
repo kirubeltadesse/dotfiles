@@ -5,31 +5,15 @@
 
 # echo "$SNIPPETS"
 # complete -F kirubel kirubel
-
-declare -a COMMANDS=(foo bar blah)
-
 if [[ -n $COMP_LINE ]]; then
 	for c in "${COMMANDS[@]}"; do
-		[[ ${c:0:${#2}} == ${2,,} ]] && echo "$c" 	
+		[[ "${c:0:${#2}}" == "${2,,}" ]] && echo "$c" 	
 	done
 	exit
 fi
 
 _lh() {
     COMPREPLY=($(compgen -W "init add remove info set unset swap" "${COMP_WORDS[1]}"))
-}
-
-
-_foo() {
-	echo would foo
-}
-
-_bar() {
-	echo would bar
-}
-
-_blah() {
-	echo would blah with "$1" 
 }
 
 get_command() {

@@ -9,7 +9,7 @@ LOCAL_HISTOR=""
 # handle the history differently
 # http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
 # TODO: filter the command in `.lhistory` to include unique history
-function hist() {
+function hist {
     local lhistory="$1"
     history -a "$1"
     CURRENT_LOADED_HISTORY_PATH="$1"
@@ -27,7 +27,7 @@ function hist() {
 }
 
 
-function show_help() {
+function show_help {
     echo "Usage: lh.sh [init|add|remove]"
     echo "Run setup for different local history."
     echo "help        - display help manuel"
@@ -51,7 +51,7 @@ function lh() {
                 create "$@"
                 ;;
             add)
-                add
+                localhist_add "$@"
                 ;;
             remove)
                 remove
@@ -76,13 +76,12 @@ function lh() {
     done
 }
 
-function notify()
-{
+function notify {
     print "warning" "read .lhistory from $CURRENT_LOADED_HISTORY_PATH"
     return
 }
 
-function create() {
+function create {
   LOCAL_HISTOR="$(pwd)/.lhistory"
 
   if [[ ! -f "$LOCAL_HISTOR" ]]; then
@@ -101,7 +100,7 @@ function create() {
   echo "$PWD $*" >>"$LOCAL_HISTOR"
 }
 
-function swap() {
+function swap {
     if [ "$CURRENT_LOADED_HISTORY_PATH" != "$LOCAL_HISTOR" ]; then
         set_history "$LOCAL_HISTOR"
     else
@@ -110,7 +109,7 @@ function swap() {
     return;
 }
 
-function set_history() {
+function set_history {
     # update the current session history
     history -a "$1"
     CURRENT_LOADED_HISTORY_PATH="$1"
@@ -118,7 +117,7 @@ function set_history() {
     return;
 }
 
-function cd() {
+function cd {
     builtin cd "$@" || exit
     if [[ -f "$(pwd)/.lhistory" ]]; then
         # load the local history
@@ -128,6 +127,55 @@ function cd() {
     else
         export HISTFILE="$HOME/.bash_history"
     fi
+}
+
+function localhist_add { # add to HISTFILE
+    local text_source=std
+    local prepend
+    local text
+    while [[ -n $1 ]]; do
+        case $1 in
+            -h|--help)
+                builtin echo "localhist_add [--comment|-c] [--file|-f <path>] [-- args as text]"
+                return
+            ;;
+            -c|--comment) # Add text after a '#' comment indicator
+                prepend="# "
+            ;;
+        -f|--file) # Get text from specified file
+            text_source="${2}"; shift
+            ;;
+        --) # Anything following is the text itself
+            text_source=args
+            shift
+            break
+            ;;
+        esac
+    shift
+    done
+    case $text_source in
+        stdin)
+            if [[ -t 2 && -t 0 ]]; then
+                builtin read -r -p "Enter text for new history event: " text
+            else
+                builtin read -r text
+            fi
+            ;;
+        args)
+            text="$*"
+            ;;
+        *)
+            [[ -r ${text_source} ]] || { builtin echo "ERROR: can't read text from the file \"${text_source}\" ">&2; false; return; }
+            text=$(command cat "${text_source}" | command tr '\n' ';' )
+            ;;
+    esac
+    builtin history -s "${prepend}${text}"
+
+}
+
+function history_grep {
+    builtin history | command grep -E "$@"
+    set +f
 }
 
 # TODO: create a function to read the .lhistory

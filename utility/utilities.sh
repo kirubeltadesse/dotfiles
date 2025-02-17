@@ -103,6 +103,8 @@ custome_installer() {
 		$use_command --cask rectangle
 		$use_command --cask font-jetbrains-mono-nerd-font
 		# finish up fzf configuration
+        # TODO: Default settings
+        # defaults write com.apple.screencapture type png
 		"$(brew --prefix)"/opt/fzf/install
 
 		echo "source ~/.bashrc" >>~/.zshrc
