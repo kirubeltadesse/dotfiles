@@ -46,7 +46,8 @@ return {
                             ["<M-j>"] = require("telescope.actions").preview_scrolling_down, -- Alt + j
                             ["<M-k>"] = require("telescope.actions").preview_scrolling_up,  -- Alt + k
                         }
-                    }
+                    },
+                    file_ignore_patterns = {".git/","node_modules/", "build/", "dist/" },
                 },
                 extensions = {
                     ["ui-select"] = {

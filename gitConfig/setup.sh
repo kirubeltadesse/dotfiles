@@ -71,11 +71,7 @@ function add_git_aliases() {
 
     # For `bdone` alias - Delete all fully merged branches except the current one
     git config --global alias.bdone "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-    # Define `bclean` alias
-    # This version first detects the default branch (`main` or `master`) from the remote, then switches to it
-    # and deletes all branches that have been merged.
-    git config --global alias.bclean "!git checkout \$(git remote show origin | grep 'HEAD branch' | awk '{print \$NF}') && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    git config --global alias.bclean "!git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
 
     git config --global alias.c commit
@@ -124,7 +120,7 @@ function add_git_aliases() {
     git config --global alias.rehh 'reset --hard HEAD'
     git config --global alias.remh 'reset --mixed HEAD'
     git config --global alias.resh 'reset --soft HEAD'
-    git config --global alias.rehom 'reset --hard origin/main'
+    git config --global alias.rehom "reset --hard origin/$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')"
 
     append_line 1 "#----------------------------------- restore -----------------------------------" ~/.gitconfig
 
