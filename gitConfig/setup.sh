@@ -79,6 +79,7 @@ function add_git_aliases() {
     git config --global alias.cpa 'cherry-pick --abort'
     git config --global alias.cpc 'cherry-pick --continue'
     git config --global alias.d diff
+    git config --global alias.dw 'diff --word-diff=color --color-moved'
     git config --global alias.f fetch
 
     append_line 1 "#----------------------------------- log -----------------------------------" ~/.gitconfig
@@ -88,6 +89,7 @@ function add_git_aliases() {
     git config --global alias.logbna 'log --branches --no-walk --author'
     git config --global alias.logboa 'log --branches --oneline --author'
     git config --global alias.logdog 'log --decorate --oneline --graph'
+    git config --global alias.logg 'log --patch -G'
     git config --global alias.logs 'log --stat'
     git config --global alias.m merge
     git config --global alias.ps push
