@@ -104,7 +104,7 @@ return {
                         "--smart-case",
                         "--no-ignore", --Ignore .gitignore
                     },
-                    file_ignore_patterns = {".git/","node_modules/", "build/", "dist/" },
+                    file_ignore_patterns = {".git/","node_modules/", "build/", "**/target/**", "dist/" },
                 },
                 extensions = {
                     ["ui-select"] = {
