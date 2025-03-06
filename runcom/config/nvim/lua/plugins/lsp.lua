@@ -10,6 +10,7 @@ return {
             -- Replace the language servers listed here
             -- with the ones you want to install
             ensure_installed = {
+                "clangd",
                 "black",
                 "pyright",
                 "ruff",
@@ -33,7 +34,12 @@ return {
                     capabilities = capabilities,
                 })
             end,
-
+            ["clangd"] = function()
+                lspconfig.clangd.setup({
+                    cmd = { "clangd" },
+                    capabilities = capabilities,
+                })
+            end,
             -- Example of custom handlers
             ["pyright"] = function()
                 lspconfig.pyright.setup({

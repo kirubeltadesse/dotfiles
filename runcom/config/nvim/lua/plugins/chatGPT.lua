@@ -5,7 +5,7 @@ return {
         local home = vim.fn.expand("$HOME")
         local passPhrase = os.getenv("GPG_PASSPHRASE") or ""
         local defaults = {
-            api_key_cmd = "gpg --batch --passphrase " .. passPhrase .. " --decrypt " .. home .. "/.config/nvim/chat_gpt_secret.txt.gpg",
+            api_key_cmd = "gpg --batch --decrypt --passphrase " .. passPhrase .. home .. "/.config/nvim/chat_gpt_secret.txt.gpg",
             edit_with_instructions = {
                 diff = false,
                 keymaps = {

@@ -6,6 +6,17 @@ function link_pass {
     text="
     source $HOME/.dotfiles/localhistory/pass_completion.sh
     complete -o filenames -F _pass pass
+
+    # Custom pass git alias handler
+    pass() {
+        if [[ \"\$1\" == \"g\" ]]; then
+            shift
+            git -C ~/.password-store \"\$@\"
+        else
+            command pass \"\$@\"
+        fi
+    }
+
     "
 
     print warning "Adding bash complete for pass to .bashrc"
