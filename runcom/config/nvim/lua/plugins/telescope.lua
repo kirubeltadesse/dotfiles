@@ -7,12 +7,55 @@ return {
         config = function()
             local builtin = require('telescope.builtin')
             local nb_telescope = require('swarmies.telescope_nb')
+
+            local function is_git_repo()
+                return vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+            end
+
             vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = " Find Files" })
             vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Git Files Search" })
-            vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = "Git [C]ommits" })
-            vim.keymap.set('n', '<leader>gcf', builtin.git_bcommits, { desc = "Git [C]ommits for current [F]ile" })
-            vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = "Git [B]ranch" })
-            vim.keymap.set('n', '<leader>gps', builtin.git_status, { desc = "Git [S]tatus" })
+            vim.keymap.set('n', '<leader>gc', function()
+                if is_git_repo() then
+                    builtin.git_commits()
+                else
+                    print("Git is not initialized in this directory")
+                end
+            end, { desc = "Git [C]ommits" })
+            vim.keymap.set('n', '<leader>gcf', function()
+                if is_git_repo() then
+                    builtin.git_bcommits()
+                else
+                    print("Git is not initialized in this directory")
+                end
+            end, { desc = "Git [C]ommits for current [F]ile" })
+            vim.keymap.set('n', '<leader>gca',
+                function()
+                    local author = vim.fn.input("Author: ")
+                    if author ~= "" then
+                        if is_git_repo() then
+                            builtin.git_commits({
+                                git_command = {"git", "log", "--oneline", "--author=" .. author},
+                                prompt_title = "Git Commits by " .. author,
+                            })
+                        else
+                            print("Git is not initialized in this directory")
+                        end
+                    end
+                end, { desc = "Git [C]ommits by [A]uthor" })
+            vim.keymap.set('n', '<leader>gb', function()
+                if is_git_repo() then
+                    builtin.git_branches()
+                else
+                    print("Git is not initialized in this directory")
+                end
+            end, { desc = "Git [B]ranch" })
+            vim.keymap.set('n', '<leader>gps', function()
+                if is_git_repo() then
+                    builtin.git_status()
+                else
+                    print("Git is not initialized in this directory")
+                end
+            end, { desc = "Git [S]tatus" })
             vim.keymap.set('n', '<leader>nb', nb_telescope.nb_find_files, { desc = "[N]ote[B]ooks Find Files" })
             vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
             vim.keymap.set('n', '<leader>lg', builtin.live_grep, { desc = "[L]ive [G]rep" })
@@ -50,6 +93,16 @@ return {
                             ["<M-j>"] = require("telescope.actions").preview_scrolling_down, -- Alt + j
                             ["<M-k>"] = require("telescope.actions").preview_scrolling_up,  -- Alt + k
                         }
+                    },
+                    vimgrep_arguments = {
+                        "rg",
+                        "--color=never",
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                        "--smart-case",
+                        "--no-ignore", --Ignore .gitignore
                     },
                     file_ignore_patterns = {".git/","node_modules/", "build/", "dist/" },
                 },

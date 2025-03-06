@@ -85,9 +85,9 @@ function add_git_aliases() {
     append_line 1 "#----------------------------------- log -----------------------------------" ~/.gitconfig
 
     git config --global alias.loga 'log --author'
-    git config --global alias.logba 'log --branches --author'
-    git config --global alias.logbna 'log --branches --no-walk --author'
+    git config --global alias.logoa 'log --oneline --author'
     git config --global alias.logboa 'log --branches --oneline --author'
+    git config --global alias.logbna 'log --branches --no-walk --author'
     git config --global alias.logdog 'log --decorate --oneline --graph'
     git config --global alias.logg 'log --patch -G'
     git config --global alias.logs 'log --stat'
