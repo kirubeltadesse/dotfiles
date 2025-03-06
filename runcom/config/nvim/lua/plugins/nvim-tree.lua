@@ -16,6 +16,9 @@ return {
             renderer = {
                 group_empty = true,
             },
+            git = {
+                ignore = false,
+            },
             filters = {
                 dotfiles = true,
             },
