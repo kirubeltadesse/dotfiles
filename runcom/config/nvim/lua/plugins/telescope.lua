@@ -12,7 +12,7 @@ return {
                 return vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
             end
 
-            vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = " Find Files" })
+            vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "Find Files" })
             vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Git Files Search" })
             vim.keymap.set('n', '<leader>gc', function()
                 if is_git_repo() then
@@ -104,7 +104,7 @@ return {
                         "--smart-case",
                         "--no-ignore", --Ignore .gitignore
                     },
-                    file_ignore_patterns = {".git/","node_modules/", "build/", "**/target/**", "dist/" },
+                    file_ignore_patterns = {".git/","node_modules/", "build/", "*/target/*", "dist/" },
                 },
                 extensions = {
                     ["ui-select"] = {
