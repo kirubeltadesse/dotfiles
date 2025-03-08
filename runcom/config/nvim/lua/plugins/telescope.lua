@@ -57,6 +57,7 @@ return {
                 end
             end, { desc = "Git [S]tatus" })
             vim.keymap.set('n', '<leader>nb', nb_telescope.nb_find_files, { desc = "[N]ote[B]ooks Find Files" })
+            vim.keymap.set('n', '<leader>ne', nb_telescope.nb_open_encrypted, { desc = "[N]ote[B]ooks [E]ncrypted" })
             vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
             vim.keymap.set('n', '<leader>lg', builtin.live_grep, { desc = "[L]ive [G]rep" })
             vim.keymap.set('n', '<leader>pd', builtin.diagnostics, { desc = "Search [D]iagnostics" })
