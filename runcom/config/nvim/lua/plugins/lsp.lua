@@ -11,15 +11,11 @@ return {
             -- with the ones you want to install
             ensure_installed = {
                 "clangd",
-                "black",
                 "pyright",
                 "ruff",
-                "tsserver",
                 "lua_ls",
                 "rust_analyzer",
                 "bashls",
-                "debugpy",
-                "isort",
             },
             auto_install = true,
         })
@@ -80,12 +76,6 @@ return {
 
             ["rust_analyzer"] = function()
                 lspconfig.rust_analyzer.setup({
-                    capabilities = capabilities,
-                })
-            end,
-
-            ["tsserver"] = function()
-                lspconfig.tsserver.setup({
                     capabilities = capabilities,
                 })
             end,

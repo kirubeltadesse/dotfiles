@@ -12,7 +12,7 @@ return {
                 return vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
             end
 
-            vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = " Find Files" })
+            vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "Find Files" })
             vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Git Files Search" })
             vim.keymap.set('n', '<leader>gc', function()
                 if is_git_repo() then
@@ -57,6 +57,7 @@ return {
                 end
             end, { desc = "Git [S]tatus" })
             vim.keymap.set('n', '<leader>nb', nb_telescope.nb_find_files, { desc = "[N]ote[B]ooks Find Files" })
+            vim.keymap.set('n', '<leader>ne', nb_telescope.nb_open_encrypted, { desc = "[N]ote[B]ooks [E]ncrypted" })
             vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
             vim.keymap.set('n', '<leader>lg', builtin.live_grep, { desc = "[L]ive [G]rep" })
             vim.keymap.set('n', '<leader>pd', builtin.diagnostics, { desc = "Search [D]iagnostics" })
@@ -104,7 +105,7 @@ return {
                         "--smart-case",
                         "--no-ignore", --Ignore .gitignore
                     },
-                    file_ignore_patterns = {".git/","node_modules/", "build/", "dist/" },
+                    file_ignore_patterns = {".git/","node_modules/", "build/", "*/target/*", "dist/" },
                 },
                 extensions = {
                     ["ui-select"] = {
