@@ -16,7 +16,11 @@ return {
                 null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.prettier,
                 null_ls.builtins.formatting.black,
-                null_ls.builtins.formatting.isort, -- TODO: format and linter for cpp file
+                null_ls.builtins.formatting.isort,
+                null_ls.builtins.formatting.clang_format.with({
+                    filetypes = { "c", "cpp", "objc", "objcpp" },
+                    extra_args = { BasedOnStyle = "LLVM", IndentWidth = 4, TabWidth = 4, UseTab = "Always" },
+                }),
             },
         })
         vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "LSP Format Buffer" })
