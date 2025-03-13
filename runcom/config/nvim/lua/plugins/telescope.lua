@@ -103,9 +103,9 @@ return {
                         "--line-number",
                         "--column",
                         "--smart-case",
-                        "--no-ignore", --Ignore .gitignore
+                        -- "--no-ignore", --Ignore .gitignore
                     },
-                    file_ignore_patterns = {".git/","node_modules/", "build/", "*/target/*", "dist/" },
+                    file_ignore_patterns = {".git/","node_modules/", "build/", "*/target/*", "dist/", "report-aggregate/*", "code-statistics/*" },
                 },
                 extensions = {
                     ["ui-select"] = {

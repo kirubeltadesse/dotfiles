@@ -9,6 +9,10 @@ fi
 
 source "$FOLDER/utility/utilities.sh"
 
+# FIXME: can fzf have telescope keyboard shortcut
+# <Esc> to go out of insert mode into the scroll mode 
+# i to go into insert mode
+# j,k for up and down mode
 initial_setup() {
 
 cat <<-EOF >> ~/.bashrc
