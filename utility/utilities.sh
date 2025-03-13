@@ -85,28 +85,36 @@ append_line() {
 
 custome_installer() {
 	local use_command
+	local dry_run=${1:false}
+
+	run_or_echo() {
+		if [ "${dry_run}" = true ]; then
+			echo "$*"
+		else
+			eval "$*"
+		fi
+	}
 
 	case "$(uname)" in
 	Linux)
 		use_command="apt-get install -y"
 		print 'success' "Environment is (WLS)"
-		sudo apt-get update
-		$use_command xclip fd-find
+		[ "$dry_run" = true ] || sudo apt-get update
+		run_or_echo "$use_command xclip fd-find"
 		# curl -fSsL https://repo.fig.io/scripts/install-headless.sh | bash
 		# enable +clipboard and +xterm_clipboard for vim
 		;;
 	Darwin)
 		print 'success' "Environment is (macOS)"
 		use_command="brew install"
-		$use_command fd
-		$use_command --cask rectangle
-		$use_command --cask font-jetbrains-mono-nerd-font
+		run_or_echo "$use_command fd"
+		run_or_echo "$use_command --cask rectangle"
+		run_or_echo "$use_command --cask font-jetbrains-mono-nerd-font"
 		# finish up fzf configuration
 		# TODO: Default settings
 		# defaults write com.apple.screencapture type png
-		"$(brew --prefix)"/opt/fzf/install
-
-		echo "source ~/.bashrc" >>~/.zshrc
+		run_or_echo "\"\$(brew --prefix)\"/opt/fzf/install"
+		run_or_echo echo "source ~/.bashrc" >>~/.zshrc
 		;;
 	*)
 		print error "environment is not known: $(uname)"
