@@ -13,17 +13,16 @@ function hist {
     local lhistory="$1"
     history -a "$1"
     CURRENT_LOADED_HISTORY_PATH="$1"
-    history -c # clears the current in-memory command
+    history -c             # clears the current in-memory command
     newCommands=$(cat "$lhistory")
     if [ "$newCommands" != "" ]; then
         grep -vwE "$newCommands"~/.bash_history >"$lhistory"
         cp "$lhistory" ~/.bash_history
         echo "$newCommands" >>~/.bash_history
     fi
-    history -r "$lhistory" # read the modified file into memory
-    history -a "$lhistory" # appends the in memory history
-    # remove the history file
-    # rr ~/.bash_history_aux;
+
+    history -r "$lhistory" # Reload modified history
+    history -a "$lhistory" # Append in-memory history to the file
 }
 
 function show_help {
@@ -82,17 +81,17 @@ function notify {
 function create {
     LOCAL_HISTOR="$(pwd)/.lhistory"
 
-    if [[ ! -f "$LOCAL_HISTOR" ]]; then
-        touch "$LOCAL_HISTOR"
-        CURRENT_LOADED_HISTORY_PATH="$LOCAL_HISTOR"
-        print 'success' "Create a local history $LOCAL_HISTOR"
-    else
-        print 'warning' "Reading from $LOCAL_HISTOR"
-    fi
-    history -a "$LOCAL_HISTOR"
-    export HISTFILE
-    HISTFILE="$LOCAL_HISTOR"
-    print 'warning' "History file set to $HISTFILE"
+  if [[ ! -f "$LOCAL_HISTOR" ]]; then
+    touch "$LOCAL_HISTOR"
+    CURRENT_LOADED_HISTORY_PATH="$LOCAL_HISTOR"
+    print 'success' "Create a local history $LOCAL_HISTOR"
+  else
+    print 'warning' "Reading from $LOCAL_HISTOR"
+  fi
+  history -a "$LOCAL_HISTOR"
+  export HISTFILE
+  HISTFILE="$LOCAL_HISTOR"
+  print 'warning' "History file set to $HISTFILE"
 
     # Append the command to the local history file
     echo "$PWD $*" >>"$LOCAL_HISTOR"
