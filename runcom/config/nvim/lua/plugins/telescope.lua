@@ -56,6 +56,9 @@ return {
                     print("Git is not initialized in this directory")
                 end
             end, { desc = "Git [S]tatus" })
+            vim.keymap.set('n', '<leader>gs', function()
+                builtin.grep_string({ search = vim.fn.input("Grap > ") });
+            end, { desc = "[G]rep [S]tring" })
             vim.keymap.set('n', '<leader>nb', nb_telescope.nb_find_files, { desc = "[N]ote[B]ooks Find Files" })
             vim.keymap.set('n', '<leader>ne', nb_telescope.nb_open_encrypted, { desc = "[N]ote[B]ooks [E]ncrypted" })
             vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
@@ -67,32 +70,50 @@ return {
             vim.keymap.set('n', '<leader>pws', function()
                 local word = vim.fn.expand("<cword>")
                 builtin.grep_string({ search = word });
-            end, { desc = "Grep Current Word" })
+            end, { desc = "[p]riview [w]ord [s]earch under cursor" })
             vim.keymap.set('n', '<leader>pWs', function()
                 local word = vim.fn.expand("<cWORD>")
                 builtin.grep_string({ search = word });
-            end, { desc = "Grep Current WORD" })
-            vim.keymap.set('n', '<leader>gs', function()
-                builtin.grep_string({ search = vim.fn.input("Grap > ") });
-            end, { desc = "Grep Input" })
+            end, { desc = "[p]riview [W]ord [s]earch under cursor" })
+            vim.keymap.set('v', '<leader>pvs', function()
+                local word = vim.fn.getreg("v")
+                builtin.grep_string({ search = word });
+            end, { desc = "[P]riview [V]isual [S]earch under cursor" })
+            vim.keymap.set('n', '<leader>py', function()
+                local word = vim.fn.getreg('"')
+                builtin.grep_string({ search = word });
+            end, { desc = "[P]riview [Y]anked last search " })
             vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = "Vim Help Tags" })
         end
-
     },
     {
         'nvim-telescope/telescope-ui-select.nvim',
         -- This is your opts table
         config = function()
+            local actions = require('telescope.actions')
             require("telescope").setup({
                 defaults = {
                     mappings = {
                         i = { -- Insert mode
-                            ["<M-j>"] = require("telescope.actions").preview_scrolling_down, -- Alt + j
-                            ["<M-k>"] = require("telescope.actions").preview_scrolling_up,  -- Alt + k
+                            ["<M-j>"] = actions.preview_scrolling_down, -- Alt + j
+                            ["<M-k>"] = actions.preview_scrolling_up,  -- Alt + k
+                            ["CR>"] = function(prompt_bufnr)
+                                -- handle opening multiple selected files
+                                local picker = actions.get_current_picker(prompt_bufnr)
+                                local selections = picker:get_multi_selection()
+                                if #selections > 0 then
+                                    for _, entry in ipairs(selections) do
+                                        vim.cmd("tabedit " .. entry.value)
+                                    end
+                                else
+                                    actions.select_default(prompt_bufnr)
+                                end
+                            end,
+
                         },
                         n = { -- Normal mode
-                            ["<M-j>"] = require("telescope.actions").preview_scrolling_down, -- Alt + j
-                            ["<M-k>"] = require("telescope.actions").preview_scrolling_up,  -- Alt + k
+                            ["<M-j>"] = actions.preview_scrolling_down, -- Alt + j
+                            ["<M-k>"] = actions.preview_scrolling_up,  -- Alt + k
                         }
                     },
                     vimgrep_arguments = {

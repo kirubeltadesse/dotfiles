@@ -37,6 +37,16 @@ return {
                 return line .. ' ... ' .. fold_size .. ' lines'
             end
 
+            -- Keybinding to open link under cursor
+            vim.keymap.set("n", "<leader>ol", function()
+                local url = vim.fn.expand("<cWORD>")
+                if url:match("^https?://") then
+                    vim.fn.jobstart({"open", url}, { detach = true })
+                else
+                    print("No valid URL under cursor " .. url)
+                end
+            end, { noremap = true, silent = true })
+
             -- Function to open all folds and preserve cursor position
             --function OpenAllFoldsPreserveCursor()
             --    local save_cursor = vim.fn.getpos(".")
