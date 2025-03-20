@@ -74,7 +74,7 @@
     },
     {
       "passKeys": "nphlkjbfs /",
-      "pattern": "https?://bbgithub.dev.bloomberg.com/pages/ktadesse1/slides/*"
+      "pattern": "https?://bbgithub.dev.bloomberg.com/pages/*"
     },
     {
       "passKeys": "nphlkjbfs /",
