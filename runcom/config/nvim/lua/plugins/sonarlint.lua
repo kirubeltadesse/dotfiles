@@ -1,0 +1,7 @@
+-- return {
+--   "SonarSource/sonarlint-vscode",
+--   "schrieveslaach/sonarlint", -- this is from gitlab
+--     config = function()
+--         require("sonarlint-vscode").setup()
+--     end
+-- }

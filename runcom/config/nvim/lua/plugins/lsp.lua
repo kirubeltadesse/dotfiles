@@ -18,6 +18,9 @@ return {
                 "bashls",
             },
             auto_install = true,
+            handlers = {
+                jdtls = function() end, --Disable masons's jdtls setup
+            },
         })
 
         -- Set up LSP with nvim-cmp capabilities
@@ -84,6 +87,27 @@ return {
                 lspconfig.bashls.setup({
                     capabilities = capabilities,
                 })
+            end,
+            -- ["sonarlint"] = function()
+            --     lspconfig.sonarlint.setup({
+            --         capabilities = capabilities,
+            --         cmd = { "sonarlint-language-server", "-stdio" },
+            --         filetypes = { "java" },
+            --         init_options = {
+            --             java = {
+            --                 workspaceFolders = {
+            --                     {
+            --                         uri = vim.uri_from_fname(vim.fn.getcwd()),
+            --                         name = "root",
+            --                     },
+            --                 },
+            --             },
+            --         },
+            --         root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git"),
+            --     })
+            -- end,
+            ["jdtls"] = function()
+                -- jdtls is configured separately in jdtls.lua
             end,
         })
     end,
