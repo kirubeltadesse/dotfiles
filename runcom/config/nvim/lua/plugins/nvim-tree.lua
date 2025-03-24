@@ -26,6 +26,6 @@ return {
         }
         vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<cr>", { desc = "NvimTreeToggle" })
         vim.keymap.set("n", "<leader>pn", ":NvimTreeFindFile<CR>", { desc = "NvimTreeFindFile" })
-        vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh<CR>", { desc = "NvimTreeRefresh" })
+        vim.keymap.set("n", "<F5>", ":NvimTreeRefresh<CR>", { desc = "NvimTreeRefresh" })
     end,
 }

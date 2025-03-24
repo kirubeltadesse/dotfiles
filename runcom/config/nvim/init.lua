@@ -28,8 +28,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { desc = "Search Symobls Matching", buffer = ev.buf })
         vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, { desc = "Diagnostic open float", buffer = ev.buf })
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = ev.buf })
-        vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, { desc = "Go to references", buffer = ev.buf })
-        vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, { desc = "Buffer rename", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Go to references", buffer = ev.buf })
+        vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Buffer rename", buffer = ev.buf })
         vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Help signature", buffer = ev.buf })
 
         -- if ev.data and ev.data.name == "sonarlint" then
