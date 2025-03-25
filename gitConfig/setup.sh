@@ -79,7 +79,7 @@ function add_git_aliases() {
     git config --global alias.cpa 'cherry-pick --abort'
     git config --global alias.cpc 'cherry-pick --continue'
     git config --global alias.d diff
-    git config --global alias.ds 'diff --staged'
+    git config --global alias.dsw 'diff --staged --word-diff=color --color-moved'
     git config --global alias.dw 'diff --word-diff=color --color-moved'
     git config --global alias.f fetch
 
