@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub PR Collapser",
+  "version": "1.0",
+  "description": "Adds keyboard shortcuts to expand/collapse all details in a GitHub PR.",
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*", "https://bbgithub.dev.bloomberg.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "collapse_pr_details": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z"
+      },
+      "description": "Collapse all PR details"
+    },
+    "expand_pr_details": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X"
+      },
+      "description": "Expand all PR details"
+    }
+  }
+}
+
