@@ -7,11 +7,21 @@ return {
     },
     config = function()
         require("nvim-tree").setup {
+            update_focused_file = {
+                enable = true,
+                update_cwd = true,
+                ignore_list = { ".git", "node_modules", ".cache" },
+            },
+            disable_netrw = true,
+            hijack_netrw = true,
             sort = {
                 sorter = "case_sensitive",
             },
             view = {
-                width = 40,
+                adaptive_size = true,
+                width = 30,
+                side = "left",
+                signcolumn = "yes",
             },
             renderer = {
                 group_empty = true,

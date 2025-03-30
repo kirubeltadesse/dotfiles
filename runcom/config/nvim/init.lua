@@ -11,16 +11,21 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
+require("lazy").setup("plugins")
 
---- local jdtls_setup = require("plugin.jdtls.lua").jdtls_setup
+
+local jdtls_ok,  jdtls = pcall(require, "jdtls")
+
+if not jdtls_ok then
+    vim.notify("Error: nvim-jdtls is not installed", vim.log.levels.ERROR)
+    return
+end
+
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('KirubelLspConfig', {}),
     callback = function(ev)
         local opts = { buffer = ev.buf }
-        print("LSP attached for buffer: " .. ev.buf)
-        --FIXME: might need to make function call
-        --vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto declaration", buffer = ev.buf })
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition", buffer = ev.buf })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Go method definition", buffer = ev.buf })
@@ -42,6 +47,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- jdtls-specific keybindings
         if vim.bo[ev.buf].filetype == "java" then
+            local client = vim.lsp.get_client_by_id(ev.data.client_id)
+            if client and client.name == "jdtls" then
+                -- Enable code lens
+                client.server_capabilities.documentFormattingProvider = false -- Disable formatting from jdtls
+                client.server_capabilities.codelensProvider = { resolveProvider = true }
+                vim.lsp.codelens.refresh()
+
+                -- Enable debugger 
+                -- FIXME: move this to debugger.lua
+                -- require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+                -- require('jdtls.dap').setup_dap_main_class_configs()
+                --
+                -- vim.keymap.set('n', '<leader>df', "<cmd>lua require('jdtls').test_class()<cr>", opts)
+                -- vim.keymap.set('n', '<leader>dn', "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+            end
+
+
             vim.keymap.set('n', '<A-o>', "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
             vim.keymap.set('n', 'crv', "<cmd>lua require('jdtls').extract_variable()<cr>", opts)
             vim.keymap.set('x', 'crv', "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", opts)
@@ -52,18 +74,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
-require("lazy").setup("plugins")
-
--- local java_cmds = vim.api.nvim_create_augroup('java_cmds', { clear = true })
-
--- Force LSP to start
-vim.api.nvim_create_autocmd('BufReadPost', {
-    group = java_cmds,
-    pattern = '*.java',
-    desc = 'Force start jdtls',
-    callback = function()
-        vim.cmd('set filetype=java')
-        jdtls_setup()
-    end,
-})
 require("swarmies")

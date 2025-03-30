@@ -16,7 +16,6 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "bashls",
-                "sonarlint-language-server",
             },
             auto_install = true,
             handlers = {
@@ -123,26 +122,8 @@ return {
                }
             }),
 
-            -- ["sonarlint"] = function()
-            --     lspconfig.sonarlint.setup({
-            --         capabilities = capabilities,
-            --         cmd = { "sonarlint-language-server", "-stdio" },
-            --         filetypes = { "java" },
-            --         init_options = {
-            --             java = {
-            --                 workspaceFolders = {
-            --                     {
-            --                         uri = vim.uri_from_fname(vim.fn.getcwd()),
-            --                         name = "root",
-            --                     },
-            --                 },
-            --             },
-            --         },
-            --         root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git"),
-            --     })
-            -- end,
             ["jdtls"] = function()
-                -- jdtls is configured separately in jdtls.lua
+                -- jdtls is configured separately in java.lua file
             end,
         })
     end,
