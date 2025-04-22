@@ -64,7 +64,6 @@ return {
             vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
             vim.keymap.set('n', '<leader>lg', function()
                 builtin.live_grep {
-                    grep_open_files = true,
                     prompt_title = "Live Grep",
                 }
             end, { desc = "[L]ive [G]rep" })
