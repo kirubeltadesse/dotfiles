@@ -34,7 +34,7 @@ return {
                     if author ~= "" then
                         if is_git_repo() then
                             builtin.git_commits({
-                                git_command = {"git", "log", "--oneline", "--author=" .. author},
+                                git_command = { "git", "log", "--oneline", "--author=" .. author },
                                 prompt_title = "Git Commits by " .. author,
                             })
                         else
@@ -62,7 +62,12 @@ return {
             vim.keymap.set('n', '<leader>nb', nb_telescope.nb_find_files, { desc = "[N]ote[B]ooks Find Files" })
             vim.keymap.set('n', '<leader>ne', nb_telescope.nb_open_encrypted, { desc = "[N]ote[B]ooks [E]ncrypted" })
             vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
-            vim.keymap.set('n', '<leader>lg', builtin.live_grep, { desc = "[L]ive [G]rep" })
+            vim.keymap.set('n', '<leader>lg', function()
+                builtin.live_grep {
+                    grep_open_files = true,
+                    prompt_title = "Live Grep",
+                }
+            end, { desc = "[L]ive [G]rep" })
             vim.keymap.set('n', '<leader>pd', builtin.diagnostics, { desc = "Search [D]iagnostics" })
             vim.keymap.set('n', '<leader>pm', builtin.marks, { desc = "[P]review [M]arks" })
             vim.keymap.set('n', '<leader>pb', builtin.buffers, { desc = "[P]review [B]uffers" })
@@ -84,6 +89,17 @@ return {
                 builtin.grep_string({ search = word });
             end, { desc = "[P]riview [Y]anked last search " })
             vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = "Vim Help Tags" })
+            -- Slightly advanced example of overriding default behavior and theme
+            vim.keymap.set('n', '<leader>/', function()
+                -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+                builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+                    winblend = 10,
+                    previewer = false,
+                })
+            end, { desc = '[/] Fuzzily search in current buffer' })
+            vim.keymap.set('n', '<leader>sn', function()
+                builtin.find_files { cwd = vim.fn.stdpath 'config' }
+            end, { desc = '[S]earch [N]eovim files' })
         end
     },
     {
@@ -94,9 +110,9 @@ return {
             require("telescope").setup({
                 defaults = {
                     mappings = {
-                        i = { -- Insert mode
+                        i = {                                           -- Insert mode
                             ["<M-j>"] = actions.preview_scrolling_down, -- Alt + j
-                            ["<M-k>"] = actions.preview_scrolling_up,  -- Alt + k
+                            ["<M-k>"] = actions.preview_scrolling_up,   -- Alt + k
                             ["CR>"] = function(prompt_bufnr)
                                 -- handle opening multiple selected files
                                 local picker = actions.get_current_picker(prompt_bufnr)
@@ -111,9 +127,9 @@ return {
                             end,
 
                         },
-                        n = { -- Normal mode
+                        n = {                                           -- Normal mode
                             ["<M-j>"] = actions.preview_scrolling_down, -- Alt + j
-                            ["<M-k>"] = actions.preview_scrolling_up,  -- Alt + k
+                            ["<M-k>"] = actions.preview_scrolling_up,   -- Alt + k
                         }
                     },
                     vimgrep_arguments = {
@@ -126,7 +142,7 @@ return {
                         "--smart-case",
                         -- "--no-ignore", --Ignore .gitignore
                     },
-                    file_ignore_patterns = {".git/","node_modules/", "build/", "*/target/*", "dist/", "report-aggregate/*", "code-statistics/*" },
+                    file_ignore_patterns = { ".git/", "node_modules/", "build/", "*/target/*", "dist/", "report-aggregate/*", "code-statistics/*" },
                 },
                 extensions = {
                     ["ui-select"] = {
