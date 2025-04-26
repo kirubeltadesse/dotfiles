@@ -26,9 +26,12 @@ return {
                     if lang == 'markdown' then
                         return true
                     end
-                end
+                end,
             },
             indent = { enable = true },
+            folding = {
+                enable = true,
+            }
         })
     end,
 }

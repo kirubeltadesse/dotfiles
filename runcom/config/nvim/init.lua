@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             "Search Symobls Matching")
         map("<leader>vd", vim.diagnostic.open_float, "Diagnostic open float")
         map("<leader>r", vim.lsp.buf.rename, "Buffer rename")
-        map("<C-h>", vim.lsp.buf.signature_help, "Help signature")
+        map("H", vim.lsp.buf.signature_help, "Help signature")
 
     end
 })
