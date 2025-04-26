@@ -11,23 +11,22 @@ return {
             -- with the ones you want to install
             ensure_installed = {
                 "clangd",
-                "black",
                 "pyright",
                 "ruff",
-                "tsserver",
                 "lua_ls",
                 "rust_analyzer",
                 "bashls",
-                "debugpy",
-                "isort",
             },
             auto_install = true,
+            handlers = {
+                jdtls = function() end, --Disable masons's jdtls setup
+            },
         })
 
         -- Set up LSP with nvim-cmp capabilities
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
-        -- Setup handlers for each language server
+
         require("mason-lspconfig").setup_handlers({
             function(server_name)
                 lspconfig[server_name].setup({
@@ -84,16 +83,13 @@ return {
                 })
             end,
 
-            ["tsserver"] = function()
-                lspconfig.tsserver.setup({
-                    capabilities = capabilities,
-                })
-            end,
-
             ["bashls"] = function()
                 lspconfig.bashls.setup({
                     capabilities = capabilities,
                 })
+            end,
+            ["jdtls"] = function()
+                -- jdtls is configured separately in java.lua file
             end,
         })
     end,

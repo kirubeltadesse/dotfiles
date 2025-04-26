@@ -66,6 +66,12 @@ vim.opt.listchars = {                                                   -- see h
 }
 vim.o.list = true
 vim.o.updatetime = 100
+vim.o.foldlevelstart = 99 -- open all folds by default
+vim.o.foldenable = true -- enable folding
+
+-- Treesitter folding for supported file type
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.opt.cursorline = true -- this code is to high light the current line on vim
 -- highlight CursorLine guibg=#303000 ctermbg=234

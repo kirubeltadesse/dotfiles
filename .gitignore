@@ -6,7 +6,6 @@
 *.swp
 **/.netrwhist
 **/doc/tags
-runcom/config/nvim/plugin/*
 runcom/vim/autoload/*
 runcom/vim/bundle/*
 runcom/vim/plugged/*

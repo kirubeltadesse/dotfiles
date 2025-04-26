@@ -2,7 +2,6 @@ return {
     {
         'vim-pandoc/vim-pandoc',
         config = function()
-            -- pandoc
             -- Enable folding for markdown and pandoc files
             vim.g.vimwiki_filetypes = { 'markdown' }
             vim.g.vimwiki_folding = 'custom'
@@ -25,36 +24,27 @@ return {
                 autocmd!
                 autocmd FileType markdown setlocal foldmethod=expr
                 autocmd FileType markdown setlocal foldexpr=pandoc#fold#level(v:lnum)
-                autocmd FileType markdown setlocal foldtext=MyFoldText()
-                autocmd FileType markdown setlocal foldlevelstart=99
+                autocmd FileType markdown setlocal foldtext=MyMarkdownFoldText()
+                autocmd FileType markdown silent! normal! zM
             augroup END
         ]]
 
             -- Custom fold text function
-            function MyFoldText()
+            function MyMarkdownFoldText()
                 local line = vim.fn.getline(vim.v.foldstart)
                 local fold_size = vim.v.foldend - vim.v.foldstart + 1
                 return line .. ' ... ' .. fold_size .. ' lines'
             end
 
-            -- Function to open all folds and preserve cursor position
-            --function OpenAllFoldsPreserveCursor()
-            --    local save_cursor = vim.fn.getpos(".")
-            --    vim.cmd('normal! zR')
-            --    vim.fn.setpos('.', save_cursor)
-            --end
-            --
-            ---- Function to close all folds and preserve cursor position
-            --function CloseAllFoldsPreserveCursor()
-            --    local save_cursor = vim.fn.getpos(".")
-            --    vim.cmd('normal! zM')
-            --    vim.fn.setpos('.', save_cursor)
-            --end
-
-
-            -- Keybindings for folding
-            -- vim.api.nvim_set_keymap('n', 'zR', ':lua OpenAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true }) -- Open all folds
-            -- vim.api.nvim_set_keymap('n', 'zM', ':lua CloseAllFoldsPreserveCursor()<CR>', { noremap = true, silent = true })  -- Close all folds
+            -- Keybinding to open link under cursor
+            vim.keymap.set("n", "<leader>ol", function()
+                local url = vim.fn.expand("<cWORD>")
+                if url:match("^https?://") then
+                    vim.fn.jobstart({"open", url}, { detach = true })
+                else
+                    print("No valid URL under cursor " .. url)
+                end
+            end, { noremap = true, silent = true })
         end
     },
     {
