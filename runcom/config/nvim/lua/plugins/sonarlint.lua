@@ -1,6 +1,7 @@
 return {
     "danarth/sonarlint.nvim",
     config = function()
+        local mason_path = vim.fn.stdpath("data") .. "/mason/packages/sonarlint-language-server"
         require("sonarlint").setup({
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
             server = {
@@ -9,9 +10,9 @@ return {
                     "java",
                     "-Dsonar.verbose=true",
                     "-Dsonar.log.level=DEBUG",
-                    "-jar", vim.fn.expand("$MASON/packages/sonarlint-language-server/extension/server/sonarlint-ls.jar"),
+                    "-jar", mason_path .. "/extension/server/sonarlint-ls.jar",
                     "-stdio",
-                    "-analyzers", vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+                    "-analyzers", mason_path .. "/extension/analyzers/sonarjava.jar",
                 },
             },
             settings = {
