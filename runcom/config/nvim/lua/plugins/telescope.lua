@@ -59,9 +59,9 @@ return {
             vim.keymap.set('n', '<leader>gs', function()
                 builtin.grep_string({ search = vim.fn.input("Grap > ") });
             end, { desc = "[G]rep [S]tring" })
-            vim.keymap.set('n', '<leader>nb', nb_telescope.nb_find_files, { desc = "[N]ote[B]ooks Find Files" })
-            vim.keymap.set('n', '<leader>ne', nb_telescope.nb_open_encrypted, { desc = "[N]ote[B]ooks [E]ncrypted" })
-            vim.keymap.set('n', '<leader>nbl', nb_telescope.nb_live_grep, { desc = "[N]ote[B]ooks [L]ive grap" })
+            vim.keymap.set('n', '<leader>n', nb_telescope.nb_find_files, { desc = "[N]otebooks Find Files" })
+            vim.keymap.set('n', '<leader>ne', nb_telescope.nb_open_encrypted, { desc = "[N]otebooks [E]ncrypted" })
+            vim.keymap.set('n', '<leader>nl', nb_telescope.nb_live_grep, { desc = "[N]otebooks [L]ive grap" })
             vim.keymap.set('n', '<leader>lg', function()
                 builtin.live_grep {
                     prompt_title = "Live Grep",
