@@ -38,11 +38,21 @@ return {
 
             -- Keybinding to open link under cursor
             vim.keymap.set("n", "<leader>ol", function()
-                local url = vim.fn.expand("<cWORD>")
-                if url:match("^https?://") then
-                    vim.fn.jobstart({"open", url}, { detach = true })
+                -- Get the current line
+                local line = vim.fn.getline(".")
+
+                -- Match the Markdown link pattern and extract the URL
+                local url = line:match("%[.-%]%((.-)%)")
+
+                if url then
+                    url = url:gsub("^%s+", ""):gsub("%s+$", "") -- Trim spaces
+                    if url:match("^https?://") then
+                        vim.fn.jobstart({ "open", url }, { detach = true })
+                    else
+                        print("No valid URL under cursor: " .. url)
+                    end
                 else
-                    print("No valid URL under cursor " .. url)
+                    print("No valid URL found under cursor")
                 end
             end, { noremap = true, silent = true })
         end
