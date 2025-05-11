@@ -69,42 +69,26 @@ return {
 			},
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
+			vim.keymap.set("n", "<leader>T", vim.cmd.TodoTelescope, { desc = "Todo Telescope" }),
+			vim.keymap.set("n", "<leader>t", vim.cmd.TodoTrouble, { desc = "Todo Trouble" }),
+			vim.keymap.set("n", "]t", function()
+				require("todo-comments").jump_next()
+			end, { desc = "Next todo comment" }),
+
+			vim.keymap.set("n", "[t", function()
+				require("todo-comments").jump_prev()
+			end, { desc = "Previous todo comment" }),
 
 			-- You can also specify a list of valid jump keywords
-			--( "]t", function()
+			--vim.keymap.set("n", "]t", function()
 			--    require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } });
 			--end, { desc = "Next error/warning todo comment" });
 		},
-
-		keys = {
-			{
-				"<leader>T",
-				function()
-					Snacks.picker.todo_comments()
-				end,
-				desc = "Todo",
-			},
-			{
-				"<leader>t",
-				function()
-					vim.cmd.TodoTrouble()
-				end,
-				desc = "Todo Trouble",
-			},
-			{
-				"]t",
-				function()
-					require("todo-comments").jump_next()
-				end,
-				desc = "Next todo comment",
-			},
-			{
-				"[t",
-				function()
-					require("todo-comments").jump_prev()
-				end,
-				{ desc = "Previous todo comment" },
-			},
+	},
+	{
+		"numToStr/Comment.nvim",
+		opts = {
+			-- add any options here
 		},
 	},
 }
