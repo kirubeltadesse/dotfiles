@@ -3,7 +3,7 @@ return {
     config = function()
         local mason_path = vim.fn.stdpath("data") .. "/mason/packages/sonarlint-language-server"
         require("sonarlint").setup({
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()),
             server = {
                 -- name = "sonarlint",
                 cmd = {
