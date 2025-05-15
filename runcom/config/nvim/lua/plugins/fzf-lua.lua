@@ -156,11 +156,11 @@ return {
 			desc = "[N]otebooks [E]ncrypted",
 		},
 		{
-			"<leader>nl",
+			"<leader>ln",
 			function()
 				require("swarmies.fzf_nb").nb_live_grep()
 			end,
-			desc = "[N]otebooks [L]ive grap",
+			desc = " [L]ive [N]otebooks grap",
 		},
 		--
 	},
