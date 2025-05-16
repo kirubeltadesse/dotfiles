@@ -59,11 +59,8 @@ vim.opt.laststatus = 2
 vim.opt.spelllang = "en_us"
 vim.opt.spell = true
 
-vim.opt.listchars = { -- see hidden chars and their
-	-- tab = "| ", -- coming from snack.lua
-	eol = "𝆨",
-	trail = ".",
-}
+-- see hidden chars and their
+-- coming from snack.lua
 vim.o.list = true
 vim.o.updatetime = 100
 vim.o.foldlevelstart = 99 -- open all folds by default

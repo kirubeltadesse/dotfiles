@@ -133,7 +133,7 @@ return {
 					if client.server_capabilities.codelensProvider then
 						enable_codelens(bufnr)
 					else
-						vim.notify("CodeLens is not supported by the server.", vim.log.levels.WARN)
+						vim.notify("CodeLens is not supported by the server.", vim.log.levels.INFO)
 					end
 				end
 
