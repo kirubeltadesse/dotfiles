@@ -1,8 +1,8 @@
 return {
-  { "nmac427/guess-indent.nvim", opts = {} },
-  {
-    "stevearc/conform.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+	{ "nmac427/guess-indent.nvim", opts = {} },
+	{
+		"stevearc/conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 
 		opts = {
 			formatters_by_ft = {
