@@ -128,7 +128,7 @@ M.nb_live_grep = function()
 	local notes_directory = get_current_notebook_path()
 
 	Snacks.picker.grep({
-		prompt = "🔭 NB> ", -- Title for the search prompt
+		prompt = "Search Notes Content", -- Title for the search prompt
 		cwd = notes_directory, -- Set the current working directory to your notes folder
 		hidden = true, -- Include hidden files in the search
 		file_ignore_patterns = { "%.lock$", "%.log$", "%.swp$", "%.DS_Store" }, -- Ignore unnecessary files
