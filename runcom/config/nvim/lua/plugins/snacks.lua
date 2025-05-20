@@ -2,7 +2,6 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
-	---@type snacks.Config
 	opts = {
 		bigfile = { enabled = true },
 		dashboard = { enabled = false },
@@ -22,7 +21,21 @@ return {
 		words = { enabled = true },
 		styles = {
 			notification = {
-				-- wo = { wrap = true } -- Wrap notifications
+				wo = { wrap = true }, -- Wrap notifications
+			},
+		},
+		zen = {
+			enabled = true,
+			fixbuf = false,
+			width = 120,
+			hight = 0,
+			backdrop = { transparent = false },
+			zindex = 40,
+			wo = {
+				winhighlight = "NormalFloat:Normal",
+			},
+			w = {
+				snacks_main = true,
 			},
 		},
 	},
@@ -103,7 +116,7 @@ return {
 		{
 			"<leader>gcf",
 			function()
-				Snacks.picker.git_bcommits()
+				Snacks.picker.git_log_file()
 			end,
 			desc = "[G]it [C]ommits for current [F]ile",
 		},
@@ -345,38 +358,45 @@ return {
 		},
 		-- LSP
 		{
-			"<leader>ps",
+			"<leader>g0",
 			function()
 				Snacks.picker.lsp_document_symbols()
 			end,
-			desc = "[P]review [S]ymbols",
+			desc = "[O]pen document symbols",
+		},
+		{
+			"<leader>gW",
+			function()
+				Snacks.picker.lsp_dynamic_workspace_symbols({ auto_confirm = false })
+			end,
+			desc = "Open Workspace Symbols",
 		},
 		{
 			"gd",
 			function()
-				Snacks.picker.lsp_definitions()
+				Snacks.picker.lsp_definitions({ auto_confirm = false })
 			end,
-			desc = "Goto Definition",
+			desc = "[G]oto Definition",
 		},
 		{
 			"gD",
 			function()
-				Snacks.picker.lsp_declarations()
+				Snacks.picker.lsp_declarations({ auto_confirm = false })
 			end,
-			desc = "Goto Declaration",
+			desc = "[G]oto Declaration",
 		},
 		{
 			"gr",
 			function()
-				Snacks.picker.lsp_references()
+				Snacks.picker.lsp_references({ auto_confirm = false })
 			end,
 			nowait = true,
 			desc = "References",
 		},
 		{
-			"gI",
+			"gi",
 			function()
-				Snacks.picker.lsp_implementations()
+				Snacks.picker.lsp_implementations({ auto_confirm = false })
 			end,
 			desc = "Goto Implementation",
 		},
@@ -385,7 +405,7 @@ return {
 			function()
 				Snacks.picker.lsp_type_definitions()
 			end,
-			desc = "Goto T[y]pe Definition",
+			desc = "[G]oto T[y]pe Definition",
 		},
 		{
 			"<leader>ss",
