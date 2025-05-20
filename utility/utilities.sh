@@ -126,7 +126,7 @@ package_installed() {
 install_apps() {
     local use_command
     use_command="$(read_file "$INSTALLER_COMMAND")"
-	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq" "shunit2" "pass" "pass-otp" "zbar") # "vim-gtk" "lynx")
+	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq" "shunit2" "pass" "pass-otp" "zbar" "lazygit") # "vim-gtk" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
