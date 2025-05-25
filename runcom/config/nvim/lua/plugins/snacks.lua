@@ -12,7 +12,19 @@ return {
 			enabled = true,
 			timeout = 3000,
 		},
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			win = {
+				input = {
+					keys = {
+						["J"] = { "preview_scroll_down", mode = { "i", "n" } },
+						["K"] = { "preview_scroll_up", mode = { "i", "n" } },
+						["H"] = { "preview_scroll_left", mode = { "i", "n" } },
+						["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+					},
+				},
+			},
+		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
@@ -70,7 +82,7 @@ return {
 			desc = "Command History",
 		},
 		{
-			"<leader>n",
+			"<leader>np",
 			function()
 				Snacks.picker.notifications()
 			end,
