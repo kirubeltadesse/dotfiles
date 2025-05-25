@@ -1,6 +1,14 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
+		"saghen/blink.cmp",
+		{
+			"folke/neoconf.nvim",
+			opts = { lsp = true, import = {
+				vscode = true,
+			}, live_reload = true },
+			plugins = { lspconfig = { enabled = true } },
+		},
 		{
 			"williamboman/mason.nvim",
 			opts = {
@@ -15,7 +23,6 @@ return {
 		},
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"saghen/blink.cmp",
 	},
 	config = function()
 		-- Set up Mason-Tool-Installer
@@ -27,12 +34,13 @@ return {
 				"prettierd", -- JavaScript/TypeScript formatter
 				"black", -- Python formatter
 				"isort", -- Python import sorter
+				"jsonls", -- Python import sorter
 			},
 		})
 
 		-- Set up Mason-LSPConfig
 		require("mason-lspconfig").setup({
-			ensure_installed = { "lua_ls", "rust_analyzer", "bashls" }, -- Add your desired LSP servers here
+			ensure_installed = { "lua_ls", "rust_analyzer", "bashls", "jsonls" }, -- Add your desired LSP servers here
 			automatic_installation = false,
 		})
 

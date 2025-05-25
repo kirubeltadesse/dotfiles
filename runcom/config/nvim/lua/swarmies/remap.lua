@@ -53,7 +53,7 @@ vim.keymap.set(
 	":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>",
 	{ desc = "Substitute the current word" }
 )
-vim.keymap.set("n", "<leader>e", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make this file Excutable" })
+-- vim.keymap.set("n", "<leader>e", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make this file Excutable" })
 
 -- Split windows
 vim.keymap.set("n", "sv", ":vsplit<Return>", { noremap = true, silent = true, desc = "Vectrical split" })

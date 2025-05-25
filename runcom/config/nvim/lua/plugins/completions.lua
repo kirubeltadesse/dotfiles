@@ -11,6 +11,15 @@ return {
 			"moyiz/blink-emoji.nvim",
 			-- "giuxtaposition/blink-cmp-copilot", FIXME: copilot not working on the current version
 			"L3MON4D3/LuaSnip",
+			{
+				"folke/lazydev.nvim",
+				ft = "lua",
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
 		},
 		opts = {
 			keymap = { preset = "default" },
@@ -22,7 +31,7 @@ return {
 			signature = { enabled = true },
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "emoji" }, -- "copilot" },
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" }, -- "copilot" },
 				providers = {
 					emoji = {
 						module = "blink-emoji",
@@ -37,6 +46,12 @@ return {
 								vim.o.filetype
 							)
 						end,
+					},
+
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
 					},
 					-- copilot = {
 					-- 	name = "copilot",
