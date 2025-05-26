@@ -2,7 +2,6 @@
 
 [Here](https://crxextractor.com/) is the link to create `.crx` file fore any extension you want.
 
-
 ## Exporting Bookmarks
 
 Next, mouse over "Bookmarks" and select "Bookmark Manager."
@@ -20,25 +19,23 @@ Take good care of your precious bookmarks!
 
 Related: How to Create, View, and Edit Bookmarks in Google Chrome
 
-
-
-
 ## Vimium
 
 In this directory, you will find the `.crx` file for Vimium, and you can directly add it to your Chrome browser.
 
 After adding Vimium, you can click on options, and at the bottom of the page, you will see `Backup and Restore`. You can upload a `.json` file using previous shortcuts. You will find a `vimium-options.json` to get the shortcuts I use.
 
-`ctrl + space` keyboards  will disable and enable `vomnibar`.
+`ctrl + space` keyboards will disable and enable `vomnibar`.
 
 Note: disabling will help you use the normal keyboard shortcut for `Youtube` like speeding up (.) and down (,) muting video (m) , caption (c), increasing (up arrow) and decreasing volume (down arrow).
-
 
 ### Select and search on Vimium
 
 - https://superuser.com/questions/1236864/how-to-use-vimium-to-select-text-from-a-page
 
 ## Browser pass plugin
+
+- Make sure the `.browserpass.json` file exists in the `.password-store` directory.
 
 Needs gpgtools.org and download and install
 
@@ -61,4 +58,3 @@ After confirming, quit with:
 ```bash
 gpg> quit
 ```
-

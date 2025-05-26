@@ -120,6 +120,7 @@ return {
 				vim.keymap.set("n", "crc", "<cmd>lua require('jdtls').extract_constant()<cr>", opts)
 				vim.keymap.set("x", "crc", "<esc><cmd>lua require('jdtls').extract_constant(true)<cr>", opts)
 				vim.keymap.set("x", "crm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
+				vim.keymap.set("n", "vc", "<cmd>lua require('jdtls').test_class()<cr>", opts)
 
 				vim.notify("📌 jdtls_on_attach() called!", vim.log.levels.INFO)
 				if features.debugger then
