@@ -17,10 +17,10 @@ return {
 			win = {
 				input = {
 					keys = {
-						["J"] = { "preview_scroll_down", mode = { "i", "n" } },
-						["K"] = { "preview_scroll_up", mode = { "i", "n" } },
-						["H"] = { "preview_scroll_left", mode = { "i", "n" } },
-						["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+						["J"] = { "preview_scroll_down" },
+						["K"] = { "preview_scroll_up" },
+						["H"] = { "preview_scroll_left" },
+						["L"] = { "preview_scroll_right" },
 					},
 				},
 			},
@@ -198,7 +198,7 @@ return {
 		-- Grep
 		--
 		{
-			"<leader>gs",
+			"<leader>gss",
 			function()
 				Snacks.picker.grep({ search = vim.fn.input("Grep > ") })
 			end,
@@ -552,7 +552,7 @@ return {
 			desc = "[N]otebooks [E]ncrypted",
 		},
 		{
-			"<leader>ln",
+			"<leader>n/",
 			function()
 				require("swarmies.nb_plugin").nb_live_grep()
 			end,
