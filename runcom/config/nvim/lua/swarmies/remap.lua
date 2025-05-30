@@ -38,26 +38,26 @@ vim.keymap.set("v", "<leader>fj", "!jq .", { desc = "Format JSON file" })
 
 -- Disable vim-tmux-navigation mapping in Neovim if inside a quick fix list
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = "qf", -- Quick buffer type
-	callback = function()
-		vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "next centered cursor " })
-		vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "prev centered cursor " })
-	end,
+  pattern = "qf", -- Quick buffer type
+  callback = function()
+    vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "next centered cursor " })
+    vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "prev centered cursor " })
+  end,
 })
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Up centered cursor " })
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Down centered cursor " })
 
 vim.keymap.set(
-	"n",
-	"<leader>s",
-	":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>",
-	{ desc = "Substitute the current word" }
+  "n",
+  "<leader>s",
+  ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left>",
+  { desc = "Substitute the current word" }
 )
 -- vim.keymap.set("n", "<leader>e", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make this file Excutable" })
 
 -- Split windows
-vim.keymap.set("n", "sv", ":vsplit<Return>", { noremap = true, silent = true, desc = "Vectrical split" })
-vim.keymap.set("n", "ss", ":split<Return>", { noremap = true, silent = true, desc = "Horizontal split " })
+vim.keymap.set("n", "<leader>|", ":vsplit<Return>", { noremap = true, silent = true, desc = "Vectrical split" })
+vim.keymap.set("n", "<leader>_", ":split<Return>", { noremap = true, silent = true, desc = "Horizontal split " })
 -- Quit windows
 vim.keymap.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit current window" })
 
