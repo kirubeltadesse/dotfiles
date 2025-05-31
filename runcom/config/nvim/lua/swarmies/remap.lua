@@ -1,7 +1,7 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line up" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line down" })
 
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Break nextline to this line" })
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Bring nextline to this line" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Centered cursor for ctrl-d" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Centered cursor for ctrl-u" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Centered search next" })
@@ -61,13 +61,8 @@ vim.keymap.set("n", "<leader>_", ":split<Return>", { noremap = true, silent = tr
 -- Quit windows
 vim.keymap.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit current window" })
 
--- Tabs
-vim.keymap.set("n", "te", ":tabedit", { noremap = true, silent = true, desc = "Tab edit" })
-vim.keymap.set("n", "<tab>", ":tabnext<Return>", { noremap = true, silent = true, desc = "Next Tab" })
-vim.keymap.set("n", "<s-tab>", ":tabprev<Return>", { noremap = true, silent = true, desc = "Previous Tab" })
-
 -- Re-size Panes
-vim.keymap.set("n", "<M-h>", '<Cmd>lua require("tmux").resize_left()<CR>', { silent = true })
-vim.keymap.set("n", "<M-j>", '<Cmd>lua require("tmux").resize_bottom()<CR>', { silent = true })
-vim.keymap.set("n", "<M-k>", '<Cmd>lua require("tmux").resize_top()<CR>', { silent = true })
-vim.keymap.set("n", "<M-l>", '<Cmd>lua require("tmux").resize_right()<CR>', { silent = true })
+vim.keymap.set("n", "<C-S-j>", '<Cmd>lua require("tmux").resize_bottom()<CR>', { silent = true })
+vim.keymap.set("n", "<C-S-h>", '<Cmd>lua require("tmux").resize_left()<CR>', { silent = true })
+vim.keymap.set("n", "<C-S-k>", '<Cmd>lua require("tmux").resize_top()<CR>', { silent = true })
+vim.keymap.set("n", "<C-S-l>", '<Cmd>lua require("tmux").resize_right()<CR>', { silent = true })
