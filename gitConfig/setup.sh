@@ -57,6 +57,7 @@ function add_git_aliases() {
 
     if [[ "$USER" != "kirubeltadesse" ]]; then
         git config --global http.https://github.com.proxy http://proxy.bloomberg.com:81
+        git config --global http.https://gitlab.com.proxy http://proxy.bloomberg.com:81
         git config --global http.https://github.com.sslCAinfo ~/bb-cert/bloomberg-root-ca.crt
         git config --global credential.https://github.com.name "$(read_file "$USERNAME_FILE")"
         git config --global credential.https://github.com.email "$(read_file "$EMAIL_FILE")"
@@ -71,8 +72,13 @@ function add_git_aliases() {
 
     # For `bdone` alias - Delete all fully merged branches except the current one
     git config --global alias.bdone "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-    git config --global alias.bclean "!git checkout $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+    # Define `bclean` alias
+    # This version first detects the default branch (`main` or `master`) from the remote, then switches to it
+    # and deletes all branches that have been merged.
+    git config --global alias.bclean "!git checkout \$(git remote show origin | grep 'HEAD branch' | awk '{print \$NF}') && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+    git config --global alias.rclean "!git branch -r --merged origin/$(git remote show origin | grep 'HEAD branch' | awk '{print \$NF}') | grep -v 'origin/HEAD' | grep -v 'origin/$(git remote show origin | grep 'HEAD branch' | awk '{print \$NF}')' | sed 's/origin\\///' | xargs -n 1 git push origin --delete"
 
     git config --global alias.c commit
     git config --global alias.cp cherry-pick
@@ -130,7 +136,7 @@ function add_git_aliases() {
     git config --global alias.rs restore
     git config --global alias.rss 'restore --staged'
 
-    append_line 1 "#----------------------------------- show -----------------------------------" ~/.gitconfig   
+    append_line 1 "#----------------------------------- show -----------------------------------" ~/.gitconfig
 
     git config --global alias.w 'show'
     git config --global alias.wno 'show --name-only'
