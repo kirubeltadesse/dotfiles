@@ -1,62 +1,66 @@
 return {
-    {
-        "hrsh7th/cmp-nvim-lsp",
-    },
-    {
-        "github/copilot.vim",
-    },
-    {
-        "L3MON4D3/LuaSnip",
-        version = "v2.*",
-        build = "make install_jsregexp",
-        dependencies = {
-            "saadparwaiz1/cmp_luasnip",
-            "rafamadriz/friendly-snippets",
-        },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-    },
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-nvim-lua"
-        },
-        config = function()
-            local cmp = require("cmp")
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_vscode").load({ include = { "python" } })
-            require("luasnip.loaders.from_vscode").load({ include = { "jsdoc" } })
+	{
+		"github/copilot.vim",
+	},
+	{
+		"saghen/blink.cmp",
+		-- optional: provides snippets for the snippet source
+		version = "v1.2.0",
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			"moyiz/blink-emoji.nvim",
+			-- "giuxtaposition/blink-cmp-copilot", FIXME: copilot not working on the current version
+			"L3MON4D3/LuaSnip",
+			{
+				"folke/lazydev.nvim",
+				ft = "lua",
+				opts = {
+					library = {
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+		},
+		opts = {
+			keymap = { preset = "default" },
+			appearance = {
+				nerd_font_variant = "mono",
+			},
+			snippets = { preset = "luasnip" },
+			completion = { documentation = { auto_show = true } },
+			signature = { enabled = true },
 
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
-                    end,
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-e>"] = cmp.mapping.abort(),
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    -- ["<C-n>"] = cmp_action.luasnip_jump_forward(),
-                    -- ["<C-p>"] = cmp_action.luasnip_jump_backward(),
-                    ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                }),
-                sources = cmp.config.sources({
-                    { name = "nvim-lsp" },
-                    { name = "luasnip" },
-                    { name = "buffer" },
-                    { name = "path" },
-                    { name = "nvim_lua" },
-                }),
-            })
-        end,
-    },
+			sources = {
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji" }, -- "copilot" },
+				providers = {
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15, -- Tune by preference
+						opts = { insert = true }, -- Insert emoji (default) or complete its name
+						should_show_items = function()
+							return vim.tbl_contains(
+								-- Enable emoji completion only for git commits and markdown.
+								-- By default, enabled for all file-types.
+								{ "gitcommit", "markdown" },
+								vim.o.filetype
+							)
+						end,
+					},
+
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
+					},
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-cmp-copilot",
+					-- 	score_offset = 100,
+					-- 	async = true,
+					-- },
+				},
+			},
+		},
+	},
 }

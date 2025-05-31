@@ -1,0 +1,115 @@
+prSections:
+  - title: Mine
+    filters: is:open author:@me
+    layout:
+      author:
+        hidden: true
+    type: null
+  - title: Review
+    filters: is:open review-requested:@me
+    limit: 10
+    type: null
+  - title: Involved
+    filters: is:open involves:@me -author:@me
+    type: null
+  - title: All
+    filters: repo:kirubeltadesse
+    type: null
+issuesSections:
+  - title: Created
+    filters: is:open author:@me
+  - title: Assigned
+    filters: is:open assignee:@me
+  - title: Subscribed
+    filters: is:open involves:@me -author:@me
+repo:
+  branchesRefetchIntervalSeconds: 30
+  prsRefetchIntervalSeconds: 60
+defaults:
+  layout:
+    prs:
+      repo:
+        grow: true,
+        width: 10
+        hidden: false
+      base:
+        hidden: true
+
+  preview:
+    open: true
+    width: 84
+  prsLimit: 20
+  prApproveComment: LGTM
+  issuesLimit: 20
+  view: prs
+  layout:
+    prs:
+      updatedAt:
+        width: 5
+      createdAt:
+        width: 5
+      repo:
+        width: 20
+      author:
+        width: 15
+      authorIcon:
+        hidden: false
+      assignees:
+        width: 20
+        hidden: true
+      base:
+        width: 15
+        hidden: true
+      lines:
+        width: 15
+    issues:
+      updatedAt:
+        width: 5
+      createdAt:
+        width: 5
+      repo:
+        width: 15
+      creator:
+        width: 10
+      creatorIcon:
+        hidden: false
+      assignees:
+        width: 20
+        hidden: true
+  refetchIntervalMinutes: 30
+repoPaths: {
+  BQL/bqlcore: ~/dev/bqlcore,
+  kirubeltadesse/dotfiles: ~/.dotfiles,
+  }
+keybindings:
+  universal:
+    - key: g
+      name: lazygit
+      command: >
+        cd {{.RepoPath}} && lazygit
+  issues: []
+  prs:
+    - key: D
+      name: debug path
+      command: >
+        echo 'Repo Path: {{.RepoPath}} Pr Number: {{.PrNumber}} Issue Number: {{.IssueNumber}}'
+    - key: o
+      name: Open in browser
+      command: >
+        open "https://bbgithub.dev.bloomberg.com/{{.RepoPath}}/pull/{{.PrNumber}}"
+    - key: C
+      command: >
+        tmux split-window -h -c {{.RepoPath}}
+        "nvim -c ':Octo pr edit {{.PrNumber}}' || read -p 'Press Enter o closse... '"
+  branches: []
+theme:
+  ui:
+    sectionsShowCount: true
+    table:
+      showSeparator: true
+      compact: false
+pager:
+  diff: delta
+confirmQuit: false
+showAuthorIcons: true
+smartFilteringAtLaunch: true

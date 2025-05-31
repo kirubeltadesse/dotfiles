@@ -29,6 +29,7 @@ Using [chocolatey](https://chocolatey.org/) install software to your windows
 - Vimium extension setting
 
 ## TMUX and Vim
+
 [Here](/runcom/README.md) are detailed instructions on how to set up Tmux and Vim.
 
 ## Browser
@@ -67,20 +68,17 @@ Navigate to the git root directory and run the command
 
 If error with white spaces run one of this options:
 
-1. `git apply --reject --whitespace=fix my-patch.patch` - partly works
-but creates rej hunks
+1. `git apply --reject --whitespace=fix my-patch.patch` - partly works but creates reject hunks
 1. `git apply --reject --ignore-whitespace --whitespace=fix my-patch.patch` - same as above
 1. `git am -3 --ignore-whitespace` - patch format detection failed
 1. `git apply -3 --ignore-whitespace1` - fails with trailing white space
-and new blank line at EOF.
-
+   and new blank line at EOF.
 
 ---
 
 <details>
 
 <summary> FAQ </summary>
-
 
 ### iTem2
 

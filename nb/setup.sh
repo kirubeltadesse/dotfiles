@@ -7,7 +7,6 @@ source "$folder/utility/utilities.sh"
 create_symlink "$folder/nb/nbrc" "$HOME/.nbrc"
 
 # install fzf plugin
-nb plugins install "$folder/nb/fzf.nb-plugin"
 nb plugins install "$folder/nb/git.nb-plugin"
 
 cat <<-EOF >> ~/.bashrc
