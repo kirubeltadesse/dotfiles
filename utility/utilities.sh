@@ -102,8 +102,8 @@ custome_installer() {
 		$use_command --cask rectangle
 		$use_command --cask font-jetbrains-mono-nerd-font
 		# finish up fzf configuration
-        # TODO: Default settings
-        # defaults write com.apple.screencapture type png
+		# TODO: Default settings
+		# defaults write com.apple.screencapture type png
 		"$(brew --prefix)"/opt/fzf/install
 
 		echo "source ~/.bashrc" >>~/.zshrc
@@ -114,7 +114,7 @@ custome_installer() {
 		exit 1 #returning before running to commands below on dev machines
 		;;
 	esac
-    write_to_file "$use_command" "$INSTALLER_COMMAND"
+	write_to_file "$use_command" "$INSTALLER_COMMAND"
 }
 
 package_installed() {
@@ -124,14 +124,14 @@ package_installed() {
 
 # installer function
 install_apps() {
-    local use_command
-    use_command="$(read_file "$INSTALLER_COMMAND")"
-	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq" "shunit2" "pass" "pass-otp" "zbar" "lazygit") # "vim-gtk" "lynx")
+	local use_command
+	use_command="$(read_file "$INSTALLER_COMMAND")"
+	local packages=("dos2unix" "tmux" "nb" "fzf" "bat" "luarocks" "git-delta" "neovim" "jq" "shunit2" "pass" "pass-otp" "zbar" "lazygit" "zoxide" "lynx")
 	for package in "${packages[@]}"; do
 		if ! package_installed "$package"; then
 			print 'progress' "Installling $package ..."
 			$use_command "$package"
-            # TODO: if failed to install a give command write to a file and report at the end
+			# TODO: if failed to install a give command write to a file and report at the end
 		else
 			print 'warning' "$package is already installed."
 		fi
@@ -142,16 +142,16 @@ install_apps() {
 create_symlink() {
 	local source_file="$1"
 	local target_file="$2"
-    local target_dir
+	local target_dir
 
-    # Get the directory of the target file
-    target_dir=$(dirname "$target_file")
+	# Get the directory of the target file
+	target_dir=$(dirname "$target_file")
 
-    # Check if the target directory exists, if not create it
-    if [ ! -d "$target_dir" ]; then
-        print error "Directory $target_dir does not exist. Createing it ..."
-        mkdir -p "$target_dir"
-    fi
+	# Check if the target directory exists, if not create it
+	if [ ! -d "$target_dir" ]; then
+		print error "Directory $target_dir does not exist. Createing it ..."
+		mkdir -p "$target_dir"
+	fi
 
 	if [ ! -e "$target_file" ]; then
 		ln -s "$source_file" "$target_file"
@@ -163,7 +163,7 @@ create_symlink() {
 }
 
 copy_text_2_bashrc() {
-    # TODO: Not sure if I need this anymore
+	# TODO: Not sure if I need this anymore
 	local text="$1"
 	local file_path="$HOME/.bashrc"
 
@@ -178,42 +178,41 @@ configure_keybase() {
 }
 
 create_env_file() {
-    if check_file "$USERNAME_FILE"; then
-        clean_env
-    	mkdir -p $DOTFILE_TEMP_DIR
-    	read -r -p "Enter git-username: " username
-    	read -r -p "Enter git-email: " email
-    	write_to_file "$username" "$USERNAME_FILE"
-    	write_to_file "$email" "$EMAIL_FILE"
-    else
-        print 'warning' "Using the previsious setting"
-    fi
+	if check_file "$USERNAME_FILE"; then
+		clean_env
+		mkdir -p $DOTFILE_TEMP_DIR
+		read -r -p "Enter git-username: " username
+		read -r -p "Enter git-email: " email
+		write_to_file "$username" "$USERNAME_FILE"
+		write_to_file "$email" "$EMAIL_FILE"
+	else
+		print 'warning' "Using the previsious setting"
+	fi
 }
 
 check_file() {
-    local file_path="$1"
+	local file_path="$1"
 
-    if [ -f "$file_path" ]; then
-        read -r -p "File '$file_path' exists. Do you want to overwrite it? (y/n): " choice
-        case "$choice" in
-            y|Y )
-                echo "Overwriting file '$file_path'..."
-                # Perform the action to overwrite the file
-                ;;
-            n|N )
-                echo "Skipping overwrite for file '$file_path'."
-                return 1  # Skip further actions for this file
-                ;;
-            * )
-                echo "Invalid choice. Please enter y or n."
-                check_file "$file_path"  # Re-prompt the user
-                ;;
-        esac
-    else
-        echo "File '$file_path' does not exist. Continuing..."
-    fi
+	if [ -f "$file_path" ]; then
+		read -r -p "File '$file_path' exists. Do you want to overwrite it? (y/n): " choice
+		case "$choice" in
+		y | Y)
+			echo "Overwriting file '$file_path'..."
+			# Perform the action to overwrite the file
+			;;
+		n | N)
+			echo "Skipping overwrite for file '$file_path'."
+			return 1 # Skip further actions for this file
+			;;
+		*)
+			echo "Invalid choice. Please enter y or n."
+			check_file "$file_path" # Re-prompt the user
+			;;
+		esac
+	else
+		echo "File '$file_path' does not exist. Continuing..."
+	fi
 }
-
 
 write_to_file() {
 	local data="$1"
@@ -248,18 +247,14 @@ remove_file() {
 	fi
 }
 
-set_proxy ()
-{
-    export http_proxy=http://proxy.bloomberg.com:81
-    export https_proxy=http://proxy.bloomberg.com:81
-    print "success" "proxy set successfully"
+set_proxy() {
+	export http_proxy=http://proxy.bloomberg.com:81
+	export https_proxy=http://proxy.bloomberg.com:81
+	print "success" "proxy set successfully"
 }
 
-unset_proxy ()
-{
-    unset http_proxy
-    unset https_proxy
-    print "error" "proxy unset successfully"
+unset_proxy() {
+	unset http_proxy
+	unset https_proxy
+	print "error" "proxy unset successfully"
 }
-
-
