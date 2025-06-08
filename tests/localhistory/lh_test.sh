@@ -2,7 +2,6 @@
 
 # Load the original script and shunit2
 
-
 oneTimeSetUp() {
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
     LH_SH_PATH="$SCRIPT_DIR/../../localhistory/lh.sh"
@@ -80,19 +79,13 @@ test_cd_with_local_history() {
     assertEquals "The local history file should be set" "$test_dir/.lhistory" "$LOCAL_HISTORY"
 }
 
-
 # Test history_grep function
 test_history_grep() {
-
-    TMP=$(mktemp -d)
-    cd "$TMP"
-    touch .git
-    echo "sample" >.lhistory
-    LOCAL_HISTORY="$TMP/.lhistory"
-    export LOCAL_HISTORY
-    last_command=$(tail -n 1 "$LOCAL_HISTORY")
-    assertEquals "Command should match history" "sample" "$last_command"
+    echo "sample" >> "$LOCAL_HISTOR"
+    last_command=$(tail -n 1 "$LOCAL_HISTOR")
+    assertSame "Command should match history" "$last_command" "sample"
 }
+
 
 # Test localhist_add function
 # test_localhist_add() {
