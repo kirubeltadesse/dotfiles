@@ -6,14 +6,30 @@ source "$FOLDER/utility/utilities.sh"
 CURRENT_LOADED_HISTORY_PATH="$HOME/.bash_history"
 LOCAL_HISTOR=""
 
+function find_project_root {
+    local dir="$PWD"
+    while [[ "$dir" != "/" ]]; do
+        if [[ -d "$dir/.git" ]]; then
+            echo "$dir"
+            return
+        fi
+        dir=$(dirname "$dir")
+    done
+    return 1
+}
+
 # handle the history differently
 # http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
 # TODO: filter the command in `.lhistory` to include unique history
 function hist {
     local lhistory="$1"
-    history -a "$1"
-    CURRENT_LOADED_HISTORY_PATH="$1"
+
+    # save history to the specified file
+    history -a "$lhistory"
+    CURRENT_LOADED_HISTORY_PATH="$lhistory"
     history -c             # clears the current in-memory command
+
+    # Update the history file with the new commands
     newCommands=$(cat "$lhistory")
     if [ "$newCommands" != "" ]; then
         grep -vwE "$newCommands"~/.bash_history >"$lhistory"
@@ -36,6 +52,7 @@ function show_help {
     echo "set         - set http and https proxy"
     echo "unset       - unset http and https proxy"
     echo "swap        - swap loaded history"
+    echo "read        - print project history"
 }
 
 function lh() {
@@ -78,6 +95,53 @@ function notify {
     return
 }
 
+# Initialize project history
+function lh_init {
+    local root
+    root=$(find_project_root) || {
+        echo "No .git directory found."
+        return 1
+    }
+    export LHIST_FILE="$root/.lhistory"
+    touch "$LHIST_FILE"
+    echo "Project history file: $LHIST_FILE"
+
+    # Set up PROMPT_COMMAND to log commands, filtering out generic ones
+    function lh_log_command {
+        local last_command
+        last_command=$(history 1 | sed 's/ *[0-9]* *//')
+        if [[ "$last_command" != "lh" && "$last_command" != "lh "* ]]; then
+            echo "$last_command" >>"$LHISTORY_FILE"
+        fi
+        case "$last_command" in
+        cd* | ls* | pwd | clear | exit) return ;; # Ignore generic command
+        esac
+        if [[ -n "$last_command" ]]; then
+            echo "$last_command" >>"$LHIST_FILE"
+        fi
+    }
+    PROMPT_COMMAND="lh_log_command${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+}
+
+# Read project history
+function lh_read {
+    local root
+    root=$(find_project_root) || {
+        echo "No .git directory found."
+        return 1
+    }
+    local file="$root/.lhistory"
+    if [[ -f "$file" ]]; then
+        cat "$file"
+    else
+        echo "No project history found."
+    fi
+}
+
+# create: Initializes or loads a local history file for the current directory.
+# - Creates a .lhistory file in the current working directory if it does not exist.
+# - Sets HISTFILE to the local history file for the current shell session.
+# - Appends the current command and working directory to the history file.
 function create {
     LOCAL_HISTOR="$(pwd)/.lhistory"
 
@@ -88,9 +152,9 @@ function create {
   else
     print 'warning' "Reading from $LOCAL_HISTOR"
   fi
+
   history -a "$LOCAL_HISTOR"
-  export HISTFILE
-  HISTFILE="$LOCAL_HISTOR"
+  export HISTFILE="$LOCAL_HISTOR"
   print 'warning' "History file set to $HISTFILE"
 
     # Append the command to the local history file
