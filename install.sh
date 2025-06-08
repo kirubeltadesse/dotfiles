@@ -11,7 +11,7 @@ source "$FOLDER/utility/utilities.sh"
 
 initial_setup() {
 
-cat <<-EOF >> ~/.bashrc
+    cat <<-EOF >>~/.bashrc
 # added by the dotfile installer
 DOTFILES_DIR="\$HOME/.dotfiles"
 
@@ -35,26 +35,27 @@ export set_PS1
 export NB_PREVIEW_COMMAND="bat"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "\$(zoxide init --cmd cd bash)"
 EOF
 
     read -r -p "Is this the first setup? (Y/n):" ans
     case "${ans:-Y}" in
-        y|Y )
-            if [ -d "$FOLDER" ]; then
-                print warning "Folder exists"
-            else
-                echo "Rename folder to .dotfiles"
-                mv ~/dotfiles ~/.dotfiles
-            fi
-            print success "setting up Keybase"
-            configure_keybase
-            ;;
-        n|N )
-            print warning "Skipping Keybase setup"
-            ;;
-        * )
-            print error "Command not recongized"
-            ;;
+    y | Y)
+        if [ -d "$FOLDER" ]; then
+            print warning "Folder exists"
+        else
+            echo "Rename folder to .dotfiles"
+            mv ~/dotfiles ~/.dotfiles
+        fi
+        print success "setting up Keybase"
+        configure_keybase
+        ;;
+    n | N)
+        print warning "Skipping Keybase setup"
+        ;;
+    *)
+        print error "Command not recongized"
+        ;;
     esac
 }
 
@@ -76,7 +77,7 @@ setup_editor_plugins() {
     # download vim plug manage
     # Vim (~/.vim/autoload)
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # download TPM - Tmux Plag manager
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -95,15 +96,17 @@ setup_symlinks() {
 }
 
 setup_pass() {
-    . localhistory/setup.sh; link_pass
+    . localhistory/setup.sh
+    link_pass
 }
 
 setup_lh() {
-    . localhistory/setup.sh; link_lh
+    . localhistory/setup.sh
+    link_lh
 }
 
 setup_nb() {
-    bash  nb/setup.sh
+    bash nb/setup.sh
 }
 
 setup_lynx() {
@@ -132,49 +135,48 @@ fi
 
 for arg in "$@"; do
     case $arg in
-        all)
-            initial_setup
-            setup_git
-            setup_os_applications
-            setup_editor_plugins
-            setup_lh
-            setup_nb
-            setup_symlinks
-            setup_lynx
-            ;;
-        init)
-            initial_setup
-            ;;
-        git)
-            setup_git
-            ;;
-        os-apps)
-            setup_os_applications
-            ;;
-        plugins)
-            setup_editor_plugins
-            ;;
-        pass)
-            setup_pass
-            ;;
-        lh)
-            setup_lh
-            ;;
-        nb)
-            setup_nb
-            ;;
-        link)
-            setup_symlinks
-            ;;
-        lynx)
-            setup_lynx
-            ;;
-        *)
-            show_help
-            exit 1
-            ;;
+    all)
+        initial_setup
+        setup_git
+        setup_os_applications
+        setup_editor_plugins
+        setup_lh
+        setup_nb
+        setup_symlinks
+        setup_lynx
+        ;;
+    init)
+        initial_setup
+        ;;
+    git)
+        setup_git
+        ;;
+    os-apps)
+        setup_os_applications
+        ;;
+    plugins)
+        setup_editor_plugins
+        ;;
+    pass)
+        setup_pass
+        ;;
+    lh)
+        setup_lh
+        ;;
+    nb)
+        setup_nb
+        ;;
+    link)
+        setup_symlinks
+        ;;
+    lynx)
+        setup_lynx
+        ;;
+    *)
+        show_help
+        exit 1
+        ;;
     esac
 done
 
 print success "Setup complete"
-
