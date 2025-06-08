@@ -4,7 +4,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$FOLDER/utility/utilities.sh"
 
 CURRENT_LOADED_HISTORY_PATH="$HOME/.bash_history"
-LOCAL_HISTOR=""
+LOCAL_HISTORY=""
 
 function find_project_root {
     local dir="$PWD"
@@ -143,7 +143,7 @@ function lh_read {
 # - Sets HISTFILE to the local history file for the current shell session.
 # - Appends the current command and working directory to the history file.
 function create {
-    LOCAL_HISTOR="$(pwd)/.lhistory"
+    LOCAL_HISTORY="$(pwd)/.lhistory"
 
     if [[ ! -f "$LOCAL_HISTORY" ]]; then
         touch "$LOCAL_HISTORY"
@@ -158,13 +158,26 @@ function create {
     print 'warning' "History file set to $HISTFILE"
 
     # Append the command to the local history file
-    echo "$PWD $*" >>"$LOCAL_HISTOR"
+    echo "$PWD $*" >>"$LOCAL_HISTORY"
 }
 
 function swap {
-    if [ "$CURRENT_LOADED_HISTORY_PATH" != "$LOCAL_HISTOR" ]; then
-        set_history "$LOCAL_HISTOR"
+    local root
+    root=$(find_project_root) || {
+        print 'warning' "No .git direcotry found, using defaults history"
+        set_history "$HOME/.bash_history"
+        return
+    }
+    local lhistory_path="$root/.lhistory"
+    if [[ -f "$lhistory_path" ]]; then
+        LOCAL_HISTORY="$lhistory_path"
+        if [ "$CURRENT_LOADED_HISTORY_PATH" != "$LOCAL_HISTORY" ]; then
+            set_history "$LOCAL_HISTORY"
+        else
+            set_history "$HOME/.bash_history"
+        fi
     else
+        print 'warning' "No .lhistory found in $root, using default history."
         set_history "$HOME/.bash_history"
     fi
     return
@@ -178,16 +191,18 @@ function set_history {
     return
 }
 
-function cd {
-    builtin cd "$@" || exit
+cd_with_local_history() {
     if [[ -f "$(pwd)/.lhistory" ]]; then
-        # load the local history
-        LOCAL_HISTOR="$(pwd)/.lhistory"
-        # hist "$(pwd)/.lhistory"
+        LOCAL_HISTORY="$(pwd)/.lhistory"
         notify "$@"
     else
         export HISTFILE="$HOME/.bash_history"
     fi
+}
+
+function cd {
+    builtin cd "$@" || exit
+    cd_with_local_history
 }
 
 function localhist_add { # add to HISTFILE
