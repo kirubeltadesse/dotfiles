@@ -1,3 +1,45 @@
+# Iterm2 Themes
+
+<!--toc:start-->
+
+- [Iterm2 Themes](#iterm2-themes)
+  - [Installation For Dracula](#installation-for-dracula)
+  - [Team](#team)
+  - [Community](#community)
+  - [Installation for Rosé Pine](#installation-for-rosé-pine)
+  - [Usage](#usage)
+  - [Gallery](#gallery)
+  <!--toc:end-->
+
+This repository contains themes for iTerm2, a popular terminal emulator for macOS.
+
+There are 2 themes available:
+
+- Dracula
+- Rosé Pine
+
+You can pick and use the one you like the most.
+
+## Installation For Dracula
+
+All instructions can be found at [draculatheme.com/iterm](https://draculatheme.com/iterm).
+
+## Team
+
+This theme is maintained by the following person(s) and a bunch of [awesome contributors](https://github.com/dracula/iterm/graphs/contributors).
+
+| [![Harrison Heck](https://avatars0.githubusercontent.com/u/1037526?v=3&s=70)](https://github.com/nesl247) |
+| --------------------------------------------------------------------------------------------------------- |
+| [Harrison Heck](https://github.com/nesl247)                                                               |
+
+## Community
+
+- [Twitter](https://twitter.com/draculatheme) - Best for getting updates about themes and new stuff.
+- [GitHub](https://github.com/dracula/dracula-theme/discussions) - Best for asking questions and discussing issues.
+- [Discord](https://draculatheme.com/discord-invite) - Best for hanging out with the community.
+
+## Installation for Rosé Pine
+
 <p align="center">
     <img src="https://github.com/rose-pine/rose-pine-theme/raw/main/assets/icon.png" width="80" />
     <h2 align="center">Rosé Pine for iTerm2</h2>
