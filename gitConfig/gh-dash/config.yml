@@ -93,10 +93,6 @@ keybindings:
       name: debug path
       command: >
         echo 'Repo Path: {{.RepoPath}} Pr Number: {{.PrNumber}} Issue Number: {{.IssueNumber}}'
-    - key: o
-      name: Open in browser
-      command: >
-        open "https://bbgithub.dev.bloomberg.com/{{.RepoPath}}/pull/{{.PrNumber}}"
     - key: C
       command: >
         tmux split-window -h -c {{.RepoPath}}
