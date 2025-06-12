@@ -51,6 +51,16 @@ function temp() {
 
 } && export -f temp
 
+
+function temp_int() {
+	echo "
+## TEMPLATE
+### Problem Solving
+### Communication
+### Coding Fluency
+### Culture - Collaboration and Include"
+} && export -f temp_int
+
 # Default prefix character
 pre="#"
 

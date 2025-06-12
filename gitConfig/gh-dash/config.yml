@@ -6,14 +6,14 @@ prSections:
         hidden: true
     type: null
   - title: Review
-    filters: is:open review-requested:@me
+    filters: is:open involves:@me involves:@voswal1 involves:@sdige -author:@me sort:updated-desc
     limit: 10
     type: null
-  - title: Involved
-    filters: is:open involves:@me -author:@me
+  - title: Merged
+    filters: is:closed involves:@me
     type: null
   - title: All
-    filters: repo:kirubeltadesse
+    filters: involves:@me involves:@voswal1 involves:@sdige sort:updated-desc
     type: null
 issuesSections:
   - title: Created
@@ -78,7 +78,7 @@ defaults:
         hidden: true
   refetchIntervalMinutes: 30
 repoPaths: {
-  BQL/bqlcore: ~/dev/bqlcore,
+  BQL/*: ~/dev/*,
   kirubeltadesse/dotfiles: ~/.dotfiles,
   }
 keybindings:
@@ -96,7 +96,7 @@ keybindings:
     - key: C
       command: >
         tmux split-window -h -c {{.RepoPath}}
-        "nvim -c ':Octo pr edit {{.PrNumber}}' || read -p 'Press Enter o closse... '"
+        "nvim -c ':Octo pr edit {{.PrNumber}}' "
   branches: []
 theme:
   ui:
