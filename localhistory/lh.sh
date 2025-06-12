@@ -18,6 +18,35 @@ function find_project_root {
     return 1
 }
 
+function log_to_playbook {
+    local root last_command playbook_file
+    root=$(find_project_root) || return
+    playbook_file="$root/.playbook.sh"
+    last_command=$(history 2 | sed 's/ *[0-9]* *//')
+
+    # Ignore generic commands and empty lines
+    case "$last_command" in
+    "" | "ls"* | "cd"* | "pwd" | "clear" | "exit" | "history"* | "lh "*) return ;;
+    esac
+
+    # Only add if not already the last entry in playbook
+    if [[ ! -f "$playbook_file" ]] || [[ "$(tail -n 1 "$playbook_file")" != "$last_command" ]]; then
+        echo "$last_command" >>"$playbook_file"
+    fi
+    # Add to PROMPT_COMMAND so it runs after every command
+    # PROMPT_COMMAND="log_to_playbook${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+
+    # # Wrapper to call log_to_playbook from a key binding
+    # log_to_playbook_binding() {
+    #     log_to_playbook
+    #     # Optionally, you can print a message or refresh prompt
+    # }
+    # export -f log_to_playbook_binding
+
+    # # Assign Ctrl+g (for example) to call the function
+    # bind -x '"\C-g":log_to_playbook_binding'
+}
+
 # handle the history differently
 # http://stackoverflow.com/questions/103944/real-time-history-export-amongst-bash-terminal-windows
 # TODO: filter the command in `.lhistory` to include unique history
@@ -42,17 +71,20 @@ function hist {
 }
 
 function show_help {
-    echo "Usage: lh.sh [init|add|remove]"
-    echo "Run setup for different local history."
-    echo "help        - display help manuel"
-    echo "init        - create local history file"
-    echo "lh          - Setup localhistory"
-    echo "add         - add command to lhistory"
-    echo "remove      - remove command to lhistory"
-    echo "set         - set http and https proxy"
-    echo "unset       - unset http and https proxy"
-    echo "swap        - swap loaded history"
-    echo "read        - print project history"
+    cat <<EOF
+Usage: lh.sh [init|add|remove]
+Run setup for different local history.
+help        - display help manuel
+init        - create local history file
+lh          - Setup localhistory
+add         - add command to lhistory
+remove      - remove command to lhistory
+set         - set http and https proxy
+unset       - unset http and https proxy
+swap        - swap loaded history
+read        - print project history
+py          - Add command to playbook
+EOF
 }
 
 function lh() {
@@ -65,7 +97,10 @@ function lh() {
             create "$@"
             ;;
         add)
-            localhist_add "$@"
+            localhist_add "${@:1}"
+            ;;
+        grep)
+            history_grep "${@:2}"
             ;;
         remove)
             remove
@@ -81,6 +116,12 @@ function lh() {
             ;;
         swap)
             swap
+            ;;
+        read)
+            lh_read
+            ;;
+        py)
+            log_to_playbook
             ;;
         *)
             show_help
@@ -255,8 +296,7 @@ function localhist_add { # add to HISTFILE
 }
 
 function history_grep {
-    builtin history | command grep -E "$@"
-    set +f
+    history | command grep -E "$@"
 }
 
 # TODO: create a function to read the .lhistory
