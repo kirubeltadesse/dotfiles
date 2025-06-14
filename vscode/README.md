@@ -1,5 +1,16 @@
 # VScode configuration
 
+<!--toc:start-->
+
+- [VScode configuration](#vscode-configuration)
+  - [Update list of installed plugins](#update-list-of-installed-plugins)
+    - [Keybindings and settings](#keybindings-and-settings)
+    - [Formatting](#formatting)
+    - [Font Settings](#font-settings)
+    - [Todo Tree](#todo-tree)
+  - [Intellij to VSCode shortcuts keys](#intellij-to-vscode-shortcuts-keys) - [Usage](#usage)
+  <!--toc:end-->
+
 ## Update list of installed plugins
 
 Linking VScode [locally](https://stackoverflow.com/questions/57868950/wsl2-terminal-does-not-recognize-visual-studio-code)

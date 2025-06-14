@@ -118,13 +118,6 @@ return {
       desc = "[G]it [C]ommits",
     },
     {
-      "<leader>gcf",
-      function()
-        Snacks.picker.git_log_file()
-      end,
-      desc = "[G]it [C]ommits for current [F]ile",
-    },
-    {
       "<leader>fp",
       function()
         Snacks.picker.projects()
@@ -185,7 +178,7 @@ return {
       function()
         Snacks.picker.git_log_file()
       end,
-      desc = "Git Log File",
+      desc = "[G]it commits for current [F]ile",
     },
     -- Grep
     --

@@ -13,7 +13,7 @@ function hist {
     local lhistory="$1"
     history -a "$1"
     CURRENT_LOADED_HISTORY_PATH="$1"
-    history -c             # clears the current in-memory command
+    history -c # clears the current in-memory command
     newCommands=$(cat "$lhistory")
     if [ "$newCommands" != "" ]; then
         grep -vwE "$newCommands"~/.bash_history >"$lhistory"
@@ -25,7 +25,6 @@ function hist {
     # remove the history file
     # rr ~/.bash_history_aux;
 }
-
 
 function show_help {
     echo "Usage: lh.sh [init|add|remove]"
@@ -40,38 +39,37 @@ function show_help {
     echo "swap        - swap loaded history"
 }
 
-
 function lh() {
     for arg in "$@"; do
         case $arg in
-            help)
-                show_help
-                ;;
-            init)
-                create "$@"
-                ;;
-            add)
-                localhist_add "$@"
-                ;;
-            remove)
-                remove
-                ;;
-            info)
-                notify
-                ;;
-            set)
-                set_proxy
-                ;;
-            unset)
-                unset_proxy
-                ;;
-            swap)
-                swap
-                ;;
-            *)
-                show_help
-                # exit 1
-                ;;
+        help)
+            show_help
+            ;;
+        init)
+            create "$@"
+            ;;
+        add)
+            localhist_add "$@"
+            ;;
+        remove)
+            remove
+            ;;
+        info)
+            notify
+            ;;
+        set)
+            set_proxy
+            ;;
+        unset)
+            unset_proxy
+            ;;
+        swap)
+            swap
+            ;;
+        *)
+            show_help
+            # exit 1
+            ;;
         esac
     done
 }
@@ -82,31 +80,31 @@ function notify {
 }
 
 function create {
-  LOCAL_HISTOR="$(pwd)/.lhistory"
+    LOCAL_HISTOR="$(pwd)/.lhistory"
 
-  if [[ ! -f "$LOCAL_HISTOR" ]]; then
-    touch "$LOCAL_HISTOR"
-    CURRENT_LOADED_HISTORY_PATH="$LOCAL_HISTOR"
-    print 'success' "Create a local history $LOCAL_HISTOR"
-  else
-    print 'warning' "Reading from $LOCAL_HISTOR"
-  fi
-  history -a "$LOCAL_HISTOR"
-  export HISTFILE
-  HISTFILE="$LOCAL_HISTOR"
-  print 'warning' "History file set to $HISTFILE"
+    if [[ ! -f "$LOCAL_HISTOR" ]]; then
+        touch "$LOCAL_HISTOR"
+        CURRENT_LOADED_HISTORY_PATH="$LOCAL_HISTOR"
+        print 'success' "Create a local history $LOCAL_HISTOR"
+    else
+        print 'warning' "Reading from $LOCAL_HISTOR"
+    fi
+    history -a "$LOCAL_HISTOR"
+    export HISTFILE
+    HISTFILE="$LOCAL_HISTOR"
+    print 'warning' "History file set to $HISTFILE"
 
-  # Append the command to the local history file
-  echo "$PWD $*" >>"$LOCAL_HISTOR"
+    # Append the command to the local history file
+    echo "$PWD $*" >>"$LOCAL_HISTOR"
 }
 
 function swap {
     if [ "$CURRENT_LOADED_HISTORY_PATH" != "$LOCAL_HISTOR" ]; then
         set_history "$LOCAL_HISTOR"
     else
-        set_history "$HOME/.bash_history" 
+        set_history "$HOME/.bash_history"
     fi
-    return;
+    return
 }
 
 function set_history {
@@ -114,7 +112,7 @@ function set_history {
     history -a "$1"
     CURRENT_LOADED_HISTORY_PATH="$1"
     history -r "$1"
-    return;
+    return
 }
 
 function cd {
@@ -135,15 +133,16 @@ function localhist_add { # add to HISTFILE
     local text
     while [[ -n $1 ]]; do
         case $1 in
-            -h|--help)
-                builtin echo "localhist_add [--comment|-c] [--file|-f <path>] [-- args as text]"
-                return
+        -h | --help)
+            builtin echo "localhist_add [--comment|-c] [--file|-f <path>] [-- args as text]"
+            return
             ;;
-            -c|--comment) # Add text after a '#' comment indicator
-                prepend="# "
+        -c | --comment) # Add text after a '#' comment indicator
+            prepend="# "
             ;;
-        -f|--file) # Get text from specified file
-            text_source="${2}"; shift
+        -f | --file) # Get text from specified file
+            text_source="${2}"
+            shift
             ;;
         --) # Anything following is the text itself
             text_source=args
@@ -151,23 +150,27 @@ function localhist_add { # add to HISTFILE
             break
             ;;
         esac
-    shift
+        shift
     done
     case $text_source in
-        stdin)
-            if [[ -t 2 && -t 0 ]]; then
-                builtin read -r -p "Enter text for new history event: " text
-            else
-                builtin read -r text
-            fi
-            ;;
-        args)
-            text="$*"
-            ;;
-        *)
-            [[ -r ${text_source} ]] || { builtin echo "ERROR: can't read text from the file \"${text_source}\" ">&2; false; return; }
-            text=$(command cat "${text_source}" | command tr '\n' ';' )
-            ;;
+    stdin)
+        if [[ -t 2 && -t 0 ]]; then
+            builtin read -r -p "Enter text for new history event: " text
+        else
+            builtin read -r text
+        fi
+        ;;
+    args)
+        text="$*"
+        ;;
+    *)
+        [[ -r ${text_source} ]] || {
+            builtin echo "ERROR: can't read text from the file \"${text_source}\" " >&2
+            false
+            return
+        }
+        text=$(command cat "${text_source}" | command tr '\n' ';')
+        ;;
     esac
     builtin history -s "${prepend}${text}"
 
