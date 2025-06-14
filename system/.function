@@ -44,21 +44,23 @@ function dt() {
 } && export -f dt
 
 function temp() {
-	echo "
+	cat <<EOF
 ### done
 ### hampering
-### proposed solution"
+### proposed solution
+EOF
 
 } && export -f temp
 
 
 function temp_int() {
-	echo "
+	cat <<EOF
 ## TEMPLATE
 ### Problem Solving
 ### Communication
 ### Coding Fluency
-### Culture - Collaboration and Include"
+### Culture - Collaboration and Include
+EOF
 } && export -f temp_int
 
 # Default prefix character
