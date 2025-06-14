@@ -14,8 +14,6 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Centered search prev" })
 -- vim.keymap.set("n", "<leader>svwm", function()
 --     require("vim-with-me").StopVimWithMe()
 -- end)
---
---
 
 -- will not loss the past
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without loss" })
@@ -59,10 +57,10 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>|", ":vsplit<Return>", { noremap = true, silent = true, desc = "Vectrical split" })
 vim.keymap.set("n", "<leader>_", ":split<Return>", { noremap = true, silent = true, desc = "Horizontal split " })
 -- Quit windows
-vim.keymap.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit current window" })
+-- vim.keymap.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit current window" })
 
 -- Re-size Panes
-vim.keymap.set("n", "<C-S-j>", '<Cmd>lua require("tmux").resize_bottom()<CR>', { silent = true })
-vim.keymap.set("n", "<C-S-h>", '<Cmd>lua require("tmux").resize_left()<CR>', { silent = true })
-vim.keymap.set("n", "<C-S-k>", '<Cmd>lua require("tmux").resize_top()<CR>', { silent = true })
-vim.keymap.set("n", "<C-S-l>", '<Cmd>lua require("tmux").resize_right()<CR>', { silent = true })
+vim.keymap.set("n", "<M-S-j>", '<Cmd>lua require("tmux").resize_bottom()<CR>', { silent = true })
+vim.keymap.set("n", "<M-S-h>", '<Cmd>lua require("tmux").resize_left()<CR>', { silent = true })
+vim.keymap.set("n", "<M-S-k>", '<Cmd>lua require("tmux").resize_top()<CR>', { silent = true })
+vim.keymap.set("n", "<M-S-l>", '<Cmd>lua require("tmux").resize_right()<CR>', { silent = true })

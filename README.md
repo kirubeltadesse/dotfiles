@@ -1,5 +1,24 @@
 # Dotfiles
 
+<!--toc:start-->
+
+- [Dotfiles](#dotfiles)
+  - [Windows](#windows)
+    - [WSL configuration](#wsl-configuration)
+  - [MacOS](#macos)
+  - [Setup Process](#setup-process)
+  - [Setting up Application](#setting-up-application)
+  - [TMUX and Vim](#tmux-and-vim)
+  - [Browser](#browser)
+  - [Checklist for backing up](#checklist-for-backing-up)
+    - [Local stashed changes](#local-stashed-changes)
+    - [iTem2](#item2)
+    - [Ques: Cloning error ?](#ques-cloning-error)
+    - [Ques: Is git status slow in WSL2?](#ques-is-git-status-slow-in-wsl2)
+    - [Sharing `.ssh` between `wsl2` and windows `cmd.exe`](#sharing-ssh-between-wsl2-and-windows-cmdexe)
+  - [More](#more)
+  <!--toc:end-->
+
 ## Windows
 
 ### WSL configuration
