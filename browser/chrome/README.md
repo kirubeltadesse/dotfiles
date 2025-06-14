@@ -1,5 +1,14 @@
 # Chrome extension files
 
+<!--toc:start-->
+
+- [Chrome extension files](#chrome-extension-files)
+  - [Exporting Bookmarks](#exporting-bookmarks)
+  - [Vimium](#vimium)
+    - [Select and search on Vimium](#select-and-search-on-vimium)
+  - [Browser pass plugin](#browser-pass-plugin) - [Key trusting issues solution](#key-trusting-issues-solution)
+  <!--toc:end-->
+
 [Here](https://crxextractor.com/) is the link to create `.crx` file fore any extension you want.
 
 ## Exporting Bookmarks

@@ -1,4 +1,13 @@
+<!--toc:start-->
+
+- [Dependencies](#dependencies)
+  - [Reading a QR Code](#reading-a-qr-code)
+  - [Adding the otpauth string](#adding-the-otpauth-string)
+  - [Generating a OTP](#generating-a-otp)
+  <!--toc:end-->
+
 ## Dependencies
+
 You will need the `pass`, `pass-otp` and `zbar` packages. On arch linux you can install them with the following command:
 
 `pacman -S pass pass-otp zbar`
