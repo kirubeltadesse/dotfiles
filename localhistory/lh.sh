@@ -5,14 +5,15 @@ source "$FOLDER/utility/utilities.sh"
 
 CURRENT_LOADED_HISTORY_PATH="$HOME/.bash_history"
 LOCAL_HISTORY=""
+PROXY_STATE="unset"
 
 function find_project_root {
     local dir="$PWD"
     while [[ "$dir" != "/" ]]; do
-        if [[ -d "$dir/.git" ]]; then
+        [[ -d "$dir/.git" ]] && {
             echo "$dir"
-            return
-        fi
+            return 0
+        }
         dir=$(dirname "$dir")
     done
     return 1
@@ -26,7 +27,7 @@ function log_to_playbook {
 
     # Ignore generic commands and empty lines
     case "$last_command" in
-    "" | "ls"* | "cd"* | "pwd" | "clear" | "exit" | "history"* | "lh "*) return ;;
+    "" | "ls"* | "cd"* | "pwd" | "clear" | "exit" | "history"* | lh*) return ;;
     esac
 
     # Only add if not already the last entry in playbook
@@ -90,48 +91,24 @@ EOF
 function lh() {
     for arg in "$@"; do
         case $arg in
-        help)
-            show_help
-            ;;
-        init)
-            create "$@"
-            ;;
-        add)
-            localhist_add "${@:1}"
-            ;;
-        grep)
-            history_grep "${@:2}"
-            ;;
-        remove)
-            remove
-            ;;
-        info)
-            notify
-            ;;
-        set)
-            set_proxy
-            ;;
-        unset)
-            unset_proxy
-            ;;
-        swap)
-            swap
-            ;;
-        read)
-            lh_read
-            ;;
-        py)
-            log_to_playbook
-            ;;
-        *)
-            show_help
-            # exit 1
-            ;;
+        help) show_help ;;
+        init) create "$@" ;;
+        add) localhist_add "${@:1}" ;;
+        grep) history_grep "${@:2}" ;;
+        remove) remove ;;
+        info) notify ;;
+        set) set_proxy ;;
+        unset) unset_proxy ;;
+        swap) swap ;;
+        read) lh_read ;;
+        py) log_to_playbook ;;
+        *) show_help return 0 ;;
         esac
     done
 }
 
 function notify {
+    print "info" "Proxy is corrently $PROXY_STATE"
     print "warning" "read .lhistory from $CURRENT_LOADED_HISTORY_PATH"
     return
 }
@@ -293,6 +270,16 @@ function localhist_add { # add to HISTFILE
     esac
     builtin history -s "${prepend}${text}"
 
+}
+
+toggle_proxy() {
+    if [[ "$PROXY_STATE" == "unset" ]]; then
+        set_proxy
+        PROXY_STATE="set"
+    else
+        unset_proxy
+        PROXY_STATE="unset"
+    fi
 }
 
 function history_grep {
