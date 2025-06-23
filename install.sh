@@ -87,7 +87,6 @@ setup_symlinks() {
     # Create symlinks for .vimrc and .ideavimrc
     create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
     create_symlink "$HOME/.dotfiles/runcom/config/nvim" "$HOME/.config/nvim"
-    create_symlink "$HOME/.dotfiles/gitConfig/gh-dash" "$HOME/.config/gh-dash"
     create_symlink "$HOME/.dotfiles/runcom/vim/.ideavimrc" "$HOME/.ideavimrc"
     create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 
