@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$HOME"/.dotfiles/utility/utilities.sh
+source "$HOME/.dotfiles/utility/utilities.sh"
 
 function get_completion() {
     print warning "Installing git completion"
@@ -175,7 +175,8 @@ function add_git_aliases() {
         git config --global delta.decorations.hunk-header-file-style red
         git config --global delta.decorations.hunk-header-style "file line-number syntax"
         git config --global delta.decorations.hunk-header-line-number-style "#067a00"
-        git config --global push.default upstream # using symmetric push and pull for lazygit
+        git config --global stash.showIncludeUntracked true # show untracked files in stash
+        git config --global push.default upstream           # using symmetric push and pull for lazygit
         ;;
     *)
         echo "setting git diff for $1"
@@ -185,6 +186,12 @@ function add_git_aliases() {
     esac
 }
 
+function link_configs() {
+    create_symlink "$HOME/.dotfiles/gitConfig/gh-dash" "$HOME/.config/gh-dash"
+    create_symlink "$HOME/.dotfiles/gitConfig/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
+}
+
 get_completion
 add_to_rc_file
+link_configs
 add_git_aliases "$@"

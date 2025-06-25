@@ -248,8 +248,8 @@ remove_file() {
 }
 
 set_proxy() {
-	export http_proxy=http://proxy.bloomberg.com:81
-	export https_proxy=http://proxy.bloomberg.com:81
+	export http_proxy=http://proxyeu-uk.bloomberg.com:81
+	export https_proxy=http://proxyeu-uk.bloomberg.com:81
 	print "success" "proxy set successfully"
 }
 
