@@ -6,6 +6,8 @@
 -- :help set
 --
 vim.g.mapleader = " "
+vim.g.copilot_proxy = "http://proxyeu.bloomberg.com:81"
+vim.g.proxy = "http://proxyeu.bloomberg.com:81"
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
