@@ -36,6 +36,7 @@ export NB_PREVIEW_COMMAND="bat"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "\$(zoxide init --cmd cd bash)"
+[ -f ~/.proxyrc ] && source ~/.proxyrc
 EOF
 
     read -r -p "Is this the first setup? (Y/n):" ans
