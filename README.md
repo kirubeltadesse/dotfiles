@@ -1,7 +1,6 @@
 # Dotfiles
 
 <!--toc:start-->
-
 - [Dotfiles](#dotfiles)
   - [Windows](#windows)
     - [WSL configuration](#wsl-configuration)
@@ -12,12 +11,12 @@
   - [Browser](#browser)
   - [Checklist for backing up](#checklist-for-backing-up)
     - [Local stashed changes](#local-stashed-changes)
+  - [FAQ](#faq)
     - [iTem2](#item2)
     - [Ques: Cloning error ?](#ques-cloning-error)
     - [Ques: Is git status slow in WSL2?](#ques-is-git-status-slow-in-wsl2)
     - [Sharing `.ssh` between `wsl2` and windows `cmd.exe`](#sharing-ssh-between-wsl2-and-windows-cmdexe)
-  - [More](#more)
-  <!--toc:end-->
+<!--toc:end-->
 
 ## Windows
 
@@ -95,6 +94,8 @@ If error with white spaces run one of this options:
 
 ---
 
+## FAQ
+
 <details>
 
 <summary> FAQ </summary>
@@ -152,5 +153,3 @@ function git {
 </details>
 
 ANS: [here](https://devblogs.microsoft.com/commandline/sharing-ssh-keys-between-windows-and-wsl-2/)
-
-## More

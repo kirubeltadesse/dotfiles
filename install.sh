@@ -36,6 +36,7 @@ export NB_PREVIEW_COMMAND="bat"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "\$(zoxide init --cmd cd bash)"
+[ -f ~/.proxyrc ] && source ~/.proxyrc
 EOF
 
     read -r -p "Is this the first setup? (Y/n):" ans
@@ -87,7 +88,6 @@ setup_symlinks() {
     # Create symlinks for .vimrc and .ideavimrc
     create_symlink "$HOME/.dotfiles/runcom/vim/.vimrc" "$HOME/.vimrc"
     create_symlink "$HOME/.dotfiles/runcom/config/nvim" "$HOME/.config/nvim"
-    create_symlink "$HOME/.dotfiles/gitConfig/gh-dash" "$HOME/.config/gh-dash"
     create_symlink "$HOME/.dotfiles/runcom/vim/.ideavimrc" "$HOME/.ideavimrc"
     create_symlink "$HOME/.dotfiles/runcom/vim" "$HOME/.vim"
 

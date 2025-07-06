@@ -102,3 +102,15 @@ Then you can use the notation in your command
 ## NeoVim Installation
 
 - Using Lazy to install plugins to NeoVim.
+
+Simple troubleshooting steps to resolve Java LSP issue:
+
+### Summary of Fixes to Try:
+
+1. Check Java version and bitness compatibility.
+1. Delete the jdtls workspace directory. (i.e: `~/.cache/nvim/jdtls`)
+1. Ensure correct project root detection.
+1. Avoid conflicting LSP configurations.
+1. Verify environment variables and paths.
+1. Use explicit Java path in config if needed.
+1. If the issue persists, enabling detailed LSP logging (vim.lsp.set_log_level 'trace') can help diagnose the exact failure point.

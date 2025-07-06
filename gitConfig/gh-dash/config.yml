@@ -9,6 +9,10 @@ prSections:
     filters: is:open involves:@me involves:@voswal1 involves:@sdige -author:@me sort:updated-desc
     limit: 10
     type: null
+  - title: Hits
+    filters: is:open interactions:5..10 -author:@voswal1 -author:@sdige -author:@me org:BQL sort:updated-desc
+    limit: 10
+    type: null
   - title: Merged
     filters: is:closed involves:@me
     type: null
@@ -80,6 +84,7 @@ defaults:
 repoPaths: {
   BQL/*: ~/dev/*,
   kirubeltadesse/dotfiles: ~/.dotfiles,
+  Swarmies/*: ~/projects/*,
   }
 keybindings:
   universal:

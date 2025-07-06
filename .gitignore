@@ -20,6 +20,7 @@ runcom/vim/undodir/*
 #---------------------------------VScode--------------------------#
 .vscode/
 .lhistory
+.playbook.sh
 
 #---------------------------------NeoVim--------------------------#
 runcom/config/nvim/lazy-lock.json
