@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "$HOME"/.dotfiles/utility/utilities.sh
+source "$HOME/.dotfiles/utility/utilities.sh"
 
 function get_completion() {
     print warning "Installing git completion"
@@ -154,37 +154,44 @@ function add_git_aliases() {
     git config --global alias.sw 'stash show'
     git config --global alias.swp 'stash show -p'
 
-
     # add this git configuration for MacOs, windows and SunOS
     case "$(uname)" in
-        Darwin|Linux|SunOS)
-            # if [ $# -eq 0 ]; then
-            # setting vim for git tool
-            git config --global diff.tool vimdiff
-            git config --global merge.tool vimdiff
-            git config --global merge.conflictstyle diff3
-            git config --global mergetool.prompt false
-            git config --global core.excludesFile "${HOME}/.dotfiles/gitConfig/gitignore"
-            # add delta configuration
-            git config --global core.pager delta
-            git config --global interactive.diffFilter "delta --color-only --features=interactive"
-            git config --global delta.features decorations
-            git config --global delta.line-numbers true
-            git config --global delta.interactive.keep-plus-minus-markers false
-            git config --global delta.decorations.commit-decoration-style "blue ol"
-            git config --global delta.decorations.hunk-header-decoration-style "blue box"
-            git config --global delta.decorations.hunk-header-file-style red
-            git config --global delta.decorations.hunk-header-style "file line-number syntax"
-            git config --global delta.decorations.hunk-header-line-number-style "#067a00"
-            ;;
-        *)
-            echo "setting git diff for $1"
-            git-nbdiffdriver config --enable --global
-            git-nbdifftool config --enable --global
-            ;;
+    Darwin | Linux | SunOS)
+        # if [ $# -eq 0 ]; then
+        # setting vim for git tool
+        git config --global diff.tool vimdiff
+        git config --global merge.tool vimdiff
+        git config --global merge.conflictstyle diff3
+        git config --global mergetool.prompt false
+        git config --global core.excludesFile "${HOME}/.dotfiles/gitConfig/gitignore"
+        # add delta configuration
+        git config --global core.pager delta
+        git config --global interactive.diffFilter "delta --color-only --features=interactive"
+        git config --global delta.features decorations
+        git config --global delta.line-numbers true
+        git config --global delta.interactive.keep-plus-minus-markers false
+        git config --global delta.decorations.commit-decoration-style "blue ol"
+        git config --global delta.decorations.hunk-header-decoration-style "blue box"
+        git config --global delta.decorations.hunk-header-file-style red
+        git config --global delta.decorations.hunk-header-style "file line-number syntax"
+        git config --global delta.decorations.hunk-header-line-number-style "#067a00"
+        git config --global stash.showIncludeUntracked true # show untracked files in stash
+        git config --global push.default upstream           # using symmetric push and pull for lazygit
+        ;;
+    *)
+        echo "setting git diff for $1"
+        git-nbdiffdriver config --enable --global
+        git-nbdifftool config --enable --global
+        ;;
     esac
+}
+
+function link_configs() {
+    create_symlink "$HOME/.dotfiles/gitConfig/gh-dash" "$HOME/.config/gh-dash"
+    create_symlink "$HOME/.dotfiles/gitConfig/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 }
 
 get_completion
 add_to_rc_file
+link_configs
 add_git_aliases "$@"
