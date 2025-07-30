@@ -15,6 +15,15 @@ return {
         yaml = { "prettier" },
         markdown = { "prettier" },
         cpp = { "clang_format" },
+        java = { "spotless_apply" },
+      },
+      formatters = {
+        spotless_apply = {
+          command = "mvn",
+          args = { "spotless:apply" },
+          cwd = require("conform.util").root_file({ "pom.xml" }),
+          stdin = false,
+        },
       },
     },
   },
