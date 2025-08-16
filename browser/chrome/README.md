@@ -67,3 +67,8 @@ After confirming, quit with:
 ```bash
 gpg> quit
 ```
+
+### Incorrect or Corupted .gpg-id file
+
+Incorrect or Corrupted .gpg-id File: The pass tool uses a .gpg-id file in the .password-store directory to determine which GPG key to use for encryption. If this file contains an incorrect key ID, a key ID that doesn't exist, or multiple key IDs (one of which is invalid), it can cause the encryption to fail. Verify the contents of the .gpg-id file and ensure it contains only the correct, valid key ID for your key.
+If there are multiple entries, remove the invalid ones.

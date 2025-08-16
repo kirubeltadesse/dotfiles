@@ -13,10 +13,6 @@ prSections:
     filters: is:open interactions:5..10 -author:iakilov -author:app/renovatebot -author:ikeddie -author:@sdige -author:@me org:BQL sort:updated-desc
     limit: 10
     type: null
-  - title: Hits
-    filters: is:open interactions:5..10 -author:@voswal1 -author:@sdige -author:@me org:BQL sort:updated-desc
-    limit: 10
-    type: null
   - title: Merged
     filters: is:closed involves:@me
     type: null
