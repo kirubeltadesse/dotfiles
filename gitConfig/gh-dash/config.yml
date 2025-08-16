@@ -6,7 +6,11 @@ prSections:
         hidden: true
     type: null
   - title: Review
-    filters: is:open involves:@me involves:@voswal1 involves:@sdige -author:@me sort:updated-desc
+    filters: is:open involves:@me involves:iakilov -author:app/renovatebot involves:ikeddie involves:@sdige -author:@me sort:updated-desc
+    limit: 10
+    type: null
+  - title: Hits
+    filters: is:open interactions:5..10 -author:iakilov -author:app/renovatebot -author:ikeddie -author:@sdige -author:@me org:BQL sort:updated-desc
     limit: 10
     type: null
   - title: Hits
@@ -17,7 +21,7 @@ prSections:
     filters: is:closed involves:@me
     type: null
   - title: All
-    filters: involves:@me involves:@voswal1 involves:@sdige sort:updated-desc
+    filters: involves:@me involves:iakilov involves:ikeddie involves:@sdige sort:updated-desc
     type: null
 issuesSections:
   - title: Created

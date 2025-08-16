@@ -35,8 +35,9 @@ export set_PS1
 export NB_PREVIEW_COMMAND="bat"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "\$(zoxide init --cmd cd bash)"
-[ -f ~/.proxyrc ] && source ~/.proxyrc
+eval "\$(zoxide init --cmd cd bash)"`
+[ -f ~/.bbrc ] && source ~/.bbrc
+
 EOF
 
     read -r -p "Is this the first setup? (Y/n):" ans
