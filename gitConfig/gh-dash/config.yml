@@ -84,6 +84,7 @@ defaults:
 repoPaths: {
   BQL/*: ~/dev/*,
   kirubeltadesse/dotfiles: ~/.dotfiles,
+  kirubeltadesse/kirubeltadesse.github.io: ~/projects/website/,
   Swarmies/*: ~/projects/*,
   }
 keybindings:
