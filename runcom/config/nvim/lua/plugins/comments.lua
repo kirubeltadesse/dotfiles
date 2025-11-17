@@ -1,7 +1,7 @@
 return {
   {
     "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-mini/mini.icons" },
     opts = {
       -- your configuration comes here
       --
