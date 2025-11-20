@@ -6,14 +6,14 @@
 # echo "$SNIPPETS"
 # complete -F kirubel kirubel
 if [[ -n $COMP_LINE ]]; then
-	for c in "${COMMANDS[@]}"; do
-		[[ "${c:0:${#2}}" == "${2,,}" ]] && echo "$c" 	
-	done
-	exit
+    for c in "${COMMANDS[@]}"; do
+        [[ "${c:0:${#2}}" == "${2,,}" ]] && echo "$c"
+    done
+    exit
 fi
 
 _lh() {
-    COMPREPLY=($(compgen -W "init add remove info set unset swap" "${COMP_WORDS[1]}"))
+    COMPREPLY=($(compgen -W "help init lh add remove info set unset swap read py" "${COMP_WORDS[1]}"))
 }
 
 get_command() {
@@ -33,20 +33,19 @@ get_command() {
         local number=$(echo "${suggestions[0]/%\*/}")
         COMPREPLY=("$number")
     else
-        for i in "${!suggestions[@]}";
-        do
+        for i in "${!suggestions[@]}"; do
             suggestions[$i]="$(printf '%*s' "-$COLUMNS" "${suggestions[$i]}")"
         done
 
         # more than one suggestions resolved
         # respond with the suggestions intact
         COMPREPLY=("${suggestions[@]}")
-        fi
+    fi
 }
 
-declare cmd="$1"; shift
+declare cmd="$1"
+shift
 
-for c in  "${COMMANDS[@]}"; do 
-    [[ "$c" == "$cmd" ]] &&  "_$cmd" "$@" && exit $?
+for c in "${COMMANDS[@]}"; do
+    [[ "$c" == "$cmd" ]] && "_$cmd" "$@" && exit $?
 done
-
