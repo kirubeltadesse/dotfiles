@@ -1,6 +1,7 @@
 # Dotfiles
 
 <!--toc:start-->
+
 - [Dotfiles](#dotfiles)
   - [Windows](#windows)
     - [WSL configuration](#wsl-configuration)
@@ -102,9 +103,13 @@ If error with white spaces run one of this options:
 
 ### iTem2
 
-preferences->profiles->Command (Custom Shell) -> add `/bin/bash`
+preferences->profiles->Command (Custom Shell) -> add `/bin/bash --login`
 
 you can also set that as a default [shell](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
+
+```shell
+chsh -s /bin/bash
+```
 
 ### Ques: Cloning error ?
 
