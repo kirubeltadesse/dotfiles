@@ -86,13 +86,13 @@
   "vim.useSystemClipboard": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "workbench.colorCustomizations": {
-    "statusBar.background": "#8FBCBB",
-    "statusBar.debuggingBackground": "#8FBCBB",
-    "statusBar.debuggingForeground": "#434C5E",
-    "statusBar.foreground": "#434C5E",
-    "statusBar.noFolderBackground": "#8FBCBB"
+    "statusBar.background": "#13AB45",
+    "statusBar.debuggingBackground": "#13AB45",
+    "statusBar.debuggingForeground": "#FFFFFF",
+    "statusBar.foreground": "#FFFFFF",
+    "statusBar.noFolderBackground": "#13AB45"
   },
-  "workbench.colorTheme": "Dracula Soft",
+  "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.enablePreview": false,
   "workbench.editor.untitled.hint": "hidden",
   "workbench.editorAssociations": {
@@ -116,5 +116,40 @@
     "https://schemaservice-dev.dx.bloomberg.com/schemas/devise.yaml": "devise.yaml",
     "https://schemaservice-dev.dx.bloomberg.com/schemas/build.yaml": "build.yaml"
   },
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "sonarlint.connectedMode.connections.sonarqube": [
+    {
+      "serverUrl": "",
+      "connectionId": ""
+    }
+  ],
+  "remote.SSH.useLocalServer": false,
+  "remote.SSH.remotePlatform": {
+    "*.spaces": "linux"
+  },
+  "remote.SSH.configFile": "~/.ssh/config",
+  "remote.SSH.showLoginTerminal": true,
+  "remote.SSH.useExecServer": false,
+  "remote.SSH.useCurlAndWgetConfigurationFiles": true,
+  "http.proxy": "",
+  "http.noProxy": [],
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "terminal.integrated.defaultProfile.osx": "bash",
+  "files.associations": {
+    "*.bml": "xml"
+  },
+  "github.copilot.enable": {
+    "markdown": true
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  }
 }
