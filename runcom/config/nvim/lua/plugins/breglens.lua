@@ -9,7 +9,7 @@ return {
         vim.cmd("BregLens")
       end,
       desc = "Breg detail info",
-      mode = "n",
+      mode = "v",
     },
   },
 }
