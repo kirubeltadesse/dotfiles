@@ -114,8 +114,12 @@ setup_lynx() {
     bash browser/lynx/setup.sh
 }
 
-show_help() {
-    echo "Usage: setup.sh [all|init|git|lh|nb|os-apps|plugins|link|lynx]"
+function setup_claude() {
+    bash claude/setup.sh
+}
+
+function show_help() {
+    echo "Usage: setup.sh [all|init|git|git-hooks|lh|nb|os-apps|plugins|link|lynx|claude]"
     echo "Run setup for different parts of your dotfiles."
     echo "all         - Run all setups"
     echo "init        - Run initial setup for bashrc"
@@ -127,6 +131,7 @@ show_help() {
     echo "plugins     - Setup plugins for vim editor"
     echo "link        - Setup symlinks for the applications"
     echo "lynx        - Setup lynx browser for the terminal"
+    echo "claude      - Setup Claude Code "
 }
 
 if [ $# -eq 0 ]; then
@@ -145,6 +150,7 @@ for arg in "$@"; do
         setup_nb
         setup_symlinks
         setup_lynx
+        setup_claude
         ;;
     init)
         initial_setup
@@ -158,9 +164,6 @@ for arg in "$@"; do
     plugins)
         setup_editor_plugins
         ;;
-    pass)
-        setup_pass
-        ;;
     lh)
         setup_lh
         ;;
@@ -172,6 +175,9 @@ for arg in "$@"; do
         ;;
     lynx)
         setup_lynx
+        ;;
+    claude)
+        setup_claude
         ;;
     *)
         show_help

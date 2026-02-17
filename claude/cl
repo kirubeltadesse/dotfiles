@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ ! -f /opt/bb/bin/claude ]; then
+    /usr/bin/cc-setup --eu --yolo
+    cp -r ~/.dotfiles/claude/* ~/.claude/
+fi
+
+get-claude-code-auth-token --skip-checks --warmup >/dev/null
+exec /opt/bb/bin/claude "$@"
