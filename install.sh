@@ -11,31 +11,31 @@ source "$FOLDER/utility/utilities.sh"
 
 initial_setup() {
 
-    cat <<-EOF >>~/.bashrc
+    cat <<-'EOF' >>~/.bashrc
 # added by the dotfile installer
-DOTFILES_DIR="\$HOME/.dotfiles"
+DOTFILES_DIR="$HOME/.dotfiles"
 
-for DOTFILE in "\$DOTFILES_DIR"/system/.{env,prompt,alias,function};
+for DOTFILE in "$DOTFILES_DIR"/system/.{env,prompt,alias,function};
 do
-    [ -f "\$DOTFILE" ] && . "\$DOTFILE"
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
 # enable bat for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS='--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
 export FZF_DEFAULT_OPS="--extended"
-export FZF_CTRL_T_COMMAND="\$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # add clear screen command
 bind -x '"\C-g": "clear"'
 
-# source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
-export PATH=\$PATH:~/.nb/
+# source $HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
+export PATH=$PATH:~/.nb/
 export set_PS1
 export NB_PREVIEW_COMMAND="bat"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "\$(zoxide init --cmd cd bash)"`
+eval "$(zoxide init --cmd cd bash)"
 [ -f ~/.bbrc ] && source ~/.bbrc
 
 EOF
