@@ -22,29 +22,19 @@ return {
       {
         "<leader>cS",
         function()
-          local buf_dir = vim.fn.expand("%:p:h")
-          local pom = vim.fs.find("pom.xml", { upward = true, path = buf_dir })[1]
-          local gradle = vim.fs.find({ "build.gradle", "build.gradle.kts" }, { upward = true, path = buf_dir })[1]
-
-          local cmd, dir
-          if pom then
-            cmd = { "mvn", "spotless:apply" }
-            dir = vim.fn.fnamemodify(pom, ":h")
-          elseif gradle then
-            cmd = { vim.fn.fnamemodify(gradle, ":h") .. "/gradlew", "spotlessApply" }
-            dir = vim.fn.fnamemodify(gradle, ":h")
-          else
-            vim.notify("No pom.xml or build.gradle found", vim.log.levels.WARN)
+          local pom = vim.fs.find("pom.xml", { upward = true, path = vim.fn.expand("%:p:h") })[1]
+          if not pom then
+            vim.notify("No pom.xml found — not a Maven project", vim.log.levels.WARN)
             return
           end
-
-          vim.notify("Running " .. table.concat(cmd, " ") .. "…", vim.log.levels.INFO)
-          vim.fn.jobstart(cmd, {
+          local dir = vim.fn.fnamemodify(pom, ":h")
+          vim.notify("Running mvn spotless:apply…", vim.log.levels.INFO)
+          vim.fn.jobstart({ "mvn", "spotless:apply" }, {
             cwd = dir,
             on_exit = function(_, code)
               vim.schedule(function()
                 if code == 0 then
-                  vim.cmd("checktime")
+                  vim.cmd("checktime") -- reload changed buffers
                   vim.notify("Spotless applied", vim.log.levels.INFO)
                 else
                   vim.notify("Spotless failed (exit " .. code .. ")", vim.log.levels.ERROR)
@@ -53,7 +43,7 @@ return {
             end,
           })
         end,
-        desc = "Format with Spotless",
+        desc = "Format with Spotless (Maven)",
         ft = "java",
       },
     },
