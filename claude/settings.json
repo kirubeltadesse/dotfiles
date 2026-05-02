@@ -17,6 +17,10 @@
       "Bash(mypy:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": ["Git push *"]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
   }
 }

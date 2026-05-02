@@ -43,8 +43,8 @@ cl
 
 This will:
 
-1. Run Bloomberg-specific setup if needed
-2. Authenticate with Bloomberg services
+1. Run work-specific setup if needed
+2. Authenticate with work services
 3. Launch Claude Code with proper configuration
 
 ## Prerequisites
@@ -63,6 +63,6 @@ export JIRA_CLI_PATH="/path/to/jira-cli"
 
 ## Work-Only Setup
 
-This setup only activates when `IS_BLOOMBERG_WORK=1` is set (automatically set in `.bbrc`).
+This setup only activates when `IS_WORK=1` is set (automatically set in `.bbrc`).
 
 On personal machines, this configuration will be skipped during installation.
