@@ -11,31 +11,31 @@ source "$FOLDER/utility/utilities.sh"
 
 initial_setup() {
 
-    cat <<-EOF >>~/.bashrc
+    cat <<-'EOF' >>~/.bashrc
 # added by the dotfile installer
-DOTFILES_DIR="\$HOME/.dotfiles"
+DOTFILES_DIR="$HOME/.dotfiles"
 
-for DOTFILE in "\$DOTFILES_DIR"/system/.{env,prompt,alias,function};
+for DOTFILE in "$DOTFILES_DIR"/system/.{env,prompt,alias,function};
 do
-    [ -f "\$DOTFILE" ] && . "\$DOTFILE"
+    [ -f "$DOTFILE" ] && . "$DOTFILE"
 done
 
 # enable bat for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_DEFAULT_OPTS='--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
 export FZF_DEFAULT_OPS="--extended"
-export FZF_CTRL_T_COMMAND="\$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # add clear screen command
 bind -x '"\C-g": "clear"'
 
-# source \$HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
-export PATH=\$PATH:~/.nb/
+# source $HOME/.local/opt/fzf-obc/bin/fzf-obc.bash
+export PATH=$PATH:~/.nb/
 export set_PS1
 export NB_PREVIEW_COMMAND="bat"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-eval "\$(zoxide init --cmd cd bash)"`
+eval "$(zoxide init --cmd cd bash)"
 [ -f ~/.bbrc ] && source ~/.bbrc
 
 EOF
@@ -114,8 +114,12 @@ setup_lynx() {
     bash browser/lynx/setup.sh
 }
 
-show_help() {
-    echo "Usage: setup.sh [all|init|git|lh|nb|os-apps|plugins|link|lynx]"
+function setup_claude() {
+    bash claude/setup.sh
+}
+
+function show_help() {
+    echo "Usage: setup.sh [all|init|git|git-hooks|lh|nb|os-apps|plugins|link|lynx|claude]"
     echo "Run setup for different parts of your dotfiles."
     echo "all         - Run all setups"
     echo "init        - Run initial setup for bashrc"
@@ -127,6 +131,7 @@ show_help() {
     echo "plugins     - Setup plugins for vim editor"
     echo "link        - Setup symlinks for the applications"
     echo "lynx        - Setup lynx browser for the terminal"
+    echo "claude      - Setup Claude Code "
 }
 
 if [ $# -eq 0 ]; then
@@ -145,6 +150,7 @@ for arg in "$@"; do
         setup_nb
         setup_symlinks
         setup_lynx
+        setup_claude
         ;;
     init)
         initial_setup
@@ -158,9 +164,6 @@ for arg in "$@"; do
     plugins)
         setup_editor_plugins
         ;;
-    pass)
-        setup_pass
-        ;;
     lh)
         setup_lh
         ;;
@@ -172,6 +175,9 @@ for arg in "$@"; do
         ;;
     lynx)
         setup_lynx
+        ;;
+    claude)
+        setup_claude
         ;;
     *)
         show_help

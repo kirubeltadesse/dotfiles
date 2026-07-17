@@ -157,5 +157,14 @@
     "key": "ctrl+cmd+f",
     "command": "-workbench.action.toggleFullScreen",
     "when": "!isIOS"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "workbench.action.chat.openAsk"
+  },
+  {
+    "key": "ctrl+a",
+    "command": "-extension.vim_ctrl+a",
+    "when": "editorTextFocus && vim.active && vim.use<C-a> && !inDebugRepl"
   }
 ]
