@@ -1,0 +1,11 @@
+#!/bin/bash
+# Quick input method switcher for Google Docs + Vim extension
+# Switches between U.S. English and Geez-QWERTY (Amharic)
+
+CURRENT=$(im-select)
+
+if [ "$CURRENT" = "com.apple.keylayout.US" ]; then
+    im-select com.apple.keylayout.Geez-QWERTY
+else
+    im-select com.apple.keylayout.US
+fi

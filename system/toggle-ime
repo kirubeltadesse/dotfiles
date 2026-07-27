@@ -1,0 +1,10 @@
+#!/bin/bash
+# Toggle between U.S. and Geez-QWERTY (Amharic) input methods
+
+CURRENT=$(im-select)
+
+if [ "$CURRENT" = "com.apple.keylayout.US" ]; then
+    im-select com.apple.keylayout.Geez-QWERTY
+else
+    im-select com.apple.keylayout.US
+fi

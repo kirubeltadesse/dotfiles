@@ -94,6 +94,13 @@ setup_symlinks() {
 
     # Creating symlink for .tmux.conf"
     create_symlink "$HOME/.dotfiles/runcom/.tmux.conf" "$HOME/.tmux.conf"
+
+    # Create symlinks for IME scripts (Amharic input switching)
+    mkdir -p "$HOME/bin"
+    create_symlink "$HOME/.dotfiles/system/vim-ime-switch" "$HOME/bin/vim-ime-switch"
+    create_symlink "$HOME/.dotfiles/system/switch-to-amharic" "$HOME/bin/switch-to-amharic"
+    create_symlink "$HOME/.dotfiles/system/switch-to-english" "$HOME/bin/switch-to-english"
+    create_symlink "$HOME/.dotfiles/system/toggle-ime" "$HOME/bin/toggle-ime"
 }
 
 setup_pass() {
