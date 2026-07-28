@@ -1,16 +1,16 @@
 { user, ... }:
-
 {
   # Determinate already manages the Nix daemon, so nix-darwin shouldn't.
   nix.enable = false;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "aarch64-darwin"; # use x86_64-darwin for Intel CPU
+  nix-homebrew.autoMigrate = true;
 
   system.primaryUser = "kirubeltadesse";
-  # users.users.${user} = {
-  #   home = "/Users/${user}";
-  # };
+	users.users.kirubeltadesse = {
+	 home = "/Users/kirubeltadesse";
+	};
   system.stateVersion = 6;
   system.defaults = {
     NSGlobalDomain = {
@@ -28,19 +28,22 @@
   nix-homebrew = {
     enable = true;
     user = "kirubeltadesse";
-    # inherit user;
   };
   homebrew = {
     enable = true;
-    # onActivation.cleanup = "zap";  # remove anything not listed here
+    onActivation.cleanup = "zap";  # remove anything not listed here
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
-    # brews = [
+    brews = [
+      # "tmux-fingers"
+      # "ocv"
+      "im-select"
+      "browserpass"
       # "herdr"
-    # ];
+    ];
     casks = [
       "wezterm"
-      "claude-code"
+      # "claude-code"
     ];
   };
 }
