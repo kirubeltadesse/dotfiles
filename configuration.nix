@@ -1,4 +1,4 @@
-{ user, ... }:
+{ pkgs, ... }:
 {
   # Determinate already manages the Nix daemon, so nix-darwin shouldn't.
   nix.enable = false;
@@ -10,6 +10,7 @@
   system.primaryUser = "kirubeltadesse";
 	users.users.kirubeltadesse = {
     home = "/Users/kirubeltadesse";
+    shell = "${pkgs.bash}/bin/bash";
 	};
   system.stateVersion = 6;
   system.defaults = {
@@ -35,6 +36,7 @@
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
     brews = [
+      "delta"
       # "browserpass"
       # "im-select"
       # "tmux-fingers"

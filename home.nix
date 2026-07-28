@@ -28,8 +28,37 @@ in
   home.sessionVariables.EDITOR = "nvim";
   programs.bash = {
     enable = true;
+    enableCompletion = false;
+    profileExtra = ''
+      if [ -f ~/.bashrc ]; then
+        source ~/.bashrc
+      fi
+    '';
     initExtra = ''
-      bindkey '^f' autosuggest-accept
+      # added by the dotfile installer
+      DOTFILES_DIR="$HOME/.dotfiles"
+
+      for DOTFILE in "$DOTFILES_DIR"/system/.{env,prompt,alias,function};
+      do
+          [ -f "$DOTFILE" ] && . "$DOTFILE"
+      done
+
+      # enable bat for fzf
+      export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+      export FZF_DEFAULT_OPTS='--preview="bat --style=numbers --color=always --line-range :500 {}" --bind alt-j:preview-down,alt-k:preview-up,alt-d:preview-page-down,alt-u:preview-page-up'
+      export FZF_DEFAULT_OPS="--extended"
+      export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+      # add clear screen command
+      bind -x '"\C-g": "clear"'
+
+      export PATH=$PATH:~/.nb/
+      export set_PS1
+      export NB_PREVIEW_COMMAND="bat"
+
+      [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+      eval "$(zoxide init --cmd cd bash)"
+      [ -f ~/.bbrc ] && source ~/.bbrc
     '';
   };
 
@@ -65,6 +94,15 @@ in
   # Edit-in-place: the real file stays in my repo, ~/runcom/config just points at it.
   home.file.".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/wezterm";
   home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/nvim";
+  home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim/.vimrc";
+  home.file.".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim/.ideavimrc";
+  home.file.".vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim";
+  home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/.tmux.conf";
+
+  home.file."bin/vim-ime-switch".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/vim-ime-switch";
+  home.file."bin/switch-to-amharic".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/switch-to-amharic";
+  home.file."bin/switch-to-english".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/switch-to-english";
+  home.file."bin/toggle-ime".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/toggle-ime";
   # Files below were referenced in the documentation but not found in your runcom/ structure.
   # If you need them, please place them in runcom/ and update these paths.
 #  home.file.".config/herdr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/herdr";
