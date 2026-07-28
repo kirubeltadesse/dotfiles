@@ -5,10 +5,10 @@ return {
     opts = {
       default_im_select = "com.apple.keylayout.US",
       default_command = "im-select",
-      set_default_events = { "InsertLeave", "CmdlineLeave" },
-      set_previous_events = { "InsertEnter", "CmdlineEnter" },
+      set_default_events = { "InsertLeave" },
+      set_previous_events = { "InsertEnter" },
       keep_quiet_on_no_binary = false,
-      async_switch_im = true,
+      async_switch_im = false,
     },
   },
 }

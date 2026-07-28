@@ -25,7 +25,11 @@ in
   ];
 
   fonts.fontconfig.enable = true;
-  home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    LYNX_CFG = "${config.home.homeDirectory}/.config/lynx/lynx.cfg";
+    LYNX_LSS = "${config.home.homeDirectory}/.config/lynx/lynx.lss";
+  };
   programs.bash = {
     enable = true;
     enableCompletion = false;
@@ -60,6 +64,10 @@ in
       [ -f ~/.fzf.bash ] && source ~/.fzf.bash
       eval "$(zoxide init --cmd cd bash)"
       [ -f ~/.bbrc ] && source ~/.bbrc
+
+      # Lynx search engines & urlencode
+      source "${dotfiles}/browser/lynx/urlencode"
+      source "${dotfiles}/browser/lynx/searchEngine"
     '';
   };
 
@@ -104,6 +112,9 @@ in
   home.file."bin/switch-to-amharic".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/switch-to-amharic";
   home.file."bin/switch-to-english".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/switch-to-english";
   home.file."bin/toggle-ime".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/toggle-ime";
+
+  home.file.".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/browser/lynx/lynx.cfg";
+  home.file.".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/browser/lynx/lynx.lss";
   # Files below were referenced in the documentation but not found in your runcom/ structure.
   # If you need them, please place them in runcom/ and update these paths.
 #  home.file.".config/herdr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/herdr";

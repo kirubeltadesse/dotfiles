@@ -35,10 +35,13 @@
     onActivation.cleanup = "zap";  # remove anything not listed here
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
+    taps = [
+      "daipeihust/tap"
+    ];
     brews = [
       "delta"
       # "browserpass"
-      # "im-select"
+      "im-select"
       # "tmux-fingers"
       # "ocv"
       # "herdr"
