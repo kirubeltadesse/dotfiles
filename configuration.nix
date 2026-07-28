@@ -9,7 +9,7 @@
 
   system.primaryUser = "kirubeltadesse";
 	users.users.kirubeltadesse = {
-	 home = "/Users/kirubeltadesse";
+    home = "/Users/kirubeltadesse";
 	};
   system.stateVersion = 6;
   system.defaults = {
@@ -35,10 +35,10 @@
     onActivation.autoUpdate = true;
     onActivation.extraFlags = [ "--force" ];
     brews = [
+      # "browserpass"
+      # "im-select"
       # "tmux-fingers"
       # "ocv"
-      "im-select"
-      "browserpass"
       # "herdr"
     ];
     casks = [

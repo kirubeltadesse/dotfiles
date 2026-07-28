@@ -4,9 +4,14 @@ local config = wezterm.config_builder()
 
 config.color_scheme = "rose-pine-moon"
 -- config.font = wezterm.font("Hack Nerd Font")
-config.font_size = 15.0
-config.window_background_opacity = 0.8
-config.macos_window_background_blur = 50
+config.default_cursor_style = "BlinkingBlock"
+config.colors = {
+	cursor_bg = "#ff51d0",
+}
+config.cursor_blink_rate = 500
+config.font_size = 19.0
+config.window_background_opacity = 0.9
+config.macos_window_background_blur = 10
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 

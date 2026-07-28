@@ -23,8 +23,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-	      # home-manager.extraSpecialArgs = { inherit user; };
-	    home-manager.users.kirubeltadesse = import ./home.nix;
+            home-manager.users.kirubeltadesse = import ./home.nix;
+            home-manager.backupFileExtension = "backup";
           }
 		];
     };
