@@ -20,7 +20,9 @@ in
 	  tmux
     nb
     zoxide
+    glow
     lynx
+    yt-dlp
     # the font everything renders in
     # nerd-fonts.hack
   ];
@@ -59,6 +61,7 @@ in
       bind -x '"\C-g": "clear"'
 
       export PATH=$PATH:~/.nb/
+      export PATH="$HOME/.local/bin:$PATH"
       export set_PS1
       export NB_PREVIEW_COMMAND="bat"
 

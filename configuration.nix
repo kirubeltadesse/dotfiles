@@ -47,6 +47,7 @@
     ];
     casks = [
       "wezterm"
+      "obs"
       # "claude-code"
     ];
   };
