@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("K", vim.lsp.buf.hover, "Go method definition")
     map("<leader>ca", vim.lsp.buf.code_action, "Code action")
     map("<leader>vws", vim.lsp.buf.workspace_symbol, "Search Symobls Matching")
+    -- map("<leader>vwl", vim.diagnostic.setloclist, "Diagnostic in location list")
     map("<leader>vd", vim.diagnostic.open_float, "Diagnostic open float")
     map("<leader>r", vim.lsp.buf.rename, "Buffer rename")
     map("<C-k>", vim.lsp.buf.signature_help, "Help signature")

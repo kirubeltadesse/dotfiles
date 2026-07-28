@@ -31,6 +31,9 @@ alias tasks='git grep -EI "BUG|TODO|FIXME|FIXIT|HACK"'
 # Recursively remove .DS_Store files need for macOS
 alias cleanupds="find . -type f -name '*.DS_store' -ls -delete"
 
+# Claude
+alias cl='claude --enable-auto-mode'
+
 # WEB SEARCH
 alias '?'=dock
 alias '??'=google

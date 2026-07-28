@@ -14,7 +14,7 @@
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }: {
+  outputs = inputs@{ self, nix-darwin, nix-homebrew, home-manager, nixpkgs }: {
     darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
       modules = [
       ./configuration.nix
@@ -23,8 +23,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-			      # home-manager.extraSpecialArgs = { inherit user; };
-			      home-manager.users.kirubeltadesse = import ./home.nix;
+	      # home-manager.extraSpecialArgs = { inherit user; };
+	    home-manager.users.kirubeltadesse = import ./home.nix;
           }
 		];
     };
