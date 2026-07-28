@@ -48,6 +48,7 @@
     casks = [
       "wezterm"
       "obs"
+      "opensuperwhisper"
       # "claude-code"
     ];
   };
