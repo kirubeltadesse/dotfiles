@@ -1,7 +1,7 @@
 #!/bin/bash
 # Quick input method switcher for Google Docs + Vim extension
 # Switches between U.S. English and Geez-QWERTY (Amharic)
-IM=/opt/homebrew/bin/im-select
+IM=/etc/profiles/per-user/kirubeltadesse/bin/macism
 CURRENT=$($IM)
 
 if [ "$CURRENT" = "com.apple.keylayout.US" ]; then

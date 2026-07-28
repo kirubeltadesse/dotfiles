@@ -1,3 +1,3 @@
 #!/bin/bash
 # Switch to Geez-QWERTY (Amharic) input method
-/opt/homebrew/bin/im-select com.apple.keylayout.Geez-QWERTY
+/etc/profiles/per-user/kirubeltadesse/bin/macism com.apple.keylayout.Geez-QWERTY

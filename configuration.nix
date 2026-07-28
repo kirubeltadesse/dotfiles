@@ -41,7 +41,6 @@
     brews = [
       "delta"
       # "browserpass"
-      "im-select"
       # "tmux-fingers"
       # "ocv"
       # "herdr"

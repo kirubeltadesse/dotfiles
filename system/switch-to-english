@@ -1,3 +1,3 @@
 #!/bin/bash
 # Switch to U.S. English input method
-/opt/homebrew/bin/im-select com.apple.keylayout.US
+/etc/profiles/per-user/kirubeltadesse/bin/macism com.apple.keylayout.US

@@ -9,6 +9,7 @@ in
   home.homeDirectory = "/Users/kirubeltadesse";
   home.stateVersion = "24.11";
   home.packages = with pkgs; [
+    macism
     # cli i use constantly
     ripgrep   # fast search
     fd        # fast find
