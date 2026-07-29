@@ -23,6 +23,7 @@ in
     glow
     lynx
     cmake
+    pass
     yt-dlp
     # the font everything renders in
     # nerd-fonts.hack
@@ -34,6 +35,11 @@ in
     LYNX_CFG = "${config.home.homeDirectory}/.config/lynx/lynx.cfg";
     LYNX_LSS = "${config.home.homeDirectory}/.config/lynx/lynx.lss";
   };
+  programs.browserpass = {
+    enable = true;
+    browsers = [ "firefox" "chrome" ];
+  };
+
   programs.bash = {
     enable = true;
     enableCompletion = false;

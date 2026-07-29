@@ -40,15 +40,14 @@
     ];
     brews = [
       "delta"
-      # "browserpass"
       # "tmux-fingers"
       # "ocv"
       # "herdr"
     ];
     casks = [
       "wezterm"
-      "obs"
       "opensuperwhisper"
+      # "obs"
       # "claude-code"
     ];
   };
