@@ -22,6 +22,7 @@ in
     zoxide
     glow
     lynx
+    cmake
     yt-dlp
     # the font everything renders in
     # nerd-fonts.hack
