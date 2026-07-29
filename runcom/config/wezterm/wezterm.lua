@@ -3,7 +3,11 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.color_scheme = "rose-pine-moon"
--- config.font = wezterm.font("Hack Nerd Font")
+config.use_dead_keys = false
+config.font = wezterm.font_with_fallback({
+	"Hibur Mono Nerd Font",
+	"JetBrainsMono NFM",
+})
 config.default_cursor_style = "BlinkingBlock"
 config.colors = {
 	cursor_bg = "#ff51d0",

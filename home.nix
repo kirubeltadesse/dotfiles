@@ -25,6 +25,18 @@ in
     cmake
     pass
     yt-dlp
+    (stdenvNoCC.mkDerivation {
+      pname = "hibur-mono-nerd-fonts";
+      version = "1.0.0";
+      src = fetchzip {
+        url = "https://github.com/typehabesha/HiburMono/releases/download/v1.0.0/HiburMonoNerdFonts-v1_0_0.zip";
+        hash = "sha256-5Rjm/0ybIwPfwbUkggtr/FPhJI2Y4hsLQsLigK8gEEw=";
+      };
+      installPhase = ''
+        mkdir -p $out/share/fonts/truetype
+        find . -name "*.ttf" -exec cp {} $out/share/fonts/truetype/ \;
+      '';
+    })
     # the font everything renders in
     # nerd-fonts.hack
   ];
