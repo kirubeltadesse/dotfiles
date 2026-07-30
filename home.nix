@@ -144,7 +144,7 @@ in
   home.file.".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/browser/lynx/lynx.lss";
   # Files below were referenced in the documentation but not found in your runcom/ structure.
   # If you need them, please place them in runcom/ and update these paths.
-#  home.file.".config/herdr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/herdr";
+  home.file.".config/herdr".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/herdr";
 #  home.file.".claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/.claude/settings.json";
 #
 #  home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";

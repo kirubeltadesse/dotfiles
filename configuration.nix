@@ -42,7 +42,7 @@
       "delta"
       # "tmux-fingers"
       # "ocv"
-      # "herdr"
+      "herdr"
     ];
     casks = [
       "wezterm"
