@@ -41,7 +41,7 @@
     brews = [
       "delta"
       # "tmux-fingers"
-      # "ocv"
+      "leohenon/tap/ocv"
       "herdr"
     ];
     casks = [
