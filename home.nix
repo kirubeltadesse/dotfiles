@@ -139,6 +139,7 @@ in
   home.file."bin/switch-to-amharic".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/switch-to-amharic";
   home.file."bin/switch-to-english".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/switch-to-english";
   home.file."bin/toggle-ime".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/toggle-ime";
+  home.file."bin/opencode".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/opencode";
 
   home.file.".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/browser/lynx/lynx.cfg";
   home.file.".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/browser/lynx/lynx.lss";
