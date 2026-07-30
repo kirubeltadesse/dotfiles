@@ -14,17 +14,23 @@ in
     ripgrep   # fast search
     fd        # fast find
     fzf       # fuzzy finder
+    gh        # github cli
     jq        # json on the command line
     neovim
     lazygit
 	  tmux
     nb
+    python3
+    uv
     zoxide
     glow
     lynx
     cmake
     pass
     yt-dlp
+
+    # the font everything renders in
+    # nerd-fonts.hack
     (stdenvNoCC.mkDerivation {
       pname = "hibur-mono-nerd-fonts";
       version = "1.0.0";
@@ -37,8 +43,6 @@ in
         find . -name "*.ttf" -exec cp {} $out/share/fonts/truetype/ \;
       '';
     })
-    # the font everything renders in
-    # nerd-fonts.hack
   ];
 
   fonts.fontconfig.enable = true;
