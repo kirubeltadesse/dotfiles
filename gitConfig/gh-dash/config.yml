@@ -76,9 +76,9 @@ defaults:
   refetchIntervalMinutes: 30
 repoPaths:
   {
-    BQL/*: ~/dev/*,
-    kirubeltadesse/dotfiles: ~/.dotfiles,
-    Swarmies/*: ~/projects/*,
+    Swarmies/soccering-backend: ~/projects/soccer-adict-project/backend,
+    Swarmies/mobile-app: ~/projects/soccer-adict-project/mobile-app,
+    kirubeltadesse/dotfiles: ~/dotfiles,
   }
 keybindings:
   universal:
