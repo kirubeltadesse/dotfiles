@@ -96,6 +96,27 @@ in
       # Lynx search engines & urlencode
       source "${dotfiles}/browser/lynx/urlencode"
       source "${dotfiles}/browser/lynx/searchEngine"
+
+      # Pass completion
+      source "${dotfiles}/localhistory/pass_completion.sh"
+      complete -o filenames -F _pass pass
+
+      pass() {
+          if [[ "$1" == "g" ]]; then
+              shift
+              git -C ~/.password-store "$@"
+          else
+              command pass "$@"
+          fi
+      }
+
+
+      # nb completion
+      source "${dotfiles}/nb/nb-completion.bash"
+
+      complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/null         complete -o default -o nospace -F __git_wrap__git_main g
+
+
     '';
   };
 
