@@ -28,6 +28,7 @@ in
     cmake
     pass
     yt-dlp
+    keybase
 
     # the font everything renders in
     # nerd-fonts.hack
