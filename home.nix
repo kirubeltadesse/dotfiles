@@ -156,6 +156,7 @@ in
   home.file.".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim/.ideavimrc";
   home.file.".vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim";
   home.file.".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/.tmux.conf";
+  home.file.".config/gh-dash".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/gitConfig/gh-dash";
   home.file.".nbrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/nb/nbrc";
 
   home.file."bin/vim-ime-switch".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/system/vim-ime-switch";

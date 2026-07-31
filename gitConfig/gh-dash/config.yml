@@ -30,15 +30,6 @@ repo:
   branchesRefetchIntervalSeconds: 30
   prsRefetchIntervalSeconds: 60
 defaults:
-  layout:
-    prs:
-      repo:
-        grow: true,
-        width: 10
-        hidden: false
-      base:
-        hidden: true
-
   preview:
     open: true
     width: 84
@@ -53,7 +44,9 @@ defaults:
       createdAt:
         width: 5
       repo:
-        width: 20
+        grow: true,
+        width: 10
+        hidden: false
       author:
         width: 15
       authorIcon:
@@ -81,10 +74,11 @@ defaults:
         width: 20
         hidden: true
   refetchIntervalMinutes: 30
-repoPaths: {
-  BQL/*: ~/dev/*,
-  kirubeltadesse/dotfiles: ~/.dotfiles,
-  Swarmies/*: ~/projects/*,
+repoPaths:
+  {
+    BQL/*: ~/dev/*,
+    kirubeltadesse/dotfiles: ~/.dotfiles,
+    Swarmies/*: ~/projects/*,
   }
 keybindings:
   universal:
