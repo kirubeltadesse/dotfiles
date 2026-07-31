@@ -11,3 +11,4 @@
   If something clearly looks off, even if it is not directly related to what you are doing, try to get it fixed along the way.
 - Apply that same high standard to engineering excellence: lint, test failures, and test flakiness.
   If you see one, even if it is not caused by what you are working on right now, still get it fixed.
+- **Knowledge Graph (Graphify)**: If a `graphify-out/` directory or `graph.json` exists in the repository, prefer querying the knowledge graph via `graphify query "<question>"` or `graphify explain "<concept>"` instead of grepping or reading raw files directly, to understand project architecture and code relationships.
