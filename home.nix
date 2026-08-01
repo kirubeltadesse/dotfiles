@@ -23,6 +23,7 @@ in
     python3
     uv
     nodejs_24
+    shellcheck
     zoxide
     glow
     lynx
@@ -60,7 +61,7 @@ in
 
   programs.bash = {
     enable = true;
-    enableCompletion = false;
+    enableCompletion = true;
     profileExtra = ''
       export BASH_SILENCE_DEPRECATION_WARNING=1
       if [ -f ~/.bashrc ]; then

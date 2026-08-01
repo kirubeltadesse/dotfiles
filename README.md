@@ -103,12 +103,13 @@ If error with white spaces run one of this options:
 
 ### iTem2
 
-preferences->profiles->Command (Custom Shell) -> add `/bin/bash --login`
+Do not set a custom shell like `/bin/bash --login`.
+Let the terminal use the account login shell managed by nix-darwin.
 
 you can also set that as a default [shell](https://www.howtogeek.com/444596/how-to-change-the-default-shell-to-bash-in-macos-catalina/)
 
 ```shell
-chsh -s /bin/bash
+chsh -s /run/current-system/sw/bin/bash
 ```
 
 ### Ques: Cloning error ?

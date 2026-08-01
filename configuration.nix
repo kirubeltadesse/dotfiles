@@ -3,6 +3,8 @@
   # Determinate already manages the Nix daemon, so nix-darwin shouldn't.
   nix.enable = false;
 
+  environment.shells = [ pkgs.bashInteractive ];
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = "aarch64-darwin"; # use x86_64-darwin for Intel CPU
   nix-homebrew.autoMigrate = true;
@@ -10,7 +12,7 @@
   system.primaryUser = "kirubeltadesse";
 	users.users.kirubeltadesse = {
     home = "/Users/kirubeltadesse";
-    shell = "${pkgs.bash}/bin/bash";
+	    shell = "${pkgs.bashInteractive}/bin/bash";
 	};
   system.stateVersion = 6;
   system.defaults = {
