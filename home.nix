@@ -22,6 +22,7 @@ in
     nb
     python3
     uv
+    nodejs_24
     zoxide
     glow
     lynx
