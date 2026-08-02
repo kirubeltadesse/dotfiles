@@ -32,6 +32,8 @@ in
     pass
     yt-dlp
     keybase
+    yabai
+    skhd
 
     # the font everything renders in
     # nerd-fonts.hack
@@ -54,7 +56,14 @@ in
     EDITOR = "nvim";
     LYNX_CFG = "${config.home.homeDirectory}/.config/lynx/lynx.cfg";
     LYNX_LSS = "${config.home.homeDirectory}/.config/lynx/lynx.lss";
+    NPM_CONFIG_PREFIX = "${config.home.homeDirectory}/.local";
   };
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.nix-profile/bin"
+    "/etc/profiles/per-user/${config.home.username}/bin"
+    "/run/current-system/sw/bin"
+    "/nix/var/nix/profiles/default/bin"
+  ];
   programs.browserpass = {
     enable = true;
     browsers = [ "firefox" "chrome" ];
@@ -184,4 +193,26 @@ in
   home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";
   home.file.".codex/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";
   home.file.".config/opencode/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";
+
+  # yabai + skhd: real files live in the repo, symlinked here so edits apply live.
+  home.file.".config/yabai/yabairc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/yabai/yabairc";
+  home.file.".config/skhd/skhdrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/skhd/skhdrc";
+
+  launchd.agents.yabai = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${pkgs.yabai}/bin/yabai" "-c" "${config.home.homeDirectory}/.config/yabai/yabairc" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
+
+  launchd.agents.skhd = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${pkgs.skhd}/bin/skhd" "-c" "${config.home.homeDirectory}/.config/skhd/skhdrc" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
 }

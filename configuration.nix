@@ -27,6 +27,77 @@
     finder.FXPreferredViewStyle = "Nlsv";  # list view by default
     finder.CreateDesktop = false;          # clean desktop
     trackpad.Clicking = true;              # tap to click
+    universalaccess.reduceMotion = true;
+    CustomUserPreferences = {
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          # Enable Mission Control shortcuts for switching directly to Desktop 1-9.
+          "118" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 18 262144 ];
+              type = "standard";
+            };
+          };
+          "119" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 19 262144 ];
+              type = "standard";
+            };
+          };
+          "120" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 20 262144 ];
+              type = "standard";
+            };
+          };
+          "121" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 21 262144 ];
+              type = "standard";
+            };
+          };
+          "122" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 23 262144 ];
+              type = "standard";
+            };
+          };
+          "123" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 22 262144 ];
+              type = "standard";
+            };
+          };
+          "124" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 26 262144 ];
+              type = "standard";
+            };
+          };
+          "125" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 28 262144 ];
+              type = "standard";
+            };
+          };
+          "126" = {
+            enabled = true;
+            value = {
+              parameters = [ 65535 25 262144 ];
+              type = "standard";
+            };
+          };
+        };
+      };
+    };
   };
   nix-homebrew = {
     enable = true;
