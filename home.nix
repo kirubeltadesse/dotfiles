@@ -24,6 +24,7 @@ in
     uv
     nodejs_24
     shellcheck
+    atuin
     zoxide
     glow
     lynx
@@ -92,6 +93,12 @@ in
       export NB_PREVIEW_COMMAND="bat"
 
       [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+      eval "$(atuin init bash)"
+      bind '"?": self-insert'
+
+      ai() {
+          command atuin ai "$@"
+      }
       eval "$(zoxide init --cmd cd bash)"
       [ -f ~/.bbrc ] && source ~/.bbrc
 
@@ -154,6 +161,7 @@ in
   # Edit-in-place: the real file stays in my repo, ~/runcom/config just points at it.
   home.file.".config/wezterm".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/wezterm";
   home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/nvim";
+  home.file.".config/atuin".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/atuin";
   home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim/.vimrc";
   home.file.".ideavimrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim/.ideavimrc";
   home.file.".vim".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/vim";
