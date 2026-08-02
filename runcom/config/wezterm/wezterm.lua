@@ -11,6 +11,7 @@ config.font = wezterm.font_with_fallback({
 config.default_cursor_style = "BlinkingBlock"
 config.colors = {
 	cursor_bg = "#ff51d0",
+	cursor_border = "#ff51d0",
 }
 config.cursor_blink_rate = 500
 config.font_size = 19.0
