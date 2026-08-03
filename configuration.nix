@@ -27,8 +27,14 @@
     finder.FXPreferredViewStyle = "Nlsv";  # list view by default
     finder.CreateDesktop = false;          # clean desktop
     trackpad.Clicking = true;              # tap to click
-    universalaccess.reduceMotion = true;
     CustomUserPreferences = {
+      # Reduce Motion lives in com.apple.Accessibility, not com.apple.universalaccess.
+      # On macOS 26, cfprefsd rejects `defaults write com.apple.universalaccess ...`,
+      # which makes the nix-darwin universalaccess module fail on every rebuild.
+      "com.apple.Accessibility" = {
+        ReduceMotionEnabled = true;
+        reduceMotion = true;
+      };
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
           # Enable Mission Control shortcuts for switching directly to Desktop 1-9.

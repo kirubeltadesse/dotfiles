@@ -196,12 +196,15 @@ in
 
   # yabai + skhd: real files live in the repo, symlinked here so edits apply live.
   home.file.".config/yabai/yabairc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/yabai/yabairc";
+  home.file.".config/yabai/yabai-wrapper.sh".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/yabai/yabai-wrapper.sh";
   home.file.".config/skhd/skhdrc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/skhd/skhdrc";
 
+  # yabai executes its config before its server is ready, so the wrapper starts
+  # yabai with an empty config and applies yabairc once the daemon is up.
   launchd.agents.yabai = {
     enable = true;
     config = {
-      ProgramArguments = [ "${pkgs.yabai}/bin/yabai" "-c" "${config.home.homeDirectory}/.config/yabai/yabairc" ];
+      ProgramArguments = [ "/bin/sh" "${config.home.homeDirectory}/.config/yabai/yabai-wrapper.sh" "${pkgs.yabai}/bin/yabai" ];
       RunAtLoad = true;
       KeepAlive = true;
     };
@@ -211,6 +214,11 @@ in
     enable = true;
     config = {
       ProgramArguments = [ "${pkgs.skhd}/bin/skhd" "-c" "${config.home.homeDirectory}/.config/skhd/skhdrc" ];
+      # launchd agents get a minimal PATH, but skhd runs hotkey commands through
+      # the shell, so bare `yabai` would not resolve without this.
+      EnvironmentVariables = {
+        PATH = "/etc/profiles/per-user/kirubeltadesse/bin:/usr/bin:/bin:/usr/sbin:/sbin";
+      };
       RunAtLoad = true;
       KeepAlive = true;
     };
