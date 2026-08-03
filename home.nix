@@ -192,7 +192,7 @@ in
 #  home.file.".claude/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/.claude/settings.json";
   home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";
   home.file.".codex/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";
-  home.file.".config/opencode/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/AGENTS.md";
+  home.file.".config/opencode".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/opencode";
 
   # yabai + skhd: real files live in the repo, symlinked here so edits apply live.
   home.file.".config/yabai/yabairc".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/runcom/config/yabai/yabairc";
