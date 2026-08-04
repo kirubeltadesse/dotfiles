@@ -89,3 +89,9 @@ htitle() {
 	# Print the title with the horizontal rule
 	printf "#%s %s %s %s" "$pre" "$(printf "%-${side}s" "$char")" "$str" "$(printf "%-${side}s" "$char" "$pre")"
 } && export -f htitle
+
+# Restart yabai so yabairc edits (rules, padding, layout) take effect.
+# yabai does not hot-reload its config; the wrapper applies yabairc only at startup.
+function yabai-restart() {
+	launchctl kickstart -k "gui/$(id -u)/org.nix-community.home.yabai"
+} && export -f yabai-restart
