@@ -38,5 +38,5 @@ ctrl + alt - left : yabai -m display --focus prev
 ctrl + alt - right : yabai -m display --focus next
 
 # Move windows between displays
-shift + ctrl + alt - left : yabai -m window --display prev && yabai -m display --focus prev
-shift + ctrl + alt - right : yabai -m window --display next && yabai -m display --focus next
+shift + ctrl + alt - right: yabai -m window --display prev && yabai -m display --focus prev
+shift + ctrl + alt - left: yabai -m window --display next && yabai -m display --focus next
