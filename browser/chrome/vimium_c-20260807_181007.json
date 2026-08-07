@@ -1,0 +1,160 @@
+{
+	"name": "Vimium C",
+	"@time": "8/7/2026, 6:10:07 PM",
+	"time": 1786140607224,
+	"environment": {
+		"extension": "2.12.2",
+		"platform": "mac",
+		"chromium": 151
+	},
+	"keyLayout": 2,
+	"grabBackFocus": true,
+	"keyMappings": [
+		"#!no-check",
+		"unmap J",
+		"unmap K",
+		"map K previousTab",
+		"map J nextTab",
+		"",
+		"# Insert your preferred key mappings here",
+		"map <c-u> scrollPageUp",
+		"map <c-d> scrollPageDown",
+		"unmap f",
+		"map <c-f> LinkHints.activate",
+		"map zh scrollToLeft",
+		"map zl scrollToRight",
+		"map gh firstTab",
+		"map gp previousTab",
+		"map gn nextTab",
+		"map ga visitPreviousTab",
+		"map gl lastTab",
+		""
+	],
+	"searchEngines": [
+		"w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia",
+		"# More examples.",
+		"#",
+		"# (Vimium supports search completion Wikipedia, as",
+		"# above, and for these.)",
+		"#",
+		"b: https://www.baeldung.com/?s=%s  Baeldung",
+		"bg: https://bbgithub.dev.bloomberg.com/search?q=%s bbgithub",
+		"m: https://machinelearningmastery.com/?s=%s&post_type=post&submit=Search machinelearningmaster",
+		"y: https://www.youtube.com/results?search_query=%s Youtube",
+		"d: https://duckduckgo.com/?q=%s DuckDuckGo",
+		"g: https://www.google.com/search?q=%s Google",
+		"gd: https://drive.google.com/drive/search?q=%s Google Drive",
+		"# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...",
+		"gm: https://www.google.com/maps?q=%s Google maps",
+		"# b: https://www.bing.com/search?q=%s Bing",
+		"az: https://www.amazon.com/s/?field-keywords=%s Amazon",
+		"# qw: https://www.qwant.com/?q=%s Qwant",
+		"t: https://tutti.prod.bloomberg.com/search/?q=%s Tutti",
+		"og: https://code.dev.bloomberg.com/source/search?full=%s&defs=&refs=&path=&hist=&type=&xrd=&nn=6&si=full&searchall=true&si=full OpenGrok",
+		"gt: https://github.com/search?q=%s github",
+		"pr: https://bbgithub.dev.bloomberg.com/BQL/bqlcore/pull/%s pr",
+		"repo: https://github.com/kirubeltadesse?tab=repositories&q=%s gitrepo",
+		"brepo: https://bbgithub.dev.bloomberg.com/ktadesse1?tab=repositories&q=%s&type=&language=&sort= bbgitrepo",
+		"idk: https://idk.prod.bloomberg.com/search?q=%s IDK",
+		""
+	],
+	"exclusionRules": [
+		{
+			"passKeys": "",
+			"pattern": "^https?://mail.google.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://www.hackerrank.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://vim-adventures.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://www.algoexpert.io/questions/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://www.overleaf.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://localhost:8888/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://www.onlinegdb.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://www.pramp.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://www.kaggle.com/code/kirubelmel/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://127.0.0.1:8888/.*"
+		},
+		{
+			"passKeys": "j k l h < >",
+			"pattern": "^https?://www.youtube.com/.*"
+		},
+		{
+			"passKeys": "n p h l k j b f s space / ` 1 2 3 4 5 6 7 8 9 0",
+			"pattern": "^https?://kirubeltadesse.github.io/presentation/?/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^about:blank.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://docs.google.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://.*dsp.dev.bloomberg.com/.*"
+		},
+		{
+			"passKeys": "n p h l k j b f s space /",
+			"pattern": "^https?://bbgithub.dev.bloomberg.com/pages/.*"
+		},
+		{
+			"passKeys": "n p h l k j b f s space /",
+			"pattern": "^http://localhost:7890/?/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://.*dsp.prod.bloomberg.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://awmgd-prod-uat-02.bloomberg-quant.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://flink.*semetering-s-bql-metering.spaas-ob-dev02.bce.dev.bloomberg.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://interview.leetcode.com/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://codepad.pro/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://neetcode.io/problems/.*"
+		},
+		{
+			"passKeys": "",
+			"pattern": "^https?://leetcode.com/problems/.*"
+		}
+	],
+	"vimSync": true
+}
