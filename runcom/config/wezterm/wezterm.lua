@@ -12,8 +12,11 @@ config.default_cursor_style = "BlinkingBlock"
 config.colors = {
 	cursor_bg = "#ff51d0",
 	cursor_border = "#ff51d0",
+	background = "#191724",
 }
 config.cursor_blink_rate = 500
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
 config.font_size = 19.0
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 10
