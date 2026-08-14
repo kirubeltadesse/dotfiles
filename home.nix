@@ -26,6 +26,7 @@ in
     shellcheck
     atuin
     zoxide
+    carapace
     glow
     lynx
     cmake
@@ -82,7 +83,7 @@ in
       # added by the dotfile installer
       DOTFILES_DIR="$HOME/.dotfiles"
 
-      for DOTFILE in "$DOTFILES_DIR"/system/.{env,prompt,alias,function};
+      for DOTFILE in "$DOTFILES_DIR"/system/.{path,env,prompt,alias,function};
       do
           [ -f "$DOTFILE" ] && . "$DOTFILE"
       done
@@ -103,6 +104,9 @@ in
 
       [ -f ~/.fzf.bash ] && source ~/.fzf.bash
       eval "$(atuin init bash)"
+      export CARAPACE_COLOR=1
+      export CARAPACE_BRIDGES=bash
+      eval "$(carapace _carapace bash)"
       bind '"?": self-insert'
 
       ai() {
@@ -132,7 +136,10 @@ in
       # nb completion
       source "${dotfiles}/nb/nb-completion.bash"
 
-      complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g 2>/dev/null         complete -o default -o nospace -F __git_wrap__git_main g
+      [ -f ~/.git-completion.bash ] && . ~/.git-completion.bash
+      if declare -f __git_wrap__git_main >/dev/null; then
+          complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g
+      fi
 
 
     '';
