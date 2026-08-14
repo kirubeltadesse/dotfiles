@@ -181,7 +181,7 @@ search_mode = "daemon-fuzzy"
 ## keybinding is defined.  If this is set to "emacs", "vim-insert", or
 ## "vim-normal", the startup keymap mode in the Atuin search is forced to be
 ## the specified one.
-# keymap_mode = "auto"
+keymap_mode = "vim-normal"
 
 ## Cursor style in each keymap mode.  If specified, the cursor style is changed
 ## in entering the cursor shape.  Available values are "default" and
@@ -192,11 +192,11 @@ search_mode = "daemon-fuzzy"
 # network_timeout = 5
 
 ## Timeout (in seconds) for acquiring a local database connection (sqlite)
-# local_timeout = 5
+local_timeout = 5
 
 ## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
 ## Alternatively, set env NO_MOTION=true
-# prefers_reduced_motion = false
+prefers_reduced_motion = true
 
 [stats]
 ## Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
@@ -236,13 +236,13 @@ search_mode = "daemon-fuzzy"
 
 [keys]
 # Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
-# scroll_exits = true
+scroll_exits = true
 
 # Defaults to true. The left arrow key will exit the TUI when scrolling before the first character
-# exit_past_line_start = true
+exit_past_line_start = true
 
 # Defaults to true. The right arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.
-# accept_past_line_end = true
+accept_past_line_end = true
 
 # Defaults to false. The left arrow key performs the same functionality as Tab and copies the selected line to the command line to be modified.
 # accept_past_line_start = false
@@ -332,10 +332,10 @@ autostart = true
 ## Can be a percentage, or integer (e.g. "100" means 100 lines tall)
 # height = "60%"
 
-[ui]
+# [ui]
 
 [ai]
-enabled = true
+enabled = false
 ## Columns to display in the interactive search, from left to right.
 ## The selection indicator (" > ") is always shown first implicitly.
 ##
