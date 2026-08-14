@@ -26,10 +26,6 @@
     },
     {
       "passKeys": "",
-      "pattern": "https?://leetcode.com/problems/*"
-    },
-    {
-      "passKeys": "",
       "pattern": "https?://www.onlinegdb.com/*"
     },
     {
@@ -83,6 +79,22 @@
     {
       "passKeys": "",
       "pattern": "https?://flink*semetering-s-bql-metering.spaas-ob-dev02.bce.dev.bloomberg.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://interview.leetcode.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://codepad.pro/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://neetcode.io/problems/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://leetcode.com/problems/*"
     }
   ],
   "grabBackFocus": true,
