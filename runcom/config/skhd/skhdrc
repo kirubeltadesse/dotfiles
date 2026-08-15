@@ -21,6 +21,8 @@ ctrl + alt - r : launchctl kickstart -k "gui/$(id -u)/org.nix-community.home.yab
 ctrl + alt - return: yabai -m window --toggle float
 alt - f : yabai -m window --toggle zoom-fullscreen
 alt - b : yabai -m space --balance
+alt - y : yabai -m space --mirror y-axis
+alt - x : yabai -m space --mirror x-axis
 
 # Move windows between spaces
 shift + alt - 1 : yabai -m window --space 1 && yabai -m space --focus 1
