@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/hy3-free",
   "plugin": ["@mohak34/opencode-notifier@latest"],
   "permission": {
     "bash": {
@@ -7,6 +8,12 @@
       "rm -r *": "ask",
       "rm *": "ask",
       "*": "allow",
+    },
+    "edit": {
+      "~/.treehouse/**": "allow",
+    },
+    "external_directory": {
+      "~/.treehouse/**": "allow",
     },
   },
   "provider": {
@@ -61,6 +68,17 @@
       "enabled": true,
       "environment": {
         "GOOGLE_OAUTH_CREDENTIALS": "/Users/kirubeltadesse/Tools/google-calendar-mcp/gcp-oauth.keys.json",
+      },
+    },
+    "storybook": {
+      "type": "local",
+      "command": [
+        "node",
+        "/Users/kirubeltadesse/projects/soccer-adict-project/mobile-app/scripts/storybook-mcp-bridge.mjs",
+      ],
+      "enabled": true,
+      "environment": {
+        "STORYBOOK_URL": "http://localhost:6006",
       },
     },
     "sonarqube": {
