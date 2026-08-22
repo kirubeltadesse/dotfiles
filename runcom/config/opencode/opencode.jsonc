@@ -100,7 +100,7 @@
       ],
       "enabled": true,
       "environment": {
-        "SONARQUBE_TOKEN": "REDACTED_SONARQUBE_TOKEN",
+        "SONARQUBE_TOKEN": "{env:SONARQUBE_TOKEN}",
         "SONARQUBE_ORG": "swarmies",
         "SONARQUBE_READ_ONLY": "true",
       },
