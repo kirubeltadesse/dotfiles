@@ -1,0 +1,109 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/hy3-free",
+  "plugin": ["@mohak34/opencode-notifier@latest"],
+  "permission": {
+    "bash": {
+      "rm -rf *": "ask",
+      "rm -r *": "ask",
+      "rm *": "ask",
+      "*": "allow",
+    },
+    "edit": {
+      "~/.treehouse/**": "allow",
+    },
+    "external_directory": {
+      "~/.treehouse/**": "allow",
+    },
+  },
+  "provider": {
+    "ollama": {
+      "models": {
+        "nemotron3:33B": {
+          "name": "nemotron3:33B",
+        },
+        "qwen2.5:7b": {
+          "name": "qwen2.5:7b",
+        },
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+      },
+    },
+    "openrouter": {
+      "models": {
+        "~anthropic/claude-sonnet-latest": {
+          "options": {
+            "provider": {
+              "order": ["anthropic"],
+              "allow_fallbacks": true,
+              "ollama": {
+                "models": {
+                  "gemma4:26b-mlx": {
+                    "_launch": true,
+                    "name": "gemma4:26b-mlx",
+                  },
+                },
+                "name": "ollama",
+                "npm": "@ai-sdk/openai-compatible",
+                "options": {
+                  "baseURL": "http://localhost:11434/v1",
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  "mcp": {
+    "google-calendar": {
+      "type": "local",
+      "command": [
+        "node",
+        "/Users/kirubeltadesse/Tools/google-calendar-mcp/build/index.js",
+      ],
+      "enabled": true,
+      "environment": {
+        "GOOGLE_OAUTH_CREDENTIALS": "/Users/kirubeltadesse/Tools/google-calendar-mcp/gcp-oauth.keys.json",
+      },
+    },
+    "storybook": {
+      "type": "local",
+      "command": [
+        "node",
+        "/Users/kirubeltadesse/projects/soccer-adict-project/mobile-app/scripts/storybook-mcp-bridge.mjs",
+      ],
+      "enabled": true,
+      "environment": {
+        "STORYBOOK_URL": "http://localhost:6006",
+      },
+    },
+    "sonarqube": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "--init",
+        "--pull=always",
+        "-i",
+        "--rm",
+        "-e",
+        "SONARQUBE_TOKEN",
+        "-e",
+        "SONARQUBE_ORG",
+        "-e",
+        "SONARQUBE_READ_ONLY",
+        "sonarsource/sonarqube-mcp",
+      ],
+      "enabled": true,
+      "environment": {
+        "SONARQUBE_TOKEN": "REDACTED_SONARQUBE_TOKEN",
+        "SONARQUBE_ORG": "swarmies",
+        "SONARQUBE_READ_ONLY": "true",
+      },
+    },
+  },
+}

@@ -1,0 +1,3 @@
+#!/bin/bash
+# Switch to U.S. English input method
+/etc/profiles/per-user/kirubeltadesse/bin/macism com.apple.keylayout.US

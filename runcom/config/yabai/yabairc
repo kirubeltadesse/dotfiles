@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+# NOTE: yabai executes this file during startup before its server is ready, so
+# the commands below are dropped there. The launchd agent therefore starts yabai
+# with an empty config and runs this file through yabai-wrapper.sh once the
+# daemon is up. Do not run this file from yabai's own startup config.
+
+yabai -m config layout bsp
+# yabai -m config auto_balance on
+# yabai -m config split_ratio 0.5
+
+yabai -m config window_placement second_child
+
+# mouse Settings
+yabai -m config mouse_follows_focus on
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+# yabai -m config mouse_drop_action swap
+
+yabai -m config top_padding 8
+yabai -m config bottom_padding 8
+yabai -m config left_padding 8
+yabai -m config right_padding 8
+yabai -m config window_gap 8
+
+# Spaces created before yabai default to float, and space-level settings only
+# affect new spaces by default. Convert existing spaces and apply gap/padding.
+for space in $(yabai -m query --spaces | jq -r '.[].index'); do
+    yabai -m space "$space" --layout bsp
+    yabai -m space "$space" --gap abs:8
+    yabai -m space "$space" --padding abs:8:8:8:8
+done
+
+# Let floating/system apps manage themselves.
+yabai -m rule --add app='System Settings' manage=off
+yabai -m rule --add app='Calculator' manage=off
+yabai -m rule --add app='App Store' manage=off
+yabai -m rule --add app='OpenSuperWhisper' manage=off
+yabai -m rule --add app='Messages' manage=off

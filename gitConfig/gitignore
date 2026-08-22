@@ -1,2 +1,4 @@
 .lhistory
 .factorypath
+.claude/
+context/current-issues.md

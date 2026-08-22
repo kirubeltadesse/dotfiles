@@ -44,7 +44,8 @@ return {
           gs.diffthis("~")
         end, { desc = "Git Diff with '~'" })
         map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle Blame" })
-        map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle Deleted" })
+        -- FIXME: conflicting with the debugger
+        -- map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle Deleted" })
         -- Visual mode mappings for hunk actions
         map("v", "<leader>hs", function()
           gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
