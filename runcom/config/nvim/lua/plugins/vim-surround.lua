@@ -1,9 +1,26 @@
 return {
   "tpope/vim-surround",
   event = "VeryLazy",
-  dependancies = {
+  dependencies = {
     "tpope/vim-repeat",
   },
+  config = function()
+    -- LazyVim's `editor.leap` extra (leap.nvim) maps `s`/`S` in every mode,
+    -- which hijacks vim-surround's `ys`/`S`. Reclaim `s`/`S` for surround.
+    -- Leap-style jumps remain available via flit's labeled `f`/`F`/`t`/`T`.
+    for _, mode in ipairs({ "n", "x", "o" }) do
+      pcall(vim.keymap.del, mode, "s")
+      pcall(vim.keymap.del, mode, "S")
+    end
+    vim.keymap.set("n", "ds", "<Plug>Dsurround", { remap = true, silent = true })
+    vim.keymap.set("n", "cs", "<Plug>Csurround", { remap = true, silent = true })
+    vim.keymap.set("n", "cS", "<Plug>CSurround", { remap = true, silent = true })
+    vim.keymap.set("n", "ys", "<Plug>Ysurround", { remap = true, silent = true })
+    vim.keymap.set("n", "yS", "<Plug>YSurround", { remap = true, silent = true })
+    vim.keymap.set("n", "yss", "<Plug>Yssurround", { remap = true, silent = true })
+    vim.keymap.set("x", "S", "<Plug>VSurround", { remap = true, silent = true })
+    vim.keymap.set("x", "gS", "<Plug>VgSurround", { remap = true, silent = true })
+  end,
 
   --   Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more.
   --   The plugin provides mappings to easily delete, change and add such surroundings in pairs.
