@@ -103,7 +103,10 @@ in
       export NB_PREVIEW_COMMAND="bat"
 
       [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+      export ATUIN_NOBIND="true"
       eval "$(atuin init bash)"
+      # Ctrl-R in vi-command mode triggers atuin search
+      atuin-bind -m vi-command '\C-r' atuin-search-vicmd
       export CARAPACE_COLOR=1
       export CARAPACE_BRIDGES=bash
       eval "$(carapace _carapace bash)"
