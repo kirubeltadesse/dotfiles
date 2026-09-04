@@ -16,6 +16,9 @@
       "~/.treehouse/**": "allow",
     },
   },
+  "watcher": {
+    "ignore": ["**/graphify-out/**", "**/graph.json", "**/.graphify_*"],
+  },
   "provider": {
     "ollama": {
       "models": {
