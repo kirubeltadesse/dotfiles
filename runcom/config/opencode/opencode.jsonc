@@ -123,6 +123,11 @@
         "STORYBOOK_URL": "http://localhost:6006",
       },
     },
+    "circleci": {
+      "type": "local",
+      "command": ["circleci", "mcp", "start"],
+      "enabled": true,
+    },
     "sonarqube": {
       "type": "local",
       "command": [
