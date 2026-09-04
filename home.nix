@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
@@ -60,11 +60,26 @@ in
     NPM_CONFIG_PREFIX = "${config.home.homeDirectory}/.local";
   };
   home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
     "${config.home.homeDirectory}/.nix-profile/bin"
     "/etc/profiles/per-user/${config.home.username}/bin"
     "/run/current-system/sw/bin"
     "/nix/var/nix/profiles/default/bin"
   ];
+
+  # AXI surfaces (gh-axi, lavish-axi, quota-axi) install as global npm packages.
+  # NPM_CONFIG_PREFIX points at ~/.local, which is NOT zap-managed, so these
+  # survive `darwin-rebuild switch`. Install is guarded so it only runs when a
+  # tool is missing, keeping rebuilds fast and offline-safe.
+  home.activation.installAxiTools = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    export NPM_CONFIG_PREFIX="${config.home.homeDirectory}/.local"
+    for tool in gh-axi lavish-axi quota-axi; do
+      if [ ! -x "${config.home.homeDirectory}/.local/bin/$tool" ]; then
+        echo "installing $tool..."
+        ${pkgs.nodejs_24}/bin/npm install -g --prefix "${config.home.homeDirectory}/.local" "$tool" || true
+      fi
+    done
+  '';
   programs.browserpass = {
     enable = true;
     browsers = [ "firefox" "chrome" ];
