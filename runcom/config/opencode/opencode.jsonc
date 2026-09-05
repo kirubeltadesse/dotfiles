@@ -14,6 +14,7 @@
     },
     "external_directory": {
       "~/.treehouse/**": "allow",
+      "/tmp/**": "allow",
     },
   },
   "watcher": {
