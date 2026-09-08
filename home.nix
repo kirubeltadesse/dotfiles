@@ -80,6 +80,14 @@ in
       fi
     done
   '';
+
+  # Herdr plugins installed declaratively (TPM-style). The script lives in the
+  # herdr config dir and is idempotent: re-running replaces existing GitHub-managed
+  # plugin installs with the declared sources. Runs after linkGeneration so
+  # ~/.config/herdr (symlink to runcom/config/herdr) is in place.
+  home.activation.setupHerdrPlugins = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    ${config.home.homeDirectory}/.config/herdr/setup-plugins.sh || true
+  '';
   programs.browserpass = {
     enable = true;
     browsers = [ "firefox" "chrome" ];
