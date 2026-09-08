@@ -1,0 +1,18 @@
+# herdr runtime state - regenerated on every session, not source
+.plugins.lock
+session.json
+release-notes.json
+plugins.json
+
+# sockets / logs
+*.sock
+*.log
+
+# herdr-maintained plugin clone (nested git repo, re-cloned from source)
+plugins/github/
+
+# config-dir assets deployed at runtime by pomodoro-setup.sh
+plugins/config/
+
+# python
+__pycache__/
