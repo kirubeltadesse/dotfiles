@@ -13,5 +13,10 @@ herdr plugin install kirubeltadesse/herdr-pomodoro --ref main --yes
 # Last workspace/tab toggle (MRU jump between the two most recent).
 herdr plugin install lmilojevicc/herdr-last --ref main --yes
 
+# Vim-aware pane navigation: routes ctrl+h/j/k/l between nvim splits and herdr
+# panes. Pairs with the nvim plugin in runcom/config/nvim/lua/plugins/vim-herdr-nav.lua
+# and the focus_pane_* lines in config.toml.
+herdr plugin install bojackduy/nvim-herdr-navigation/herdr-vim-navigator --ref master --yes
+
 # Reload so keybindings and plugin actions take effect.
 herdr server reload-config
