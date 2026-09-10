@@ -11,10 +11,17 @@
     },
     "edit": {
       "~/.treehouse/**": "allow",
+      "**/.no-mistakes/**": "allow",
+      "**/.opencode/**": "allow",
+      "~/.config/opencode/**": "allow",
     },
     "external_directory": {
       "~/.treehouse/**": "allow",
       "/tmp/**": "allow",
+      "~/.nb/**": "allow",
+      "**/.no-mistakes/**": "allow",
+      "**/.opencode/**": "allow",
+      "~/.config/opencode/**": "allow",
     },
   },
   "watcher": {
