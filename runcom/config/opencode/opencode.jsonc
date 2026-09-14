@@ -1,7 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/hy3-free",
-  "plugin": ["@mohak34/opencode-notifier@latest"],
+  // "model": "relayfast/minimax-m3",
+  "model": "opencode/big-pickle",
+  "plugin": [
+    "./.opencode/plugins/fm-primary-watch-arm.js",
+    "./.opencode/plugins/fm-primary-turnend-guard.js",
+    "./.opencode/plugins/fm-primary-sessionstart-nudge.js",
+    "./.opencode/plugins/fm-primary-cd-check.js",
+    "./.opencode/plugins/fm-primary-pretool-check.js",
+    "./.opencode/plugins/fm-graphify-guard.js",
+  ],
   "permission": {
     "bash": {
       "rm -rf *": "ask",
