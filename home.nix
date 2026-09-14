@@ -2,6 +2,7 @@
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
+  passWithOtp = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
 in
 
 {
@@ -30,7 +31,7 @@ in
     glow
     lynx
     cmake
-    pass
+    passWithOtp
     yt-dlp
     keybase
     yabai
