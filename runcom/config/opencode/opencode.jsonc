@@ -22,6 +22,7 @@
       "**/.no-mistakes/**": "allow",
       "**/.opencode/**": "allow",
       "~/.config/opencode/**": "allow",
+      "~/Tools/firstmate/**": "allow",
     },
     "external_directory": {
       "~/.treehouse/**": "allow",
@@ -30,6 +31,7 @@
       "**/.no-mistakes/**": "allow",
       "**/.opencode/**": "allow",
       "~/.config/opencode/**": "allow",
+      "~/Tools/firstmate/**": "allow",
     },
   },
   "watcher": {
