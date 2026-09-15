@@ -9,7 +9,8 @@
     //   "dialog.select.end": "shift+g,end",
     //
     "messages_half_page_up": "ctrl+u,ctrl+alt+u",
-    "messages_half_page_down": "ctrl+d,ctrl+alt+d"
+    "messages_half_page_down": "ctrl+d,ctrl+alt+d",
+    "model_favorite_toggle": "ctrl+g"
     //   "messages_first": "g,ctrl+g,home",
     //   "messages_last": "shift+g,ctrl+alt+g,end",
     //
