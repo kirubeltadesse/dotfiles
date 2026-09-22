@@ -12,8 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- map("<leader>vwl", vim.diagnostic.setloclist, "Diagnostic in location list")
     map("<leader>vd", vim.diagnostic.open_float, "Diagnostic open float")
     map("<leader>r", vim.lsp.buf.rename, "Buffer rename")
-    -- TODO: restore <C-k> for LSP signature_help once we move herdr nav to a non-conflicting prefix
-    -- map("<C-k>", vim.lsp.buf.signature_help, "Help signature")
+    map("gK", vim.lsp.buf.signature_help, "Help signature")
   end,
 })
 
