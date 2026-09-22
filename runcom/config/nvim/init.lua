@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- map("<leader>vwl", vim.diagnostic.setloclist, "Diagnostic in location list")
     map("<leader>vd", vim.diagnostic.open_float, "Diagnostic open float")
     map("<leader>r", vim.lsp.buf.rename, "Buffer rename")
-    map("<C-k>", vim.lsp.buf.signature_help, "Help signature")
+    map("gK", vim.lsp.buf.signature_help, "Help signature")
   end,
 })
 

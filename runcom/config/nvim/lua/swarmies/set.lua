@@ -42,6 +42,7 @@ vim.opt.colorcolumn = "80"
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
+vim.opt.clipboard = "unnamedplus"
 vim.opt.nu = true
 vim.opt.rnu = true -- set relative number
 vim.opt.visualbell = true -- turning of the beep sound on the text edit

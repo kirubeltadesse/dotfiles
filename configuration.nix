@@ -122,6 +122,7 @@
       # "tmux-fingers"
       "leohenon/tap/ocv"
       "herdr"
+      "circleci"
     ];
     casks = [
       "wezterm"

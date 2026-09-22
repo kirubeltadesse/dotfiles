@@ -18,7 +18,8 @@ ctrl + alt - l : yabai -m window --resize right:80:0 || yabai -m window --resize
 
 # Layout and state
 ctrl + alt - r : launchctl kickstart -k "gui/$(id -u)/org.nix-community.home.yabai"
-ctrl + alt - return: yabai -m window --toggle float
+alt - return : yabai -m window --toggle float
+ctrl + alt - return : yabai -m window --toggle native-fullscreen
 alt - f : yabai -m window --toggle zoom-fullscreen
 alt - b : yabai -m space --balance
 alt - y : yabai -m space --mirror y-axis

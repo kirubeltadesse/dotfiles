@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
+  passWithOtp = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
 in
 
 {
@@ -30,7 +31,7 @@ in
     glow
     lynx
     cmake
-    pass
+    passWithOtp
     yt-dlp
     keybase
     yabai
@@ -60,11 +61,34 @@ in
     NPM_CONFIG_PREFIX = "${config.home.homeDirectory}/.local";
   };
   home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
     "${config.home.homeDirectory}/.nix-profile/bin"
     "/etc/profiles/per-user/${config.home.username}/bin"
     "/run/current-system/sw/bin"
     "/nix/var/nix/profiles/default/bin"
   ];
+
+  # AXI surfaces (gh-axi, lavish-axi, quota-axi) install as global npm packages.
+  # NPM_CONFIG_PREFIX points at ~/.local, which is NOT zap-managed, so these
+  # survive `darwin-rebuild switch`. Install is guarded so it only runs when a
+  # tool is missing, keeping rebuilds fast and offline-safe.
+  home.activation.installAxiTools = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    export NPM_CONFIG_PREFIX="${config.home.homeDirectory}/.local"
+    for tool in gh-axi lavish-axi quota-axi; do
+      if [ ! -x "${config.home.homeDirectory}/.local/bin/$tool" ]; then
+        echo "installing $tool..."
+        ${pkgs.nodejs_24}/bin/npm install -g --prefix "${config.home.homeDirectory}/.local" "$tool" || true
+      fi
+    done
+  '';
+
+  # Herdr plugins installed declaratively (TPM-style). The script lives in the
+  # herdr config dir and is idempotent: re-running replaces existing GitHub-managed
+  # plugin installs with the declared sources. Runs after linkGeneration so
+  # ~/.config/herdr (symlink to runcom/config/herdr) is in place.
+  home.activation.setupHerdrPlugins = lib.hm.dag.entryAfter ["linkGeneration"] ''
+    ${config.home.homeDirectory}/.config/herdr/setup-plugins.sh || true
+  '';
   programs.browserpass = {
     enable = true;
     browsers = [ "firefox" "chrome" ];
@@ -103,7 +127,10 @@ in
       export NB_PREVIEW_COMMAND="bat"
 
       [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+      export ATUIN_NOBIND="true"
       eval "$(atuin init bash)"
+      # Ctrl-R in vi-command mode triggers atuin search
+      atuin-bind -m vi-command '\C-r' atuin-search-vicmd
       export CARAPACE_COLOR=1
       export CARAPACE_BRIDGES=bash
       eval "$(carapace _carapace bash)"

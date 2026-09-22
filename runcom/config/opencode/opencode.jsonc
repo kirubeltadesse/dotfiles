@@ -1,7 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode/hy3-free",
-  "plugin": ["@mohak34/opencode-notifier@latest"],
+  // "model": "relayfast/minimax-m3",
+  "model": "opencode/big-pickle",
+  "plugin": [
+    "./.opencode/plugins/fm-primary-watch-arm.js",
+    "./.opencode/plugins/fm-primary-turnend-guard.js",
+    "./.opencode/plugins/fm-primary-sessionstart-nudge.js",
+    "./.opencode/plugins/fm-primary-cd-check.js",
+    "./.opencode/plugins/fm-primary-pretool-check.js",
+    "./.opencode/plugins/fm-graphify-guard.js",
+  ],
   "permission": {
     "bash": {
       "rm -rf *": "ask",
@@ -11,10 +19,25 @@
     },
     "edit": {
       "~/.treehouse/**": "allow",
+      "**/.no-mistakes/**": "allow",
+      "**/.opencode/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.herdr/workspaces/**": "allow",
+      "~/Tools/firstmate/**": "allow",
     },
     "external_directory": {
       "~/.treehouse/**": "allow",
+      "/tmp/**": "allow",
+      "~/.nb/**": "allow",
+      "**/.no-mistakes/**": "allow",
+      "**/.opencode/**": "allow",
+      "~/.config/opencode/**": "allow",
+      "~/.herdr/workspaces/**": "allow",
+      "~/Tools/firstmate/**": "allow",
     },
+  },
+  "watcher": {
+    "ignore": ["**/graphify-out/**", "**/graph.json", "**/.graphify_*"],
   },
   "provider": {
     "ollama": {
@@ -30,6 +53,56 @@
       "npm": "@ai-sdk/openai-compatible",
       "options": {
         "baseURL": "http://localhost:11434/v1",
+      },
+    },
+    "relayfast": {
+      "name": "relay.fast",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://relay.fast/v1",
+        "apiKey": "{file:~/.config/opencode/relay-key}",
+      },
+      "models": {
+        "gpt-5.6-terra": {
+          "name": "GPT-5.6 Terra",
+          "limit": { "context": 372000, "output": 128000 },
+        },
+        "claude-sonnet-4-6": {
+          "name": "Claude Sonnet 4.6",
+          "limit": { "context": 1000000, "output": 64000 },
+        },
+        "glm-5.3": {
+          "name": "GLM-5.3",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
+        "minimax-m3": {
+          "name": "MiniMax M3",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code",
+          "limit": { "context": 256000, "output": 65536 },
+        },
+        "gpt-5.4-mini": {
+          "name": "GPT-5.4 Mini",
+          "limit": { "context": 272000, "output": 128000 },
+        },
+        "claude-haiku-4-5": {
+          "name": "Claude Haiku 4.5",
+          "limit": { "context": 200000, "output": 64000 },
+        },
+        "mimo-v2.5-pro": {
+          "name": "MiMo v2.5 Pro",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
+        "deepseek-v4-flash-0731": {
+          "name": "DeepSeek V4 Flash 0731",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
       },
     },
     "openrouter": {
@@ -80,6 +153,16 @@
       "environment": {
         "STORYBOOK_URL": "http://localhost:6006",
       },
+    },
+    "hoppscotch": {
+      "type": "local",
+      "command": ["npx", "-y", "@hoppscotch/mcp-server"],
+      "enabled": true,
+    },
+    "circleci": {
+      "type": "local",
+      "command": ["circleci", "mcp", "start"],
+      "enabled": true,
     },
     "sonarqube": {
       "type": "local",
