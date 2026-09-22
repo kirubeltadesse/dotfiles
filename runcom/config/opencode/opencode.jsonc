@@ -95,6 +95,14 @@
           "name": "MiMo v2.5 Pro",
           "limit": { "context": 1000000, "output": 65536 },
         },
+        "deepseek-v4-flash": {
+          "name": "DeepSeek V4 Flash",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
+        "deepseek-v4-flash-0731": {
+          "name": "DeepSeek V4 Flash 0731",
+          "limit": { "context": 1000000, "output": 65536 },
+        },
       },
     },
     "openrouter": {
@@ -145,6 +153,11 @@
       "environment": {
         "STORYBOOK_URL": "http://localhost:6006",
       },
+    },
+    "hoppscotch": {
+      "type": "local",
+      "command": ["npx", "-y", "@hoppscotch/mcp-server"],
+      "enabled": true,
     },
     "circleci": {
       "type": "local",
